@@ -1,0 +1,145 @@
+﻿
+/* redefine defaults */
+* {  margin: 0; padding: 0; border:none; overflow:hidden; }
+    
+html { height: 100%; }
+body
+{
+	/* fill complete frame (required) */
+    height: 100%;
+   
+    
+    /* text */
+    font-family: Futura, Arial, sans-serif;
+    
+    /* background */
+    background-color: white;
+}
+/* vocatis1 */
+
+.vocatis1 
+{
+    height: 100%;
+    width: 100%;
+    position:fixed;
+}
+
+.vocatis1 .header 
+{
+    height: 105px;
+    padding: 76px 0 0 141px;
+    font-size: 36px;
+}
+
+.vocatis1 table
+{
+    width: 100%;
+    border-collapse: collapse;
+    padding: 0;
+}
+
+
+
+.vocatis1 tr.spacer>td 
+{
+    background-color: inherit;
+    height: 75px;
+    padding: 0;
+}
+
+.vocatis1 td:first-child
+{
+    color: Black;
+    padding-left: 141px;
+    width: 728px;
+}
+
+.vocatis1 td
+{
+    border-spacing: 0; 
+    height: 108px;
+    padding: 0 0 0 20px;
+    vertical-align: middle;    
+    text-align:left;
+    font-size: 53px;
+    
+    color: #29BB1A;
+    font-weight:bold;
+    background-color:  #F2F2F2;
+}
+
+
+
+/* vocatis2 */
+
+.vocatis2
+{
+    height: 100%;
+    width: 100%;
+    position:fixed;
+    text-align:center;
+}
+.vocatis2 h1 { font-size: 38px;}
+.vocatis2>h1
+{
+     margin: 140px 139px 70px 139px;
+}
+.vocatis2>div.button
+{
+    margin: 70px 310px 0 310px; 
+    background: #0084E1;
+    
+}
+.vocatis2>div.button>div
+{
+    background: #0084E1;   
+}
+.vocatis2>div.button p 
+{
+    padding: 45px 0 0 0;
+    color:White;
+    height: 99px;
+    width:100%;
+    font-size: 52px;
+}
+
+.vocatis2>div.popup1,
+.vocatis2>div.popup2
+{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: White;
+}
+
+.vocatis2>div.popup1>h1,
+.vocatis2>div.popup2>h1 
+{
+    text-align: left;
+    float:left;
+    margin: 140px 0 70px 139px;    
+}
+.vocatis2>div.popup1>img,
+.vocatis2>div.popup2>img 
+{
+    float:right;
+    margin: 300px 139px 0 0;    
+}
+
+
+
+.vocatis2_ticket
+{
+    width: 56mm; font-family: Arial; font-size: 4mm; text-align: center;
+}
+
+.vocatis2_ticket img 
+{
+    float: right;
+}
+
+.vocatis2_ticket div
+{
+    font-size: 16mm; clear: both;
+}
