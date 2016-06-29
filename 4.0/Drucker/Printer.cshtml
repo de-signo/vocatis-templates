@@ -1,0 +1,60 @@
+@using System.Web.Optimization
+@using System.Web.Mvc
+@using Stolltec.Forms.Model
+@{
+    var Model = new FormsModel(this);
+    var partial = Request.IsAjaxRequest();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vocatis</title>
+    <link href="@Href("Vocatis.css")" type="text/css" rel="Stylesheet" />
+</head>
+<body class="printer">
+    @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
+
+    <h1>Bitte drucken Sie eine Wartenummer für die Anmeldung aus.</h1>
+    <img src="arrow_down.png" runat="server" alt="arrow" />
+    <a id="start">
+        <span>S&nbsp;T&nbsp;A&nbsp;R&nbsp;T</span>
+    </a>
+
+    <div id="printPopup" style="display: none;" class="popup">
+        <h1>Einen Moment ...</h1>
+        <img src="printer.gif" runat="server" alt="printer" />
+    </div>
+    <div id="takePopup" style="display: none;" class="popup">
+        <h1>Bitte entnehmen Sie<br />Ihre Wartenummer.</h1>
+        <img src="arrow_right.png" runat="server" alt="arrow" />
+    </div>
+
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+		$("body").disableSelect();
+		
+		$("#start").printTicket({
+			beginPrint: function() {
+				$("#printPopup").show();
+			},
+			endPrint: function() {
+				$("#printPopup").hide();
+				$("#takePopup").show();
+				window.setTimeout(function() { $("#takePopup").hide; }, 3000);
+			},
+			failPrint: function() {
+				$("#printPopup").hide();
+			}
+		});
+		
+            reportPrinterStatus({
+		url: "@Href(Stolltec.Forms.PrinterStatus.Path)"
+	    });
+        });
+    </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,21 @@
+@{
+    var Model = new FormsModel(this);
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vocatis</title>
+    <link href="@Href("Vocatis.css")" type="text/css" rel="Stylesheet" />
+</head>
+<body class="ticket">
+    <h1>
+        @Vocatis.CreateTicketNumber(Model.QueueId)
+    </h1>
+    <p>
+        @DateTime.Now.ToString("dd.MM.yyyy")
+    </p>
+    <p>
+        Wird Ihre Nummer angezeigt, begeben Sie sich bitte an den entsprechenden Anmeldeplatz
+    </p>
+</body>
+</html>
