@@ -1,12 +1,11 @@
 @using System.Web.Optimization
-@using System.Web.Mvc
 @using Stolltec.Forms.Model
 @{
     var Model = new FormsModel(this);
     var list = Model.DataSource("source");
     // the $.fn.vocatisList function requests the page to update the view
     // We minimize the overhead by just sending the required contents.
-    var partial = Request.IsAjaxRequest();
+    var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
 }
 
 @helper ItemsList(IEnumerable<dynamic> list) {
