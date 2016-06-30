@@ -12,7 +12,7 @@
 <body class="printer">
     @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
 
-    <a id="start">
+    <a id="start" href="@Model.Navigate("PrinterTicket.cshtml")">
         <span>@Model.Style["text"].Value</span>
     </a>
 
@@ -35,7 +35,7 @@
 			endPrint: function() {
 				$("#printPopup").hide();
 				$("#takePopup").show();
-				window.setTimeout(function() { $("#takePopup").hide; }, 3000);
+				window.setTimeout(function() { $("#takePopup").hide(); }, 3000);
 			},
 			failPrint: function() {
 				$("#printPopup").hide();
