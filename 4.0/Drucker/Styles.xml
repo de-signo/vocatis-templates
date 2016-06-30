@@ -9,9 +9,21 @@
     <fields>
        <field key="queueid">
         <names>
-          <name>Warteschlangen ID</name>
+          <name>Warteschlange</name>
         </names>
         <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid">
+          <names>
+              <name>Kategorie</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
+      <field key="text">
+        <names>
+          <name>Text</name>
+        </names>
+        <content_class type="TextFree"  />
       </field>
     </fields>
   </style>

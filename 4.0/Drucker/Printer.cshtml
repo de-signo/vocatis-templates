@@ -14,19 +14,15 @@
 <body class="printer">
     @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
 
-    <h1>Bitte drucken Sie eine Wartenummer für die Anmeldung aus.</h1>
-    <img src="arrow_down.png" runat="server" alt="arrow" />
     <a id="start">
-        <span>S&nbsp;T&nbsp;A&nbsp;R&nbsp;T</span>
+        <span>@Model.Style["text"].Value</span>
     </a>
 
     <div id="printPopup" style="display: none;" class="popup">
         <h1>Einen Moment ...</h1>
-        <img src="printer.gif" runat="server" alt="printer" />
     </div>
     <div id="takePopup" style="display: none;" class="popup">
         <h1>Bitte entnehmen Sie<br />Ihre Wartenummer.</h1>
-        <img src="arrow_right.png" runat="server" alt="arrow" />
     </div>
 
     

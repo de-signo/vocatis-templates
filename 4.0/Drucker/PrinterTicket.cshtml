@@ -1,3 +1,8 @@
+@using System.Web.Optimization
+@using System.Web.Mvc
+@using Stolltec.Forms.Model
+@using Stolltec.Vocatis.Model
+@using ISS.Identifiers
 @{
     var Model = new FormsModel(this);
 }
@@ -9,7 +14,7 @@
 </head>
 <body class="ticket">
     <h1>
-        @Vocatis.CreateTicketNumber(Model.QueueId)
+        @Vocatis.CreateTicket((CommonGuidId)Model.Style["queueid"].Value, (CommonGuidId[])Model.Style["catid"].Value).Number
     </h1>
     <p>
         @DateTime.Now.ToString("dd.MM.yyyy")

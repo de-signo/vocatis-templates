@@ -38,7 +38,7 @@ body
     margin: 70px 310px 0 310px; 
     background-color: #0084E1;
 	text-decoration:none;
-    
+    border-radius: 9px;
 }
 .printer>#start>span
 {
@@ -50,12 +50,15 @@ body
     font-size: 52px;
 }
 
-.printer popup
+.printer .popup
 {
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
     background-color: White;
 }
 
