@@ -81,12 +81,7 @@ body
     width: 56mm; font-family: Arial; font-size: 4mm; text-align: center;
 }
 
-.ticket img 
+.ticket h1
 {
-    float: right;
-}
-
-.ticket div
-{
-    font-size: 16mm; clear: both;
+    font-size: 16mm;
 }

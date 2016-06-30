@@ -9,14 +9,15 @@
     <link href="@Href("Vocatis.css")" type="text/css" rel="Stylesheet" />
 </head>
 <body class="ticket">
+    <p>
+        @DateTime.Now.ToString("dd.MM.yyyy")
+    </p>
+    <img runat="server" src="logo.jpg" />
     <h1>
         @Model.Style["ticketnumber"].Value
     </h1>
     <p>
-        @DateTime.Now.ToString("dd.MM.yyyy")
-    </p>
-    <p>
-        Wird Ihre Nummer angezeigt, begeben Sie sich bitte an den entsprechenden Anmeldeplatz
+        Bitte warten Sie, bis Ihre Nummer auf dem Bildschirm erscheint!
     </p>
     <script type="text/javascript">
     window.onload = function () {

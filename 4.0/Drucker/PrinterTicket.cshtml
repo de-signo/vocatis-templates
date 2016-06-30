@@ -13,14 +13,12 @@
     <link href="@Href("Vocatis.css")" type="text/css" rel="Stylesheet" />
 </head>
 <body class="ticket">
-    <h1>
-        @Vocatis.CreateTicket((CommonGuidId)Model.Style["queueid"].Value, (CommonGuidId[])Model.Style["catid"].Value).Number
-    </h1>
     <p>
         @DateTime.Now.ToString("dd.MM.yyyy")
     </p>
-    <p>
-        Wird Ihre Nummer angezeigt, begeben Sie sich bitte an den entsprechenden Anmeldeplatz
-    </p>
+    <img runat="server" src="logo.jpg" />
+    <h1>
+        @Vocatis.CreateTicket((CommonGuidId)Model.Style["queueid"].Value, (CommonGuidId[])Model.Style["catid"].Value).Number
+    </h1>
 </body>
 </html>
