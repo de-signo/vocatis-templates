@@ -14,11 +14,14 @@
 </head>
 <body class="ticket">
     <p>
-        @DateTime.Now.ToString("dd.MM.yyyy")
+        @DateTime.Now.ToString("dd.MM.yyyy  HH:mm") Uhr
     </p>
     <img runat="server" src="logo.jpg" />
     <h1>
         @Vocatis.CreateTicket((CommonGuidId)Model.Style["queueid"].Value, (CommonGuidId[])Model.Style["catid"].Value).Number
     </h1>
+    <p>
+        Bitte warten Sie, bis Ihre Nummer auf dem Bildschirm erscheint!
+    </p>
 </body>
 </html>
