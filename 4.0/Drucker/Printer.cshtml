@@ -10,7 +10,7 @@
     <link href="@Href("Vocatis.css")" type="text/css" rel="Stylesheet" />
 </head>
 <body class="printer">
-    @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
+    @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "hammer.min.js")
 
     <a id="start" href="@Model.Navigate("PrinterTicket.cshtml")">
         <span>@Model.Style["text"].Value</span>
@@ -23,9 +23,10 @@
         <h1>Bitte entnehmen Sie<br />Ihre Wartenummer.</h1>
     </div>
 
-    
     <script type="text/javascript">
         $(document).ready(function () {
+		var hammertime = new Hammer(document.body, {});
+
 		$("body").disableSelect();
 		
 		$("#start").printTicket({
