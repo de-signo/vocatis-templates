@@ -13,8 +13,8 @@
     <tbody>
         @foreach (dynamic x in list) {
         <tr>
-            <td class="room">@x.room</td>
             <td class="number">@x.number</td>
+            <td class="room">@x.room</td>
         </tr>
         <tr class="spacer">
             <td colspan="2"></td>
@@ -40,10 +40,10 @@ else {
         Bitte warten Sie, bis Ihre Nummer erscheint:
     </h1>
     @ItemsList(list)
-    
+
     @{
-	var notify = Model.Style["notify"].FieldInstance.Value as string; 
-	var popup = Model.Style["popup"].FieldInstance.Value as string; 
+        var notify = Model.Style["notify"].FieldInstance.Value as string;
+        var popup = Model.Style["popup"].FieldInstance.Value as string;
     }
     @if (!String.IsNullOrEmpty(notify)) {
     <audio id="notify">
@@ -51,15 +51,15 @@ else {
     </audio>
     }
     @if (!String.IsNullOrEmpty(popup)) {
-	<div id="popup" style="display:none;" class="popup @popup">
-	    <h3>~room~</h3>
+        <div id="popup" style="display:none;" class="popup @popup">
+            <h3>~room~</h3>
             <h4>~number~</h4>
         </div>
     }
     <script type="text/javascript">
     $(document).ready(function() {
         var popupContent = $("#popup").html();
-    
+
         $("#list")
             .vocatisList({
                 interval: 2500
@@ -68,12 +68,12 @@ else {
                 items:"tr:not(.spacer)",
                 call: function(items) {
                     var audio = document.getElementById("notify");
-		    if (audio) audio.play();
-		    
-		    if (popupContent) {
-			    $("#popup").html(popupContent.replace("~number~", items[0].number).replace("~room~", items[0].room)).show();
-			    window.setTimeout(function () { $("#popup").hide(); }, 10000);
-		    }
+                    if (audio) audio.play();
+
+                    if (popupContent) {
+                            $("#popup").html(popupContent.replace("~number~", items[0].number).replace("~room~", items[0].room)).show();
+                            window.setTimeout(function () { $("#popup").hide(); }, 10000);
+                    }
                 }
             });
     });
@@ -81,4 +81,3 @@ else {
 </body>
 </html>
 }
-
