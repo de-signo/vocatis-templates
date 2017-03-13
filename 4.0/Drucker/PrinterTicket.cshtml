@@ -2,9 +2,10 @@
 @using System.Web.Mvc
 @using Stolltec.Forms.Model
 @using Stolltec.Vocatis.Model
-@using ISS.Identifiers
 @{
     var Model = new FormsModel(this);
+    dynamic queueid = Model.Style["queueid"].Value;
+    dynamic catids = Model.Style["catid"].Value;
 }
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,7 @@
     </p>
     <img runat="server" src="logo.jpg" />
     <h1>
-        @Vocatis.CreateTicket((CommonGuidId)Model.Style["queueid"].Value, (CommonGuidId[])Model.Style["catid"].Value).Number
+        @Vocatis.CreateTicket(queueid, catids).Number
     </h1>
     <p>
         Bitte warten Sie, bis Ihre Nummer auf dem Bildschirm erscheint!
