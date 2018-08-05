@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@{
+  // Parse model
+  var Model = new FormsModel(this);
+  var mode = (string)Model.Style["mode"].FieldInstance.Value;
+
+  // Select ticket servce type (JSON vs HTML) by mode
+  var ticketUrl = (mode == "print") ? "PrinterTicket.cshtml" : "Ticket.cshtml";
+}
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drucker</title>
+  <link href="@Href("css/bootstrap.min.css")" type="text/css" rel="Stylesheet" />
+  <link href="@Href("css/site.css")" type="text/css" rel="Stylesheet" />
+</head>
+<body>
+  @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js", "js/bootstrap.min.js")
+  
+  @* main section is visible, when inactive *@
+  <main>
+    <h1>Anmeldung</h1>
+    <h4>Bitte wählen Sie den gewünschten Fachbereich aus:</h4>
+    <ul>
+      @for (int i = 1; i <= 5; i++) {
+        if (!String.IsNullOrEmpty((string)Model.Style["text" + i].Value)) {
+      <li><a href="@Model.Navigate(ticketUrl, new { queueid=Model.Style["queueid" + i].Value, cat=Model.Style["catid" + i].Value })" class="btn btn-primary">@((string)Model.Style["text" + i].Value)</a></li>
+      }}
+    </ul>
+  </main>
+
+  @* wait popup is shown, while generating a new number *@
+  <section id="waitPopup" style="display: none;">
+    <h3>Sie weden angemeldet im Fachbereich</h3>
+    <h2 data-name></h2>
+    <p>Bitte warten</p>
+    <p>...</p>
+  </section>
+
+  @* take popup is shown, when the printout is ready *@
+  <section id="takePopup" style="display: none;">
+    <h3>Sie weden angemeldet im Fachbereich</h3>
+    <h2 data-name></h2>
+    <p>Bitte entnehmen Sie Ihre Nummer</p>
+    <img src="" alt="Pfeil">
+    <p>Sie werden aufgerufen.</p>
+  </section>
+
+  @* show popup shows the number on the screen *@
+  <section id="showPopup" style="display: none;">
+    <h3>Sie weden angemeldet im Fachbereich</h3>
+    <h2 data-name></h2>
+    <p>Bitte merken Sie sich Ihre Anmeldenummer:</p>
+    <p class="number" data-number></p>
+    <p>Sie werden aufgerufen.</p>
+  </section>
+
+<script type="text/javascript">
+@if (mode == "print") {
+  @*
+    This script calls the number generation service
+    and prints the number on the default printer.
+    It shows the wait popup while waiting and printing.
+    It shows the take popup when the printout is ready.
+    It reports the printer status to the service.
+   *@
+  <text>
+  $(document).ready(function () {
+    $("a.btn").printTicket({
+      beginPrint: function() {
+        $("[data-name]").text($(this).text());
+        $("#waitPopup").show();
+      },
+      endPrint: function() {
+        $("#waitPopup").hide();
+        $("#takePopup").show();
+        window.setTimeout(function() { $("#takePopup").hide(); }, 3000);
+      },
+      failPrint: function() {
+        $("#waitPopup").hide();
+      }
+    });
+		
+    reportPrinterStatus({
+		  url: "@Href(Stolltec.Forms.PrinterStatus.Path)"
+	  });
+  });
+  </text>
+} else {
+  @*
+    This script calls the number generation service,
+    shows the wait popup while waiting and
+    shows the number in show popup when done.
+   *@
+  <text>
+  $(document).ready(function () {
+ 
+    $("a.btn").click(function (ev) {
+      ev.preventDefault();
+
+      // do not block
+      var url = $(this).attr("href");
+      if (!url)
+          url = $(this).data("href");
+      if (url) {
+          // make absolute
+          var a = document.createElement("a");
+          a.href = url;
+          url = a.href;
+      }
+
+      $("[data-name]").text($(this).text());
+      $("#waitPopup").show();
+      $.ajax({url:url, dataType:"json"}).done(function(data) {
+        $("[data-number]").text(data["number"]);
+        $("#showPopup").show();
+        window.setTimeout(function() {
+          $("#showPopup").hide();
+        }, 10000);
+      }).always(function() {
+        $("#waitPopup").hide();
+      });
+    });
+  });
+  </text>
+}
+  $(document).ready(function() {
+    @* 
+      disableSelect disables text selecting
+      clickBlanking prevent two clicks in a row
+      hamertime enables touch features and reduces reaction time
+     *@
+    $("body")
+    .disableSelect()
+    .clickBlanking({ timeout:500 });
+    var hammertime = new Hammer(document.body, {});
+
+    @* add css class for main section, depending on button count *@
+    $("main").addClass("buttons-" + $("main ul>li").length);
+  });
+  </script>
+
+</body>
+</html>
+

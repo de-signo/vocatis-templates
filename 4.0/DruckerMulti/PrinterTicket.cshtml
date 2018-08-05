@@ -1,0 +1,26 @@
+@using iSign
+@using Stolltec.Vocatis
+@using Stolltec.Vocatis.Model
+@{
+    dynamic queueid = CommonGuidId.FromString(Request["queueid"]);
+    dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["catid"]).Value;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vocatis</title>
+    <link href="@Href("Vocatis.css")" type="text/css" rel="Stylesheet" />
+</head>
+<body class="ticket">
+    <p>
+        @DateTime.Now.ToString("dd.MM.yyyy  HH:mm") Uhr
+    </p>
+    <img runat="server" src="logo.jpg" />
+    <h1>
+        @Vocatis.CreateTicket(queueid, catids).Number
+    </h1>
+    <p>
+        Bitte warten Sie, bis Ihre Nummer auf dem Bildschirm erscheint!
+    </p>
+</body>
+</html>

@@ -1,0 +1,74 @@
+
+
+main, section {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgb(224, 224, 224);
+    padding: 20px;
+}
+
+/* main section styles */
+h1 {
+    text-transform: uppercase;
+    text-align: center;
+    color: rgb(0,123,255)
+}
+h4 {
+    color: grey;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin: 20px 0;
+    padding: 0;
+}
+
+li>a.btn {
+    display:block;
+    text-transform: uppercase;
+}
+.buttons-1 li>a.btn {
+    height: 50vh;
+}
+.buttons-2 li>a.btn {
+    height: 24vh;
+}
+.buttons-3 li>a.btn {
+    height: 15vh;
+}
+.buttons-4 li>a.btn {
+    height: 11vh;
+}
+.buttons-5 li>a.btn {
+    height: 9vh;
+}
+
+
+/* wait/take/show section styles */
+h3 {
+    text-align: center;
+}
+h2 {
+    text-align: center;
+    color: rgb(0,123,255);
+}
+section p {
+    margin: 10vw;
+}
+
+#waitPopup p {
+    font-size: 5em;
+}
+
+.number {
+    font-size: 10em;
+    color: rgb(0,123,255);
+    text-align: center;
+}
