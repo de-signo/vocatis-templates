@@ -10,4 +10,4 @@
   dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["catid"]).Value;
   Response.ContentType="application/json";
 }
-{ "number":@Vocatis.CreateTicket(queueid, catids).Number }
+{ "number":"@Vocatis.CreateTicket(queueid, catids).Number" }
