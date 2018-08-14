@@ -1,4 +1,6 @@
-
+html {
+    font-family:Arial, Helvetica, Tahoma,sans-serif;
+}
 
 main, section {
     position: absolute;
@@ -14,11 +16,19 @@ main, section {
 h1 {
     text-transform: uppercase;
     text-align: center;
-    color: rgb(0,123,255)
+    color: rgb(6, 9, 184);
+    font-size: 6.7vw;
+    font-weight:bold;
+    margin: 7vh 0 7vh 0;
 }
 h4 {
-    color: grey;
+    text-align: center;
+    color: rgb(6, 9, 184);
+    font-size: 3.5vw;     /* font-size: 2em; */
+    color: rgb(6, 9, 184);
+    margin: 0 0 4vh 0;
 }
+
 ul {
     list-style: none;
     margin: 0;
@@ -36,31 +46,59 @@ li>a.btn {
 }
 .buttons-1 li>a.btn {
     height: 50vh;
+    line-height: 50vh;
 }
 .buttons-2 li>a.btn {
     height: 24vh;
+    line-height: 24vh;
 }
 .buttons-3 li>a.btn {
     height: 15vh;
+    line-height: 15vh;
 }
 .buttons-4 li>a.btn {
     height: 11vh;
+    line-height: 11vh;
 }
 .buttons-5 li>a.btn {
     height: 9vh;
+    line-height: 9vh;
+}
+
+.btn-primary {
+    background-color: rgb(0, 127, 200);
+    color: rgb(255, 255, 255);
+    border:solid 5px rgb(0, 34, 124);
+    box-shadow: 6px 6px 5px rgba(100,100,100,0.7);
+    border-radius: 12px;
+    margin: 5% 5% 3% 5%;
+    font-size: 4.9vw;
+}
+
+.btn-primary:hover {
+    background-color: rgb(0, 162, 255);
 }
 
 
 /* wait/take/show section styles */
-h3 {
-    text-align: center;
-}
 h2 {
     text-align: center;
-    color: rgb(0,123,255);
+    color: rgb(6, 9, 184);
+    font-size: 5.5vw;
 }
-section p {
-    margin: 10vw;
+
+h3 {
+    text-align: center;
+    color: rgb(6, 9, 184);
+    font-size: 5vw;
+}
+
+
+section {
+    padding: 10vw;
+    color: rgb(6, 9, 184);
+    text-align: center;
+    font-size: 4vw;
 }
 
 #waitPopup p {
@@ -68,7 +106,41 @@ section p {
 }
 
 .number {
-    font-size: 10em;
-    color: rgb(0,123,255);
+    font-size: 16em;
+    color: rgb(6, 9, 184);
+    text-align: center;
+}
+
+
+/*  Ticket  */
+
+body.ticket {
+    font-size: 50px;
+    text-align: center;
+    width:58mm;
+}
+
+.ticket header {
+    font-size: 14px;
+    text-align: center;
+}
+
+.ticket img {
+    text-align: center;
+    margin: 18px 0 5px 0;
+    height:50px;
+}
+
+
+.ticket h1 {
+    font-size: 60px;
+    font-weight:bold;
+    text-align: center;
+    margin: 0px 0 10px 0;
+    color: black;
+}
+
+.ticket footer {
+    font-size: 14px;
     text-align: center;
 }

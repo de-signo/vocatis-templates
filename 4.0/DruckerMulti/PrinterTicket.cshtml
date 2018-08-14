@@ -9,18 +9,18 @@
 <html>
 <head>
     <title>Vocatis</title>
-    <link href="@Href("Vocatis.css")" type="text/css" rel="Stylesheet" />
+    <link href="@Href("css/site.css")" type="text/css" rel="Stylesheet" />
 </head>
 <body class="ticket">
-    <p>
-        @DateTime.Now.ToString("dd.MM.yyyy  HH:mm") Uhr
-    </p>
-    <img runat="server" src="logo.jpg" />
-    <h1>
-        @Vocatis.CreateTicket(queueid, catids).Number
-    </h1>
-    <p>
-        Bitte warten Sie, bis Ihre Nummer auf dem Bildschirm erscheint!
-    </p>
+<header>
+    @DateTime.Now.ToString("dd.MM.yyyy  HH:mm") Uhr 
+</header>
+<img src="logo.png" />
+<h1>
+    @Vocatis.CreateTicket(queueid, catids).Number
+</h1>
+<footer>
+    Bitte warten Sie, bis Ihre Nummer auf dem Bildschirm erscheint!
+</footer>
 </body>
 </html>

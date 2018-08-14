@@ -23,7 +23,7 @@
   
   @* main section is visible, when inactive *@
   <main>
-    <h1>Anmeldung</h1>
+    <h1>Wartenummer</h1>
     <h4>Bitte wählen Sie den gewünschten Fachbereich aus:</h4>
     <ul>
       @for (int i = 1; i <= 5; i++) {
@@ -35,7 +35,7 @@
 
   @* wait popup is shown, while generating a new number *@
   <section id="waitPopup" style="display: none;">
-    <h3>Sie weden angemeldet im Fachbereich</h3>
+    <h3>Sie werden angemeldet im Fachbereich</h3>
     <h2 data-name></h2>
     <p>Bitte warten</p>
     <p>...</p>
@@ -43,16 +43,16 @@
 
   @* take popup is shown, when the printout is ready *@
   <section id="takePopup" style="display: none;">
-    <h3>Sie weden angemeldet im Fachbereich</h3>
+    <h3>Sie werden angemeldet im Fachbereich</h3>
     <h2 data-name></h2>
     <p>Bitte entnehmen Sie Ihre Nummer</p>
-    <img src="" alt="Pfeil">
+    <img src="Pfeil.png" alt="Pfeil">
     <p>Sie werden aufgerufen.</p>
   </section>
 
   @* show popup shows the number on the screen *@
   <section id="showPopup" style="display: none;">
-    <h3>Sie weden angemeldet im Fachbereich</h3>
+    <h3>Sie werden angemeldet im Fachbereich</h3>
     <h2 data-name></h2>
     <p>Bitte merken Sie sich Ihre Anmeldenummer:</p>
     <p class="number" data-number></p>
