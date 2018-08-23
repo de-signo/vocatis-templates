@@ -72,6 +72,8 @@ li>a.btn {
     box-shadow: 6px 6px 5px rgba(100,100,100,0.7);
     border-radius: 12px;
     margin: 5% 5% 3% 5%;
+    padding: 0;
+    box-sizing: content-box;
     font-size: 4.9vw;
 }
 
