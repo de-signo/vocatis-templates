@@ -18,6 +18,7 @@ body
 /* list */
 
 h1 {
+    color: rgb(6, 9, 184);
 }
 
 .list
@@ -28,11 +29,11 @@ h1 {
 }
 
 
-.list h1                    /* Überschrift */
+.list h1
 {
-    height: 105px;
-    padding: 150px 0 0 0;
-    font-size: 44px;
+    height: 8vh;
+    padding: 10vh 0 0 0;
+    font-size: 5.5vw;
     text-align: center;
 }
 
