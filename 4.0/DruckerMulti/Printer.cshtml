@@ -70,9 +70,11 @@
    *@
   <text>
   $(document).ready(function () {
-    $("a.btn").printTicket({
+    $("a.btn").click(function() {
+      $("[data-name]").text($(this).text());
+    }).printTicket({
+      legacy: false,
       beginPrint: function() {
-        $("[data-name]").text($(this).text());
         $("#waitPopup").show();
       },
       endPrint: function() {

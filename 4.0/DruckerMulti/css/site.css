@@ -132,10 +132,32 @@ section {
 }
 
 /*  Ticket  */
+
+@media screen { 
+    body>.print_ticket { display: none; }
+}
+
+@media print {
+    body>* { display: none!important; }
+    body>.print_ticket { display: inherit !important; } 
+}
+            
+iframe.print_ticket {
+    width: 58mm;
+    height: 80mm;
+    border: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
 body.ticket {
     font-size: 50px;
     text-align: center;
     width:58mm;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 .ticket header {
