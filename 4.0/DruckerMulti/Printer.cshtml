@@ -117,7 +117,7 @@
 
       $("[data-name]").text($(this).text());
       $("#waitPopup").show();
-      $.ajax({url:url, dataType:"json"}).done(function(data) {
+      $.ajax({url:url, cache: false, dataType:"json"}).done(function(data) {
         $("[data-number]").text(data["number"]);
         $("#showPopup").show();
         window.setTimeout(function() {
