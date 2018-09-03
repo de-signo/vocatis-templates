@@ -141,27 +141,18 @@ section {
     body>* { display: none!important; }
     body>.print_ticket { display: inherit !important; } 
 }
-            
-iframe.print_ticket {
-    width: 58mm;
-    height: 80mm;
-    border: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
 
-body.ticket {
+.ticket {
     font-size: 50px;
     text-align: center;
-    width:58mm;
     margin: 0;
     padding: 0;
     overflow: hidden;
+    color: black;
 }
 
 .ticket header {
-    font-size: 14px;
+    font-size: 20px;
     text-align: center;
 }
 
@@ -175,11 +166,12 @@ body.ticket {
     font-size: 60px;
     font-weight:bold;
     text-align: center;
-    margin: 0px 0 10px 0;
+    margin: 10px 0 10px 0;
+    padding: 0;
     color: black;
 }
 
 .ticket footer {
-    font-size: 14px;
+    font-size: 20px;
     text-align: center;
 }

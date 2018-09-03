@@ -74,6 +74,7 @@
       $("[data-name]").text($(this).text());
     }).printTicket({
       legacy: false,
+      stripBody: false,
       beginPrint: function() {
         $("#waitPopup").show();
       },
