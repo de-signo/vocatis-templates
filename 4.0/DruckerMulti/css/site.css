@@ -152,26 +152,28 @@ section {
 }
 
 .ticket header {
-    font-size: 20px;
+    font-size: 14px;
     text-align: center;
+    margin: 0 0 -20px 0;
 }
 
 .ticket img {
     text-align: center;
-    margin: 18px 0 5px 0;
-    height:50px;
+    height:42px;
 }
 
 .ticket h1 {
-    font-size: 60px;
+    font-size: 70px;
     font-weight:bold;
     text-align: center;
-    margin: 10px 0 10px 0;
+    margin: -15px 0 -5px 0;
     padding: 0;
     color: black;
 }
 
 .ticket footer {
-    font-size: 20px;
+    font-size: 12px;
     text-align: center;
+    line-height:16px;
+    margin: 0 15px 0 15px;
 }
