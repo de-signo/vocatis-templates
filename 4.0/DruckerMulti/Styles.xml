@@ -113,4 +113,19 @@
       </field>
     </fields>
   </style>
+  <style key="vocatis_ticket_default"
+    file="TicketDefault.cshtml"
+    interactive="false" target="Forms2">
+    <names>
+      <name culture="de">Vocatis Wartemarke (Standard)</name>
+    </names>
+    <fields>
+      <field key="ticketnumber">
+        <names>
+          <name>Ticketnummer</name>
+        </names>
+        <content_class type="TextFree"  />
+      </field>
+    </fields>
+  </style>
 </StyleList>
