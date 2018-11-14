@@ -2,7 +2,7 @@
 <StyleList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://stollsoft.de/iSign/v2/Content/Forms/Styles">
 
 
-  <style key="vocatis_1r_display"
+  <style key="vocatis_1r_display__2-standard"
           file="List.cshtml"
          interactive="false" target="Forms2">
     <names>
