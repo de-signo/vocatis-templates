@@ -2,23 +2,29 @@
 * {  margin: 0; padding: 0; border:none; overflow:hidden; }
 
 html { height: 100%; }
+
 body
 {
         /* fill complete frame */
     height: 100%;
+    padding-left:5vw;
 
     /* text */
-    font-family: Futura, Arial, sans-serif;
+    font-family: Futura, Arial, Helvetica, sans-serif;
 
     /* background */
-    background-color: white;
+    background-color: white; 
 }
 
 
 /* list */
 
 h1 {
-    color: rgb(6, 9, 184);
+
+}
+
+table {
+
 }
 
 .list
@@ -29,48 +35,48 @@ h1 {
 }
 
 
-.list h1
+.list h1                    /* Überschrift */
 {
-    height: 8vh;
-    padding: 10vh 0 0 0;
-    font-size: 5.5vw;
-    text-align: center;
+    margin: 8vh 0 4vh 0;
+    font-size: 3vw; 
+    text-align: left;
+    color:rgb(0,0,0);
+    font-weight: normal;
 }
 
 .list table
 {
-    width: 100%;
+    width: 90vw;  
     border-collapse: collapse;
-    padding: 0;
+    background:rgb(255, 255, 255);  
 }
 
 .list tr.spacer>td
 {
     background-color: inherit;
-    height: 75px;
+    height: 6vh;  
     padding: 0;
 }
 
 .list td:first-child                  /* Wartenr. */
 {
-    color: #29BB1A;
-    text-align: right;
-    margin: 0 0 0 0px;
-    padding: 0 0 0 50px;
+    color: rgb(11, 60, 194);  
+    text-align: center; 
+    padding: 0 0 0 0;  
+    max-width: 300px; 
+    background:rgb(225, 225, 225);    
 }
 
 .list td                           /* Raumbezeichn. + Wartenr. */
 {
     border-spacing: 0;
-    height: 108px;
-    padding: 0 50px 0 0;
+    height: 6vw; 
+    padding-left: 25px; 
     vertical-align: middle;
-    text-align: center;
-    font-size: 96px;
-
-    color: #29BB1A;
+    font-size: 4vw;
     font-weight:bold;
     color: Black;
+    background:rgb(225, 225, 225);  
 }
 
 
@@ -84,7 +90,7 @@ h1 {
         right: 10px;
         font-size: 120px;
         background-color: rgb(240,240,240);
-    border: solid 8px  rgb(112,191,76);
+    border: solid 8px  rgb(100,100,100);  
     color: rgb(127,127,127);
 }
 
