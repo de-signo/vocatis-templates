@@ -1,0 +1,30 @@
+@using Stolltec.Vocatis.Model
+@using iSign
+@{
+    /// Usage:
+    /// GetTicket.cshtml?queue=1ed91152-e97c-47e3-aaa3-0dff73965004
+    /// Parameters:
+    /// - queue (required) id of the queue to add a number
+    /// - cats (optional) comma separated list of category ids
+    try 
+    {
+        Response.ContentType = "application/json";
+
+        var queueid = CommonGuidId.FromString(Request["queue"]);
+        var catids = (from x in (Request["cats"] ?? "").Split(',')
+                      where !String.IsNullOrEmpty(x)
+                      select CommonGuidId.FromString(x))
+                      .ToArray();
+
+        var ticket = Vocatis.CreateTicket(queueid, catids);
+        <text>{
+            "id": "@ticket.Id.ToString()",
+            "number": "@ticket.Number"
+        }</text>
+    }
+    catch (Exception ex)
+    {
+        Response.StatusCode = 500;
+        <text>{ "message":@Html.Raw(Json.Encode(ex.Message)) }</text>
+    }
+}
