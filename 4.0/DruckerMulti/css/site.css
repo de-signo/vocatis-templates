@@ -137,44 +137,53 @@ section {
     body>.print_ticket { display: none; }
 }
 
+
 @media print {
-    body>* { display: none!important; }
+    /* body>* { display: none!important; } */    /* verhindert Drucken !! */
     body>.print_ticket { display: inherit !important; } 
 }
 
+/* ***************************************************  */
+
 .ticket {
-    font-size: 50px;
+    font-size: 11px;
     text-align: center;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    color: black;
+    color: rgb(0, 0, 0);
+    max-width: 100mm;     /* max-width:600px;  */
+           /* background:rgb(255, 255, 232); */
 }
 
 .ticket header {
-    font-size: 14px; 
-    text-align: center;
-    margin: -0px 0px -10px 0px; 
+    font-size: 1em;  /* 16px */
+    text-align: center; 
+    margin: 20px 0px 20px 0px; 
+              /*  background:cyan;   */
 
 }
 
 .ticket img {
     text-align: center;
      width: 80%; 
+              /* background:rgb(181, 255, 206);   */
 }
 
 .ticket h1 {
-    font-size: 75px;  
+    font-size: 6em;    /* 150px */
     font-weight:bold;
     text-align: center;
-    margin: -5px 0px 0px 0px; 
+    margin: 20px 0px 0px 0px; 
     padding: 0;
     color: black;
+             /*    background:rgb(246, 198, 255);  */
 }
 
 .ticket footer {
-    font-size: 14px;
+    font-size: 1em;  /* 22px */
     text-align: center;
-    line-height:16px;
-    margin: 0 15px 0 15px;
+    line-height:1.5em;
+    margin: 1em 25px 30px 25px;  /* 10px 25px 0 25px; */
+            /*  background:rgb(181, 225, 255);  */
 }
