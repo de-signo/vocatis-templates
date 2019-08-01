@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@using Stolltec.Vocatis.Model
+@{
+  // Parse model
+  var Model = new FormsModel(this);
+  var mode = (string)Model.Style["mode"].FieldInstance.Value;
+
+  // Select ticket servce type (JSON vs HTML) by mode
+  var ticketUrl = (mode == "print") ? "PrinterTicket.cshtml" : "Ticket.cshtml";
+
+  var queueStatus = @Vocatis.GetWaitQueueOverview();
+}
+<section id="idle">
+  <h4>Bitte wählen Sie den gewünschten Fachbereich aus:</h4>
+  <ul>
+    @for (int i = 1; i <= 5; i++) {
+      if (!String.IsNullOrEmpty((string)Model.Style["text" + i].Value)) {
+        var queueid = Model.Style["queueid" + i].Value;
+        var status = queueStatus.Where(s=>s.Id.Equals(queueid)).FirstOrDefault();
+    <li><a href="@Model.Navigate(ticketUrl, new { queueid=queueid, cat=Model.Style["catid" + i].Value })" class="btn" data-label="@((string)Model.Style["text" + i].Value)">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 20.0,20.0 0.0,40.0 Z" /></g></svg>
+      </div>
+      <div>
+        @((string)Model.Style["text" + i].Value)
+      </div>
+      <div>
+        Es befinden sich @status.QueueLength Personen vor Ihnen
+        <!-- TODO
+        Voraussichtliche Wartezeit: %%%
+        
+        -->
+      </div>
+    </a></li>
+    }}
+  </ul>
+</section>

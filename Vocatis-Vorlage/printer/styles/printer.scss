@@ -1,0 +1,92 @@
+
+body.printer 
+{
+    header
+    {
+        margin: 0 15vw;
+        height: 20vh;
+    }
+
+    section.info
+    {
+        height: 10vh;
+    }
+
+    main, .main
+    {
+        position: relative;
+        margin: 0 15vw;
+
+        section
+        {
+            position: absolute;
+            width: 100%;
+            height: 70vh;
+            background-color: $color-common-background;
+        }
+    
+        section#idle
+        {
+            ul, li
+            {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .btn
+            {
+                
+                display: block;
+                margin: 2vh 0;
+
+                div
+                {
+                    height: 5vh;
+                    float:left;
+                    svg
+                    {
+                        position: absolute;
+                        margin-top: 1vh;
+                        fill: $color-common-background;
+                    }
+                    &:first-child
+                    {
+                        width: 0%;
+                    }
+                    &:nth-child(2)
+                    {
+                        width: 75%;
+                        text-align: center;
+                        line-height: 5vh;
+                        background-color: $color-secondary-background;
+                        color: $color-secondary-foreground;
+                    }
+                    &:last-child
+                    {
+                        width: 25%;
+                        padding: 1vh 1vw;
+                        background-color: $color-primary-background;
+                        color: $color-primary-foreground;
+                        box-sizing: border-box;
+                    }
+                }
+
+                &:after
+                {
+                    content: "";
+                    clear: both;
+                    display: block;
+                }
+            }
+        }
+    }
+
+    footer
+    {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+}

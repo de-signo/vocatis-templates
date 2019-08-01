@@ -1,0 +1,59 @@
+
+
+/* 
+ * ticket should be hidden, on screen,
+ * but when print out it's the only content visible
+ */
+   
+@media screen
+{ 
+    body>.print_ticket { display: none; }
+}
+
+@media print
+{
+    body>*:not(.print_ticket) { display: none !important; } 
+}
+
+.ticket
+{
+    font-size: 11px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: rgb(0, 0, 0);
+    max-width: 100mm;
+
+
+    header
+    {
+        font-size: 1em;
+        text-align: center; 
+        margin: 20px 0px 20px 0px; 
+    }
+
+    img
+    {
+        text-align: center;
+        width: 80%; 
+    }
+
+    h1
+    {
+        font-size: 6em;
+        font-weight:bold;
+        text-align: center;
+        margin: 20px 0px 0px 0px; 
+        padding: 0;
+        color: black;
+    }
+
+    footer
+    {
+        font-size: 1em;
+        text-align: center;
+        line-height:1.5em;
+        margin: 1em 25px 30px 25px;
+    }
+}

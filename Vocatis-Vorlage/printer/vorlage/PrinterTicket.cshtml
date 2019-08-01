@@ -1,0 +1,35 @@
+@using iSign
+@using Stolltec.Vocatis
+@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@using Stolltec.Vocatis.Model
+@{
+    var Model = new FormsModel(this);
+
+    dynamic queueid = CommonGuidId.FromString(Request["queueid"]);
+    dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["catid"]).Value;
+
+    var ticket = Vocatis.CreateTicket(queueid, catids);
+}
+
+ @Scripts.Render("~/Scripts/jquery", "js/jquery.qrcode.js")
+<section class="ticket">
+    <header>
+       @DateTime.Now.ToString("dd.MM.yyyy  HH:mm") Uhr 
+    </header>
+    <img src="Logo.png" alt="Ersatztext">
+    <h1>
+        @ticket.Number
+    </h1>
+    <section class="qrcode">
+        <a href="@Href("App.cshtml", new {id=ticket.Id})"></a>
+    </section>
+    <footer>
+        Bitte warten Sie, bis Ihre Nummer auf dem Bildschirm erscheint!
+    </footer>
+</section>
+<script type="text/javascript">
+    var appurl = $(".qrcode>a").attr("href");
+    $("section.qrcode>a").qrcode({text: appurl})
+
+</script>
