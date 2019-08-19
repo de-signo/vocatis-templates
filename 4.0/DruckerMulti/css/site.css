@@ -47,6 +47,7 @@ li>a.btn {
 .buttons-1 li>a.btn {
     height: 9vh;
     line-height: 9vh;
+    color: rgb(6,200, 184);
 }
 .buttons-2 li>a.btn {
     height: 9vh;
