@@ -14,20 +14,22 @@
 }
 <section id="idle">
   <h4>Bitte wählen Sie den gewünschten Fachbereich aus:</h4>
-  <ul>
-    @for (int i = 1; i <= 5; i++) {
+  <ul class="buttons-6">
+    @for (int i = 1; i <= 6; i++) {
       if (!String.IsNullOrEmpty((string)Model.Style["text" + i].Value)) {
         var queueid = Model.Style["queueid" + i].Value;
         var status = queueStatus.Where(s=>s.Id.Equals(queueid)).FirstOrDefault();
     <li><a href="@Model.Navigate(ticketUrl, new { queueid=queueid, cat=Model.Style["catid" + i].Value })" class="btn" data-label="@((string)Model.Style["text" + i].Value)">
       <div>
-        <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 20.0,20.0 0.0,40.0 Z" /></g></svg>
+        <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
       </div>
       <div>
         @((string)Model.Style["text" + i].Value)
       </div>
       <div>
         Es befinden sich @status.QueueLength Personen vor Ihnen
+
+        <img src="personenanzahl.png" class="personanzahl" alt="personenanzahl">
         <!-- TODO
         Voraussichtliche Wartezeit: %%%
         

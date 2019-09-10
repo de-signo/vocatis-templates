@@ -6,7 +6,7 @@
 
 
 /* overwrite defaults */
-html, body, h1, h2
+html, body, h2, h3, article, h4
 {
     margin: 0;
     padding: 0;
@@ -20,40 +20,54 @@ html, body
     background-color: $color-common-background;
     color: $color-common-foreground;
     font-size: 3vh;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family: Verdana, "Lucida Sans Unicode", sans-serif
 }
-
 header
 {
     background-color: $color-primary-background;
     color: $color-primary-foreground;
     height: 15vh;
-    text-align: center;
-    line-height: 15vh;
 }
-
+.plattform
+{ 
+    width: 3%;
+    margin: 10vh 15vw;
+    position: absolute
+}
+h1
+{   float: right;
+    font-size: .75rem;
+    position: absolute;
+    margin: 10vh 20vw;
+    max-width: 70%;
+}
 section.logo
 {
     height: 10vh;
 }
-
 section.main
 {
     margin: 0 15vw;
     height: 60vh;
-
-    h1 
+    h2 
     {
         text-align: right;
-        text-transform: uppercase;
-        font-size: 1rem;
-        line-height: 4vh;
-        padding: 2vh 2vw;
-        height: 4vh;
-        background-color: $color-primary-background;
+        font-size: 0.75rem;
+        line-height: 2vh;
+        padding: 2vh 3vw;
+        height: 2vh;
         color: $color-primary-foreground;
+        background-color: $color-primary-background;
     }
-
+    article
+    {
+        position: absolute;
+        max-width: 60%;
+        font-size: 0.5rem;
+        font-weight: normal;
+        color:$color-secondary-foreground;
+        padding: 2vh 3vw; 
+    } 
     div.posinfo
     {
         height: 22vh;
@@ -78,10 +92,20 @@ section.main
         background-color: $color-primary-background;
         color: $color-primary-foreground;
 
-        h2
+        h3
+        {   
+        text-align: left;
+        line-height: 3vh;
+        max-width: 60%;
+        font-size: 0.5rem;
+        font-weight: normal;
+        padding: 0vh 1vw; 
+        }
+
+        h4
         {
             text-align: center;
-            font-size: 4rem;
+            font-size: 3rem;
             line-height: 19vh;
         }
     }

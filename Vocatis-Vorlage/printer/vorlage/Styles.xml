@@ -111,6 +111,25 @@
           </names>
           <content_class type="VocatisCategories"/>
       </field>
+
+      <field key="text6">
+        <names>
+          <name>Name 6</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid6">
+        <names>
+          <name>Warteschlange 6</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid6">
+          <names>
+              <name>Kategorie 6</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
     </fields>
   </style>
   <style key="vocatis_ticket_default"

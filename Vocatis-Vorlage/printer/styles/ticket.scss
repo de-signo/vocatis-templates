@@ -17,13 +17,19 @@
 
 .ticket
 {
-    font-size: 11px;
+    
     text-align: center;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    color: rgb(0, 0, 0);
     max-width: 100mm;
+
+
+    font-weight: bold;
+    font-size: x-large;
+    height:70px;
+    line-height:300%;
+    color:#676767;
 
 
     header
@@ -44,9 +50,10 @@
         font-size: 6em;
         font-weight:bold;
         text-align: center;
-        margin: 20px 0px 0px 0px; 
+        text-transform: uppercase;
+        margin: 20px 0px 0px 20px; 
         padding: 0;
-        color: black;
+        color: rgb(24, 207, 24);
     }
 
     footer
