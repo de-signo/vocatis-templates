@@ -3,9 +3,40 @@ body.printer
 {
     header
     {
-        margin: 0 15vw;
+    display: block;
+    margin: 0 15vw;
+    height: 20vh;
+    width: 100%;
+    
+    svg
+	{
         height: 20vh;
     }
+
+    .plattformlogo 
+    { 
+        float: left;
+        height:80%;
+    }
+
+    h1 
+    {
+        float: right;
+        position: absolute;
+        text-transform: uppercase;
+        font-weight: 900;
+        margin: 21% 10% 0%;
+        width: 60%;
+    } 
+   
+
+    clear: both;
+    display: block;
+    }
+
+    
+    
+    
 
     section.info
     {
@@ -34,6 +65,21 @@ body.printer
                 padding: 0;
             }
 
+            ul.buttons-1
+            {
+                li
+                {
+                    height: 40vh;
+                }
+            }
+            ul.buttons-2, ul.buttons-3
+            {
+
+            }
+            ul.buttons-4, ul.buttons-5, ul.buttons-6
+            {
+
+            }
             .btn
             {
                 
@@ -42,14 +88,26 @@ body.printer
 
                 div
                 {
-                    height: 5vh;
+                    height: 8vh;
                     float:left;
-                    svg
+
+                    h2
+                    {
+                        text-align: center;
+                        font-weight: bold;
+                        font-size: 2.5em;
+                    }
+                    svg, .notch
                     {
                         position: absolute;
-                        margin-top: 1vh;
+                        margin-top: 2vh;
                         fill: $color-common-background;
                     }
+                    path
+                    {
+                    width: 5%;
+                    }
+                   
                     &:first-child
                     {
                         width: 0%;
@@ -58,16 +116,31 @@ body.printer
                     {
                         width: 75%;
                         text-align: center;
-                        line-height: 5vh;
+                        line-height: 8vh;
+                        font-weight: bold;
+                        font-size: 1.5em;
                         background-color: $color-secondary-background;
                         color: $color-secondary-foreground;
+						box-shadow: 1px 3px 1px $color-secondary-shadow;
+                    }
+
+                    img.personanzahl
+
+                    {
+                        float: right;
+                        position: absolute;
+                        width: 6%;
+                        padding: 0% 1% 1% 1%;
                     }
                     &:last-child
                     {
                         width: 25%;
-                        padding: 1vh 1vw;
+                        padding: 3% 10% 1% 3%;
+                        float: left;
+                        font-size: 0.5em;
                         background-color: $color-primary-background;
                         color: $color-primary-foreground;
+                        box-shadow: 1px 3px 1px $color-primary-shadow;
                         box-sizing: border-box;
                     }
                 }
@@ -78,6 +151,13 @@ body.printer
                     clear: both;
                     display: block;
                 }
+
+            
+           
+
+
+
+
             }
         }
     }

@@ -1,10 +1,12 @@
 
 /* All colors defined here */
-$color-primary-background: rgb(0, 127, 200);
+$color-primary-background: #53668D;
+$color-primary-shadowred:#53668D;
 $color-primary-foreground: white;
-$color-secondary-background: grey;
-$color-primary-background: rgb(0, 127, 200);
-$color-secondary-foreground: black;
+$color-secondary-background:#d7d7d7;
+$color-secondary-foreground:#707173;
+$color-secondary-shadow: #c3c3c3;
+$color-primary-shadow:  #53668D;
 $color-highlight-background: red;
 $color-highlight-foreground: white;
 $color-common-background: $color-primary-foreground;
