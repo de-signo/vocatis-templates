@@ -1,3 +1,10 @@
+@using iSign
+@using Stolltec.Vocatis.Model
+@{
+    dynamic id = CommonGuidId.FromString(Request["id"]);
+    var ticket = Vocatis.GetTicket(id);
+    var status = Vocatis.GetTicketStatus(id);
+}
 <!doctype html>
 <html>
 <head>
@@ -31,10 +38,14 @@
 <div class="notch"><svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g></svg></div>
 <div class="number">
 <h3>Ihre Wartemarke:</h3>
-  <h4>KO 520</h4>
+  <h4>@ticket.Number</h4>
   </div>
 </section>
 
+<!--
+Position: @status.Position
+Wartezeit: @status.EstimatedTimeOfCall
+-->
 
 <footer>
   Footer
