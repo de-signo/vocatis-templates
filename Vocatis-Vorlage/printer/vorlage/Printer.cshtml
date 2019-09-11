@@ -142,9 +142,6 @@
     .clickBlanking({ timeout:500 });
     var hammertime = new Hammer(document.body, {});
 
-    @* add css class for main section, depending on button count *@
-    $(".main").addClass("buttons-" + $("main ul>li").length);
-
     @* update queue list periodically *@
     var queueList = $("#idle");
     var queueListUrl = queueList.data("content-src");
