@@ -69,7 +69,7 @@
     It reports the printer status to the service.
    *@
   <text>
-  $(document).ready(function () {
+  function hookupButtons() {
     $("a.btn").click(function() {
       $("[data-name]").text($(this).data("label"));
     }).printTicket({
@@ -87,7 +87,8 @@
         $("#waitPopup").hide();
       }
     });
-		
+  }
+  $(document).ready(function () {
     reportPrinterStatus({
 		  url: "@Href(Stolltec.Forms.PrinterStatus.Path)"
 	  });
@@ -100,8 +101,8 @@
     shows the number in show popup when done.
    *@
   <text>
-  $(document).ready(function () {
- 
+  function hookupButtons() {
+  
     $("a.btn").click(function (ev) {
       ev.preventDefault();
 
@@ -128,7 +129,7 @@
         $("#waitPopup").hide();
       });
     });
-  });
+  };
   </text>
 }
   $(document).ready(function() {
@@ -142,13 +143,9 @@
     .clickBlanking({ timeout:500 });
     var hammertime = new Hammer(document.body, {});
 
-    @* add css class for main section, depending on button count *@
-    $(".main").addClass("buttons-" + $("main ul>li").length);
-
     @* update queue list periodically *@
     var queueList = $("#idle");
     var queueListUrl = queueList.data("content-src");
-    alert(queueListUrl);
     var update = function () {
       try {
           $.ajax({
@@ -157,7 +154,7 @@
           }).done(function (result) {
               var d = $(result);
               queueList.replaceWith(d);
-              queueList = d;
+              hookupButtons();
           });
       }
       finally {
