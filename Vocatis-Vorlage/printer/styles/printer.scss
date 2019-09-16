@@ -65,7 +65,7 @@ body.printer
                 
                 img
                 {
-                    opacity: 0.4;
+                    opacity: 0.2;
                     width: 50%;
                 }
             }
@@ -198,13 +198,40 @@ body.printer
                     clear: both;
                     display: block;
                 }
-
            }
         }
-
+           
         section#waitPopup, section#takePopup
         {
-            text-align: center;
+            >h4
+            {
+            font-size: 1.5em;
+            color:$color-secondary-foreground;
+            }
+            
+            background-color: $color-secondary-background; 
+            margin: 6vh 15vw;
+            padding: 2vh 2vw;
+            height: 40vh; 
+            text-align: center; 
+
+           #wait
+           {
+            width: 40%;
+            opacity: 0.75;
+           } 
+           >div
+           { 
+            padding: 8vh;
+            } 
+
+            >h6
+            {
+            font-size: 1.25em;
+            color:$color-primary-background;
+            }
+
+            
         }
     }
 
