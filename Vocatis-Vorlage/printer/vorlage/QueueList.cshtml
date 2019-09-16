@@ -11,10 +11,14 @@
   var ticketUrl = (mode == "print") ? "PrinterTicket.cshtml" : "Ticket.cshtml";
 
   var queueStatus = @Vocatis.GetWaitQueueOverview();
+
+  var buttonCount = (from i in Enumerable.Range(1,6)
+                     where !String.IsNullOrEmpty((string)Model.Style["text" + i].Value)
+                     select i).Count();
 }
 <section id="idle">
   <h4>Bitte wählen Sie den gewünschten Fachbereich aus:</h4>
-  <ul class="buttons-6">
+  <ul class="buttons-@buttonCount">
     @for (int i = 1; i <= 6; i++) {
       if (!String.IsNullOrEmpty((string)Model.Style["text" + i].Value)) {
         var queueid = Model.Style["queueid" + i].Value;
@@ -51,7 +55,7 @@
         </div>
         <div class="single-button" >
           <span>
-            <img src="knopf.png" /><br>
+            <img src="single-button.gif" /><br>
             Bitte drücken
           </span>
         </div>

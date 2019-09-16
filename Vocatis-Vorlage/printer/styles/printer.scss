@@ -61,6 +61,13 @@ body.printer
             .single-button
             {
                 display: none;
+                line-height: 2vh;
+                
+                img
+                {
+                    opacity: 0.4;
+                    width: 50%;
+                }
             }
             ul.buttons-1
             {
