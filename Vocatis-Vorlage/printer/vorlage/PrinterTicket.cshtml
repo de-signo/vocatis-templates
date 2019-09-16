@@ -24,6 +24,7 @@
     <section class="qrcode">
         <a href="@Href("App.cshtml", new {id=ticket.Id})"></a>
     </section>
+    <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 65.0,0.0 67.5,5.0 70.0,0.0 100.0,0.0" /></g></svg>
     <footer>
         Bitte warten Sie, bis Ihre Nummer auf dem Bildschirm erscheint!
     </footer>
@@ -31,5 +32,4 @@
 <script type="text/javascript">
     var appurl = $(".qrcode>a").attr("href");
     $("section.qrcode>a").qrcode({text: appurl})
-
 </script>

@@ -35,8 +35,8 @@ header
     position: absolute
 }
 h1
-{   float: right;
-    font-size: .75rem;
+{
+    font-size: .65rem;
     position: absolute;
     margin: 10vh 20vw;
     max-width: 70%;
@@ -62,12 +62,24 @@ section.main
     article
     {
         position: absolute;
-        max-width: 60%;
-        font-size: 0.5rem;
+        width: 100%;
+        font-size: 0.45rem;
+        max-width: 65%;
         font-weight: normal;
         color:$color-secondary-foreground;
         padding: 2vh 3vw; 
     } 
+    #bold
+    {
+        font-weight: bold;
+    }
+    
+    #three
+    {
+        padding: 8vh 1vw;   
+    }
+
+
     div.posinfo
     {
         height: 22vh;
@@ -82,7 +94,7 @@ section.main
         left: 60%;
         svg 
         {
-            fill:$color-secondary-background;    
+         fill:$color-secondary-background;    
         }
     }
     div.number
@@ -105,10 +117,18 @@ section.main
         h4
         {
             text-align: center;
-            font-size: 3rem;
+            font-size: 2.25rem;
             line-height: 19vh;
         }
     }
+        h5
+        {
+            position: absolute;
+            text-align: left;
+            font-size: 0.5rem;
+            text-align: center;
+            margin: 2% 0% 0%;
+        }
 }
 
 footer
@@ -118,6 +138,7 @@ footer
     right: 0;
     left: 0;
     text-align: center;
-    height: 13vh;
-    padding: 1vh 1vw;
+    height: 5vh;
+    margin: 2vh 15vw;
+    background-color: $color-secondary-background;
 }
