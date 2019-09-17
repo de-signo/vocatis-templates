@@ -212,13 +212,13 @@ body.printer
             background-color: $color-secondary-background; 
             margin: 6vh 15vw;
             padding: 2vh 2vw;
-            height: 40vh; 
+            height: 35vh; 
             text-align: center; 
 
            #wait
            {
             width: 40%;
-            opacity: 0.75;
+            opacity: 0.5;
            } 
            >div
            { 
@@ -228,6 +228,7 @@ body.printer
             >h6
             {
             font-size: 1.25em;
+            margin-top: 10vh;
             color:$color-primary-background;
             }
 
