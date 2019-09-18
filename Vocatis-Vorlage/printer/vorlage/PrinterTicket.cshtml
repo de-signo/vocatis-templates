@@ -11,9 +11,10 @@
 
     var ticket = Vocatis.CreateTicket(queueid, catids);
 }
+  <link href="@Href("style.css")" type="text/css" rel="stylesheet" />
 
  @Scripts.Render("~/Scripts/jquery", "js/jquery.qrcode.js")
-<section class="ticket" style="width:100mm;">
+<section class="ticket">
     <header>
       <p> @DateTime.Now.ToString("dd.MM.yyyy  HH:mm") Uhr </p>
     </header>

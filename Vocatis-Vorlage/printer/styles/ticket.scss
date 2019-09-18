@@ -12,46 +12,53 @@
 
 @media print
 {
-    body>*:not(.print_ticket) { display: none !important; } 
+    body>*:not(.print_ticket) { display: none !important; }
 }
 
-    section.ticket
-    {   display: block;
-        margin: 5vh 5vw;
-        max-height: 100vh;
-        background-color:$color-highlight-foreground;
-        p
-        {
-            font-size: 18px;
-            text-align: center;
-        }
-      
+section.ticket
+{   display: block;
+    margin: 5mm 5mm;
+    max-width: 100mm;
+    max-height: auto;
+    /*background-color:$color-highlight-foreground;*/
+    background-color:$color-highlight-foreground;
     
-        h1
-        {
-            text-align: center;
-            font-size: 80px;
-        }
-        .separation
-        {
-            width: 90%;
-            padding: 3mm;
-        }
-        h4
-        {
-            font-size: 1em;
-            font-weight:regular;
-        }
-        .qrcode
-        {
-            height: 25mm;
-            padding: 5mm;
-            float: left;
-        }
-        img.customerlogo
-        {
-            height: 25mm;
-            float: right;
-            padding: 5mm;
-        }
+    p
+    {
+        font-size: 18px;
+        text-align: center;
+        color: #000;
     }
+    
+    h1
+    {
+        text-align: center;
+        font-size: 60px;
+        color: #000;
+        line-height: 2px;
+    }
+    img
+    {
+        width: 100%;
+    }
+    h4
+    {
+        font-size: 12px;
+        font-weight:regular;
+        color: #000;
+        margin-top: 1px;
+    }
+    canvas
+    {
+        width: 24mm;
+        margin-top: 2px;
+        padding: 0px 5px 0px 5px;
+    }
+    img.customerlogo
+    {
+        height: 24mm;
+        width: auto;
+        float: right;
+        padding: 0px 5px 0px 5px;
+    }
+}

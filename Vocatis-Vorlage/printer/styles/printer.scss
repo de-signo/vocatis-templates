@@ -204,17 +204,14 @@ body.printer
            
         section#waitPopup, section#takePopup
         {
+            text-align: center; 
+
             >h4
             {
+            margin-top: 5vh;
             font-size: 1.5em;
             color:$color-secondary-foreground;
             }
-            
-            background-color: $color-secondary-background; 
-            margin: 6vh 15vw;
-            padding: 2vh 2vw;
-            height: 35vh; 
-            text-align: center; 
 
            #wait
            {
@@ -224,12 +221,13 @@ body.printer
            >div
            { 
             padding: 8vh;
+            background-color:$color-secondary-background;
             } 
 
             >h6
             {
             font-size: 1.25em;
-            margin-top: 10vh;
+            margin-top: 5vh;
             color:$color-primary-background;
             }
 
