@@ -36,7 +36,7 @@
           <span>
             @if (status.QueueLength > 3)
             {
-              <text>Voraussichtliche Wartezeit ca. X Minuten</text>
+              <text>Voraussichtliche Wartezeit ca. @((int)status.CurrentMaxWaitingTime.TotalMinutes) Minuten</text>
             }
             else
             {
