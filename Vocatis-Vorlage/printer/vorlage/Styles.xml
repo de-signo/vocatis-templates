@@ -130,6 +130,44 @@
           </names>
           <content_class type="VocatisCategories"/>
       </field>
+
+      <field key="text7">
+        <names>
+          <name>Name 7</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid7">
+        <names>
+          <name>Warteschlange 7</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid7">
+          <names>
+              <name>Kategorie 7</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
+
+      <field key="text8">
+        <names>
+          <name>Name 8</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid8">
+        <names>
+          <name>Warteschlange 8</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid8">
+          <names>
+              <name>Kategorie 8</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
     </fields>
   </style>
   <style key="vocatis_ticket_default"

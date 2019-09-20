@@ -12,14 +12,14 @@
 
   var queueStatus = @Vocatis.GetWaitQueueOverview();
 
-  var buttonCount = (from i in Enumerable.Range(1,6)
+  var buttonCount = (from i in Enumerable.Range(1,8)
                      where !String.IsNullOrEmpty((string)Model.Style["text" + i].Value)
                      select i).Count();
 }
 <section id="idle">
   @if (buttonCount > 1) { <h4>Bitte wählen Sie den gewünschten Fachbereich aus:</h4> }
   <ul class="buttons-@buttonCount">
-    @for (int i = 1; i <= 6; i++) {
+    @for (int i = 1; i <= 8; i++) {
       if (!String.IsNullOrEmpty((string)Model.Style["text" + i].Value)) {
         var queueid = Model.Style["queueid" + i].Value;
         var status = queueStatus.Where(s=>s.Id.Equals(queueid)).FirstOrDefault();
