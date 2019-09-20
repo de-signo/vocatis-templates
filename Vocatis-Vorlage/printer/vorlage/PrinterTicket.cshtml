@@ -1,36 +1,51 @@
 @using iSign
 @using Stolltec.Vocatis
 @using System.Web.Optimization
-@using Stolltec.Forms.Model
 @using Stolltec.Vocatis.Model
 @{
-    var Model = new FormsModel(this);
-
-    dynamic queueid = CommonGuidId.FromString(Request["queueid"]);
-    dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["catid"]).Value;
-
-    var ticket = Vocatis.CreateTicket(queueid, catids);
+  var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
 }
-  <link href="@Href("style.css")" type="text/css" rel="stylesheet" />
 
- @Scripts.Render("~/Scripts/jquery", "js/jquery.qrcode.js")
+@helper content() {
+dynamic queueid = CommonGuidId.FromString(Request["queueid"]);
+dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["catid"]).Value;
+var ticket = Vocatis.CreateTicket(queueid, catids);
+@Scripts.Render("js/jquery.qrcode.js")
 <section class="ticket">
-    <header>
-      <p> @DateTime.Now.ToString("dd.MM.yyyy  HH:mm") Uhr </p>
-    </header>
-    <h1>
-        @ticket.Number
-    </h1>
-    <img src="separation.png" calss="separation" alt="Trennung">
-    <section class="qrcode">
-        <h4>Bitte QR Code einlesen!</h4>
-        <a href="@Href("App.cshtml", new {id=ticket.Id})"></a>
-        <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">
-    </section>
-    <footer>
-    </footer>
+  <header>
+    <p> @DateTime.Now.ToString("dd.MM.yyyy  HH:mm") Uhr </p>
+  </header>
+  <h1>
+    @ticket.Number
+  </h1>
+  <img src="separation.png" calss="separation" alt="Trennung">
+  <section class="qrcode">
+    <h4>Bitte QR Code einlesen!</h4>
+    <a href="@Href("App.cshtml", new {id=ticket.Id})"></a>
+    <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">
+  </section>
+  <footer>
+  </footer>
 </section>
 <script type="text/javascript">
-    var appurl = $(".qrcode>a").attr("href");
-    $("section.qrcode>a").qrcode({text: appurl})
+  var appurl = $(".qrcode>a").attr("href");
+  $("section.qrcode>a").qrcode({text: appurl})
 </script>
+}
+
+@if (partial) {
+    @content()
+}
+else {
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ticket</title>
+  <link href="@Href("style.css")" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  @Scripts.Render("~/Scripts/jquery")
+  @content()
+</body>
+</html>
+}
