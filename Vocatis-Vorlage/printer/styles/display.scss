@@ -10,6 +10,37 @@
 
 html { height: 100%; }
 
+header
+    {
+        display: block;
+        margin: 0 15vw 4vh 15vw;
+        height: 16vh;
+        width: 100%; 
+      
+        
+        svg
+        {
+            height: 20vh;
+        }
+
+        .plattformlogo 
+        { 
+            height:100%;
+        }
+
+        h1 
+        {
+            display: inline;
+            text-transform: uppercase;
+            font-weight: 900;
+            margin: 0 0 0 2vw;
+            color:$color-primary-background;
+        } 
+    
+        clear: both;
+        display: block;
+    }
+
 body
 {
         /* fill complete frame */
@@ -23,19 +54,19 @@ body
     background-color: $color-common-background; 
 }
 
-
 .list
 {
     height: 100%;
     width: 100%;
     position:fixed;
 
-    h1
+    h2
     {
         margin: 8vh 0 4vh 0;
-        font-size: 3vw; 
         text-align: left;
-        font-weight: normal;
+        font-size: 1em;
+        color:$color-primary-background;
+        
     }
 
     table
@@ -47,8 +78,8 @@ body
     tr.spacer>td
     {
         background-color: inherit;
-        height: 6vh;  
-        padding: 0;
+        height: 1vh;  
+        padding: 1vw;
     }
 
     /* Wartenr. */
@@ -56,21 +87,24 @@ body
     {
         color: $color-secondary-foreground;  
         text-align: center; 
-        padding: 0 0 0 0;  
-        max-width: 300px; 
+        padding: 0 2vw 0 8vw;
+        width: 25%;
+        margin: 2vw; 
+        font-weight: bold;            
     }
 
     td
     {
         border-spacing: 0;
-        height: 6vw; 
-        padding-left: 25px; 
+        height: 8vw; 
+        padding-left: 5vw; 
         vertical-align: middle;
-        font-size: 4vw;
-        font-weight:bold;
-        color: $color-primary-foreground;
+        line-height: 8vh;
+        font-size: 1.5em; 
+        background-color: $color-secondary-background;
+        color: $color-secondary-foreground;
+		box-shadow: 1px 3px 1px $color-secondary-shadow; 
     }
-
     .popup
     {
         text-align:center;
@@ -80,7 +114,7 @@ body
         left: 10px;
         right: 10px;
         font-size: 120px;
-        background-color: $color-secondary-background;
+        background-color: $color-primary-background;
         border: solid 8px darken($color-secondary-background, 0.3);  
         color: $color-secondary-foreground;
 

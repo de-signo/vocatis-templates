@@ -10,6 +10,7 @@
 
 @helper ItemsList(IEnumerable<dynamic> list) {
 <table id="list">
+ 
     <tbody>
         @foreach (dynamic x in list) {
         <tr>
@@ -29,16 +30,20 @@
 else {
 <!DOCTYPE html>
 <html>
+
+<body class="list">
+    @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
 <head>
+    <header>
+        <img src="plattformlogo_01.png" class="plattformlogo" alt="plattformlogo">
+        <h1>Rathaus</h1>
+    </header>
     <title>Vocatis</title>
     <link href="@Href("display.css")" type="text/css" rel="Stylesheet" />
 </head>
-<body class="list">
-    @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
-
-    <h1>
+    <h2>
         Bitte warten Sie, bis Ihre Nummer erscheint:
-    </h1>
+    </h2>
     @ItemsList(list)
 
     @{
