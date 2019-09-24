@@ -14,8 +14,20 @@
                    number = x["number3"],
                    room = x["room3"]
                });
+    var list4 = Model.DataSource("source4").Select(x => new {
+                   number = x["number4"],
+                   room = x["room4"]
+               });
+    var list5 = Model.DataSource("source5").Select(x => new {
+                   number = x["number5"],
+                   room = x["room5"]
+               });
+    var list6 = Model.DataSource("source6").Select(x => new {
+                   number = x["number6"],
+                   room = x["room6"]
+               });
 
-    var list = list1.Concat(list2).Concat(list3);
+    var list = list1.Concat(list2).Concat(list3).Concat(list4).Concat(list5).Concat(list6);
     // the $.fn.vocatisList function requests the page to update the view
     // We minimize the overhead by just sending the required contents.
     var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
