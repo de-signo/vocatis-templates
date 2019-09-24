@@ -8,13 +8,14 @@
 /* redefine defaults */
 * {  margin: 0; padding: 0; border:none; overflow:hidden; }
 
-html { height: 100%; }
+html { height: 100%; width:80%; }
 
 header
 {
         display: block;
-       padding: 0 5vw 4vh 3vw;
+        padding: 0 5vw 4vh 5vw;
         height: 16vh;
+        width:80%;
         
         svg
         {
@@ -43,6 +44,7 @@ body
 {
         /* fill complete frame */
     height: 100%;
+    width:80%;
    
 
     /* text */
@@ -55,23 +57,24 @@ body
 .list
 {
     height: 100%;
-    width: 80%;
+    width: 100%;
     position:fixed;
     padding:0vh 5vw 4vh 5vw;
 
 
     h2
     {
-        padding: 8vh 0 4vh 5vw;
+        padding: 0vh 0 2vh 5vw;
         text-align: left;
         font-size: 1.5em;
-        color:$color-primary-background;  
+        color:$color-primary-background;
+        width:80%;  
     }
 
     table
     {
-        width: 90%; 
-        height: 20%; 
+        width: 80%; 
+        height: 4vh; 
         border-collapse: collapse;
         margin: 0vh 5vw 0vh 5vw;
        
@@ -82,37 +85,41 @@ body
     {
         background-color: inherit;
         height: 1vh;  
-        padding: 1vw;
     }
-
     /* Wartenr. */
     td:first-child
     {
         color: $color-secondary-foreground;  
-        width: 30%;
-        font-weight: bold; 
-    }
-    /* termin */
-    img.termin
-    {
-        height: 30%;
-        float: left;
-        vertical-align: middle;
-        padding:3vh 2vw;
-    }  
-   
-    >#text
-    {
+        width: 35%;
+        font-weight: bold;
         line-height: 6vh;
-        text-align: center;
-    }  
-   
+        text-align: center; 
+
+        /* termin */
+        img.termin
+        {
+            height: 40%;
+            float: left;
+            vertical-align: middle;
+            padding:2vh 2vw;
+        } 
+
+        td.number#text
+        {
+        padding:3vw;
+        }
+    }
+    td.room
+    {
+        padding: 0vh 3vw;
+    }
     td
     {
         border-spacing: 0;
         vertical-align: middle;
         line-height: 6vh;
-        font-size: 1.5em; 
+        height: 4vh;
+        font-size: 2em; 
         background-color: $color-secondary-background;
         color: $color-secondary-foreground;
 		box-shadow: 1px 3px 1px $color-secondary-shadow; 
