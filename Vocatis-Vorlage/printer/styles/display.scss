@@ -147,7 +147,7 @@ body
         {
             font-size: 450px;
             margin-top:50px;
-            color: darken($color-secondary-foreground, 0.5);
+            color: $color-highlight-foreground;
         }
 
     }
