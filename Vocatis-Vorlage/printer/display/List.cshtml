@@ -14,7 +14,7 @@
     <tbody>
         @foreach (dynamic x in list) {
         <tr>
-            <td class="number">@x.number</td>
+            <td class="number"><img src="termin.png" class="termin" alt="termin">@x.number</td>
             <td class="room">@x.room</td>
         </tr>
         <tr class="spacer">
@@ -34,12 +34,12 @@ else {
 <body class="list">
     @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
 <head>
-    <header>
-        <img src="plattformlogo_01.png" class="plattformlogo" alt="plattformlogo">
-        <h1>Rathaus</h1>
-    </header>
     <title>Vocatis</title>
     <link href="@Href("display.css")" type="text/css" rel="Stylesheet" />
+        <header>
+        <img src="plattformlogo_01.png" class="plattformlogo" alt="plattformlogo">
+        <h1>Rathaus</h1>
+        </header>
 </head>
     <h2>
         Bitte warten Sie, bis Ihre Nummer erscheint:

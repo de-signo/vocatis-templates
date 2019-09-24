@@ -11,19 +11,17 @@
 html { height: 100%; }
 
 header
-    {
+{
         display: block;
-        margin: 0 15vw 4vh 15vw;
+       padding: 0 5vw 4vh 3vw;
         height: 16vh;
-        width: 100%; 
-      
         
         svg
         {
             height: 20vh;
         }
 
-        .plattformlogo 
+        >img
         { 
             height:100%;
         }
@@ -33,19 +31,19 @@ header
             display: inline;
             text-transform: uppercase;
             font-weight: 900;
-            margin: 0 0 0 2vw;
-            color:$color-primary-background;
+            padding: 0 0 0 5vw;
+            color: $color-primary-shadowred;
         } 
     
         clear: both;
         display: block;
-    }
+}
 
 body
 {
         /* fill complete frame */
     height: 100%;
-    padding-left:5vw;
+   
 
     /* text */
     font-family: Futura, Arial, Helvetica, sans-serif;
@@ -57,22 +55,27 @@ body
 .list
 {
     height: 100%;
-    width: 100%;
+    width: 80%;
     position:fixed;
+    padding:0vh 5vw 4vh 5vw;
+
 
     h2
     {
-        margin: 8vh 0 4vh 0;
+        padding: 8vh 0 4vh 5vw;
         text-align: left;
-        font-size: 1em;
-        color:$color-primary-background;
-        
+        font-size: 1.5em;
+        color:$color-primary-background;  
     }
 
     table
     {
-        width: 90vw;  
+        width: 90%; 
+        height: 20%; 
         border-collapse: collapse;
+        margin: 0vh 5vw 0vh 5vw;
+       
+
     }
 
     tr.spacer>td
@@ -86,20 +89,29 @@ body
     td:first-child
     {
         color: $color-secondary-foreground;  
-        text-align: center; 
-        padding: 0 2vw 0 8vw;
-        width: 25%;
-        margin: 2vw; 
-        font-weight: bold;            
+        width: 30%;
+        font-weight: bold; 
     }
-
+    /* termin */
+    img.termin
+    {
+        height: 30%;
+        float: left;
+        vertical-align: middle;
+        padding:3vh 2vw;
+    }  
+   
+    >#text
+    {
+        line-height: 6vh;
+        text-align: center;
+    }  
+   
     td
     {
         border-spacing: 0;
-        height: 8vw; 
-        padding-left: 5vw; 
         vertical-align: middle;
-        line-height: 8vh;
+        line-height: 6vh;
         font-size: 1.5em; 
         background-color: $color-secondary-background;
         color: $color-secondary-foreground;
@@ -115,8 +127,8 @@ body
         right: 10px;
         font-size: 120px;
         background-color: $color-primary-background;
-        border: solid 8px darken($color-secondary-background, 0.3);  
-        color: $color-secondary-foreground;
+        box-shadow: 1px 3px 1px $color-primary-shadow;  
+        color: $color-highlight-foreground;
 
         h3
         {
@@ -130,5 +142,6 @@ body
             margin-top:50px;
             color: darken($color-secondary-foreground, 0.5);
         }
+
     }
 }

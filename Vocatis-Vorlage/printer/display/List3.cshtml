@@ -43,17 +43,24 @@ else {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Vocatis</title>
+   
     <link href="@Href("display.css")" type="text/css" rel="Stylesheet" />
+    <title>Vocatis</title>
+    
+    
 </head>
 <body class="list">
+    <header>
+        <img src="plattformlogo_01.png" class="plattformlogo" alt="plattformlogo">
+        <h1>Rathaus</h1>
+    </header> 
     @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
 
     <h1>
         Bitte warten Sie, <br /> bis Ihre Nummer erscheint:
     </h1>
-    @ItemsList(list)
 
+    @ItemsList(list)
     @{
         var notify = Model.Style["notify"].FieldInstance.Value as string;
         var popup = Model.Style["popup"].FieldInstance.Value as string;
