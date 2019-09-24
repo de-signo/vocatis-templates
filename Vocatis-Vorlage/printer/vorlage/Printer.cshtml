@@ -70,7 +70,8 @@
    *@
   <text>
   function hookupButtons() {
-    $("a.btn").click(function() {
+    $("a.btn").unbind()
+    .click(function() {
       $("[data-name]").text($(this).data("label"));
     }).printTicket({
       legacy: false,
@@ -103,7 +104,8 @@
   <text>
   function hookupButtons() {
   
-    $("a.btn").click(function (ev) {
+    $("a.btn").unbind()
+    .click(function (ev) {
       ev.preventDefault();
 
       // do not block
