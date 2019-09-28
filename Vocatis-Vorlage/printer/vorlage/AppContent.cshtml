@@ -1,42 +1,76 @@
 @using iSign
+@using Stolltec.Vocatis
 @using Stolltec.Vocatis.Model
 @{
     dynamic id = CommonGuidId.FromString(Request["id"]);
     var ticket = Vocatis.GetTicket(id);
-    var status = Vocatis.GetTicketStatus(id);
 }
 
-@if (status.Position < 3) {
-<section class="main">
-  <h2>Warteschlange</h2>
-  <article>
-    <p>Es befinden sich noch <b>@status.Position Kunden</b> vor Ihnen in der Warteschlange.</p>
-    <p id="three">STAND: @DateTime.Now.ToString("HH\\:mm") Uhr</p>
-  </article>  
+@switch ((WaitNumberState)ticket.State)
+{
+case WaitNumberState.Waiting:
+case WaitNumberState.Parked:
+  var status = Vocatis.GetTicketStatus(id);
+  if (ticket.State == WaitNumberState.Waiting && status.Position < 3) {
+    <section class="main">
+        <h2>Warteschlange</h2>
+      <article>
+        <p>Es befinden sich noch <b>@status.Position Kunden</b> vor Ihnen in der Warteschlange.</p>
+        <p id="three">STAND: @DateTime.Now.ToString("HH\\:mm") Uhr</p>
+      </article>  
 
-  <div class="posinfo"></div>
-  <div class="notch"><svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g></svg></div>
-  <div class="number">
-    <h3>Ihre Wartemarke:</h3>
-    <h4>@ticket.Number</h4>
-  </div>
-  <h5>Bitte halten Sie sich im Wartebereich auf</h5>
-</section>
-} else {
-<section class="main">
-  <h2>Warteschlange</h2>
-  <article>
-    <p>Es befinden sich noch <b>@status.Position Kunden</b> vor Ihnen in der Warteschlange.</p>
-    Ihre <b>voraussichtliche</b> Wartezeit betr&auml;gt <b>ca. @((int)status.EstimatedTimeOfCall.TotalMinutes) Minuten</b>.
-    <p id="three">STAND: @DateTime.Now.ToString("HH\\:mm") Uhr</p>
-  </article>  
+      <div class="posinfo"></div>
+      <div class="notch"><svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g></svg></div>
+      <div class="number">
+        <h3>Ihre Wartemarke:</h3>
+        <h4>@ticket.Number</h4>
+      </div>
+      <h5>Bitte halten Sie sich im Wartebereich auf</h5>
+    </section>
+  } else {
+    <section class="main">
+      <h2>Warteschlange</h2>
+      <article>
+        <p>Es befinden sich noch <b>@status.Position Kunden</b> vor Ihnen in der Warteschlange.</p>
+        Ihre <b>voraussichtliche</b> Wartezeit betr&auml;gt <b>ca. @((int)status.EstimatedTimeOfCall.TotalMinutes) Minuten</b>.
+        <p id="three">STAND: @DateTime.Now.ToString("HH\\:mm") Uhr</p>
+      </article>  
 
-  <div class="posinfo"></div>
-  <div class="notch"><svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g></svg></div>
-  <div class="number">
-    <h3>Ihre Wartemarke:</h3>
-    <h4>@ticket.Number</h4>
-  </div>
-  <h5>Bitte rechtzeitig Wartebereich aufsuchen!</h5>
-</section>
+      <div class="posinfo"></div>
+      <div class="notch"><svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g></svg></div>
+      <div class="number">
+        <h3>Ihre Wartemarke:</h3>
+        <h4>@ticket.Number</h4>
+      </div>
+      <h5>Bitte rechtzeitig Wartebereich aufsuchen!</h5>
+    </section>
+  }
+  break;
+case WaitNumberState.Called:
+  <section class="main">
+    <h2>Warteschlange</h2>
+    <article>
+      <p>Bitte begeben Sie sich in</p>
+      <h3>siehe Monitor</h3>
+    </article>  
+
+    <div class="posinfo"></div>
+    <div class="notch"><svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g></svg></div>
+    <div class="number">
+      <h3>Ihre Wartemarke:</h3>
+      <h4>@ticket.Number</h4>
+    </div>
+  </section>
+  break;
+case WaitNumberState.Dismissed:
+  <section class="main">
+    <h2>Warteschlange</h2>
+    <article>
+      <p>Danke für Ihren Besuch.</p>
+    </article>  
+
+    <div class="posinfo"></div>
+    <div class="notch"><svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g></svg></div>
+  </section>
+  break;
 }
