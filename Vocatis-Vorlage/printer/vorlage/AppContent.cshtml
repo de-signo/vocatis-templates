@@ -10,10 +10,10 @@
 {
 case WaitNumberState.Waiting:
 case WaitNumberState.Parked:
-  var status = Vocatis.GetTicketStatus(id);
+  var status = Vocatis.GetTicketWaitInfo(id);
   if (ticket.State == WaitNumberState.Waiting && status.Position < 3) {
     <section class="main">
-        <h2>Warteschlange</h2>
+      <h2>Warteschlange</h2>
       <article>
         <p>Es befinden sich noch <b>@status.Position Kunden</b> vor Ihnen in der Warteschlange.</p>
         <p id="three">STAND: @DateTime.Now.ToString("HH\\:mm") Uhr</p>
@@ -47,11 +47,12 @@ case WaitNumberState.Parked:
   }
   break;
 case WaitNumberState.Called:
+  var callInfo = Vocatis.GetTicketCallInfo(id);
   <section class="main">
     <h2>Warteschlange</h2>
     <article>
       <p>Bitte begeben Sie sich in</p>
-      <h3>siehe Monitor</h3>
+      <h3>@callInfo.RoomName</h3>
     </article>  
 
     <div class="posinfo"></div>
