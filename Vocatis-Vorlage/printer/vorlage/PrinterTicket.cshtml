@@ -10,6 +10,9 @@
 dynamic queueid = CommonGuidId.FromString(Request["queueid"]);
 dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["catid"]).Value;
 var ticket = Vocatis.CreateTicket(queueid, catids);
+
+var apppath = Href("App.cshtml", new {id=ticket.Id});
+var appurl = new Uri(HttpContext.Current.Request.Url, apppath).AbsoluteUri;
 @Scripts.Render("js/jquery.qrcode.js")
 <section class="ticket">
   <header>
@@ -24,7 +27,7 @@ var ticket = Vocatis.CreateTicket(queueid, catids);
   <img src="separation.png" calss="separation" alt="Trennung">
   <section class="qrcode">
     <h4>Bitte QR Code einlesen!</h4>
-    <a href="@Href("App.cshtml", new {id=ticket.Id})"></a>
+    <a href="@appurl"></a>
     <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">
   </section>
   <footer>
