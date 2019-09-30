@@ -26,8 +26,8 @@
  
   <div class="main">
     @* Display list when idle *@
-    <section id="idle" data-content-src="@Model.Navigate("QueueList.cshtml")">
-    </section>
+    <div id="queuelist" data-content-src="@Model.Navigate("QueueList.cshtml")">
+    </div>
 
     @* wait popup is shown, while generating a new number *@
     <section id="waitPopup" style="display: none;">
@@ -146,7 +146,7 @@
     var hammertime = new Hammer(document.body, {});
 
     @* update queue list periodically *@
-    var queueList = $("#idle");
+    var queueList = $("#queuelist");
     var queueListUrl = queueList.data("content-src");
     var update = function () {
       try {
@@ -154,8 +154,7 @@
               url: queueListUrl,
               cache: false
           }).done(function (result) {
-              var d = $(result);
-              queueList.replaceWith(d);
+              queueList.html(result);
               hookupButtons();
           });
       }
