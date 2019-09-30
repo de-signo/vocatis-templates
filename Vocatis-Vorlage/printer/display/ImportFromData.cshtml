@@ -1,0 +1,115 @@
+@using System.Xml
+@using iSign
+@using Stolltec.Forms
+@using Stolltec.Forms.Model
+@using Stolltec.Vocatis
+@using Stolltec.Vocatis.Model
+@{
+    var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
+
+    var timeTo = DateTime.Now;
+    var last = Cache.Get("voc_last_import_time");
+    Cache.Insert("voc_last_import_time", timeTo);
+    var timeFrom = (last == null) ? DateTime.Now : (DateTime)last;
+}
+
+
+@helper import(DateTime timeFrom, DateTime timeTo)
+{
+    Func<string, string> Normalize = (string text) =>
+    {
+        if (text.StartsWith("=\"") && text.EndsWith("\""))
+        {
+            text = text.Substring(2, text.Length - 3);
+        }
+        else
+        {
+            text = text;
+        }
+        return text;
+    };
+
+    var Model = new FormsModel(this);
+    if (timeTo > timeFrom)
+    {
+        // filter list by time range [from, to)
+        var addList = from dynamic item in Model.DataSource("import")
+                    let start = DateTime.Parse(item.date) + TimeSpan.Parse(item.time)
+                    where start >= timeFrom && start < timeTo
+                    orderby start ascending
+                    select new {
+                        Id = item.id,
+                        Start = start,
+                        Name = item.name,
+                        Desc = item.description,
+                        Plan = Normalize(item.plan)
+                    };
+
+        var planName1 = (string)Model.Style["plan_name1"].FieldInstance.Value;
+        var planName2 = (string)Model.Style["plan_name2"].FieldInstance.Value;
+        var queueid1 = (CommonGuidId)Model.Style["queueid1"].FieldInstance.Value;
+        var queueid2 = (CommonGuidId)Model.Style["queueid2"].FieldInstance.Value;
+        var category = (CommonGuidId[]) Model.Style["category"].FieldInstance.Value;
+
+        <text>
+        Import
+        Range: [@timeFrom, @timeTo]
+        Plan1: @planName1
+        Queue1: @queueid1
+        Plan2: @planName2
+        Queue2: @queueid2
+        @foreach (var item in addList)
+        {
+            Func<CommonGuidId, WaitNumber> CreateTicket = (CommonGuidId queue) =>
+            {
+                var id = item.Id;
+                var len = id.Length;
+                if (len < 4)
+                    return null;
+                var ticketNum = "T" + id.Substring(len - 4);
+                return Vocatis.CreateTicket(ticketNum, queue, category);
+            };
+            string plan = item.Plan;
+            if (plan == planName1)
+            {
+                <text>Plan1</text>
+                CreateTicket(queueid1);
+            }
+            else if (plan == planName2)
+            {
+                <text>Plan2</text>
+                CreateTicket(queueid2);
+            }
+            else
+            {
+                <text>Skipped</text>
+            }
+            <text>
+                Item @item.Id
+                Name: @item.Name
+                Start: @item.Start
+                Description: @item.Desc
+                Plan: @plan
+            </text>
+        }
+        </text>
+    }
+}
+
+@if (partial)
+{
+    @import(timeFrom, timeTo)
+}
+else
+{
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Import</title>
+  <meta http-equiv="refresh" content="60">
+</head>
+<body>
+  @import(timeFrom, timeTo)
+</body>
+</html>
+}

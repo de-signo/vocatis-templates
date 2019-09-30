@@ -1,12 +1,16 @@
 @using iSign
+@using Stolltec.Vocatis
 @using Stolltec.Vocatis.Model
 @{
     dynamic id = CommonGuidId.FromString(Request["id"]);
     var ticket = Vocatis.GetTicket(id);
-    var status = Vocatis.GetTicketStatus(id);
 }
-@*
-@if (status.Position < 3) {
+@switch ((WaitNumberState)ticket.State)
+{
+case WaitNumberState.Waiting:
+case WaitNumberState.Parked:
+  var status = Vocatis.GetTicketWaitInfo(id);
+  if (ticket.State == WaitNumberState.Waiting && status.Position < 3) {
 <section class="main">
   <h2>Warteschlange</h2>
   <article>
@@ -19,7 +23,7 @@
             <text class="cls-2" text-anchor="middle" transform="translate(11.2 32.55)">989</text>
           </svg>
     <p id="three">STAND: @DateTime.Now.ToString("HH\\:mm") Uhr</p> 
-  </article>  
+  </article>
 
   <div class="posinfo"></div>
   <div class="notch"><svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g></svg></div>
@@ -44,7 +48,6 @@
             <text class="cls-2" text-anchor="middle" transform="translate(11.2 32.55)">989</text>
       </svg>
     Ihre <b>voraussichtliche</b> Wartezeit betr&auml;gt <b>ca. @((int)status.EstimatedTimeOfCall.TotalMinutes) Minuten</b>.
-    </section>
     <p id="three">STAND: @DateTime.Now.ToString("HH\\:mm") Uhr</p>
   </article>  
   <div class="posinfo"></div>
@@ -55,10 +58,10 @@
   </div>
   <h5>Bitte rechtzeitig Wartebereich aufsuchen!</h5>
 </section>
-}
-*@
-
-@*
+  }
+  break;
+case WaitNumberState.Called:
+  var callInfo = Vocatis.GetTicketCallInfo(id);
 <section class="room">
   <h2>Warteschlange</h2>
   <article>
@@ -73,8 +76,8 @@
   </div>
   <h5>Bitte halten Sie sich im Wartebereich auf!</h5>
 </section>
-*@
-
+  break;
+case WaitNumberState.Dismissed:
 
 <section class="danke">
   <h2>Auftrag abgeslossen</h2>
@@ -88,3 +91,6 @@
     <h4>Wir w&uuml;nschen Ihnen einen angenehmen Tag!</h4>
   </div>
 </section>
+  break;
+}
+
