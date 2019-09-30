@@ -32,8 +32,16 @@ header
 { 
     width: 3%;
     margin: 10vh 15vw;
-    position: absolute
+    position: absolute;
+    opacity: 1;
 }
+img
+{
+    width: 5vh;
+    margin: 10vh 2vw 0vh 2vw;
+    opacity: 0.2;
+}
+
 h1
 {
     font-size: .65rem;
@@ -45,7 +53,32 @@ section.logo
 {
     height: 10vh;
 }
-section.main
+
+
+#error
+{
+    margin: 0vh 15vw;
+    height: 50vh;
+    background-color:$color-highlight-background;
+    color: $color-primary-foreground;
+
+    >h2
+    {
+        text-align: center;
+        font-size: 1.25rem;
+        font-weight: bold;
+        padding: 8vh 2vw;  
+     }
+
+    p
+    {
+        text-align: center;
+        font-size: 0.75rem;
+        padding: 3vh 2vw; 
+    }
+   
+}
+section.room
 {
     margin: 0 15vw;
     height: 60vh;
@@ -55,12 +88,22 @@ section.main
         font-size: 0.75rem;
         line-height: 2vh;
         padding: 2vh 3vw;
-        height: 2vh;
+        line-heigh: 2vh;
         color: $color-primary-foreground;
         background-color: $color-primary-background;
     }
-    article
+    article   
     {
+         /* personenanzahl */
+        svg
+        {
+        width: 25%;
+        float: right;
+        padding: 2vh 3vw;
+        .cls-1{fill:$color-secondary-foreground;}
+        .cls-2{font-size:1em; color:$color-highlight-foreground;}
+        }
+
         position: absolute;
         width: 100%;
         font-size: 0.45rem;
@@ -69,6 +112,7 @@ section.main
         color:$color-secondary-foreground;
         padding: 2vh 3vw; 
     } 
+
     #bold
     {
         font-weight: bold;
@@ -76,7 +120,7 @@ section.main
     
     #three
     {
-        padding: 8vh 1vw;   
+        padding: 8vh 0vw 1vh 0vw;   
     }
 
 
@@ -117,20 +161,124 @@ section.main
         h4
         {
             text-align: center;
-            font-size: 2.25rem;
-            line-height: 19vh;
+            font-size: .75rem;
+            line-height: 3vh;
+            padding: 5vh 1vw 5vh 1vw; 
         }
     }
         h5
         {
             position: absolute;
             text-align: left;
-            font-size: 0.5rem;
+            font-size: 0.45rem;
             text-align: center;
-            margin: 2% 0% 0%;
+            margin: 2% 0% 0% 0%;
         }
-}
+    
+    }
 
+section.danke
+{
+    margin: 0 15vw;
+    height: 60vh;
+    h2 
+    {
+        text-align: right;
+        font-size: 0.75rem;
+        line-height: 2vh;
+        padding: 2vh 3vw;
+        heigwiht: 2vh;
+        color: $color-primary-foreground;
+        background-color: $color-primary-background;
+    }
+    article   
+    {
+         /* personenanzahl */
+        svg
+        {
+        width: 25%;
+        float: right;
+        padding: 2vh 3vw;
+        .cls-1{fill:$color-secondary-foreground;}
+        .cls-2{font-size:1em; color:$color-highlight-foreground;}
+        }
+
+        position: absolute;
+        width: 100%;
+        font-size: 0.45rem;
+        max-width: 65%;
+        font-weight: normal;
+        color:$color-secondary-foreground;
+        padding: 2vh 3vw; 
+    } 
+
+    #bold
+    {
+        font-weight: bold;
+    }
+    
+    #three
+    {
+        padding: 8vh 0vw 1vh 0vw;   
+    }
+
+
+    div.posinfo
+    {
+        height: 22vh;
+        padding: 2vh 2vw;
+        background-color: $color-secondary-background;
+        color: $color-secondary-foreground;
+    }
+
+    div.notch 
+    {
+        position: absolute;
+        left: 60%;
+        svg 
+        {
+         fill:$color-secondary-background;    
+        }
+    }
+    div.number
+    {
+        height: 22vh;
+        padding: 2vh 2vw;
+        background-color: $color-primary-background;
+        color: $color-primary-foreground;
+
+        h3
+        {   
+        text-align: left;
+        line-height: 3vh;
+        max-width: 60%;
+        font-size: 0.5rem;
+        font-weight: normal;
+        padding: 0vh 1vw; 
+        }
+
+        h4
+        {
+            text-align: center;
+            font-size: .75rem;
+            font-weight: normal;
+            line-height: 3vh;
+            padding: 5vh 1vw 5vh 1vw; 
+        }
+    }
+        h5
+        {
+            position: absolute;
+            text-align: left;
+            font-size: 0.45rem;
+            text-align: center;
+            margin: 2% 0% 0% 0%;
+        }
+    /* fehlermeldung */
+    #error{
+    background-color: red;
+    }
+}
 footer
 {
     position: fixed;
@@ -140,5 +288,4 @@ footer
     text-align: center;
     height: 5vh;
     margin: 2vh 15vw;
-    background-color: $color-secondary-background;
 }

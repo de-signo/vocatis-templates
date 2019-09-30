@@ -16,14 +16,15 @@
 </header>
 
 <section class="logo">
-  <img src="about:blank" />
+  <img src="customerlogo.png" />
 </section>
 
 <div id="content" data-content-src="@Href("AppContent.cshtml", new {id=Request["id"]})">
   Laden ...
 </div>
-<div id="error" style="display: none;">
-  Fehler aufgetreten.
+<div id="error" style="display: block;">
+ <h2>Fehler aufgetreten!</h2>
+ <p>Bitte begeben Sie sich in den Wartebereich!</p>
 </div>
 
 <footer>
