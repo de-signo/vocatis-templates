@@ -1,5 +1,6 @@
 @using System.Xml
 @using iSign
+@using ISS.Session
 @using Stolltec.Forms
 @using Stolltec.Forms.Model
 @using Stolltec.Vocatis
@@ -67,7 +68,15 @@
                 if (len < 4)
                     return null;
                 var ticketNum = "T" + id.Substring(len - 4);
-                return Vocatis.CreateTicket(ticketNum, queue, category);
+                using (var voc = SessionInstancesModule.GetInstance().UseSharedInstance<IVocatisData>())
+                {
+                    var ticket = voc.Instance.NewNumber(ticketNum, queue, category);
+                    ticket.Name = item.Name;
+                    ticket.Description = item.Desc;
+                    ticket.ReferenceId = item.Id;
+                    voc.Instance.UpdateNumber(ticket);
+                    return ticket;
+                }
             };
             string plan = item.Plan;
             if (plan == planName1)
