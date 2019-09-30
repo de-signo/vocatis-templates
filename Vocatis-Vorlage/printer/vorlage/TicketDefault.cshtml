@@ -6,29 +6,32 @@
 <html>
 <head>
     <title>Vocatis</title>
-    <link href="@Href("css/site.css")" type="text/css" rel="Stylesheet" />
+    <link href="@Href("style.css")" type="text/css" rel="Stylesheet" />
 </head>
-
-<body class="ticket">
-    <header>
-        <p>@DateTime.Now.ToString("dd.MM.yyyy &emsp;&emsp; HH:mm") Uhr</p>
-    
-    <h1>
-        @Model.Style["ticketnumber"].Value
-    </h1>
-    <img src="customerlogo.png" class="customerlogo" alt="Logo">
-    </header>
-    <footer>
-        Bitte warten Sie, bis Ihre Nummer auf dem Bildschirm erscheint! <br /><br /><br />
-    </footer>
-    <script type="text/javascript">
-    window.onload = function () {
-        window.focus();
-        window.print();
-        // remove this line for testing:
-        window.setTimeout(function () { window.close() }, 1000);
-    };
-    </script>
+<body>
+<section class="ticket">
+  <header>
+    <p>
+      @DateTime.Now.ToString("dd.MM.yyyy")<br>
+      @DateTime.Now.ToString("HH:mm")Uhr
+    </p>
+  </header>
+  <h1>
+    @Model.Style["ticketnumber"].Value
+  </h1>
+  <img src="separation.png" class="separation" alt="Trennung">
+  <section class="qrcode">
+    <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">
+  </section>
+</section>
+<script type="text/javascript">
+  window.onload = function () {
+    window.focus();
+    window.print();
+    // remove this line for testing:
+    //window.setTimeout(function () { window.close() }, 1000);
+  };
+</script>
     
 </body>
 

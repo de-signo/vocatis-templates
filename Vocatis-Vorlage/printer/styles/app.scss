@@ -83,9 +83,207 @@ section.logo
         font-size: 0.5rem;
         font-weight: bold;
         padding: 5vh 2vw; 
-    }
-   
+    } 
 }
+
+
+section.main
+{
+        margin: 0 15vw;
+        height: 60vh;
+        h2 
+        {
+            text-align: right;
+            font-size: 0.75rem;
+            line-height: 2vh;
+            padding: 2vh 3vw;
+
+            color: $color-primary-foreground;
+            background-color: $color-primary-background;
+        }
+        article   
+        {
+             /* personenanzahl */
+            svg
+            {
+            width: 25%;
+            float: right;
+            padding: 0vh 2vw;
+            .cls-1{fill:$color-secondary-foreground;}
+            .cls-2{font-size:1em; fill:$color-highlight-foreground;}
+            }
+    
+            position: absolute;
+            width: 100%;
+            font-size: 0.45rem;
+            max-width: 65%;
+            font-weight: normal;
+            color:$color-secondary-foreground;
+            padding: 2vh 3vw; 
+        } 
+    
+        #bold
+        {
+            font-weight: bold;
+        }
+        
+        #three
+        {
+            padding: 15vh 0vw 1vh 0vw;   
+        }
+    
+    
+        div.posinfo
+        {
+            height: 22vh;
+            padding: 2vh 2vw;
+            background-color: $color-secondary-background;
+            color: $color-secondary-foreground;
+        }
+    
+        div.notch 
+        {
+            position: absolute;
+            left: 60%;
+            svg 
+            {
+             fill:$color-secondary-background;    
+            }
+        }
+        div.number
+        {
+            height: 22vh;
+            padding: 2vh 2vw;
+            background-color: $color-primary-background;
+            color: $color-primary-foreground;
+    
+            h3
+            {   
+            text-align: left;
+            line-height: 3vh;
+            max-width: 60%;
+            font-size: 0.5rem;
+            font-weight: normal;
+            padding: 0vh 1vw; 
+            }
+    
+            h4
+            {
+                text-align: center;
+                font-size: 2rem;
+                line-height: 3vh;
+                padding: 5vh 1vw 5vh 1vw; 
+            }
+        }
+            h5
+            {
+                position: absolute;
+                text-align: left;
+                font-size: 0.45rem;
+                text-align: center;
+                margin: 2% 0% 0% 0%;
+            }
+        
+}
+section.wait01
+{
+        margin: 0 15vw;
+        height: 60vh;
+        h2 
+        {
+            text-align: right;
+            font-size: 0.75rem;
+            line-height: 2vh;
+            padding: 2vh 3vw;
+            line-height: 2vh;
+            color: $color-primary-foreground;
+            background-color: $color-primary-background;
+        }
+        article   
+        {
+             /* personenanzahl */
+            svg
+            {
+            width: 25%;
+            float: right;
+            padding: 2vh 3vw;
+            .cls-1{fill:$color-secondary-foreground;}
+            .cls-2{font-size:1em; fill:$color-highlight-foreground;}
+            }
+    
+            position: absolute;
+            width: 100%;
+            font-size: 0.45rem;
+            max-width: 65%;
+            font-weight: normal;
+            color:$color-secondary-foreground;
+            padding: 2vh 3vw; 
+        } 
+    
+        #bold
+        {
+            font-weight: bold;
+        }
+        
+        #three
+        {
+            padding: 8vh 0vw 1vh 0vw;   
+        }
+    
+    
+        div.posinfo
+        {
+            height: 22vh;
+            padding: 2vh 2vw;
+            background-color: $color-secondary-background;
+            color: $color-secondary-foreground;
+        }
+    
+        div.notch 
+        {
+            position: absolute;
+            left: 60%;
+            svg 
+            {
+             fill:$color-secondary-background;    
+            }
+        }
+        div.number
+        {
+            height: 22vh;
+            padding: 2vh 2vw;
+            background-color: $color-primary-background;
+            color: $color-primary-foreground;
+    
+            h3
+            {   
+            text-align: left;
+            line-height: 3vh;
+            max-width: 60%;
+            font-size: 0.5rem;
+            font-weight: normal;
+            padding: 0vh 1vw; 
+            }
+    
+            h4
+            {
+                text-align: center;
+                font-size: 2rem;
+                line-height: 3vh;
+                padding: 5vh 1vw 5vh 1vw; 
+            }
+        }
+            h5
+            {
+                position: absolute;
+                text-align: left;
+                font-size: 0.45rem;
+                text-align: center;
+                margin: 2% 0% 0% 0%;
+            }
+        
+}
+
 section.room
 {
     margin: 0 15vw;
@@ -93,10 +291,9 @@ section.room
     h2 
     {
         text-align: right;
-        font-size: 0.75rem;
-        line-height: 2vh;
-        padding: 2vh 3vw;
-        line-heigh: 2vh;
+        font-size: 0.65rem;
+        line-height: 3vh;
+        padding: 3vh 3vw;
         color: $color-primary-foreground;
         background-color: $color-primary-background;
     }
@@ -105,33 +302,49 @@ section.room
          /* personenanzahl */
         svg
         {
-        width: 25%;
-        float: right;
-        padding: 2vh 3vw;
-        .cls-1{fill:$color-secondary-foreground;}
-        .cls-2{font-size:1em; color:$color-highlight-foreground;}
+            width: 25%;
+            float: right;
+            padding: 0vh 2vw;
+            .cls-1{fill:$color-secondary-foreground;}
+            .cls-2{font-size:1em; fill:$color-highlight-foreground;}
         }
-
+    
         position: absolute;
         width: 100%;
         font-size: 0.45rem;
         max-width: 65%;
         font-weight: normal;
         color:$color-secondary-foreground;
-        padding: 2vh 3vw; 
-    } 
-
+        padding: 0vh 3vw; 
+            
+        h3
+        {
+            font-size: 0.75rem;
+            text-align: center;
+            padding: 4vh 0vw 1vh 0vw; 
+        } 
+       
+    }  
+    #place
+    {
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+        padding: 4vh 0vw 1vh 0vw;
+    }
+   
     #bold
     {
         font-weight: bold;
     }
-    
+        
     #three
     {
-        padding: 8vh 0vw 1vh 0vw;   
+        padding: 5vh 0vw 1vh 0vw;   
     }
 
-
+    
+    
     div.posinfo
     {
         height: 22vh;
@@ -139,15 +352,15 @@ section.room
         background-color: $color-secondary-background;
         color: $color-secondary-foreground;
     }
-
+    
     div.notch 
     {
         position: absolute;
         left: 60%;
         svg 
         {
-         fill:$color-secondary-background;    
-        }
+             fill:$color-secondary-background;    
+            }
     }
     div.number
     {
@@ -155,47 +368,37 @@ section.room
         padding: 2vh 2vw;
         background-color: $color-primary-background;
         color: $color-primary-foreground;
-
+    
         h3
         {   
-        text-align: left;
-        line-height: 3vh;
-        max-width: 60%;
-        font-size: 0.5rem;
-        font-weight: normal;
-        padding: 0vh 1vw; 
+            text-align: left;
+            line-height: 3vh;
+            max-width: 60%;
+            font-size: 0.5rem;
+            font-weight: normal;
+            padding: 0vh 1vw; 
         }
-
+    
         h4
         {
             text-align: center;
-            font-size: .75rem;
+            font-size: 2rem;
             line-height: 3vh;
             padding: 5vh 1vw 5vh 1vw; 
         }
     }
-        h5
-        {
-            position: absolute;
-            text-align: left;
-            font-size: 0.45rem;
-            text-align: center;
-            margin: 2% 0% 0% 0%;
-        }
-    
-    }
+}
 
 section.danke
-{
-    margin: 0 15vw;
+{   margin: 0 15vw;
     height: 60vh;
     h2 
     {
         text-align: right;
-        font-size: 0.75rem;
+        font-size: 0.65rem;
         line-height: 2vh;
         padding: 2vh 3vw;
-        heigwiht: 2vh;
+
         color: $color-primary-foreground;
         background-color: $color-primary-background;
     }
@@ -206,9 +409,9 @@ section.danke
         {
         width: 25%;
         float: right;
-        padding: 2vh 3vw;
+        padding: 0vh 2vw;
         .cls-1{fill:$color-secondary-foreground;}
-        .cls-2{font-size:1em; color:$color-highlight-foreground;}
+        .cls-2{font-size:1em; fill:$color-highlight-foreground;}
         }
 
         position: absolute;
@@ -217,7 +420,14 @@ section.danke
         max-width: 65%;
         font-weight: normal;
         color:$color-secondary-foreground;
-        padding: 2vh 3vw; 
+        padding: 0vh 3vw; 
+        
+        h3
+        {
+        font-size: 0.75rem;
+        text-align: center;
+        padding: 10vh 0vw 1vh 0vw; 
+        }
     } 
 
     #bold
@@ -269,24 +479,19 @@ section.danke
         {
             text-align: center;
             font-size: .75rem;
-            font-weight: normal;
             line-height: 3vh;
             padding: 5vh 1vw 5vh 1vw; 
         }
     }
-        h5
-        {
-            position: absolute;
-            text-align: left;
-            font-size: 0.45rem;
-            text-align: center;
-            margin: 2% 0% 0% 0%;
-        }
-    /* fehlermeldung */
-    #error{
+  
+        
+}      
+/* fehlermeldung */
+#error
+{
     background-color: red;
-    }
 }
+
 footer
 {
     position: fixed;

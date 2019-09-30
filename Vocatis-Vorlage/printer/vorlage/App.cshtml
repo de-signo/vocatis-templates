@@ -22,10 +22,9 @@
 <div id="content" data-content-src="@Href("AppContent.cshtml", new {id=Request["id"]})">
   Laden ...
 </div>
-<div id="error" style="display: block;">
+<div id="error" style="display: none;">
  <h2>Fehler aufgetreten!</h2>
  <p>Bitte begeben Sie sich in den Wartebereich!</p>
- <p id="three">STAND: @DateTime.Now.ToString("HH\\:mm") Uhr</p> 
 </div>
 
 <footer>
