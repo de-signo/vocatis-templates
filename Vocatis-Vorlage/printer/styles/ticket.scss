@@ -23,12 +23,13 @@ section.ticket
     /*background-color:$color-highlight-foreground;*/
     background-color:$color-highlight-foreground;
     
-    p 
+    header>p 
     {
     text-align: center;
     font-size: 12px;
     color: #000;
     line-height: 15px;
+    max-width: 60mm;
     }
     
     h1

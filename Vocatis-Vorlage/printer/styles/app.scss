@@ -104,24 +104,25 @@ section.main
         }
         article   
         {
-             /* personenanzahl */
+            /* personenanzahl */
             svg
-            {
-            width: 20%;
-            max-height: 19vh;
-            float: right;
-            padding: 0vh 2vw;
-            .cls-1{fill:$color-secondary-foreground;}
-            .cls-2{font-size:1.25em; fill:$color-highlight-foreground;}
+             {
+               width: 20%;
+               max-height: 19vh;
+               float: right;
+               padding: 0vh 2vw;
+               .cls-1{fill:$color-secondary-foreground;}
+               .cls-2{font-size:1em; fill:$color-highlight-foreground;}
             }
-
-            position: absolute;
-            font-size: 0.65rem;
-            max-width: 65%;
-            font-weight: normal;
-            color:$color-secondary-foreground;
-            padding: 2vh 3vw; 
-        } 
+       
+        position: absolute;
+        width: 100%;
+        font-size: 0.65rem;
+        max-width: 65%;
+        font-weight: normal;
+        color:$color-secondary-foreground;
+        padding: 0vh 3vw; 
+} 
     
         #bold
         {
@@ -130,7 +131,7 @@ section.main
         
         #three
         {
-            padding: 12vh 0vw 1vh 0vw;
+            padding: 0vh 0vw 1vh 0vw;
             font-size: 0.65rem; 
         }
     
@@ -181,7 +182,7 @@ section.main
             {
                 position: absolute;
                 text-align: left;
-                font-size: 0.45rem;
+                font-size: 0.5rem;
                 text-align: center;
                 margin: 2% 0% 0% 0%;
             }
@@ -209,9 +210,9 @@ section.wait01
             width: 20%;
             max-height: 19vh;
             float: right;
-            padding: 0vh 3vw;
+            padding: 0vh 2vw;
             .cls-1{fill:$color-secondary-foreground;}
-            .cls-2{font-size:1.25em; fill:$color-highlight-foreground;}
+            .cls-2{font-size:1em; fill:$color-highlight-foreground;}
             }
     
             position: absolute;
@@ -220,7 +221,7 @@ section.wait01
             max-width: 65%;
             font-weight: normal;
             color:$color-secondary-foreground;
-            padding: 2vh 3vw; 
+            padding: 0vh 3vw; 
         } 
     
         #bold
@@ -230,7 +231,7 @@ section.wait01
         
         #three
         {
-            padding: 12vh 0vw 1vh 0vw;
+            padding: 0vh 0vw 1vh 0vw;
             font-size: 0.65rem;   
         }
     
@@ -281,7 +282,7 @@ section.wait01
             {
                 position: absolute;
                 text-align: left;
-                font-size: 0.45rem;
+                font-size: 0.5rem;
                 text-align: center;
                 margin: 2% 0% 0% 0%;
             }
@@ -345,7 +346,7 @@ section.room
         
     #three
     {
-        padding: 3vh 1vw 1vh 1vw;
+        padding: 2vh 1vw 1vh 1vw;
         font-size: 0.65rem; 
         text-align: left;  
     }
@@ -444,7 +445,7 @@ section.danke
     
     #three
     {
-        padding: 7vh 2vw 1vh 2vw;
+        padding: 5vh 2vw 1vh 2vw;
         font-size: 0.65rem;     
     }
 
