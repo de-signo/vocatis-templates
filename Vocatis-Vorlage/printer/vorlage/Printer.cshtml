@@ -91,7 +91,8 @@
   }
   $(document).ready(function () {
     reportPrinterStatus({
-		  url: "@Href(Stolltec.Forms.PrinterStatus.Path)"
+      url: "@Href(Stolltec.Forms.PrinterStatus.Path)",
+      interval: 60000
 	  });
   });
   </text>
