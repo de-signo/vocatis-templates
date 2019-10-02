@@ -97,6 +97,15 @@ header
         {
             margin: 10vh 20vw;
         }
+
+        div.number
+        {
+            h4
+            {
+                padding: 5vh 1vw 5vh 1vw; 
+            }
+        }
+        
     }
 }
 
@@ -303,7 +312,6 @@ section.room
             text-align: center;
             font-size: 2rem;
             line-height: 3vh;
-            padding: 5vh 1vw 5vh 1vw; 
 
         }
     }
