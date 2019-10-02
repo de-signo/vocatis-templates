@@ -81,6 +81,13 @@ body.printer
                     display: block;
                 }
             }
+            ul.buttons-7, ul.buttons-8
+            {
+                .btn>div
+                {
+                    height: 7vh;
+                }
+            }
             .btn.next-one>div:last-child div:nth-child(2) svg
             {
                 opacity: 0.5;

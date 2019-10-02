@@ -23,7 +23,7 @@ html, body
 
     @media (orientation: landscape)
     {
-        font-size: 3vw;
+        font-size: 2.5vw;
     }
     @media (orientation: portrait)
     {
@@ -44,24 +44,42 @@ header
     h1
     {
         position: absolute;
-        font-size: .65rem;
+        font-size: 1rem;
+        
     }
 
     @media (orientation: landscape)
     {
-        height: 15vh;
-
+        height: 10vh;
+        width: 100%;
+        
         .plattform
         { 
             width: auto;
-            height: 5vh;
-            margin: 10vh 15vw;
+            height: 4vh;
+            margin: 3vh 15vw;
+            
         }
 
         h1
         {
-            margin: 10vh 20vw;
+            position: absolute;
+            font-size: .75rem;
+            margin: 3vh 20vw;
             max-width: 70%;
+        }
+
+        div.number
+        {
+            p
+            {
+            padding: 0vh 0vw 1vh 0vw;  
+            }
+
+            h4
+            {
+            padding: 10vh 0vw 1vh 0vw;
+            }
         }
     }
 
@@ -78,7 +96,6 @@ header
         h1
         {
             margin: 10vh 20vw;
-            max-width: 70%;
         }
     }
 }
@@ -128,255 +145,139 @@ section.logo
 
 section.content
 {
+    position: relative;
     margin: 0 15vw;
     height: 60vh;
 
+    h2 
+    {
+        color:$color-primary-foreground;
+        background-color: $color-primary-background;
+
+        text-align: right;
+        font-size: .75rem;
+        line-height: 2vh;
+        padding: 2vh 3vw;  
+    }
+
+    article
+    {
+        background-color: $color-secondary-background;
+        color:$color-secondary-foreground;
+
+        box-sizing: border-box;
+        padding: 0vh 3vw;
+        font-size: 0.75rem;
+
+        /* personenanzahl */
+        svg
+         {
+            width: 20%;
+            max-height: 19vh;
+            float: right;
+            padding: 0vh 2vw;
+            .cls-1{fill:$color-secondary-foreground;}
+            .cls-2{font-size:1em; fill:$color-highlight-foreground;}
+         }
+
+        #bold
+        {
+            font-weight: bold;
+        }
+        #three
+        {
+            font-size: 0.75rem;
+            margin-top: 10vh;   
+        }
+    }
+    
+
+    div.number
+    {
+        background-color: $color-primary-background;
+        color: $color-primary-foreground;
+
+        box-sizing: border-box;
+        padding: 2vh 2vw;    
+        
+        h3
+            {   
+            text-align: left;
+            line-height: 3vh;
+            max-width: 60%;
+            font-size: 0.75rem;
+            font-weight: normal;
+            padding: 0vh 1vw; 
+            }
+
+        h4
+        {
+            text-align: center;
+            font-size: 2rem;
+            line-height: 3vh;
+            padding: 5vh 1vw 5vh 1vw; 
+        }
+    }
+
+    div.notch 
+    {
+        position: absolute;
+        svg 
+        {
+            fill:$color-secondary-background; 
+        }
+    }
+
     @media (orientation: landscape)
     {
-    
+        article 
+        {
+            height: 52vh;
+            width: 50%;
+            float: left;
+        }
+        div.number
+        {
+            height: 52vh;
+            width: 50%;
+            float: left;
+        }
+        div.notch 
+        {
+            left: 50%;
+            top: 10vh;
+            transform: rotate(-90deg);   
+        }
+
+        div.number
+        {
+            h4
+            {
+                padding: 15vh 1vw 5vh 1vw; 
+            }  
+        }
     }
 
     @media (orientation: portrait)
-    {
+    {     
+        article 
+        {
+            height: 26vh;
+        }
+        div.number
+        {
+            height: 26vh;
+        }
+        div.notch 
+        {
+            left: 60%;
+        }
     }
-}
-
-section.main
-{   
-        h2 
-        {
-            text-align: right;
-            font-size: 0.75rem;
-            line-height: 2vh;
-            padding: 2vh 3vw;
-
-            color: $color-primary-foreground;
-            background-color: $color-primary-background;
-        }
-        article   
-        {
-             /* personenanzahl */
-            svg
-            {
-            width: 20%;
-            max-height: 19vh;
-            float: right;
-            padding: 0vh 2vw;
-            .cls-1{fill:$color-secondary-foreground;}
-            .cls-2{font-size:1em; fill:$color-highlight-foreground;}
-            }
-    
-            position: absolute;
-            width: 100%;
-            font-size: 0.65rem;
-            max-width: 65%;
-            font-weight: normal;
-            color:$color-secondary-foreground;
-            padding: 0vh 3vw; 
-        } 
-    
-        #bold
-        {
-            font-weight: bold;
-        }
-        
-        #three
-        {
-            font-size: 0.5rem;   
-        }
-    
-    
-        div.posinfo
-        {
-            height: 22vh;
-            padding: 2vh 2vw;
-            background-color: $color-secondary-background;
-            color: $color-secondary-foreground;
-        }
-    
-        div.notch 
-        {
-            position: absolute;
-            left: 60%;
-            svg 
-            {
-             fill:$color-secondary-background;    
-            }
-        }
-        div.number
-        {
-            height: 22vh;
-            padding: 2vh 2vw;
-            background-color: $color-primary-background;
-            color: $color-primary-foreground;
-    
-            h3
-            {   
-            text-align: left;
-            line-height: 3vh;
-            max-width: 60%;
-            font-size: 0.5rem;
-            font-weight: normal;
-            padding: 0vh 1vw; 
-            }
-    
-            h4
-            {
-                text-align: center;
-                font-size: 2rem;
-                line-height: 3vh;
-                padding: 5vh 1vw 5vh 1vw; 
-            }
-        }
-            h5
-            {
-                position: absolute;
-                text-align: left;
-                font-size: 0.5rem;
-                text-align: center;
-                margin: 2% 0% 0% 0%;
-            }
-        
-}
-section.wait01
-{
-        h2 
-        {
-            text-align: right;
-            font-size: 0.75rem;
-            line-height: 2vh;
-            padding: 2vh 3vw;
-            line-height: 2vh;
-            color: $color-primary-foreground;
-            background-color: $color-primary-background;
-        }
-        article   
-        {
-             /* personenanzahl */
-            svg
-            {
-            width: 20%;
-            max-height: 19vh;
-            float: right;
-            padding: 0vh 2vw;
-            .cls-1{fill:$color-secondary-foreground;}
-            .cls-2{font-size:1em; fill:$color-highlight-foreground;}
-            }
-    
-            position: absolute;
-            width: 100%;
-            font-size: 0.65rem;
-            max-width: 65%;
-            font-weight: normal;
-            color:$color-secondary-foreground;
-            padding: 0vh 3vw; 
-        } 
-    
-        #bold
-        {
-            font-weight: bold;
-        }
-        
-        #three
-        {
-            padding: 0vh 0vw 1vh 0vw;
-            font-size: 0.5rem;   
-        }
-    
-    
-        div.posinfo
-        {
-            height: 22vh;
-            padding: 2vh 2vw;
-            background-color: $color-secondary-background;
-            color: $color-secondary-foreground;
-        }
-    
-        div.notch 
-        {
-            position: absolute;
-            left: 60%;
-            svg 
-            {
-             fill:$color-secondary-background;    
-            }
-        }
-        div.number
-        {
-            height: 22vh;
-            padding: 2vh 2vw;
-            background-color: $color-primary-background;
-            color: $color-primary-foreground;
-    
-            h3
-            {   
-            text-align: left;
-            line-height: 3vh;
-            max-width: 60%;
-            font-size: 0.5rem;
-            font-weight: normal;
-            padding: 0vh 1vw; 
-            }
-    
-            h4
-            {
-                text-align: center;
-                font-size: 2rem;
-                line-height: 3vh;
-                padding: 5vh 1vw 5vh 1vw; 
-            }
-        }
-            h5
-            {
-                position: absolute;
-                text-align: left;
-                font-size: 0.5rem;
-                text-align: center;
-                margin: 2% 0% 0% 0%;
-            }
-        
 }
 
 section.room
 {
-    h2 
-    {
-        text-align: right;
-        font-size: 0.75rem;
-        line-height: 2vh;
-        padding: 2vh 3vw;
-        color: $color-primary-foreground;
-        background-color: $color-primary-background;
-    }
-    article   
-    {
-         /* personenanzahl */
-        svg
-        {
-            width: 25%;
-            float: right;
-            padding: 0vh 2vw;
-            .cls-1{fill:$color-secondary-foreground;}
-            .cls-2{font-size:1em; fill:$color-highlight-foreground;}
-        }
     
-        position: absolute;
-        width: 100%;
-        font-size: 0.75rem;
-        max-width: 65%;
-        text-align: center;
-        font-weight: normal;
-        color:$color-secondary-foreground;
-        padding: 0vh 3vw; 
-            
-        h3
-        {
-            font-size: 0.75rem;
-            text-align: center;
-            padding: 4vh 0vw 1vh 0vw; 
-        } 
-       
-    }  
     #place
     {
         font-size: 1rem;
@@ -392,92 +293,31 @@ section.room
         
     #three
     {
-        padding: 2vh 1vw 1vh 1vw;
-        font-size: 0.5rem; 
-        text-align: left;  
+        margin-top: 8vh;   
     }
 
-    
-    
-    div.posinfo
-    {
-        height: 22vh;
-        padding: 2vh 2vw;
-        background-color: $color-secondary-background;
-        color: $color-secondary-foreground;
-    }
-    
-    div.notch 
-    {
-        position: absolute;
-        left: 60%;
-        svg 
-        {
-             fill:$color-secondary-background;    
-            }
-    }
     div.number
     {
-        height: 22vh;
-        padding: 2vh 2vw;
-        background-color: $color-primary-background;
-        color: $color-primary-foreground;
-    
-        h3
-        {   
-            text-align: left;
-            line-height: 3vh;
-            max-width: 60%;
-            font-size: 0.5rem;
-            font-weight: normal;
-            padding: 0vh 1vw; 
-        }
-    
         h4
         {
             text-align: center;
             font-size: 2rem;
             line-height: 3vh;
             padding: 5vh 1vw 5vh 1vw; 
+
         }
     }
 }
 
 section.danke
 {   
-    h2 
-    {
-        text-align: right;
-        font-size: 0.65rem;
-        line-height: 2vh;
-        padding: 2vh 3vw;
-
-        color: $color-primary-foreground;
-        background-color: $color-primary-background;
-    }
+   
     article   
     {
-         /* personenanzahl */
-        svg
-        {
-        width: 25%;
-        float: right;
-        padding: 0vh 2vw;
-        .cls-1{fill:$color-secondary-foreground;}
-        .cls-2{font-size:1em; fill:$color-highlight-foreground;}
-        }
-
-        position: absolute;
-        width: 100%;
-        font-size: 0.45rem;
-        max-width: 65%;
-        font-weight: normal;
-        color:$color-secondary-foreground;
-        padding: 0vh 3vw; 
-        
+       
         h3
         {
-        font-size: 0.75rem;
+        font-size: 1rem;
         text-align: center;
         padding: 10vh 0vw 1vh 0vw; 
         }
@@ -490,50 +330,16 @@ section.danke
     
     #three
     {
-        padding: 5vh 2vw 1vh 2vw;
+        padding: 9vh 2vw 1vh 2vw;
         font-size: 0.65rem;     
     }
 
-
-    div.posinfo
-    {
-        height: 22vh;
-        padding: 2vh 2vw;
-        background-color: $color-secondary-background;
-        color: $color-secondary-foreground;
-    }
-
-    div.notch 
-    {
-        position: absolute;
-        left: 60%;
-        svg 
-        {
-         fill:$color-secondary-background;    
-        }
-    }
     div.number
     {
-        height: 22vh;
-        padding: 2vh 2vw;
-        background-color: $color-primary-background;
-        color: $color-primary-foreground;
-
-        h3
-        {   
-        text-align: left;
-        line-height: 3vh;
-        max-width: 60%;
-        font-size: 0.5rem;
-        font-weight: normal;
-        padding: 0vh 1vw; 
-        }
-
-        h4
+        p
         {
             text-align: center;
-            font-size: .75rem;
-            line-height: 3vh;
+            font-size: 1rem;
             padding: 5vh 1vw 5vh 1vw; 
         }
     }
@@ -543,7 +349,7 @@ section.danke
 /* fehlermeldung */
 #error
 {
-    background-color: red;
+    background-color: $color-highlight-background;
 }
 
 footer

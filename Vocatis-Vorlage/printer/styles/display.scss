@@ -92,16 +92,16 @@ body
         color: $color-secondary-foreground;  
         width: 35%;
         font-weight: bold;
-        line-height: 6vh;
+        line-height: 7vh;
         text-align: center; 
 
         /* termin */
         img.termin
         {
-            height: 40%;
+            height: 60%;
             float: left;
             vertical-align: middle;
-            padding:2vh 2vw;
+            padding:2vh 4vw;
         } 
 
         td.number#text
