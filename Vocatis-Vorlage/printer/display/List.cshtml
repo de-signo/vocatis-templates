@@ -30,17 +30,16 @@
 else {
 <!DOCTYPE html>
 <html>
-
-<body class="list">
-    @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
 <head>
     <title>Vocatis</title>
     <link href="@Href("display.css")" type="text/css" rel="Stylesheet" />
-        <header>
+</head>
+<body class="list">
+    @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
+    <header>
         <img src="plattformlogo_01.png" class="plattformlogo" alt="plattformlogo">
         <h1>Rathaus</h1>
-        </header>
-</head>
+    </header>
     <h2>
         Bitte warten Sie, bis Ihre Nummer erscheint:
     </h2>
@@ -50,38 +49,40 @@ else {
         var notify = Model.Style["notify"].FieldInstance.Value as string;
         var popup = Model.Style["popup"].FieldInstance.Value as string;
     }
-    @if (!String.IsNullOrEmpty(notify)) {
-    <audio id="notify">
-        <source src="@Href(notify)" type="audio/mp3" />
-    </audio>
+    @if (!String.IsNullOrEmpty(notify))
+    {
+        <audio id="notify">
+            <source src="@Href(notify)" type="audio/mp3" />
+        </audio>
     }
-    @if (!String.IsNullOrEmpty(popup)) {
+    @if (!String.IsNullOrEmpty(popup))
+    {
         <div id="popup" style="display:none;" class="popup @popup">
             <h3>~room~</h3>
             <h4>~number~</h4>
         </div>
     }
     <script type="text/javascript">
-    $(document).ready(function() {
-        var popupContent = $("#popup").html();
+        $(document).ready(function () {
+            var popupContent = $("#popup").html();
 
-        $("#list")
-            .vocatisList({
-                interval: 2500
-            })
-            .highlightNumbers({
-                items:"tr:not(.spacer)",
-                call: function(items) {
-                    var audio = document.getElementById("notify");
-                    if (audio) audio.play();
+            $("#list")
+                .vocatisList({
+                    interval: 2500
+                })
+                .highlightNumbers({
+                    items: "tr:not(.spacer)",
+                    call: function (items) {
+                        var audio = document.getElementById("notify");
+                        if (audio) audio.play();
 
-                    if (popupContent) {
+                        if (popupContent) {
                             $("#popup").html(popupContent.replace("~number~", items[0].number).replace("~room~", items[0].room)).show();
                             window.setTimeout(function () { $("#popup").hide(); }, 10000);
+                        }
                     }
-                }
-            });
-    });
+                });
+        });
     </script>
 </body>
 </html>
