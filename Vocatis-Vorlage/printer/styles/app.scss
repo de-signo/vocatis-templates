@@ -19,41 +19,81 @@ html, body
 {
     background-color: $color-common-background;
     color: $color-common-foreground;
-    font-size: 3vh;
     font-family: Verdana, "Lucida Sans Unicode", sans-serif;
+
+    @media (orientation: landscape)
+    {
+        font-size: 3vw;
+    }
+    @media (orientation: portrait)
+    {
+        font-size: 4vw;
+    }
 }
+
 header
 {
     background-color: $color-primary-background;
     color: $color-primary-foreground;
-    height: 15vh;
-}
-.plattform
-{ 
-    width: 3%;
-    margin: 10vh 15vw;
-    position: absolute;
-    opacity: 1;
-}
-img
-{
-    width: 5vh;
-    margin: 10vh 2vw 0vh 2vw;
-    opacity: 0.2;
+
+    .plattform
+    { 
+        position: absolute;
+    }
+
+    h1
+    {
+        position: absolute;
+        font-size: .65rem;
+    }
+
+    @media (orientation: landscape)
+    {
+        height: 15vh;
+
+        .plattform
+        { 
+            width: auto;
+            height: 5vh;
+            margin: 10vh 15vw;
+        }
+
+        h1
+        {
+            margin: 10vh 20vw;
+            max-width: 70%;
+        }
+    }
+
+    @media (orientation: portrait)
+    {
+        height: 15vh;
+
+        .plattform
+        { 
+            width: 3%;
+            margin: 10vh 15vw;
+        }
+
+        h1
+        {
+            margin: 10vh 20vw;
+            max-width: 70%;
+        }
+    }
 }
 
-h1
-{
-    font-size: .65rem;
-    position: absolute;
-    margin: 10vh 20vw;
-    max-width: 70%;
-}
 section.logo
 {
     height: 10vh;
-}
 
+    img 
+    {
+        width: 11vw;
+        margin: 10vh 2vw 0vh 2vw;
+        opacity: 0.2;
+    }
+}
 
 #error
 {
@@ -86,12 +126,23 @@ section.logo
     } 
 }
 
+section.content
+{
+    margin: 0 15vw;
+    height: 60vh;
+
+    @media (orientation: landscape)
+    {
+    
+    }
+
+    @media (orientation: portrait)
+    {
+    }
+}
 
 section.main
-{
-    
-        margin: 0 15vw;
-        height: 60vh;
+{   
         h2 
         {
             text-align: right;
@@ -104,25 +155,25 @@ section.main
         }
         article   
         {
-            /* personenanzahl */
+             /* personenanzahl */
             svg
-             {
-               width: 20%;
-               max-height: 19vh;
-               float: right;
-               padding: 0vh 2vw;
-               .cls-1{fill:$color-secondary-foreground;}
-               .cls-2{font-size:1em; fill:$color-highlight-foreground;}
+            {
+            width: 20%;
+            max-height: 19vh;
+            float: right;
+            padding: 0vh 2vw;
+            .cls-1{fill:$color-secondary-foreground;}
+            .cls-2{font-size:1em; fill:$color-highlight-foreground;}
             }
-       
-        position: absolute;
-        width: 100%;
-        font-size: 0.65rem;
-        max-width: 65%;
-        font-weight: normal;
-        color:$color-secondary-foreground;
-        padding: 0vh 3vw; 
-} 
+    
+            position: absolute;
+            width: 100%;
+            font-size: 0.65rem;
+            max-width: 65%;
+            font-weight: normal;
+            color:$color-secondary-foreground;
+            padding: 0vh 3vw; 
+        } 
     
         #bold
         {
@@ -131,8 +182,7 @@ section.main
         
         #three
         {
-            padding: 0vh 0vw 1vh 0vw;
-            font-size: 0.65rem; 
+            font-size: 0.5rem;   
         }
     
     
@@ -190,8 +240,6 @@ section.main
 }
 section.wait01
 {
-        margin: 0 15vw;
-        height: 60vh;
         h2 
         {
             text-align: right;
@@ -232,7 +280,7 @@ section.wait01
         #three
         {
             padding: 0vh 0vw 1vh 0vw;
-            font-size: 0.65rem;   
+            font-size: 0.5rem;   
         }
     
     
@@ -291,8 +339,6 @@ section.wait01
 
 section.room
 {
-    margin: 0 15vw;
-    height: 60vh;
     h2 
     {
         text-align: right;
@@ -347,7 +393,7 @@ section.room
     #three
     {
         padding: 2vh 1vw 1vh 1vw;
-        font-size: 0.65rem; 
+        font-size: 0.5rem; 
         text-align: left;  
     }
 
@@ -398,8 +444,7 @@ section.room
 }
 
 section.danke
-{   margin: 0 15vw;
-    height: 60vh;
+{   
     h2 
     {
         text-align: right;

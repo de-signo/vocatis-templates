@@ -16,20 +16,19 @@
 }
 
 section.ticket
-{   display: block;
-    margin: 5mm 5mm;
-    max-width: 60mm;
-    max-height: auto;
-    /*background-color:$color-highlight-foreground;*/
-    background-color:$color-highlight-foreground;
+{   
+    display: block;
+    /* paper: 58mm, paper-margin 5mm */
+    width: 48mm;
+
+    background-color:white;
+    color: black;
     
-    header>p 
+    header
     {
-    text-align: center;
-    font-size: 12px;
-    color: #000;
-    line-height: 15px;
-    max-width: 60mm;
+        text-align: center;
+        font-size: 12px;
+        line-height: 15px;
     }
     
     h1

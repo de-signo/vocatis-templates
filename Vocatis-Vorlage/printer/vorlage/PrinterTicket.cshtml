@@ -16,10 +16,8 @@ var appurl = new Uri(HttpContext.Current.Request.Url, apppath).AbsoluteUri;
 @Scripts.Render("js/jquery.qrcode.js")
 <section class="ticket">
   <header>
-    <p>
-      @DateTime.Now.ToString("dd.MM.yyyy")<br>
-      @DateTime.Now.ToString("HH:mm")Uhr
-    </p>
+    @DateTime.Now.ToString("dd.MM.yyyy")<br>
+    @DateTime.Now.ToString("HH:mm")Uhr
   </header>
   <h1>
     @ticket.Number
@@ -51,7 +49,9 @@ else {
 </head>
 <body>
   @Scripts.Render("~/Scripts/jquery")
-  @content()
+  <div class="print_ticket" style="display: block !important;">
+    @content()
+  </div>
 </body>
 </html>
 }
