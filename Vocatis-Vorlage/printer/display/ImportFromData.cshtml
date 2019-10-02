@@ -11,7 +11,7 @@
     var timeTo = DateTime.Now;
     var last = Cache.Get("voc_last_import_time");
     Cache.Insert("voc_last_import_time", timeTo);
-    var timeFrom = (last == null) ? DateTime.Now : (DateTime)last;
+    var timeFrom = (last == null) ? timeTo : (DateTime)last;
 }
 
 
@@ -59,6 +59,7 @@
         Queue1: @queueid1
         Plan2: @planName2
         Queue2: @queueid2
+        <ul>
         @foreach (var item in addList)
         {
             Func<CommonGuidId, WaitNumber> CreateTicket = (CommonGuidId queue) =>
@@ -67,7 +68,7 @@
                 var len = id.Length;
                 if (len < 4)
                     return null;
-                var ticketNum = "T" + id.Substring(len - 4);
+                var ticketNum = "T" + id.Substring(len - 3);
                 using (var voc = SessionInstancesModule.GetInstance().UseSharedInstance<IVocatisData>())
                 {
                     var ticket = voc.Instance.NewNumber(ticketNum, queue, category);
@@ -93,14 +94,15 @@
             {
                 <text>Skipped</text>
             }
-            <text>
+            <li>
                 Item @item.Id
                 Name: @item.Name
                 Start: @item.Start
                 Description: @item.Desc
                 Plan: @plan
-            </text>
+            </li>
         }
+        </ul>
         </text>
     }
 }
