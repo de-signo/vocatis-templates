@@ -9,7 +9,7 @@ gulp.task("css", function (done) {
 gulp.src(['styles/style.scss','styles/app.scss'])
     .pipe(sass.sync().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
-    .pipe(gulp.dest('vorlage'));
+    .pipe(gulp.dest('printer'));
 gulp.src(['styles/display.scss'])
     .pipe(sass.sync().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
