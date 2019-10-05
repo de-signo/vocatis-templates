@@ -1,33 +1,48 @@
+@using iSign
 @using System.Web.Optimization
 @using Stolltec.Forms.Model
+@using Stolltec.Vocatis
+@using Stolltec.Vocatis.Model
 @{
     var Model = new FormsModel(this);
-    var list = Model.DataSource("source");
+    var id = (CommonGuidId)Model.Style["source"].FieldInstance.Value;
+    var cats = (CommonGuidId[])Model.Style["highlightcat"].FieldInstance.Value ?? new CommonGuidId[0];
+    var list = Vocatis.GetWaitQueueList(id);
+
     // the $.fn.vocatisList function requests the page to update the view
     // We minimize the overhead by just sending the required contents.
     var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
 }
 
-@helper ItemsList(IEnumerable<dynamic> list) {
-<table id="list">
- 
-    <tbody>
-        @foreach (dynamic x in list) {
-        <tr>
-            <td class="number"><img src="termin.png" class="termin" alt="termin">@x.number</td>
-            <td class="room">@x.room</td>
-        </tr>
-        <tr class="spacer">
-            <td colspan="2"></td>
-        </tr>
-        }
-    </tbody>
-</table>
+@helper ItemsList(IEnumerable<DisplayNumber> list, CommonGuidId[] cats)
+{
+    <table id="list"> 
+        <tbody>
+            @foreach (var x in list)
+            {
+                <tr>
+                    <td class="number">
+                        @if (x.Categories.Any(cid => cats.Contains(cid.Id)))
+                        {
+                            <img src="termin.png" class="termin" alt="termin">
+                        }
+                        @x.Number
+                    </td>
+                    <td class="room">@x.RoomName</td>
+                </tr>
+                <tr class="spacer">
+                    <td colspan="2"></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
-@if (partial) {
-    @ItemsList(list)
+@if (partial)
+{
+    @ItemsList(list, cats)
 }
-else {
+else
+{
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +58,7 @@ else {
     <h2>
         Bitte warten Sie, bis Ihre Nummer erscheint:
     </h2>
-    @ItemsList(list)
+    @ItemsList(list, cats)
 
     @{
         var notify = Model.Style["notify"].FieldInstance.Value as string;

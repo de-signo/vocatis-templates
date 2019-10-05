@@ -11,21 +11,9 @@
     <fields>
       <field key="source">
         <names>
-          <name>Vocatis Datenquelle</name>
+          <name>Wateschlange</name>
         </names>
-        <content_class type="DataSource" />
-      </field>
-      <field key="number">
-        <names>
-          <name>Nummer</name>
-        </names>
-        <content_class bind="Column" parentField="source" type="TextFree" />
-      </field>
-      <field key="room">
-        <names>
-          <name>Raum</name>
-        </names>
-        <content_class bind="Column" parentField="source" type="TextFree" />
+        <content_class type="VocatisQueue"  />
       </field>
       <field key="notify">
         <names>
@@ -44,6 +32,12 @@
           <text key="">Keines</text>
           <text key="simple">Einfach</text>
         </content_class>
+      </field>
+      <field key="highlightcat">
+        <names>
+          <name>Termin Kategorie</name>
+        </names>
+        <content_class type="VocatisCategories" />
       </field>
     </fields>
   </style>
@@ -58,57 +52,39 @@
     <fields>
       <field key="source1">
         <names>
-          <name>Vocatis Datenquelle 1</name>
+          <name>Vocatis Warteschlange 1</name>
         </names>
-        <content_class type="DataSource" />
-      </field>
-      <field key="number1">
-        <names>
-          <name>Nummer</name>
-        </names>
-        <content_class bind="Column" parentField="source1" type="TextFree" />
-      </field>
-      <field key="room1">
-        <names>
-          <name>Raum</name>
-        </names>
-        <content_class bind="Column" parentField="source1" type="TextFree" />
+        <content_class type="VocatisQueue"  />
       </field>
       <field key="source2">
         <names>
-          <name>Vocatis Datenquelle 2</name>
+          <name>Vocatis Warteschlange 2</name>
         </names>
-        <content_class type="DataSource" />
-      </field>
-      <field key="number2">
-        <names>
-          <name>Nummer</name>
-        </names>
-        <content_class bind="Column" parentField="source2" type="TextFree" />
-      </field>
-      <field key="room2">
-        <names>
-          <name>Raum</name>
-        </names>
-        <content_class bind="Column" parentField="source2" type="TextFree" />
+        <content_class type="VocatisQueue" />
       </field>
       <field key="source3">
         <names>
-          <name>Vocatis Datenquelle 3</name>
+          <name>Vocatis Warteschlange 3</name>
         </names>
-        <content_class type="DataSource" />
+        <content_class type="VocatisQueue" />
       </field>
-      <field key="number3">
+      <field key="source4">
         <names>
-          <name>Nummer</name>
+          <name>Vocatis Warteschlange 4</name>
         </names>
-        <content_class bind="Column" parentField="source3" type="TextFree" />
+        <content_class type="VocatisQueue" />
       </field>
-      <field key="room3">
+      <field key="source5">
         <names>
-          <name>Raum</name>
+          <name>Vocatis Warteschlange 5</name>
         </names>
-        <content_class bind="Column" parentField="source3" type="TextFree" />
+        <content_class type="VocatisQueue" />
+      </field>
+      <field key="source6">
+        <names>
+          <name>Vocatis Warteschlange 6</name>
+        </names>
+        <content_class type="VocatisQueue" />
       </field>
       <field key="notify">
         <names>
@@ -127,6 +103,12 @@
           <text key="">Keines</text>
           <text key="simple">Einfach</text>
         </content_class>
+      </field>
+      <field key="highlightcat">
+        <names>
+          <name>Termin Kategorie</name>
+        </names>
+        <content_class type="VocatisCategories" />
       </field>
     </fields>
   </style>
