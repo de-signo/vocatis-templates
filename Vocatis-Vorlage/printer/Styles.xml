@@ -177,6 +177,12 @@
       <name culture="de">Vocatis Wartemarke (Standard)</name>
     </names>
     <fields>
+      <field key="id">
+        <names>
+          <name>Ticket ID</name>
+        </names>
+        <content_class type="TextFree"  />
+      </field>
       <field key="ticketnumber">
         <names>
           <name>Ticketnummer</name>
