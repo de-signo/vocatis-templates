@@ -16,7 +16,7 @@ var appurl = new Uri(HttpContext.Current.Request.Url, apppath).AbsoluteUri;
 @Scripts.Render("js/jquery.qrcode.js")
 <section class="ticket">
   <header>
-    @DateTime.Now.ToString("dd.MM.yyyy")
+    @DateTime.Now.ToString("dd.MM.yyyy")&emsp;
     @DateTime.Now.ToString("HH:mm")Uhr
   </header>
   <h1>
