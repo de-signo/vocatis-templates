@@ -15,7 +15,7 @@
     body>*:not(.print_ticket) { display: none !important; }
 }
 
-section.ticket
+section.ticket 
 {   
     display: block;
     /* paper: 58mm, paper-margin 5mm */
@@ -30,6 +30,7 @@ section.ticket
         text-align: center;
         font-size: 12px;
         line-height: 13px;
+        width: 100%;
     }
     
     h1

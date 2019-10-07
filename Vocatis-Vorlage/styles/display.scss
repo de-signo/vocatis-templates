@@ -8,14 +8,14 @@
 /* redefine defaults */
 * {  margin: 0; padding: 0; border:none; overflow:hidden; }
 
-html { height: 100%; width:80%; }
+html { height: 100%; width:70%; }
 
 header
 {
         display: block;
         padding: 0 5vw 4vh 5vw;
         height: 16vh;
-        width:80%;
+        width:70%;
         
         svg
         {
@@ -124,31 +124,28 @@ body
         color: $color-secondary-foreground;
 		box-shadow: 1px 3px 1px $color-secondary-shadow; 
     }
-    .popup
+    #popup
     {
         text-align:center;
         position: absolute;
-        width: 100%;
         top: 0px;
         bottom: 0px;
         left: 0px;
         right: 0px;
-        font-size: 120px;
 
         background-color: $color-primary-background;
         color: $color-highlight-foreground;
 
         h3
         {
-            font-size: 135px;
-            padding-top: 150px;
+            font-size: 8rem;
+            padding-top: 6rem;
         }
 
-        h4
+        #text, h4
         {
-            font-size: 450px;
-            margin-top:50px;
-            color: $color-highlight-foreground;
+            font-size: 15rem;
+            margin-top: 20rem;
         }
     }
 }

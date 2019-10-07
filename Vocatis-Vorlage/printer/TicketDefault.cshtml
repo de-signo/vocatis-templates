@@ -16,12 +16,10 @@
 <body>
 @Scripts.Render("~/Scripts/jquery", "js/jquery.qrcode.js")
 <section class="ticket print_ticket">
-  <header>
-    <p>
-      @DateTime.Now.ToString("dd.MM.yyyy")<br>
+    <div>
+      @DateTime.Now.ToString("dd.MM.yyyy")
       @DateTime.Now.ToString("HH:mm")Uhr
-    </p>
-  </header>
+    </div>
   <h1>
     @Model.Style["ticketnumber"].Value
   </h1>
