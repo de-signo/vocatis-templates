@@ -32,7 +32,7 @@ header
             display: inline;
             text-transform: uppercase;
             font-weight: 900;
-            padding: 0 0 0 5vw;
+            padding: 0 0 0 3vw;
             color: $color-primary-shadowred;
         } 
     
@@ -135,7 +135,6 @@ body
         right: 10px;
         font-size: 120px;
         background-color: $color-primary-background;
-        box-shadow: 1px 3px 1px $color-primary-shadow;  
         color: $color-highlight-foreground;
 
         h3

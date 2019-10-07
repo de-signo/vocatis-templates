@@ -16,7 +16,7 @@ var appurl = new Uri(HttpContext.Current.Request.Url, apppath).AbsoluteUri;
 @Scripts.Render("js/jquery.qrcode.js")
 <section class="ticket">
   <header>
-    @DateTime.Now.ToString("dd.MM.yyyy")<br>
+    @DateTime.Now.ToString("dd.MM.yyyy")
     @DateTime.Now.ToString("HH:mm")Uhr
   </header>
   <h1>
@@ -24,7 +24,7 @@ var appurl = new Uri(HttpContext.Current.Request.Url, apppath).AbsoluteUri;
   </h1>
   <img src="separation.png" class="separation" alt="Trennung">
   <section class="qrcode">
-    <h4>Bitte QR Code einlesen!</h4>
+    <h4>Bitte Aufruf verfolgen!</h4>
     <a href="@appurl"></a>
     <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">
   </section>
