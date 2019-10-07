@@ -7,15 +7,16 @@
     var Model = new FormsModel(this);
 
     IEnumerable<DisplayNumber> list = new DisplayNumber[0];
-    for (int i = 1; i <= 6; i++)
+    HashSet<CommonGuidId> ids = new HashSet<CommonGuidId>();
+    for (int i = 1; i <= 8; i++)
     {
         var name = "source" + i;
         var id = (CommonGuidId)Model.Style[name].FieldInstance.Value;
-        if (id.IsEmpty)
+        if (id.IsEmpty || ids.Contains(id))
         {
             continue;
         }
-
+        ids.Add(id);
         list = list.Concat(Vocatis.GetWaitQueueList(id));
     }
     var cats = (CommonGuidId[])Model.Style["highlightcat"].FieldInstance.Value ?? new CommonGuidId[0];

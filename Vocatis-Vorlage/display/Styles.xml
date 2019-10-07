@@ -47,7 +47,7 @@
           file="List3.cshtml"
          interactive="false" target="Forms2">
     <names>
-      <name culture="de">Vocatis Warteliste (3 Warteschlangen) Hochtaunuskreis</name>
+      <name culture="de">Vocatis Warteliste (mehrere Warteschlangen) Hochtaunuskreis</name>
     </names>
     <fields>
       <field key="source1">
@@ -83,6 +83,18 @@
       <field key="source6">
         <names>
           <name>Vocatis Warteschlange 6</name>
+        </names>
+        <content_class type="VocatisQueue" />
+      </field>
+      <field key="source7">
+        <names>
+          <name>Vocatis Warteschlange 7</name>
+        </names>
+        <content_class type="VocatisQueue" />
+      </field>
+      <field key="source8">
+        <names>
+          <name>Vocatis Warteschlange 8</name>
         </names>
         <content_class type="VocatisQueue" />
       </field>
