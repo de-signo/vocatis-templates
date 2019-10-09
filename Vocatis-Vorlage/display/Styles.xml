@@ -2,11 +2,11 @@
 <StyleList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://stollsoft.de/iSign/v2/Content/Forms/Styles">
 
 
-  <style key="vocatic_display_2019_hochtaunuskreis"
+  <style key="vocatic_display_2019"
           file="List.cshtml"
          interactive="false" target="Forms2">
     <names>
-      <name culture="de">Vocatis Warteliste Hochtaunuskreis</name>
+      <name culture="de">vocatis list</name>
     </names>
     <fields>
       <field key="source">
@@ -43,11 +43,11 @@
   </style>
 
 
-  <style key="vocatic_display3_2019_hochtaunuskreis"
+  <style key="vocatic_display3_2019"
           file="List3.cshtml"
          interactive="false" target="Forms2">
     <names>
-      <name culture="de">Vocatis Warteliste (mehrere Warteschlangen) Hochtaunuskreis</name>
+      <name culture="de">vocatis list multi </name>
     </names>
     <fields>
       <field key="source1">
@@ -125,11 +125,11 @@
     </fields>
   </style>
 
-  <style key="vocatic_import_appointments_2019_hochtaunuskreis"
+  <style key="vocatic_import_appointments_2019"
           file="ImportFromData.cshtml"
          interactive="false" target="Forms2">
     <names>
-      <name culture="de">Vocatis Terminimport Hochtaunuskreis</name>
+      <name culture="de">Vocatis Terminimport </name>
     </names>
     <fields>
       <field key="import">
