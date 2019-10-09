@@ -19,6 +19,7 @@
         ids.Add(id);
         list = list.Concat(Vocatis.GetWaitQueueList(id));
     }
+    list = list.Take(8);
     var cats = (CommonGuidId[])Model.Style["highlightcat"].FieldInstance.Value ?? new CommonGuidId[0];
 
     // the $.fn.vocatisList function requests the page to update the view
