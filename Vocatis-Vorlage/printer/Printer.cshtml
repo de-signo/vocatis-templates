@@ -75,6 +75,7 @@
       $("[data-name]").text($(this).data("label"));
     }).printTicket({
       legacy: false,
+      printErrorTimeout: 60000,
       stripBody: false,
       beginPrint: function() {
         $("#waitPopup").show();
