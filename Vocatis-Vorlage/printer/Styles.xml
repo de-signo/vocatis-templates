@@ -2,10 +2,10 @@
 <StyleList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://stollsoft.de/iSign/v2/Content/Forms/Styles">
 
 
-  <style key="vocatic_multi_2019_hochtaunuskreis" file="Printer.cshtml"
+  <style key="vocatic_multi_2019" file="Printer.cshtml"
          interactive="true" target="Forms2" preview="preview.png">
     <names>
-      <name culture="de">Hochtaunuskreis Vocatis Drucker</name>
+      <name culture="de">vocatis printer</name>
     </names>
     <fields>
       <field key="mode">
