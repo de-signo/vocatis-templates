@@ -1,0 +1,56 @@
+@using iSign
+@using Stolltec.Vocatis
+@using System.Web.Optimization
+@using Stolltec.Vocatis.Model
+@{
+  var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
+}
+
+@helper content() {
+dynamic queueid = CommonGuidId.FromString(Request["queueid"]);
+dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["catid"]).Value;
+var ticket = Vocatis.CreateTicket(queueid, catids);
+
+var apppath = Href("App.cshtml", new {id=ticket.Id});
+var appurl = new Uri(HttpContext.Current.Request.Url, apppath).AbsoluteUri;
+@Scripts.Render("js/jquery.qrcode.js")
+<section class="ticket">
+  <header>
+    @DateTime.Now.ToString("dd.MM.yyyy")&emsp;
+    @DateTime.Now.ToString("HH:mm")Uhr
+  </header>
+  <h1>
+    @ticket.Number
+  </h1>
+  <img src="separation.png" class="separation" alt="Trennung">
+  <section class="qrcode">
+    <img src="customerlogo01.png" class="customerlogo01" alt="logo">
+  </section>
+  <footer>
+  <p style="color: white;">.</p>
+  </footer>
+</section>
+<script type="text/javascript">
+  var appurl = $(".qrcode>a").attr("href");
+  $("section.qrcode>a").qrcode({text: appurl})
+</script>
+}
+
+@if (partial) {
+    @content()
+}
+else {
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ticket</title>
+  <link href="@Href("style.css")" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  @Scripts.Render("~/Scripts/jquery")
+  <div class="print_ticket" style="display: block !important;">
+    @content()
+  </div>
+</body>
+</html>
+}

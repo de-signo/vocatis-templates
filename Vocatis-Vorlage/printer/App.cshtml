@@ -1,0 +1,61 @@
+@using System.Web.Optimization
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Vocatis</title>
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0">
+  <meta name="theme-color" content="#53668D"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="@Href("app.css")" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  <header>
+ <img src="plattform_01.png" class="plattform" alt="plattform">
+ <h1><span style="text-transform:uppercase">Wartezeit</span>  Live-Abfrage</h1>
+</header>
+
+<section class="logo">
+  <img src="customerlogo01.png" />
+</section>
+
+<div id="content" data-content-src="@Href("AppContent.cshtml", new {id=Request["id"]})">
+  <section class="loading content">
+    Laden ...
+  </section>
+</div>
+<div id="error" style="display: none;">
+ <h2>Fehler aufgetreten!</h2>
+ <p>Bitte begeben Sie sich in den Wartebereich!</p>
+</div>
+
+<footer>
+</footer>
+
+@Scripts.Render("~/Scripts/jquery")
+<script type="text/javascript">
+  $(document).ready(function() {
+    @* update queue list periodically *@
+    var contentDiv = $("#content");
+    var errorDiv = $("#error");
+    var url = contentDiv.data("content-src");
+    var update = function () {
+      $.ajax({
+        url: url,
+        cache: false
+      }).done(function (result) {
+        contentDiv.html(result);
+        contentDiv.show();
+        errorDiv.hide();
+      }).fail(function (result) {
+        contentDiv.hide();
+        errorDiv.show();
+      }).always(function() {
+        window.setTimeout(update, 60000);
+      });
+    };
+    window.setTimeout(update, 0);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+/*
+ * Style main file for player content
+ */
+
+@import "colors.scss";
+
+html
+{
+    font-family:Arial, Verdana, Geneva,Tahoma,sans-serif;
+    color: $color-common-foreground;
+    background-color: $color-common-background;
+}
+
+body
+{
+    margin: 0;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+@import "printer.scss";
+@import "ticket.scss";

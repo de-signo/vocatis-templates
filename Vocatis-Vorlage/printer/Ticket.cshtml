@@ -1,0 +1,13 @@
+@using System.Web.Mvc
+@using iSign
+@using Stolltec.Vocatis
+@using Stolltec.Vocatis.Model
+@{
+  /*
+    webservice for number generation
+  */
+  dynamic queueid = CommonGuidId.FromString(Request["queueid"]);
+  dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["catid"]).Value;
+  Response.ContentType="application/json";
+}
+{ "number":"@Vocatis.CreateTicket(queueid, catids).Number" }
