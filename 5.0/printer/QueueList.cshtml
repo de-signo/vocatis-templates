@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 @using System.Web.Optimization
 @using Stolltec.Forms.Model
+@using Stolltec.Vocatis
 @using Stolltec.Vocatis.Model
 @{
   // Parse model
@@ -23,6 +24,9 @@
       if (!String.IsNullOrEmpty((string)Model.Style["text" + i].Value)) {
         var queueid = Model.Style["queueid" + i].Value;
         var status = queueStatus.Where(s=>s.Id.Equals(queueid)).FirstOrDefault();
+    @* Queue open *@
+    if ((status.OpenCloseStatus & WaitQueueOpenCloseStatus.IsOpen) != 0)
+    {
     <li><a href="@Model.Navigate(ticketUrl, new { queueid=queueid, cat=Model.Style["catid" + i].Value })" data-label="@((string)Model.Style["text" + i].Value)"
     @if (status.QueueLength == 0) {<text>class="btn next-one"</text>} else {<text>class="btn"</text>}>
       <div>
@@ -61,6 +65,45 @@
         </div>
       </div>
     </a></li>
-    }}
+    @* manually closed *@
+    } else if ((status.OpenCloseStatus & WaitQueueOpenCloseStatus.Manual) != 0) {
+    <li class="btn closed closed-manually">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
+      </div>
+      <div>
+        @((string)Model.Style["text" + i].Value)
+      </div>
+      <div>
+        geschlossen
+      </div>
+    </li>
+    @* closed by opening hours *@
+    } else if ((status.OpenCloseStatus & WaitQueueOpenCloseStatus.IsOutsideHours) != 0) {
+    <li class="btn closed closed-hours">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
+      </div>
+      <div>
+        @((string)Model.Style["text" + i].Value)
+      </div>
+      <div>
+        geschlossen außerhalb der Öffnungszeiten
+      </div>
+    </li>  
+    @* closed by limit *@
+    } else if ((status.OpenCloseStatus & WaitQueueOpenCloseStatus.IsFull) != 0) {
+    <li class="btn closed closed-limit">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
+      </div>
+      <div>
+        @((string)Model.Style["text" + i].Value)
+      </div>
+      <div>
+        aktuell geschlossen
+      </div>
+    </li>
+    }}}
   </ul>
 </section>

@@ -93,6 +93,13 @@ body.printer
                 opacity: 0.5;
                 .cls-2 { display:none; }
             }
+            .btn.closed>div:last-child
+            {
+                background-color: $color-highlight-background;
+                padding: 1vh 2vw;
+                text-align: center;
+                box-sizing: border-box;
+            }
             .btn
             {
                 
@@ -141,7 +148,7 @@ body.printer
                         background-color: $color-primary-background;
                         color: $color-primary-foreground;
                         box-shadow: 1px 3px 1px $color-primary-shadow;
-                        
+
                         div 
                         {
                             float: left;
