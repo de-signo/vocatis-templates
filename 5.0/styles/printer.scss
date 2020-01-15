@@ -93,19 +93,27 @@ body.printer
                 opacity: 0.5;
                 .cls-2 { display:none; }
             }
-            .btn.closed>div:last-child
+           
+
+            .btn.closed >div:last-child 
             {
                 background-color: $color-highlight-background;
-                padding: 1vh 2vw;
+                padding: 2vh 0vw;
                 text-align: center;
                 box-sizing: border-box;
+                box-shadow: 1px 3px 1px $color-highlight-background;
+                font-size: 0.8em;
+                font-weight: bold; 
+
             }
+
+
             .btn
             {
                 
                 display: block;
                 margin: 2vh 0;
-
+                
                 &>div
                 {
                     height: 8vh;
@@ -135,7 +143,7 @@ body.printer
                         line-height: 8vh;
                         font-weight: bold;
                         font-size: 1.5em;
-                        background-color: $color-secondary-background;
+                        background-color:$color-secondary-background;
                         color: $color-secondary-foreground;
 						box-shadow: 1px 3px 1px $color-secondary-shadow;
                     }
@@ -145,9 +153,10 @@ body.printer
                         width: 30%;
                         float: left;
                         font-size: 0.65em;
-                        background-color: $color-primary-background;
+                        background-color:$color-primary-background;
                         color: $color-primary-foreground;
                         box-shadow: 1px 3px 1px $color-primary-shadow;
+
 
                         div 
                         {
@@ -203,8 +212,11 @@ body.printer
                                     vertical-align: middle;
                                 }
                             }
+
+
                         }
                     }
+
                 }
 
                 &:after
