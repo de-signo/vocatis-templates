@@ -152,7 +152,7 @@ body.printer
                     {
                         width: 30%;
                         float: left;
-                        font-size: 0.65em;
+                        font-size: 0.75em;
                         background-color:$color-primary-background;
                         color: $color-primary-foreground;
                         box-shadow: 1px 3px 1px $color-primary-shadow;
@@ -186,7 +186,7 @@ body.printer
                                 /* personenanzahl */
                                 svg
                                 {
-                                    height: 55%;
+                                    height: 70%;
                                     vertical-align: middle;
                                     .cls-1{fill:$color-primary-foreground;}
                                     .cls-2{font-size:1em; color:$color-primary-background;}
