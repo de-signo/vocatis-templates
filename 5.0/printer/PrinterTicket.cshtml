@@ -3,6 +3,7 @@
 @using System.Web.Optimization
 @using Stolltec.Vocatis.Model
 @{
+  var withQrCode = false;
   var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
 }
 
@@ -24,6 +25,10 @@ var appurl = new Uri(HttpContext.Current.Request.Url, apppath).AbsoluteUri;
   </h1>
   <img src="separation.png" class="separation" alt="Trennung">
   <section class="qrcode">
+    @if (withQrCode) {
+    <h4>Aufruf verfolgen</h4>
+    <a href="@appurl"></a>
+    }
     <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">
   </section>
   <footer>
