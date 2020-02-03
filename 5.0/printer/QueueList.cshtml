@@ -4,6 +4,8 @@
 @using Stolltec.Vocatis
 @using Stolltec.Vocatis.Model
 @{
+  var disableOpenClose = false;
+
   // Parse model
   var Model = new FormsModel(this);
   var mode = (string)Model.Style["mode"].FieldInstance.Value;
@@ -25,7 +27,7 @@
         var queueid = Model.Style["queueid" + i].Value;
         var status = queueStatus.Where(s=>s.Id.Equals(queueid)).FirstOrDefault();
     @* Queue open *@
-    if ((status.OpenCloseStatus & WaitQueueOpenCloseStatus.IsOpen) != 0)
+    if (disableOpenClose || (status.OpenCloseStatus & WaitQueueOpenCloseStatus.IsOpen) != 0)
     {
     <li><a href="@Model.Navigate(ticketUrl, new { queueid=queueid, cat=Model.Style["catid" + i].Value })" data-label="@((string)Model.Style["text" + i].Value)"
     @if (status.QueueLength == 0) {<text>class="btn next-one"</text>} else {<text>class="btn"</text>}>
