@@ -7,7 +7,7 @@
   var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
 }
 
-@helper content() {
+@helper content(bool withQrCode) {
 dynamic queueid = CommonGuidId.FromString(Request["queueid"]);
 dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["catid"]).Value;
 var ticket = Vocatis.CreateTicket(queueid, catids);
@@ -41,7 +41,7 @@ var appurl = new Uri(HttpContext.Current.Request.Url, apppath).AbsoluteUri;
 }
 
 @if (partial) {
-    @content()
+    @content(withQrCode)
 }
 else {
 <!DOCTYPE html>
@@ -53,7 +53,7 @@ else {
 <body>
   @Scripts.Render("~/Scripts/jquery")
   <div class="print_ticket" style="display: block !important;">
-    @content()
+    @content(withQrCode)
   </div>
 </body>
 </html>
