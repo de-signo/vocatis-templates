@@ -3,7 +3,7 @@
 @using System.Web.Optimization
 @using Stolltec.Vocatis.Model
 @{
-  var withQrCode = false;
+  var withQrCode = true;
   var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
 }
 
