@@ -51,19 +51,21 @@ section.ticket
         font-size: 15px;
         float: left;
         color: #000;
-        margin-top: 25mm;
+        margin: 1mm;
     }
     canvas
     {
         width: 23mm;
-        margin-top: 2px;
+        margin-top: 2px; 
+       
     }
     img.customerlogo
     {
         height: 23mm;
         width: auto;
         float: right;
-        margin-top: 2px;}   
+        margin-top: 2px;
+    }    
     div.abstand
     {
         float: right;
