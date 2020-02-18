@@ -47,6 +47,7 @@ case WaitNumberState.Parked:
             <text class="cls-2" text-anchor="middle" transform="translate(12.5 34)">@status.Position</text>
       </svg>
     <b>Bitte rechtzeitig den Wartebereich aufsuchen!</b><br>
+    <b>Ihre voraussichtliche</b> Wartezeit betr&auml;gt <b>ca. @((int)status.EstimatedTimeOfCall.TotalMinutes) Minuten</b>.
     <p id="three">STAND: @DateTime.Now.ToString("HH\\:mm") Uhr</p>
   </article>  
   <div class="notch"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g></svg></div>
