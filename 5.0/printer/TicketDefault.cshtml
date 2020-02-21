@@ -5,8 +5,6 @@
   var Model = new FormsModel(this);
 
   var id = Model.Style["id"].Value;
-  var apppath = Href("App.cshtml", new {id=id});
-  var appurl = new Uri(HttpContext.Current.Request.Url, apppath).AbsoluteUri;
 }
 <!DOCTYPE html>
 <html>
@@ -28,13 +26,13 @@
   <section class="qrcode">
     @if (withQrCode) {
     <h4>Bitte QR Code einlesen!</h4>
-    <a href="@appurl"></a>
+    <a href="@Href("App.cshtml", new {id=id})"></a>
     }
     <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">
   </section>
 <script type="text/javascript">
   window.onload = function () {
-    var appurl = $(".qrcode>a").attr("href");
+    var appurl = new URL($(".qrcode>a").attr("href"), window.location.href).href;
     $("section.qrcode>a").qrcode({text: appurl})
     window.focus();
     window.print();
