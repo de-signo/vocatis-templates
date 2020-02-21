@@ -18,6 +18,10 @@ gulp.src(['styles/display.scss'])
     .pipe(sass.sync().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest('display'));
+gulp.src(['styles/queueinfo.scss'])
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest('queueinfo'));
 done();
 });
 
@@ -25,7 +29,8 @@ done();
 gulp.task("zip", function(done) {
     del(["../dist/import_*.zip",
          "../dist/display_*.zip",
-         "../dist/printer_*.zip"], { 'force': true });
+         "../dist/printer_*.zip",
+         "../dist/queueinfo_*.zip"], { 'force': true });
     git.exec({
         args: 'describe --tags',
         quiet: true
@@ -39,6 +44,9 @@ gulp.task("zip", function(done) {
             .pipe(gulp.dest("../dist"));
         gulp.src("printer/**")
             .pipe(zip(`printer_${version}.zip`))
+            .pipe(gulp.dest("../dist"));
+        gulp.src("queueinfo/**")
+            .pipe(zip(`queueinfo_${version}.zip`))
             .pipe(gulp.dest("../dist"));
     });
     done();

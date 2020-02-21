@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@{
+  // Parse model
+  var Model = new FormsModel(this);
+  var appointmentUrl = (string) null;
+  appointmentUrl = "https://www.wartemarkendrucker.de/online-terminkalender";
+}
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Warteschlangeninfo</title>
+  <link href="@Href("queueinfo.css")" type="text/css" rel="stylesheet" />
+</head>
+<body class="queueinfo">
+  @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js")
+
+  <header> 
+  
+  </header>
+ 
+  <div class="main">
+
+    @* Display list when idle *@
+    <div id="queuelist" data-content-src="@Model.Navigate("QueueList.cshtml")">  
+    </div>
+
+  </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    @* update queue list periodically *@
+    var queueList = $("#queuelist");
+    var queueListUrl = queueList.data("content-src");
+    var update = function () {
+      try {
+          $.ajax({
+              url: queueListUrl,
+              cache: false
+          }).done(function (result) {
+              queueList.html(result);
+          });
+      }
+      finally {
+          window.setTimeout(update, 20000);
+      }
+    };
+    window.setTimeout(update, 0);
+  });
+  </script>
+
+  <div id="termin">
+      @if (!String.IsNullOrEmpty(appointmentUrl)) {
+      <div>
+        <a href="@appointmentUrl"><p>Termin vereinbaren-Wartezeit sparen</p><img src="termin.png" class="termin" alt="termin"></a>
+        <p>Termine reservieren- auch spontan möglich</p>
+      </div>
+    }
+  </div>
+</body>
+</html>
+
