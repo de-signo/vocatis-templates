@@ -5,6 +5,7 @@
   // Parse model
   var Model = new FormsModel(this);
   var mode = (string)Model.Style["mode"].FieldInstance.Value;
+  var tracking_id = (string)Model.Style["tracking_id"].Value;
 }
 <html>
 <head>
@@ -167,6 +168,17 @@
     window.setTimeout(update, 0);
   });
   </script>
+@if (!String.IsNullOrEmpty(tracking_id)) {
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=@tracking_id"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '@tracking_id');
+  </script>
+}
 </body>
 </html>
 

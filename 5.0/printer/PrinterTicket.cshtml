@@ -2,12 +2,16 @@
 @using Stolltec.Vocatis
 @using System.Web.Optimization
 @using Stolltec.Vocatis.Model
+@using Stolltec.Forms.Model
 @{
   var withQrCode = true;
   var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
+
+  var Model = new FormsModel(this);
+  var tracking_id = (string)Model.Style["tracking_id"].Value;
 }
 
-@helper content(bool withQrCode) {
+@helper content(bool withQrCode, string tracking_id) {
 dynamic queueid = CommonGuidId.FromString(Request["queueid"]);
 dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["catid"]).Value;
 var ticket = Vocatis.CreateTicket(queueid, catids);
@@ -25,7 +29,7 @@ var ticket = Vocatis.CreateTicket(queueid, catids);
   <section class="qrcode">
     @if (withQrCode) {
     <h4>Aufruf verfolgen</h4>
-    <a href="@Href("App.cshtml", new {id=ticket.Id});"></a>
+    <a href="@Href("App.cshtml", new {id=ticket.Id, tracking_id})"></a>
     }
     <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">
   </section>
@@ -39,7 +43,7 @@ var ticket = Vocatis.CreateTicket(queueid, catids);
 }
 
 @if (partial) {
-    @content(withQrCode)
+    @content(withQrCode, tracking_id)
 }
 else {
 <!DOCTYPE html>
@@ -51,7 +55,7 @@ else {
 <body>
   @Scripts.Render("~/Scripts/jquery")
   <div class="print_ticket" style="display: block !important;">
-    @content(withQrCode)
+    @content(withQrCode, tracking_id)
   </div>
 </body>
 </html>

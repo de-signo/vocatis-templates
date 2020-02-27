@@ -18,6 +18,7 @@
   var buttonCount = (from i in Enumerable.Range(1,8)
                      where !String.IsNullOrEmpty((string)Model.Style["text" + i].Value)
                      select i).Count();
+  var tracking_id = (string)Model.Style["tracking_id"].Value;
 }
 <section id="idle">
   @if (buttonCount > 1) { <h4>Bitte wählen Sie den gewünschten Fachbereich aus:</h4> }

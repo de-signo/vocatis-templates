@@ -17,6 +17,12 @@
           <text key="print">Nummer drucken</text>
         </content_class>
       </field>
+      <field key="tracking_id">
+        <names>
+          <name>Tracking-ID</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
       <field key="text1">
         <names>
           <name>Name 1</name>

@@ -57,5 +57,19 @@
     window.setTimeout(update, 0);
   });
 </script>
+@{
+  var tracking_id = Request["tracking_id"];
+  if (!String.IsNullOrEmpty(tracking_id)) {
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=@tracking_id"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '@tracking_id');
+    </script>
+  }
+}
 </body>
 </html>
