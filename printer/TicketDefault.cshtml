@@ -1,0 +1,45 @@
+@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@{
+  var withQrCode = true;
+  var Model = new FormsModel(this);
+
+  var id = Model.Style["id"].Value;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vocatis</title>
+    <link href="@Href("style.css")" type="text/css" rel="Stylesheet" />
+</head>
+<body>
+@Scripts.Render("~/Scripts/jquery", "js/jquery.qrcode.js")
+<section class="ticket print_ticket">
+    <div>
+      @DateTime.Now.ToString("dd.MM.yyyy")&emsp;
+      @DateTime.Now.ToString("HH:mm")Uhr
+    </div>
+  <h1>
+    @Model.Style["ticketnumber"].Value
+  </h1>
+  <img src="separation.png" class="separation" alt="Trennung">
+  <section class="qrcode">
+    @if (withQrCode) {
+    <h4>Bitte QR Code einlesen!</h4>
+    <a href="@Href("App.cshtml", new {id=id})"></a>
+    }
+    <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">
+  </section>
+<script type="text/javascript">
+  window.onload = function () {
+    var appurl = new URL($(".qrcode>a").attr("href"), window.location.href).href;
+    $("section.qrcode>a").qrcode({text: appurl})
+    window.focus();
+    window.print();
+    // remove this line for testing:
+    window.setTimeout(function () { window.close() }, 1000);
+  };
+</script>
+</body>
+</html>
+    

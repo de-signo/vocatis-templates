@@ -1,0 +1,76 @@
+
+
+/* 
+ * ticket should be hidden, on screen,
+ * but when print out it's the only content visible
+ */
+   
+@media screen
+{ 
+    body>.print_ticket { display: none; }
+}
+
+@media print
+{
+    body>*:not(.print_ticket) { display: none !important; }
+}
+
+
+section.ticket 
+{   
+    display: block;
+    /* paper: 58mm, paper-margin 5mm */
+    width: 48mm;
+    margin: 5mm;
+
+    background-color:white;
+    color: black;
+    
+    header
+    {
+        text-align: center;
+        font-size: 12px;
+        line-height: 13px;
+        width: 100%;
+    }
+    
+    h1
+    {
+        text-align: center;
+        font-size: 40px;
+        color: #000;
+        line-height: 1px;
+    }
+   
+    img
+    {
+        width: 100%;
+    }
+    h4
+    {
+        font-size: 15px;
+        float: left;
+        color: #000;
+        margin: 1mm;
+    }
+    canvas
+    {
+        width: 23mm;
+        margin-top: 2px; 
+       
+    }
+    img.customerlogo
+    {
+        height: 23mm;
+        width: auto;
+        float: right;
+        margin-top: 2px;
+    }    
+    div.abstand
+    {
+        float: right;
+        width: 100%;
+    }
+    }
+
+

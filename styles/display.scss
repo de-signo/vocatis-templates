@@ -1,0 +1,155 @@
+
+/*
+ * Main style file for app
+ */
+ @import "colors.scss";
+
+
+/* redefine defaults */
+* {  margin: 0; padding: 0; border:none; overflow:hidden; }
+
+html { height: 100%; width:70%; }
+
+header
+{
+        display: block;
+        padding: 0 5vw 4vh 5vw;
+        height: 16vh;
+        width:70%;
+        
+        svg
+        {
+            height: 20vh;
+        }
+
+        >img
+        { 
+            height:100%;
+        }
+
+        h1 
+        {
+            display: inline;
+            text-transform: uppercase;
+            font-weight: 900;
+            padding: 0 0 0 3vw;
+            color: $color-primary-shadowred;
+        } 
+    
+        clear: both;
+        display: block;
+}
+
+body
+{
+        /* fill complete frame */
+    height: 100%;
+    width:80%;
+   
+
+    /* text */
+    font-family: Futura, Arial, Helvetica, sans-serif;
+
+    /* background */
+    background-color: $color-common-background; 
+}
+
+.list
+{
+    height: 100%;
+    width: 90%;
+    position:fixed;
+    padding:0vh 5vw 4vh 5vw;
+
+
+    h2
+    {
+        padding: 0vh 0 2vh 5vw;
+        text-align: left;
+        font-size: 1.5em;
+        color:$color-primary-background;
+        width:80%;  
+    }
+
+    table
+    {
+        width: 80%; 
+        height: 4vh; 
+        border-collapse: collapse;
+        margin: 0vh 5vw 0vh 5vw;
+       
+
+    }
+
+    tr.spacer>td
+    {
+        background-color: inherit;
+        height: 1vh;  
+    }
+    /* Wartenr. */
+    td:first-child
+    {
+        color: $color-secondary-foreground;  
+        width: 35%;
+        font-weight: bold;
+        line-height: 7vh;
+        text-align: right; 
+
+        /* termin */
+        img.termin
+        {
+            height: 60%;
+            float: left;
+            vertical-align: middle;
+            padding:2vh 5vw;
+        } 
+
+        td.number#text
+        {
+        padding:3vw;
+        }
+    }
+    td.room
+    {
+        padding: 0vh 10vw;
+    }
+    td
+    {
+        border-spacing: 0;
+        vertical-align: middle;
+        line-height: 6vh;
+        height: 4vh;
+        font-size: 2em; 
+        background-color: $color-secondary-background;
+        color: $color-secondary-foreground;
+		box-shadow: 1px 3px 1px $color-secondary-shadow; 
+    }
+    div#popup.popup.simple
+    {
+        position: absolute;
+        text-align:center;
+        width: 100%;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+
+        background-color: $color-primary-background;
+        color: $color-highlight-foreground;
+
+        h3
+        {
+            
+            font-size: 8rem;
+            padding-top: 6rem;
+            width: 100%;
+        }
+
+        #text, h4
+        {
+            font-size: 10rem;
+            margin-top: 20rem;
+            width: 100%;
+        }
+    }
+}

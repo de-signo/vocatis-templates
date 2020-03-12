@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@{
+  // Parse model
+  var Model = new FormsModel(this);
+  var mode = (string)Model.Style["mode"].FieldInstance.Value;
+  var tracking_id = (string)Model.Style["tracking_id"].Value;
+}
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drucker</title>
+  <link href="@Href("style.css")" type="text/css" rel="stylesheet" />
+</head>
+<body class="printer">
+  @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js")
+
+  <header>
+  <img src="plattformlogo_01.png" 
+   class="plattformlogo" alt="plattformlogo">
+ 
+    <h1>Wartenummer</h1>
+  </header>
+ 
+  <div class="main">
+    @* Display list when idle *@
+    <div id="queuelist" data-content-src="@Model.Navigate("QueueList.cshtml")">
+    </div>
+
+    @* wait popup is shown, while generating a new number *@
+    <section id="waitPopup" style="display: none;">
+      <h4>Ihre Wartemarke wird gedruckt</h4>
+      <div>
+        <img src="wait.gif" id="wait" alt="wait" />
+      </div>
+      <h6>Bitte entnehmen Sie ihre Wartenummer</h6>
+      <img src="PfeilUnten.png" />
+    </section>
+
+    @* take popup is shown, when the printout is ready *@
+    <section id="takePopup" style="display: none;">
+       <h4>Ihre Wartemarke wird gedruckt</h4>
+      <div>
+        <img src="wait.gif" id="wait" alt="wait" />
+      </div>
+      <h6>Bitte entnehmen Sie ihre Wartenummer</h6>
+      <img src="PfeilUnten.png" />
+    </section>
+
+    @* show popup shows the number on the screen *@
+    <section id="showPopup" style="display: none;">
+      <h3>Sie werden angemeldet im Fachbereich</h3>
+      <h2 data-name></h2>
+      <p>Bitte merken Sie sich Ihre Anmeldenummer:</p>
+      <div class="number" data-number></div>
+      <p>Sie werden aufgerufen</p>
+    </section>
+  </div>
+
+<script type="text/javascript">
+@if (mode == "print") {
+  @*
+    This script calls the number generation service
+    and prints the number on the default printer.
+    It shows the wait popup while waiting and printing.
+    It shows the take popup when the printout is ready.
+    It reports the printer status to the service.
+   *@
+  <text>
+  function hookupButtons() {
+    $("a.btn").unbind()
+    .click(function() {
+      $("[data-name]").text($(this).data("label"));
+    }).printTicket({
+      legacy: false,
+      printErrorTimeout: 60000,
+      stripBody: false,
+      beginPrint: function() {
+        $("#waitPopup").show();
+      },
+      endPrint: function() {
+        $("#waitPopup").hide();
+        $("#takePopup").show();
+        window.setTimeout(function() { $("#takePopup").hide(); }, 3000);
+      },
+      failPrint: function() {
+        $("#waitPopup").hide();
+      }
+    });
+  }
+  $(document).ready(function () {
+    reportPrinterStatus({
+      url: "@Href(Stolltec.Forms.PrinterStatus.Path)",
+      interval: 60000
+	  });
+  });
+  </text>
+} else {
+  @*
+    This script calls the number generation service,
+    shows the wait popup while waiting and
+    shows the number in show popup when done.
+   *@
+  <text>
+  function hookupButtons() {
+  
+    $("a.btn").unbind()
+    .click(function (ev) {
+      ev.preventDefault();
+
+      // do not block
+      var url = $(this).attr("href");
+      if (!url)
+          url = $(this).data("href");
+      if (url) {
+          // make absolute
+          var a = document.createElement("a");
+          a.href = url;
+          url = a.href;
+      }
+
+      $("[data-name]").text($(this).data("label"));
+      $("#waitPopup").show();
+      $.ajax({url:url, cache: false, dataType:"json"}).done(function(data) {
+        $("[data-number]").text(data["number"]);
+        $("#showPopup").show();
+        window.setTimeout(function() {
+          $("#showPopup").hide();
+        }, 10000);
+      }).always(function() {
+        $("#waitPopup").hide();
+      });
+    });
+  };
+  </text>
+}
+  $(document).ready(function() {
+    @* 
+      disableSelect disables text selecting
+      clickBlanking prevent two clicks in a row
+      hamertime enables touch features and reduces reaction time
+     *@
+    $("body")
+    .disableSelect()
+    .clickBlanking({ timeout:500 });
+    var hammertime = new Hammer(document.body, {});
+
+    @* update queue list periodically *@
+    var queueList = $("#queuelist");
+    var queueListUrl = queueList.data("content-src");
+    var update = function () {
+      try {
+          $.ajax({
+              url: queueListUrl,
+              cache: false
+          }).done(function (result) {
+              queueList.html(result);
+              hookupButtons();
+          });
+      }
+      finally {
+          window.setTimeout(update, 20000);
+      }
+    };
+    window.setTimeout(update, 0);
+  });
+  </script>
+@if (!String.IsNullOrEmpty(tracking_id)) {
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=@tracking_id"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '@tracking_id');
+  </script>
+}
+</body>
+</html>
+

@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<StyleList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://stollsoft.de/iSign/v2/Content/Forms/Styles">
+
+
+  <style key="vocatic_multi_vbberlin" file="Printer.cshtml"
+         interactive="true" target="Forms2" preview="preview.png">
+    <names>
+      <name culture="de">vocatis printer (VB-Berlin)</name>
+    </names>
+    <fields>
+      <field key="mode">
+        <names>
+          <name>Modus</name>
+        </names>
+         <content_class type="TextChoose">
+          <text key="show">Nummer anzeigen</text>
+          <text key="print">Nummer drucken</text>
+        </content_class>
+      </field>
+      <field key="tracking_id">
+        <names>
+          <name>Tracking-ID</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="text1">
+        <names>
+          <name>Name 1</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid1">
+        <names>
+          <name>Warteschlange 1</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid1">
+          <names>
+              <name>Kategorie 1</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
+
+      <field key="text2">
+        <names>
+          <name>Name 2</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid2">
+        <names>
+          <name>Warteschlange 2</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid2">
+          <names>
+              <name>Kategorie 2</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
+
+      <field key="text3">
+        <names>
+          <name>Name 3</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid3">
+        <names>
+          <name>Warteschlange 3</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid3">
+          <names>
+              <name>Kategorie 3</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
+
+      <field key="text4">
+        <names>
+          <name>Name 4</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid4">
+        <names>
+          <name>Warteschlange 4</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid4">
+          <names>
+              <name>Kategorie 4</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
+
+      <field key="text5">
+        <names>
+          <name>Name 5</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid5">
+        <names>
+          <name>Warteschlange 5</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid5">
+          <names>
+              <name>Kategorie 5</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
+
+      <field key="text6">
+        <names>
+          <name>Name 6</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid6">
+        <names>
+          <name>Warteschlange 6</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid6">
+          <names>
+              <name>Kategorie 6</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
+
+      <field key="text7">
+        <names>
+          <name>Name 7</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid7">
+        <names>
+          <name>Warteschlange 7</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid7">
+          <names>
+              <name>Kategorie 7</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
+
+      <field key="text8">
+        <names>
+          <name>Name 8</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid8">
+        <names>
+          <name>Warteschlange 8</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid8">
+          <names>
+              <name>Kategorie 8</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
+    </fields>
+  </style>
+  <style key="vocatis_ticket_default"
+    file="TicketDefault.cshtml"
+    interactive="false" target="Forms2">
+    <names>
+      <name culture="de">Vocatis Wartemarke (Standard)</name>
+    </names>
+    <fields>
+      <field key="id">
+        <names>
+          <name>Ticket ID</name>
+        </names>
+        <content_class type="TextFree"  />
+      </field>
+      <field key="ticketnumber">
+        <names>
+          <name>Ticketnummer</name>
+        </names>
+        <content_class type="TextFree"  />
+      </field>
+    </fields>
+  </style>
+</StyleList>
