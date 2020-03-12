@@ -25,13 +25,13 @@ var ticket = Vocatis.CreateTicket(queueid, catids);
   <h1>
     @ticket.Number
   </h1>
-  <img src="separation.png" class="separation" alt="Trennung">
+  <img src="images/separation.png" class="separation" alt="Trennung">
   <section class="qrcode">
     @if (withQrCode) {
     <h4>Aufruf verfolgen</h4>
     <a href="@Href("App.cshtml", new {id=ticket.Id, tracking_id})"></a>
     }
-    <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">
+    <img src="images/customerlogo.png" class="customerlogo" alt="Ersatztext">
   </section>
   <footer>
   </footer>

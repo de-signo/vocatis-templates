@@ -1,0 +1,68 @@
+﻿@*
+  This file contains the layout (outer frame) of printer styles
+  Usage in Page:
+  @{
+    PageData["model"] = Model;
+    PageData["show_home"] = false;
+    PageData["show_back"] = false;
+    Layout = "PrinterLayout.cshtml";
+  }
+  PageData is used to pass parameters from Page to Layout.
+  * model: This is the FormsModel, which should be parsed by the Page
+  * show_home: Whether to show home navigation or not
+  * show_back: Whether to show back navigation or not
+  
+*@
+<!DOCTYPE html>
+@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@{
+  // Parse model
+  var model = PageData["model"];
+  var tracking_id = (string)model.Style["tracking_id"].Value;
+}
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drucker</title>
+  <link href="@Href("style.css")" type="text/css" rel="stylesheet" />
+</head>
+<body class="printer">
+  <header>
+    <img src="images/plattformlogo.png" class="plattformlogo" alt="plattformlogo">
+    <h1>Wartenummer</h1>
+    @if (PageData["show_back"] == true) { <a href="javascript: window.history.back()">Back</a> }
+    @if (PageData["show_home"] == true) { <a href="@model.NavigateHome()">Home</a> }
+  </header>
+  @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js")
+  @RenderBody()
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+    @* 
+      disableSelect disables text selecting
+      clickBlanking prevent two clicks in a row
+      hamertime enables touch features and reduces reaction time
+     *@
+    $("body")
+    .disableSelect()
+    .clickBlanking({ timeout:500 });
+    var hammertime = new Hammer(document.body, {});
+  });
+  </script>
+
+@if (!String.IsNullOrEmpty(tracking_id)) {
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=@tracking_id"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '@tracking_id');
+  </script>
+}
+</body>
+</html>

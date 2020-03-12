@@ -2,21 +2,12 @@
 <StyleList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://stollsoft.de/iSign/v2/Content/Forms/Styles">
 
 
-  <style key="vocatic_multi_vbberlin" file="Printer.cshtml"
+  <style key="vocatic_multi_vbberlin" file="P0_Main.cshtml"
          interactive="true" target="Forms2" preview="preview.png">
     <names>
       <name culture="de">vocatis printer (VB-Berlin)</name>
     </names>
     <fields>
-      <field key="mode">
-        <names>
-          <name>Modus</name>
-        </names>
-         <content_class type="TextChoose">
-          <text key="show">Nummer anzeigen</text>
-          <text key="print">Nummer drucken</text>
-        </content_class>
-      </field>
       <field key="tracking_id">
         <names>
           <name>Tracking-ID</name>

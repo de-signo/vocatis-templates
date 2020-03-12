@@ -8,10 +8,6 @@
 
   // Parse model
   var Model = new FormsModel(this);
-  var mode = (string)Model.Style["mode"].FieldInstance.Value;
-
-  // Select ticket servce type (JSON vs HTML) by mode
-  var ticketUrl = (mode == "print") ? "PrinterTicket.cshtml" : "Ticket.cshtml";
 
   var queueStatus = @Vocatis.GetWaitQueueOverview();
 
@@ -30,7 +26,7 @@
     @* Queue open *@
     if (disableOpenClose || (status.OpenCloseStatus & WaitQueueOpenCloseStatus.IsOpen) != 0)
     {
-    <li><a href="@Model.Navigate(ticketUrl, new { queueid=queueid, cat=Model.Style["catid" + i].Value })" data-label="@((string)Model.Style["text" + i].Value)"
+    <li><a href='@Model.Navigate("PrinterTicket.cshtml", new { queueid=queueid, cat=Model.Style["catid" + i].Value })" data-label="@((string)Model.Style["text" + i].Value)'
     @if (status.QueueLength == 0) {<text>class="btn next-one"</text>} else {<text>class="btn"</text>}>
       <div>
         <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
@@ -62,7 +58,7 @@
         </div>
         <div class="single-button" >
           <span>
-            <img src="single-button.gif" /><br>
+            <img src="images/single-button.gif" /><br>
             <p>Bitte drücken!</p>
           </span>
         </div>

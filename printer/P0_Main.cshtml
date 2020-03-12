@@ -1,0 +1,20 @@
+﻿@*
+Printer main entry page
+*@
+<!DOCTYPE html>
+@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@{
+  // Parse model
+  var Model = new FormsModel(this);
+  var mode = (string)Model.Style["mode"].FieldInstance.Value;
+
+  // setup layout
+  PageData["model"] = Model;
+  PageData["show_home"] = false;
+  PageData["show_back"] = false;
+  Layout = "PrinterLayout.cshtml";
+}
+
+<a href='@Model.Navigate("P1_Appointment.cshtml")''>Termin</a>
+<a href='@Model.Navigate("P1_GetTicket.cshtml")''>Kein Termin</a>

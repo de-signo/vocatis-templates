@@ -1,0 +1,71 @@
+﻿@*
+  Printer navigation level 1
+  Select appointment
+*@
+<!DOCTYPE html>
+@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@{
+  // Parse model
+  var Model = new FormsModel(this);
+  var mode = (string)Model.Style["mode"].FieldInstance.Value;
+
+  // setup layout
+  PageData["model"] = Model;
+  PageData["show_home"] = true;
+  PageData["show_back"] = false;
+  Layout = "PrinterLayout.cshtml";
+
+  // keyboard
+  var keyboard = new string[] {
+    "QWERTZUIOPÜ",
+    "ASDFGHJKLÖÄ",
+    "YXCVBNM" };
+}
+
+<fieldset>
+  <label>Meine Initialen</label>
+  <input id="txtFind" />
+  <div id="keyboard">
+    @for (int i = 0; i < keyboard.Length; i++) {
+      <div>
+        @foreach (var c in keyboard[i]) { <a role="button">@c</a> }
+        @if (i == 2)
+        {
+          <a data-key="&#8;" role="button">Entf</a>
+        }
+      </div>
+    }
+    <div>
+        <a data-key=" " role="button">Leerzeichen</a>
+        <a role="button">-</a>
+        <button id="btnOK">OK</button>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset id="appointment" style="display: none;">
+  <label>Mein Termin</label>
+
+  <ul>
+    <li>
+      <input id="ap0" name="ap" type="radio" value="10:00" /><label for="ap0">10:00 Uhr</label>
+    </li>
+    <li>
+      <input id="ap1" name="ap" type="radio" value="10:15" /><label for="ap1">10:15 Uhr</label>
+    </li>
+    <li>
+      <input id="ap2" name="ap" type="radio" value="10:30" /><label for="ap2">10:30 Uhr</label>
+    </li>
+    <li>
+      <input id="ap3" name="ap" type="radio" value="10:45" /><label for="ap3">10:45 Uhr</label>
+    </li>
+  </ul>
+</fieldset>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#keyboard a").keyboard({ textbox: "#txtFind" });
+    $("#btnOK").click(function() { $("#keyboard").hide(); $("#appointment").show(); })
+});
+</script>
