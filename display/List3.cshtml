@@ -39,6 +39,10 @@
                         {
                             <img src="termin.png" class="termin" alt="termin">
                         }
+                        @if (!String.IsNullOrEmpty(x.IconUrl))
+                        {
+                            <img src="@Href(x.IconUrl)">
+                        }
                         @x.Number
                     </td>
                     <td class="room">@x.RoomName</td>
