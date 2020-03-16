@@ -29,13 +29,14 @@
   <title>Drucker</title>
   <link href="@Href("style.css")" type="text/css" rel="stylesheet" />
 </head>
-<body class="printer">
+<body class="printer"> 
   <header>
     <img src="images/plattformlogo.png" class="plattformlogo" alt="plattformlogo">
-    <h1>Wartenummer</h1>
+   
     @if (PageData["show_back"] == true) { <a href="javascript: window.history.back()">Back</a> }
     @if (PageData["show_home"] == true) { <a href="@model.NavigateHome()">Home</a> }
   </header>
+  <h1>HERZLICH WILLKOMMEN!</h1>
   @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js")
   @RenderBody()
 

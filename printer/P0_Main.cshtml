@@ -7,7 +7,6 @@ Printer main entry page
 @{
   // Parse model
   var Model = new FormsModel(this);
-  var mode = (string)Model.Style["mode"].FieldInstance.Value;
 
   // setup layout
   PageData["model"] = Model;
@@ -16,5 +15,5 @@ Printer main entry page
   Layout = "PrinterLayout.cshtml";
 }
 
-<a href='@Model.Navigate("P1_Appointment.cshtml")''>Termin</a>
-<a href='@Model.Navigate("P1_GetTicket.cshtml")''>Kein Termin</a>
+<a href='@Model.Navigate("P1_Appointment.cshtml")''class="termin">Termin</a>
+<a href='@Model.Navigate("P1_GetTicket.cshtml")''class="ohne termin">Kein Termin</a>
