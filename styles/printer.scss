@@ -1,18 +1,26 @@
 
 body.printer 
 {
-    background-color: #002d67;;
-    height: 70vh;       
+    position: absolute;
+    background-color:$color-primary-background;
+    height: 90vh; 
+    width: 100%;      
     
     h1 
-        {
+    {
         
-            text-transform: uppercase;
-            font-weight: 900;
-            margin: 20vh 0 0 15vw;
-            color: white;
-        } 
-    ;
+        text-transform: uppercase;
+        font-size: 6em;
+        margin: 20vh 0 0 10vw;
+        color: white;
+    } 
+
+    h4
+    {
+        font-size: 1.5em;
+        color: $color-primary-background;
+    }    
+
     header
     {
         display: block;
@@ -27,23 +35,40 @@ body.printer
 
         .plattformlogo 
         { 
-            height: 30%;
-            margin: 4vh 0vw 4vh 10vw;
+            height: 25%;
+            width: auto;
+            margin: 5vh 0vw 4vh 10vw;
+        
         }
 
-
-    
         clear: both;
         display: block;
     }
 
-
-    a
+    ul
     {
+        li
+        {
+            position: relative;
+            text-align: center;
+            border: solid;
+            background-color: white;
+            border-color: $color-primary-background;
+            border-width: 2px;
+            width: 25vw;
+            margin-top: 50vh;
+            
+                .termin
+                {
+                    margin-left:10vw;
+                }
 
-        text-decoration: none;
-        float: left;
-        margin: 40vh 0 0 15vw;
+                .ohnetermin
+                {
+                    margin-right: 10vw;
+                }
+            
+        }
     }
 
     footer
@@ -53,5 +78,5 @@ body.printer
         right: 0;
         left: 0; 
     }
-
 }
+

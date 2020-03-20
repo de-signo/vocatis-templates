@@ -36,7 +36,6 @@
     @if (PageData["show_back"] == true) { <a href="javascript: window.history.back()">Back</a> }
     @if (PageData["show_home"] == true) { <a href="@model.NavigateHome()">Home</a> }
   </header>
-  <h1>HERZLICH WILLKOMMEN!</h1>
   @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js")
   @RenderBody()
 

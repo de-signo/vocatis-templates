@@ -15,5 +15,10 @@ Printer main entry page
   Layout = "PrinterLayout.cshtml";
 }
 
-<a href='@Model.Navigate("P1_Appointment.cshtml")''class="termin">Termin</a>
-<a href='@Model.Navigate("P1_GetTicket.cshtml")''class="ohne termin">Kein Termin</a>
+
+<h1>HERZLICH WILLKOMMEN!</h1>
+<ul class="buttons">
+<li class="termin"><a href='@Model.Navigate("P1_Appointment.cshtml")'><h4>Ich habe einen Termin</h4></a></li>
+<li class="ohnetermin"><a href='@Model.Navigate("P1_GetTicket.cshtml")'><h4>Heute ganz spontan</h4></a></li>
+</ul>
+
