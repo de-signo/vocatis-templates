@@ -1,31 +1,12 @@
 
 body.printer 
 {
-    position: absolute;
-    background-color:$color-primary-background;
-    height: 90vh; 
-    width: 100%;      
-    
-    h1 
-    {
-        
-        text-transform: uppercase;
-        font-size: 6em;
-        margin: 20vh 0 0 10vw;
-        color: white;
-    } 
-
-    h4
-    {
-        font-size: 1.5em;
-        color: $color-primary-background;
-    }    
-
-    header
+       
+       header
     {
         display: block;
-        height: 16vh;
         background-color: white;
+        height: 16vh;
       
         
         svg
@@ -35,48 +16,89 @@ body.printer
 
         .plattformlogo 
         { 
-            height: 25%;
+            height: 30%;
             width: auto;
-            margin: 5vh 0vw 4vh 10vw;
+            margin: 5vh 0vw 0vh 10vw;
         
         }
+    }    
+    
+    h1 
+    {
+        
+        text-transform: uppercase;
+        font-size: 6em;
+        padding: 20vh 0 0 10vw;
+        color:$color-highlight-foreground;
+        position:absolute; 
+    } 
 
-        clear: both;
-        display: block;
+    h4
+    {
+        font-size: 1.5em;
     }
 
-    ul
+
+    main 
     {
-        li
+        background-color:$color-primary-background;
+        height: 60vh; 
+        width: 100%; 
+        position: relative;
+
+    }
+
+   nav.site-nav 
+   {
+        margin: 10vw;
+
+        
+        span 
         {
-            position: relative;
             text-align: center;
             border: solid;
-            background-color: white;
-            border-color: $color-primary-background;
-            border-width: 2px;
-            width: 25vw;
-            margin-top: 50vh;
-            
-                .termin
-                {
-                    margin-left:10vw;
-                }
-
-                .ohnetermin
-                {
-                    margin-right: 10vw;
-                }
+            border-color: $color-secondary-background;
+            border-width: 3px;
+            width: 30vw; 
+            background-color: $color-primary-foreground;
             
         }
+
+        span a
+        {
+            width: 200vh;
+            color: $color-secondary-background;
+        } 
+
+        /*span.active
+        {
+            color: green;
+        }*/
+
+        span:hover:not(.active)
+        {
+            background-color: $color-secondary-background;
+
+            h4
+            {
+                color: white;
+            }
+        }
+
+
+        .termin
+        {   
+            float: left;
+        }
+
+        .ohnetermin
+        { 
+            float: right;
+        } 
+        
+          
     }
 
-    footer
-    {
-        position: fixed;
-        bottom: 0mm;
-        right: 0;
-        left: 0; 
-    }
+    
 }
 
