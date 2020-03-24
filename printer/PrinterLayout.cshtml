@@ -30,15 +30,16 @@
   <link href="@Href("style.css")" type="text/css" rel="stylesheet" />
 </head>
 <body class="printer"> 
+  @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js")
   <header>
     <img src="images/plattformlogo.png" class="plattformlogo" alt="plattformlogo">
-   
     @if (PageData["show_back"] == true) { <a href="javascript: window.history.back()">Back</a> }
-    @if (PageData["show_home"] == true) { <a href="@model.NavigateHome()">Home</a> }
+    @if (PageData["show_home"] == true) { <a href="@model.NavigateHome()"><img src="images/home.png" class="home" alt="home"></a> }
   </header>
-  @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js")
-  @RenderBody()
+  
+    @RenderBody()
 
+  
   <script type="text/javascript">
   $(document).ready(function() {
     @* 
@@ -63,6 +64,7 @@
 
   gtag('config', '@tracking_id');
   </script>
+
 }
 </body>
 </html>

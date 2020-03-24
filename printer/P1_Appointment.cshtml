@@ -14,7 +14,32 @@
   PageData["show_home"] = true;
   PageData["show_back"] = false;
   Layout = "PrinterLayout.cshtml";
-
+}
+<main>
+  <h3>Bitte geben Sie den ersten Buchstaben Ihres Vor-und Nachnamens ein.<br>(Martina Muster = MM)</h3>
+  <input id="txtFind"/>
+  <fieldset id="appointment" style="display: none;">
+    <label>
+      <h5>Mein Termin</h5>
+    </label>    
+    <ul>
+      <li>
+          <input id="ap0" name="ap" type="radio" value="10:00" /><label for="ap0">10:00 Uhr</label>
+      </li>
+      <li>    
+        <input id="ap1" name="ap" type="radio" value="10:15" /><label for="ap1">10:15 Uhr</label>
+      </li>    
+      <li>
+          <input id="ap2" name="ap" type="radio" value="10:30" /><label for="ap2">10:30 Uhr</label>
+      </li>
+      <li>
+        <input id="ap3" name="ap" type="radio" value="10:45" /><label for="ap3">10:45 Uhr</label>
+      </li>
+    </ul>
+  </fieldset>
+</main>
+  
+@{
   // keyboard
   var keyboard = new string[] {
     "QWERTZUIOPÜ",
@@ -23,11 +48,11 @@
 }
 
 <fieldset>
-  <label>Meine Initialen</label>
-  <input id="txtFind" />
+  <!-- <label>Meine Initialen</label>*/
+  <input id="txtFind" />-->
   <div id="keyboard">
     @for (int i = 0; i < keyboard.Length; i++) {
-      <div>
+      <div class="tasten">
         @foreach (var c in keyboard[i]) { <a role="button">@c</a> }
         @if (i == 2)
         {
@@ -35,7 +60,7 @@
         }
       </div>
     }
-    <div>
+    <div class="sonderzeichen">
         <a data-key=" " role="button">Leerzeichen</a>
         <a role="button">-</a>
         <button id="btnOK">OK</button>
@@ -43,7 +68,7 @@
   </div>
 </fieldset>
 
-<fieldset id="appointment" style="display: none;">
+<!-- <fieldset id="appointment" style="display: none;">
   <label>Mein Termin</label>
 
   <ul>
@@ -60,7 +85,7 @@
       <input id="ap3" name="ap" type="radio" value="10:45" /><label for="ap3">10:45 Uhr</label>
     </li>
   </ul>
-</fieldset>
+</fieldset>-->
 
 <script type="text/javascript">
 $(document).ready(function () {
