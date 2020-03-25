@@ -15,41 +15,42 @@
   PageData["show_back"] = false;
   Layout = "PrinterLayout.cshtml";
 }
+<main class="site-content">
+ <div class="main">
+    @* Display list when idle *@
+    <div id="queuelist" data-content-src="@Model.Navigate("P1_GetTicket_List.cshtml")">
+    </div>
 
-<div class="main">
-  @* Display list when idle *@
-  <div id="queuelist" data-content-src="@Model.Navigate("P1_GetTicket_List.cshtml")">
+    @* wait popup is shown, while generating a new number *@
+    <section id="waitPopup" style="display: none;">
+      <h4>Ihr Ticket wird gedruckt.</h4>
+      <div>
+        <img src="images/wait.gif" id="wait" alt="wait" />
+      </div>
+      <h6>Bitte entnehmen Sie ihre Wartenummer</h6>
+      <img src="images/PfeilUnten.png" />
+    </section>
+
+    @* take popup is shown, when the printout is ready *@
+    <section id="takePopup" style="display: none;">
+        <h4>Ihre Wartemarke wird gedruckt</h4>
+      <div>
+        <img src="images/wait.gif" id="wait" alt="wait" />
+      </div>
+      <h6>Bitte entnehmen Sie ihre Wartenummer</h6>
+      <img src="images/PfeilUnten.png" />
+    </section>
+
+    @* show popup shows the number on the screen *@
+    <section id="showPopup" style="display: none;">
+      <h3>Sie werden angemeldet im Fachbereich</h3>
+      <h2 data-name></h2>
+      <p>Bitte merken Sie sich Ihre Anmeldenummer:</p>
+      <div class="number" data-number></div>
+      <p>Sie werden aufgerufen</p>
+    </section>
   </div>
-
-  @* wait popup is shown, while generating a new number *@
-  <section id="waitPopup" style="display: none;">
-    <h4>Ihre Wartemarke wird gedruckt</h4>
-    <div>
-      <img src="images/wait.gif" id="wait" alt="wait" />
-    </div>
-    <h6>Bitte entnehmen Sie ihre Wartenummer</h6>
-    <img src="images/PfeilUnten.png" />
-  </section>
-
-  @* take popup is shown, when the printout is ready *@
-  <section id="takePopup" style="display: none;">
-      <h4>Ihre Wartemarke wird gedruckt</h4>
-    <div>
-      <img src="images/wait.gif" id="wait" alt="wait" />
-    </div>
-    <h6>Bitte entnehmen Sie ihre Wartenummer</h6>
-    <img src="images/PfeilUnten.png" />
-  </section>
-
-  @* show popup shows the number on the screen *@
-  <section id="showPopup" style="display: none;">
-    <h3>Sie werden angemeldet im Fachbereich</h3>
-    <h2 data-name></h2>
-    <p>Bitte merken Sie sich Ihre Anmeldenummer:</p>
-    <div class="number" data-number></div>
-    <p>Sie werden aufgerufen</p>
-  </section>
-</div>
+</main>
 
 <script type="text/javascript">
   @*

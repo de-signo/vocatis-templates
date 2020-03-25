@@ -19,8 +19,8 @@ WaitNumber ticket;
 using (var voc = SessionInstancesModule.GetInstance().UseSharedInstance<IVocatisData>())
 {
     ticket = voc.Instance.NewNumber(queueid, catids);
-    ticket.IconUrl = Href("icons/{num}.svg".Replace("{num}", ticket.Number));
-    voc.Instance.UpdateNumber(ticket);
+    //ticket.IconUrl = Href("icons/{num}.svg".Replace("{num}", ticket.Number));
+    //voc.Instance.UpdateNumber(ticket);
 }
 
 @Scripts.Render("js/jquery.qrcode.js")

@@ -33,7 +33,7 @@
   @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js")
   <header>
     <img src="images/plattformlogo.png" class="plattformlogo" alt="plattformlogo">
-    @if (PageData["show_back"] == true) { <a href="javascript: window.history.back()">Back</a> }
+    @if (PageData["show_back"] == true) { <a href="javascript: window.history.back()"><img src="images/back.png" class="back" alt="back"></a> }
     @if (PageData["show_home"] == true) { <a href="@model.NavigateHome()"><img src="images/home.png" class="home" alt="home"></a> }
   </header>
   
