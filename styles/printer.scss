@@ -99,53 +99,62 @@ body.printer
             padding-left: 5vw;
         }
 
-        #appointment
+
+        .flex-container  
         {
-            .flex-container  
-            {
-                
-                display: flex;
-                flex-wrap: wrap;
-                
-               
-            }  
-            ul
-            {
-                list-style:none; 
-            }
-
-            .flex-container > li
-            {
-
-                background-color:$color-primary-shadowred;
-                width: 40%;
-                margin: 2vh 0 0 5vw;
-                text-align: left;
-                line-height: 6vh;
-                font-size: 2.5em;
-                font-weight: bold;
-                color: $color-highlight-foreground;
-
-                label
-                {
-                    padding-left: 2vw;
-                }
-            }
-
-            .flex-container > li:hover:not(.active)
-            {
-                background-color: $color-highlight-foreground;
-                color: black;
-                
-            }
-
-
-            input
-            {
-                display:none;
-            }
             
+            display: flex;
+            flex-wrap: wrap;
         } 
+            
+    
+        ul
+        {
+            list-style:none; 
+        }
+
+        .flex-container > li
+        {
+
+            background-color:$color-primary-shadowred;
+            width: 40%;
+            margin: 2vh 0 0 5vw;
+            text-align: left;
+            line-height: 6vh;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: $color-highlight-foreground;
+
+            label
+            {
+                padding-left: 2vw;
+            }
+
+            a
+            {
+                margin-left: 1.5vw;
+                color: $color-highlight-foreground;
+            }
+        }        
+   
+        .flex-container > li:hover:not(.active)
+        {
+            background-color: $color-highlight-foreground;
+            color: black; 
+        }        
+        
+        .flex-container a:hover:not(.active)
+        {
+            background-color: $color-highlight-foreground;
+            color: black;
+        }
+        
+
+        input
+        {
+            display:none;
+        }
+       
 
        #btnOK2
        { 
@@ -164,12 +173,25 @@ body.printer
 
             }
 
-           a:hover:not(.active)
+            >a:hover:not(.active)
             {
                 background-color: $color-primary-background;
                 color:$color-highlight-foreground;
             }
         }   
+        
+        p
+        {
+            font-size: 2.5em;
+            padding: 4vh 0 0 10vw;
+            color:red;
+            width: 80%;
+            margin:0;
+        }
+            
+       
+    
+
 
     }   
         
