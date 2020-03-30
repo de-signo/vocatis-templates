@@ -55,13 +55,14 @@ else
 </head>
 <body class="list">
     @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
-    <header>
-        <img src="plattformlogo_01.png" class="plattformlogo" alt="plattformlogo">
-        <h1>Wartebereich</h1>
+    <header> 
+    <div id="content">
+        <h2>
+            Wir beraten gerade
+        </h2>
+    </div>
     </header>
-    <h2>
-        Bitte warten Sie, bis Ihre Nummer erscheint:
-    </h2>
+  
     @ItemsList(list, cats)
 
     @{
