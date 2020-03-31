@@ -15,7 +15,7 @@
   PageData["show_back"] = false;
   Layout = "PrinterLayout.cshtml";
 }
-<main class="site-content">
+<div class="site-content">
  <div class="main">
     @* Display list when idle *@
     <div id="queuelist" data-content-src="@Model.Navigate("P1_GetTicket_List.cshtml")">
@@ -49,7 +49,7 @@
       <p>Sie werden aufgerufen</p>
     </section>
   </div>
-</main>
+</div>
 
 <script type="text/javascript">
   @*

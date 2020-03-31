@@ -81,8 +81,7 @@ body.printer
         margin:0;
     } 
 
-
-    main.site-content 
+    div.site-content 
     {
         background-color:$color-primary-background;
         height: 60vh; 
@@ -187,26 +186,26 @@ body.printer
             color:red;
             width: 80%;
             margin:0;
-        }
-           
-        div.Todo
+        }    
+        .Todo
         {
-          p
-          {
-            font-size: 3em;
-            font-weight: bold;
-            padding: 8vh 0 0 10vw;
-            color:white;
-            top: 40vh;
+            margin:0;
+            padding: 8vh 0 0 0vw;
+            top: 20vh;
             width: 80%;
+        
+            p
+            {
+            font-size: 1em;
+            font-weight: bold;
+            color:white;
             }     
-        } 
-            
-       
-    
+        }
+
+    } 
 
 
-    }   
+        
         
         
 
