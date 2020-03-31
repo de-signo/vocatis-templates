@@ -18,7 +18,7 @@
   Layout = "PrinterLayout.cshtml";
 }
 <div class="site-content">
-  <h3 class="stage-1">Bitte geben Sie den ersten Buchstaben Ihres Vor-und Nachnamens ein.<br>(Martina Muster = MM)</h3>
+  <h3>Bitte geben Sie den ersten Buchstaben Ihres Vor-und Nachnamens ein.<br>(Martina Muster = MM)</h3>
   <input id="txtFind"/>
   <fieldset id="appointment" class="stage-2" style="display: none;">
     <label>
@@ -26,20 +26,20 @@
     </label> 
     <ul class="flex-container">
       <li>
-          <input id="ap0" name="ap" type="radio" value="10:00" /><label for="ap0">10:00 Uhr</label>
+          <input id="ap0" name="ap" type="radio" value="10:00" /><label class="list-button" for="ap0">10:00 Uhr</label>
       </li>
       <li>    
-        <input id="ap1" name="ap" type="radio" value="10:15" /><label for="ap1">10:15 Uhr</label>
+        <input id="ap1" name="ap" type="radio" value="10:15" /><label class="list-button" for="ap1">10:15 Uhr</label>
       </li>    
       <li>
-          <input id="ap2" name="ap" type="radio" value="10:30" /><label for="ap2">10:30 Uhr</label>
+          <input id="ap2" name="ap" type="radio" value="10:30" /><label class="list-button" for="ap2">10:30 Uhr</label>
       </li>
       <li>
-        <input id="ap3" name="ap" type="radio" value="10:45" /><label for="ap3">10:45 Uhr</label>
+        <input id="ap3" name="ap" type="radio" value="10:45" /><label class="list-button" for="ap3">10:45 Uhr</label>
       </li>
     </ul>
   </fieldset>
-  <button id="btnOK2">OK</button>
+  <button id="btnOK2" class="stage-2">OK</button>
 </div>
   
 @{

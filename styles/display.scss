@@ -5,58 +5,51 @@
  @import "colors.scss";
 
 
-
- .platzhalter
- {  
-    margin:0;
-    float: right;
-    width: 40%;
-    height: 80%;
- }
-
 body.list
 {
-    position: absolute;
-    height:100%;
-    width: 100%;
-    margin:0;
-   
+    background-color: $color-primary-background;
+    font-family: Arial, Verdana, Geneva,Tahoma,sans-serif;
+    margin: 0;
 
-    #content 
-    {   
-        background-color:$color-primary-background;
+    h2
+    {
+        font-size: 3em;
+        padding: 16vh 0 0 10vw;
+        color:$color-primary-foreground;
+    } 
+
+    table
+    {
         width: 60%;
-        height: 100%;
-        float: left;
+        height: 8vh;
+        font-size: 3em;
+        margin: 5vh 0 0 0vw;
+        color: white;
+     
 
-        h2
+        td:first-child 
         {
-            font-size: 3em;
-            padding: 16vh 0 0 10vw;
-            color:$color-primary-foreground;
-            font-family:Arial, Verdana, Geneva,Tahoma,sans-serif;
-
-        } 
-        table #list
+            color: transparent;
+        }
+        tr:first-child
         {
-            display: block;
-
-            tbody
-            {
+            background-color:$color-primary-foreground;
+            font-weight: bold;
+            color: $color-primary-background;
         
 
-                td.room
+                td:last-child
                 {
-                    background-color: red;
-                    width: 20%;
-                    height: 8vh;  
+                    background-color: $color-secondary-background;
+                    font-weight: bold;
+                    color: $color-primary-foreground;
                 }
-
-            }
+                td:first-child
+                {
+                    color: inherit;
+                }
         }
-    }  
-    
-
+    } 
 }
 
 

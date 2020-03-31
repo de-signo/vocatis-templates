@@ -34,6 +34,7 @@
             @foreach (var x in list)
             {
                 <tr>
+                    <td class="room">@x.RoomName</td>
                     <td class="number">
                         @if (x.Categories.Any(cid => cats.Contains(cid.Id)))
                         {
@@ -45,10 +46,6 @@
                         }
                         @x.Number
                     </td>
-                    <td class="room">@x.RoomName</td>
-                </tr>
-                <tr class="spacer">
-                    <td colspan="2"></td>
                 </tr>
             }
         </tbody>
@@ -66,17 +63,14 @@ else
         <title>Vocatis</title>
         <link href="@Href("display.css")" type="text/css" rel="Stylesheet" />
     </head>  
-    <img src="platzhalter.png" class="platzhalter" alt="platzhalter">
     <body class="list">
         @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
         <header>
         </header>
   
-    <div id="content">  
         <h2>
             Wir beraten gerade
         </h2>
-    </div>
         @ItemsList(list, cats)
 
         @{

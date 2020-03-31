@@ -18,14 +18,14 @@
 <div class="site-content">
  <div class="main">
     @* Display list when idle *@
-    <div id="queuelist" data-content-src="@Model.Navigate("P1_GetTicket_List.cshtml")">
-      <h3>WORÜBER MÖCHTEN SIE HEUTE MIT UNS SPRECHEN?</h3>
+    <div id="queuelist">
+      <h2>WORÜBER MÖCHTEN SIE HEUTE MIT UNS SPRECHEN?</h2>
       <ul class="flex-container">
         @for (int i = 1; i <= 8; i++) {
           if (!String.IsNullOrEmpty((string)Model.Style["text" + i].Value)) {
             var queueid = Model.Style["queueid" + i].Value;
             <li>
-              <a class="btn" href='@Model.Navigate("PrinterTicket.cshtml", new { queueid=queueid, cat=Model.Style["catid" + i].Value })" data-label="@((string)Model.Style["text" + i].Value)'>
+              <a class="list-button" href='@Model.Navigate("PrinterTicket.cshtml", new { queueid=queueid, cat=Model.Style["catid" + i].Value })" data-label="@((string)Model.Style["text" + i].Value)'>
                 @((string)Model.Style["text" + i].Value)
               </a>
             </li>
@@ -33,17 +33,18 @@
         }
       </ul>
     </div>
-
-    @* wait popup is shown, while generating a new number *@
-    <section id="waitPopup" style="display: none;">
-      <h1>SO GEHT‘S WEITER.</h1>
-      <h2>Ziehen Sie ihr Ticket und machen Sie es sich auf dem Sofa bequem.<br>Wir sind ruckzuck für Sie da.</h2>
-      <div>
-      <img src="images/wait.gif" id="wait" alt="wait" />
-      <p>Ihr Ticket wird gedruckt.</p>
-    </section>
   </div>
-</div>
+
+  @* wait popup is shown, while generating a new number *@
+  <section id="waitPopup" style="display: none;">
+    <h1>SO GEHT‘S WEITER.</h1>
+    <div class="Todo2">
+    <p>Ziehen Sie ihr Ticket und machen Sie es sich auf dem Sofa bequem.</p><p>Wir sind ruckzuck für Sie da.</p>
+    </div>
+    <img src="images/wait.gif" id="wait" alt="wait" />
+    <h6>Ihr Ticket wird gedruckt.</h6>
+  </section>
+
 
 <script type="text/javascript">
   @*
@@ -54,7 +55,7 @@
     It reports the printer status to the service.
    *@
   function hookupButtons() {
-    $("a.btn").unbind()
+    $(".list-button").unbind()
     .click(function() {
       $("[data-name]").text($(this).data("label"));
     }).printTicket({
