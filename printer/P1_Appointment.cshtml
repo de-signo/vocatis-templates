@@ -15,7 +15,7 @@
   PageData["show_back"] = false;
   Layout = "PrinterLayout.cshtml";
 }
-<main class="site-content">
+<div class="site-content">
   <h3>Bitte geben Sie den ersten Buchstaben Ihres Vor-und Nachnamens ein.<br>(Martina Muster = MM)</h3>
   <input id="txtFind"/>
   <fieldset id="appointment" style="display: none;">
@@ -40,7 +40,7 @@
   <div id="btnOK2">
     <a  href='@Model.Navigate("P2_ThankYou.cshtml")'>OK</a>
   </div>
-</main>
+</div>
   
 @{
   // keyboard
