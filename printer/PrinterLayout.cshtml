@@ -27,14 +27,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Drucker</title>
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
   <link href="@Href("style.css")" type="text/css" rel="stylesheet" />
 </head>
 <body class="printer"> 
   @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js")
   <header>
     <img src="images/plattformlogo.png" class="plattformlogo" alt="plattformlogo">
-    @if (PageData["show_back"] == true) { <a href="javascript: window.history.back()"><img src="images/back.png" class="back" alt="back"></a> }
-    @if (PageData["show_home"] == true) { <a href="@model.NavigateHome()"><img src="images/home.png" class="home" alt="home"></a> }
+    @if (PageData["show_back"] == true) { <a id="btnBack" href="javascript: window.history.back()" class='@PageData["back_class"] ?? ""'><img src="images/back.png" class="back" alt="back"></a> }
+    @if (PageData["show_home"] == true) { <a id="btnHome" href="@model.NavigateHome()" class='@PageData["home_class"] ?? ""'><img src="images/home.png" class="home" alt="home"></a> }
   </header>
   
     @RenderBody()
@@ -48,8 +49,8 @@
       hamertime enables touch features and reduces reaction time
      *@
     $("body")
-    .disableSelect()
-    .clickBlanking({ timeout:500 });
+      .disableSelect()
+      .clickBlanking({ timeout:500 });
     var hammertime = new Hammer(document.body, {});
   });
   </script>
