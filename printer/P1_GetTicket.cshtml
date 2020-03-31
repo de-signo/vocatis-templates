@@ -19,6 +19,19 @@
  <div class="main">
     @* Display list when idle *@
     <div id="queuelist" data-content-src="@Model.Navigate("P1_GetTicket_List.cshtml")">
+      <h3>WORÜBER MÖCHTEN SIE HEUTE MIT UNS SPRECHEN?</h3>
+      <ul class="flex-container">
+        @for (int i = 1; i <= 8; i++) {
+          if (!String.IsNullOrEmpty((string)Model.Style["text" + i].Value)) {
+            var queueid = Model.Style["queueid" + i].Value;
+            <li>
+              <a class="btn" href='@Model.Navigate("PrinterTicket.cshtml", new { queueid=queueid, cat=Model.Style["catid" + i].Value })" data-label="@((string)Model.Style["text" + i].Value)'>
+                @((string)Model.Style["text" + i].Value)
+              </a>
+            </li>
+          }
+        }
+      </ul>
     </div>
 
     @* wait popup is shown, while generating a new number *@
@@ -28,25 +41,6 @@
       <div>
       <img src="images/wait.gif" id="wait" alt="wait" />
       <p>Ihr Ticket wird gedruckt.</p>
-    </section>
-
-    @* take popup is shown, when the printout is ready *@
-    <section id="takePopup" style="display: block;">
-      <h1>SO GEHT‘S WEITER.</h1>
-      <h2>Ziehen Sie ihr Ticket und machen Sie es sich auf dem Sofa bequem.<br>Wir sind ruckzuck für Sie da.</h2>
-      <div>
-        <img src="images/wait.gif" id="wait" alt="wait" />
-      </div>
-      <p>Ihr Ticket wird gedruckt.</p> 
-    </section>
-
-    @* show popup shows the number on the screen *@
-    <section id="showPopup" style="display: none;">
-      <h3>Sie werden angemeldet im Fachbereich</h3>
-      <h2 data-name></h2>
-      <p>Bitte merken Sie sich Ihre Anmeldenummer:</p>
-      <div class="number" data-number></div>
-      <p>Sie werden aufgerufen</p>
     </section>
   </div>
 </main>
@@ -71,9 +65,9 @@
         $("#waitPopup").show();
       },
       endPrint: function() {
-        $("#waitPopup").hide();
-        $("#takePopup").show();
-        window.setTimeout(function() { $("#takePopup").hide(); }, 3000);
+        window.setTimeout(function() { 
+          window.location = "@Html.Raw(Model.NavigateHome())";
+        }, 3000);
       },
       failPrint: function() {
         $("#waitPopup").hide();
@@ -87,24 +81,6 @@
       url: "@Href(Stolltec.Forms.PrinterStatus.Path)",
       interval: 60000
 	  });
-
-    @* update queue list periodically *@
-    var queueList = $("#queuelist");
-    var queueListUrl = queueList.data("content-src");
-    var update = function () {
-      try {
-          $.ajax({
-              url: queueListUrl,
-              cache: false
-          }).done(function (result) {
-              queueList.html(result);
-              hookupButtons();
-          });
-      }
-      finally {
-          window.setTimeout(update, 20000);
-      }
-    };
-    window.setTimeout(update, 0);
+    hookupButtons();
   });
 </script>
