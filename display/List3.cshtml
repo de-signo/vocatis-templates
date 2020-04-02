@@ -30,11 +30,13 @@
 @helper ItemsList(IEnumerable<DisplayNumber> list, CommonGuidId[] cats)
 {
     <table id="list">
-        <tbody>
+      
+        <tbody> 
+
             @foreach (var x in list)
             {
-                <tr>
-                    <td class="room">@x.RoomName</td>
+                <tr> 
+                    <td class="room">@x.RoomName</td>       
                     <td class="number">
                         @if (x.Categories.Any(cid => cats.Contains(cid.Id)))
                         {
@@ -64,13 +66,12 @@ else
         <link href="@Href("display.css")" type="text/css" rel="Stylesheet" />
     </head>  
     <body class="list">
+            <h3>
+                Wir beraten gerade
+            </h3>
         @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
         <header>
         </header>
-  
-        <h2>
-            Wir beraten gerade
-        </h2>
         @ItemsList(list, cats)
 
         @{
@@ -85,9 +86,9 @@ else
         }
         @if (!String.IsNullOrEmpty(popup))
         {
-            <div id="popup" style="display:none;" class="popup @popup">
-                <h3>~room~</h3>
-                <h4>~number~</h4>
+            <div id="popup" style="display:block;" class="popup @popup">
+            <h2>~room~</h2> 
+            <h2>~number~</h2>  
             </div>
         }
         <script type="text/javascript">

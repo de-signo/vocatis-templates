@@ -86,48 +86,47 @@ body.printer
         margin: 0;
     } 
 
-    .list-button
+    #site-content
     {
-        background-color: $color-primary-shadowred;
-        color: $color-highlight-foreground;
-        text-align: left;
-        font-size: 2.5em;
-        font-weight: bold;
-        box-sizing: border-box;
-        padding-left: 2vw;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .list-button:hover, input:checked + label.list-button
-    {
-        background-color: $color-highlight-foreground;
-        color: black; 
-    }
-
-    div.site-content 
-    {
-        background-color:$color-primary-background;
-        height: 60vh; 
+        background-color: $color-primary-background;
+        height: 60vh;
         width: 100%;
         position: relative;
-
-        section #waitPopup
-        {
-
-            background-color:$color-primary-background;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0; 
-        }        
-        #wait
-        {
-            width: 10vw;
-            margin: 0 20vh 0 43vw;
-        }         
     }   
+
+    div.main
+    {
+
+        .flex-container  
+        {
+            display: flex;
+            flex-wrap: wrap;
+            
+            .list-button
+            {
+                display: block;
+                width: 37.5vw;
+                margin: 2vh 0 0 5vw;
+                height: 6vh;
+                line-height: 6vh;
+            }     
+        } 
+        ul
+        {
+            list-style:none;
+            padding: 0 0 0 5vw;
+            margin: 0;
+            position: absolute;
+        }
+        
+    }
+    #waitPopup
+    {
+        width:10vw;
+        margin: 0  20vh 0 43vw;
+        background-color: red;
+    }
+
 
     .Todo, .Todo2
     {
@@ -156,27 +155,6 @@ body.printer
         padding-left: 5vw;
     }
 
-    .flex-container  
-    {
-        display: flex;
-        flex-wrap: wrap;
-        
-        .list-button
-        {
-            display: block;
-            width: 37.5vw;
-            margin: 2vh 0 0 5vw;
-            height: 6vh;
-            line-height: 6vh;
-        }        
-    }
-
-    ul
-    {
-        list-style:none;
-        padding: 0 0 0 5vw;
-        margin: 0;
-    }
 
     input[name="ap"]
     {
@@ -186,7 +164,7 @@ body.printer
     #btnOK2
     { 
         display: block;
-        font-size: 4em;
+        font-size: 3em;
         color:black;
         padding: 0.5vh 1.5vw 0.5vh 1.5vw;
         border: 3px solid $color-primary-background;
