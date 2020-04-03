@@ -20,6 +20,7 @@
   // Parse model
   var model = PageData["model"];
   var tracking_id = (string)model.Style["tracking_id"].Value;
+  var home_url = model.NavigateHome();
 }
 <html>
 <head>
@@ -35,7 +36,7 @@
   <header>
     <img src="images/plattformlogo.png" class="plattformlogo" alt="plattformlogo">
     @if (PageData["show_back"] == true) { <a id="btnBack" href="javascript: window.history.back()" class='@PageData["back_class"] ?? ""'><img src="images/back.png" class="back" alt="back"></a> }
-    @if (PageData["show_home"] == true) { <a id="btnHome" href="@model.NavigateHome()" class='@PageData["home_class"] ?? ""'><img src="images/home.png" class="home" alt="home"></a> }
+    @if (PageData["show_home"] == true) { <a id="btnHome" href="@home_url" class='@PageData["home_class"] ?? ""'><img src="images/home.png" class="home" alt="home"></a> }
   </header>
   
     @RenderBody()
@@ -50,7 +51,8 @@
      *@
     $("body")
       .disableSelect()
-      .clickBlanking({ timeout:500 });
+      .clickBlanking({ timeout:500 })
+      .autoReset({ timeout: 20000, navigateUrl:"@Html.Raw(home_url)"});
     var hammertime = new Hammer(document.body, {});
   });
   </script>
