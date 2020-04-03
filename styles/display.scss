@@ -5,7 +5,6 @@
  @import "colors.scss";
 
 
-
 body.list
 {
     background-color: $color-primary-background;
@@ -14,65 +13,45 @@ body.list
 
     h2
     {
-        font-size: 2.5em;
-    } 
-
-    h3
-    {
-        font-size: 2em;
+        font-size: 3em;
         padding: 16vh 0 0 10vw;
         color:$color-primary-foreground;
     } 
 
-
     table
     {
         width: 60%;
-        height: 30vh;
-        font-size: 2.5em;
-        margin: 4vh 0 0 0vw;
-        color: $color-primary-foreground;
+        height: 8vh;
+        font-size: 3em;
+        margin: 5vh 0 0 0vw;
+        color: white;
      
 
         td:first-child 
         {
             color: transparent;
         }
-
         tr:first-child
         {
             background-color:$color-primary-foreground;
             font-weight: bold;
             color: $color-primary-background;
-            text-align: left;
         
 
-            td:last-child
-            {
-                background-color: $color-secondary-background;
-                font-weight: bold;
-                color: $color-primary-foreground;
-                width: 15vw;
-                text-align: center;
-                
-                
-            }
-            td:first-child
-            {
-                color: inherit;
-                padding-left: 10vw;
-                height: 8vh;
-        
-            }
-        }
-
-        tr
-        {
-            text-align: center;
+                td:last-child
+                {
+                    background-color: $color-secondary-background;
+                    font-weight: bold;
+                    color: $color-primary-foreground;
+                }
+                td:first-child
+                {
+                    color: inherit;
+                }
         }
     } 
-    
 }
+
 
    
 
