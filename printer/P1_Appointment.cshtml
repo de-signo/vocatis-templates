@@ -16,6 +16,21 @@
   PageData["show_back"] = true;
   PageData["back_class"] = "stage-2";
   Layout = "PrinterLayout.cshtml";
+
+  var start = DateTime.Now.AddMinutes(-0);  // Use this to add a delay
+  var minutes = 15 * (start.Minute / 15);
+  start = new DateTime(start.Year, start.Month, start.Day, start.Hour, minutes, 0);
+  var appointments_dt = new [] {
+    start, start.AddMinutes(15), start.AddMinutes(30), start.AddMinutes(45)
+  };
+  int counter = 0;
+  var appointments = from ap in appointments_dt
+    let disp = ap.ToString("HH:mm") + " Uhr"
+    select new {
+      id = "ap" + counter++,
+      value = disp,
+      display = disp
+    };
 }
 <div class="site-content">
   <h3>Bitte geben Sie den ersten Buchstaben Ihres Vor-und Nachnamens ein.<br>(Martina Muster = MM)</h3>
@@ -25,18 +40,12 @@
       <h5>Mein Termin:</h5>
     </label> 
     <ul class="flex-container">
-      <li>
-          <input id="ap0" name="ap" type="radio" value="10:00" /><label class="list-button" for="ap0">10:00 Uhr</label>
-      </li>
-      <li>    
-        <input id="ap1" name="ap" type="radio" value="10:15" /><label class="list-button" for="ap1">10:15 Uhr</label>
-      </li>    
-      <li>
-          <input id="ap2" name="ap" type="radio" value="10:30" /><label class="list-button" for="ap2">10:30 Uhr</label>
-      </li>
-      <li>
-        <input id="ap3" name="ap" type="radio" value="10:45" /><label class="list-button" for="ap3">10:45 Uhr</label>
-      </li>
+      @foreach (var a in appointments)
+      {
+        <li>
+            <input id="@a.id" name="ap" type="radio" value="@a.value" /><label class="list-button" for="@a.id">@a.display</label>
+        </li>
+      }
     </ul>
   </fieldset>
   <button id="btnOK2" class="stage-2">OK</button>
