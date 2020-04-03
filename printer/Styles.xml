@@ -14,6 +14,18 @@
         </names>
         <content_class type="TextFree" />
       </field>
+      <field key="ap_queueid">
+        <names>
+          <name>Warteschlange mit Termin</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="ap_catid">
+          <names>
+              <name>Kategorie mit Termin</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
       <field key="text1">
         <names>
           <name>Name 1</name>

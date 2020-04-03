@@ -3,11 +3,27 @@
   Select appointment
 *@
 <!DOCTYPE html>
+@using iSign
+@using Stolltec.Vocatis
+@using ISS.Session
 @using System.Web.Optimization
 @using Stolltec.Forms.Model
 @{
   // Parse model
   var Model = new FormsModel(this);
+
+  // Create ticket
+  var name = Request["name"];
+  var desc = Request["desc"];
+  dynamic queueid = Model.Style["ap_queueid" ].Value;
+  dynamic catids = Model.Style["ap_catid"].Value;
+  using (var voc = SessionInstancesModule.GetInstance().UseSharedInstance<IVocatisData>())
+  {
+      var ticket = voc.Instance.NewNumber(queueid, catids);
+      ticket.Name = name;
+      ticket.Phone = desc;
+      voc.Instance.UpdateNumber(ticket);
+  }
 
   // setup layout
   PageData["model"] = Model;

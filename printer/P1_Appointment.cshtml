@@ -106,7 +106,11 @@ $(document).ready(function () {
     ev.preventDefault();
   });
   $("#btnOK2").click(function() {
-    window.location = '@Model.Navigate("P2_ThankYou.cshtml")';
+    var name = $("#txtFind").val();
+    var desc = $("input[name='ap']:checked").val();
+    var url = '@Html.Raw(Model.Navigate("P2_ThankYou.cshtml", new { name="~~name~~", desc="~~desc~~"}))';
+    url = url.replace("~~name~~", name).replace("~~desc~~", desc);
+    window.location = url;
   })
 
   // keyboard
