@@ -81,7 +81,7 @@ body.printer
         font-size: 3em;
         font-weight: bold;
         color:$color-secondary-background;
-        padding: 25vh 0 0 10vw;
+        padding: 18vh 0 0 10vw;
         width: 80%;
         margin: 0;
     } 
@@ -112,7 +112,7 @@ body.printer
         width: 100%;
         position: relative;
 
-        .main
+        #waitPopup
         {
 
             background-color:$color-primary-background;
@@ -125,7 +125,7 @@ body.printer
         #wait
         {
             width: 10vw;
-            margin: 0 20vh 0 43vw;
+            margin: 8vh 0 0 43vw;
         }         
     }   
 
