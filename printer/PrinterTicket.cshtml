@@ -8,20 +8,21 @@
   var withQrCode = true;
   var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
 
-  var Model = new FormsModel(this);
-  var tracking_id = (string)Model.Style["tracking_id"].Value;
+  var model = new FormsModel(this);
+  var tracking_id = (string)model.Style["tracking_id"].Value;
 }
 
-@helper content(bool withQrCode, string tracking_id) {
-dynamic queueid = CommonGuidId.FromString(Request["queueid"]);
-dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["catid"]).Value;
-WaitNumber ticket;
-using (var voc = SessionInstancesModule.GetInstance().UseSharedInstance<IVocatisData>())
-{
+@helper content(bool withQrCode, string tracking_id, FormsModel model) {
+  var index = Request["index"];
+  dynamic queueid = model.Style["queueid" + index].Value;
+  dynamic catids = model.Style["catid" + index].Value;
+  WaitNumber ticket;
+  using (var voc = SessionInstancesModule.GetInstance().UseSharedInstance<IVocatisData>())
+  {
     ticket = voc.Instance.NewNumber(queueid, catids);
     //ticket.IconUrl = Href("icons/{num}.svg".Replace("{num}", ticket.Number));
     //voc.Instance.UpdateNumber(ticket);
-}
+  }
 
 @Scripts.Render("js/jquery.qrcode.js")
 <section class="ticket">
@@ -51,7 +52,7 @@ using (var voc = SessionInstancesModule.GetInstance().UseSharedInstance<IVocatis
 }
 
 @if (partial) {
-    @content(withQrCode, tracking_id)
+    @content(withQrCode, tracking_id, model)
 }
 else {
 <!DOCTYPE html>
@@ -63,7 +64,7 @@ else {
 <body>
   @Scripts.Render("~/Scripts/jquery")
   <div class="print_ticket" style="display: block !important;">
-    @content(withQrCode, tracking_id)
+    @content(withQrCode, tracking_id, model)
   </div>
 </body>
 </html>
