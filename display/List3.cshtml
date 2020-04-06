@@ -68,9 +68,9 @@ else
         <header>
         </header>
   
-        <h2>
+        <h3>
             Wir beraten gerade
-        </h2>
+        </h3>
         @ItemsList(list, cats)
 
         @{
@@ -86,8 +86,10 @@ else
         @if (!String.IsNullOrEmpty(popup))
         {
             <div id="popup" style="display:none;" class="popup @popup">
-                <h3>~room~</h3>
-                <h4>~number~</h4>
+                <h1>~number~</h1>
+                <h2>SIE SIND DRAN!</h2>
+                <h4>Kommen Sie einfach direkt zu uns.<br>Wir erwarten Sie an</h4>
+                <h2>~room~</h2>
             </div>
         }
         <script type="text/javascript">

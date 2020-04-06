@@ -15,7 +15,7 @@
   // Create ticket
   var name = Request["name"];
   var desc = Request["desc"];
-  dynamic queueid = Model.Style["ap_queueid" ].Value;
+  dynamic queueid = Model.Style["ap_queueid"].Value;
   dynamic catids = Model.Style["ap_catid"].Value;
   using (var voc = SessionInstancesModule.GetInstance().UseSharedInstance<IVocatisData>())
   {
@@ -32,7 +32,7 @@
   Layout = "PrinterLayout.cshtml";
 }
 <div class="site-content">
-  <h1>SO GEHT‘S WEITER.</h1>
+  <h4>SO GEHT‘S WEITER.</h4>
   <div class="Todo">
     <p>Machen Sie es sich auf dem Sofa bequem.</p>
     <p>Wir sind ruckzuck für Sie da.</p>

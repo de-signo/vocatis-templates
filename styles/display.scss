@@ -5,18 +5,37 @@
  @import "colors.scss";
 
 
+
+body
+{
+        /* fill complete frame */
+    height: 100%;
+    width:100%;
+   
+
+    /* text */
+    font-family: Futura, Arial, Helvetica, sans-serif;
+
+    /* background */
+    background-color: $color-common-background; 
+}
+
 body.list
 {
     background-color: $color-primary-background;
     font-family: Arial, Verdana, Geneva,Tahoma,sans-serif;
     margin: 0;
+    display: block;
 
-    h2
+    h3
     {
-        font-size: 3em;
-        padding: 16vh 0 0 10vw;
-        color:$color-primary-foreground;
-    } 
+        font-size: 2.5em;
+        padding: 12vh 0 0 10vw;
+        color:$color-highlight-foreground;
+        top: 40vh;
+        width: 80%;
+        margin:0;
+    }  
 
     table
     {
@@ -25,30 +44,84 @@ body.list
         font-size: 3em;
         margin: 5vh 0 0 0vw;
         color: white;
+        text-align: center;
      
 
         td:first-child 
         {
             color: transparent;
-        }
+            
+            
+        }       
+       
         tr:first-child
         {
             background-color:$color-primary-foreground;
             font-weight: bold;
             color: $color-primary-background;
-        
-
-                td:last-child
-                {
-                    background-color: $color-secondary-background;
-                    font-weight: bold;
-                    color: $color-primary-foreground;
-                }
-                td:first-child
-                {
-                    color: inherit;
-                }
+          
+            td:last-child
+            {
+                background-color: $color-secondary-background;
+                font-weight: bold;
+                color: $color-primary-foreground;
+                width: 15vw;
+            }
+            td:first-child
+            {
+                color: inherit;
+                padding-left: 10vw;
+                text-align: left;
+            }
         }
+    }
+
+    div#popup.popup.simple
+    {
+        position: absolute;
+        width: 100%;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+
+        background-color: $color-primary-background;
+        color: $color-highlight-foreground;
+
+
+        h1
+        { 
+            font-size: 8em;
+            margin:0;
+            text-align: left;
+            padding: 15vh 0 5vh 10vw;
+            margin-bottom: 0px;
+        }
+
+        h2
+        {
+            
+            font-size: 4em;
+            color:$color-highlight-foreground;
+            width: 80%;
+            padding: 6vh 0 0 10vw;
+            text-align: left;
+            margin-top:1px;
+        }
+
+        h4
+        {
+            font-size: 3em;
+            padding: 6vh 0 0 10vw;
+            text-align: 3.5em;
+            color:$color-highlight-foreground;
+            top: 40vh;
+            width: 80%;
+            margin:0;
+        } 
+
+     
+        
     } 
 }
 

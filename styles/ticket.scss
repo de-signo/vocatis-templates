@@ -25,52 +25,87 @@ section.ticket
 
     background-color:white;
     color: black;
-    
+
+
+
+
+        
     header
     {
         text-align: center;
         font-size: 12px;
         line-height: 13px;
-        width: 100%;
     }
-    
+
     h1
     {
         text-align: center;
         font-size: 40px;
         color: #000;
-        line-height: 1px;
+        margin: 0;
     }
-   
+
     img
     {
         width: 100%;
     }
+
     h4
     {
-        font-size: 15px;
-        float: left;
-        color: #000;
-        margin: 1mm;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: bold;
+        margin-bottom: 0px;
     }
+    h5
+    {
+        text-align: center;
+        font-size: 12px;
+        line-height: 13px;
+        font-weight: bold;
+        margin-top: 2px;
+    }        
+    
+    h6
+    {
+        text-align: center;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 5px 0 0 0;
+        color:black;
+    }
+
+        
+    p
+    {
+        text-align: center;
+        font-size: 12px;
+        margin-top:5px;
+    }
+
+    section.qrcode
+    {
+        color:black;
+        margin:0px;
+        padding:0px;
+        text-align: center;
+    }
+
     canvas
     {
-        width: 23mm;
-        margin-top: 2px; 
-       
+        width: 23mm; 
     }
-    img.customerlogo
-    {
-        height: 23mm;
-        width: auto;
-        float: right;
-        margin-top: 2px;
-    }    
-    div.abstand
-    {
-        float: right;
-        width: 100%;
+  
+    footer
+    {   text-align: center;
+        font-size: 12px;
+
     }
-    }
+}
+
+    
+
 
 
