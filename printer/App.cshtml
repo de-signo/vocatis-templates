@@ -12,13 +12,9 @@
 <body>
 
 <header>
- <img src="images/plattform.png" class="plattform" alt="plattform">
+ <img src="images/plattformlogo.png" class="plattformlogo" alt="plattformlogo">
  <h1><span style="text-transform:uppercase">Wartezeit</span>  Live-Abfrage</h1>
 </header>
-
-<section class="logo">
-  <img src="images/customerlogo.png" />
-</section>
 
 <div id="content" data-content-src="@Href("AppContent.cshtml", new {id=Request["id"]})">
   <section class="loading content">
@@ -31,6 +27,9 @@
 </div>
 
 <footer>
+  <div class="Todo">
+    <p>Wir sind ruckzuck f&#252;r Sie da.</p>
+  </div>
 </footer>
 
 @Scripts.Render("~/Scripts/jquery")
