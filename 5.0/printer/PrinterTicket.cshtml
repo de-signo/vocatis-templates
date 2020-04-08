@@ -16,7 +16,7 @@ dynamic queueid = CommonGuidId.FromString(Request["queueid"]);
 dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["catid"]).Value;
 var ticket = Vocatis.CreateTicket(queueid, catids);
 
-@Scripts.Render("js/jquery.qrcode.js")
+@Scripts.Render("js/jquery.qrcode.js", "js/url_polyfill.js")
 <section class="ticket">
   <header>
     @DateTime.Now.ToString("dd.MM.yyyy")&emsp;
