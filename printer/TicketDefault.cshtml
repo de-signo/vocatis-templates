@@ -13,7 +13,7 @@
     <link href="@Href("style.css")" type="text/css" rel="Stylesheet" />
 </head>
 <body>
-@Scripts.Render("~/Scripts/jquery", "js/jquery.qrcode.js")
+@Scripts.Render("~/Scripts/jquery", "js/jquery.qrcode.js", "js/url_polyfill.js")
 <section class="ticket print_ticket">
     <div>
       @DateTime.Now.ToString("dd.MM.yyyy")&emsp;
