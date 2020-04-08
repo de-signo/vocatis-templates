@@ -15,15 +15,6 @@
         </names>
         <content_class type="VocatisQueue"  />
       </field>
-      <field key="notify">
-        <names>
-          <name>Glocke</name>
-        </names>
-         <content_class type="TextChoose">
-          <text key="">Keine</text>
-          <text key="tone.mp3">Standard</text>
-        </content_class>
-      </field>
       <field key="popup">
         <names>
           <name>Popup</name>
@@ -97,15 +88,6 @@
           <name>Vocatis Warteschlange 8</name>
         </names>
         <content_class type="VocatisQueue" />
-      </field>
-      <field key="notify">
-        <names>
-          <name>Glocke</name>
-        </names>
-         <content_class type="TextChoose">
-          <text key="">Keine</text>
-          <text key="tone.mp3">Standard</text>
-        </content_class>
       </field>
       <field key="popup">
         <names>

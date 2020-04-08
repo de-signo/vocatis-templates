@@ -74,14 +74,7 @@ else
         @ItemsList(list, cats)
 
         @{
-            var notify = Model.Style["notify"].FieldInstance.Value as string;
             var popup = Model.Style["popup"].FieldInstance.Value as string;
-        }
-        @if (!String.IsNullOrEmpty(notify))
-        {
-            <audio id="notify">
-                <source src="@Href(notify)" type="audio/mp3" />
-            </audio>
         }
         @if (!String.IsNullOrEmpty(popup))
         {
