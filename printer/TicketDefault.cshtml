@@ -15,21 +15,27 @@
 <body>
 @Scripts.Render("~/Scripts/jquery", "js/jquery.qrcode.js")
 <section class="ticket print_ticket">
-    <div>
-      @DateTime.Now.ToString("dd.MM.yyyy")&emsp;
-      @DateTime.Now.ToString("HH:mm")Uhr
-    </div>
-  <h1>
+  <header>
+    <h4>HERZLICH WILLKOMMEN</h4>
+    <h5>bei Ihrer Berliner Volksbank</h5>
+  </header>
+  <p>Machen Sie es sich kurz bequem.<br>Wir sind gleich pers&#246;nlich f&#252;r Sie da!</p>
+  <p>Ihre Beratungs-Nr.</p> 
+   <h1>
     @Model.Style["ticketnumber"].Value
   </h1>
-  <img src="separation.png" class="separation" alt="Trennung">
   <section class="qrcode">
     @if (withQrCode) {
-    <h4>Bitte QR Code einlesen!</h4>
+  
     <a href="@Href("App.cshtml", new {id=id})"></a>
-    }
-    <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">
+    } 
+  <footer>
+    @DateTime.Now.ToString("dd.MM.yyyy")&emsp;
+  </footer>
   </section>
+
+
+
 <script type="text/javascript">
   window.onload = function () {
     var appurl = new URL($(".qrcode>a").attr("href"), window.location.href).href;

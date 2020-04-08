@@ -24,14 +24,14 @@ case WaitNumberState.Parked:
     </svg>
   </article>
   <div class="number">
-    <h3 class="flex-item1">Beratungs-Nr.</h3>
+    <h3 class="flex-item1">Ihre Beratungs-Nr.</h3>
     <h4 class="flex-item2">@ticket.Number</h4>
     <p id="three" class="flex-item3">STAND: @DateTime.Now.ToString("HH\\:mm") Uhr</p>  
   </div>  
 </section>  
 <footer>
   <div class="Todo">
-    <p>Wir sind ruckzuck f&#252;r Sie da.</p>
+    <p>Wir sind ruckzuck f&#252;r Sie da!</p>
   </div>
 </footer>
 
@@ -51,14 +51,14 @@ case WaitNumberState.Parked:
     
   </article>  
   <div class="number">
-    <h3 class="flex-item1">Beratungs-Nr.</h3>
+    <h3 class="flex-item1">Ihre Beratungs-Nr.</h3>
     <h4 class="flex-item2">@ticket.Number</h4>
     <p id="three" class="flex-item3">STAND: @DateTime.Now.ToString("HH\\:mm") Uhr</p>  
   </div>
 </section>
 <footer>
   <div class="Todo">
-    <p>Wir sind ruckzuck f&#252;r Sie da.</p>
+    <p>Wir sind ruckzuck f&#252;r Sie da!</p>
   </div>
 </footer>
   }
@@ -69,6 +69,7 @@ case WaitNumberState.Called:
 
 <section class="room content">
   <article>  
+    <h1 class="flex-item2">@ticket.Number</h1>
     <p>Wir beraten Sie an</p>
     <p id="place">@callInfo.RoomName</p> 
     <p>Kommen Sie einfach direkt zu uns.</p>
