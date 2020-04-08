@@ -41,7 +41,7 @@
 {
     <table id="list">
         <tbody>
-            @foreach (var x in list)
+            @foreach (var x in list.Take(1))
             {
                 <tr>
                     <td class="room">@x.RoomName</td>

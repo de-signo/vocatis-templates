@@ -24,7 +24,7 @@
     //voc.Instance.UpdateNumber(ticket);
   }
 
-@Scripts.Render("js/jquery.qrcode.js")
+@Scripts.Render("js/jquery.qrcode.js", "js/url_polyfill.js")
 <section class="ticket">
   <header>
   <h4>HERZLICH WILLKOMMEN</h4>
@@ -35,7 +35,9 @@
   <h1>
     @ticket.Number
   </h1>
-  <img src="@Href(ticket.IconUrl)">
+  @if (!String.IsNullOrEmpty(ticket.IconUrl)) {
+    <img src="@Href(ticket.IconUrl)">
+  }
   <section class="qrcode">
     @if (withQrCode) {
     <a href="@Href("App.cshtml", new {id=ticket.Id, tracking_id})"></a>
