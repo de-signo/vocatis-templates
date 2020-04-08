@@ -19,7 +19,7 @@ html, body
 {
     background-color: $color-common-background;
     color: $color-common-foreground;
-    font-family: Frutiger-vr, Verdana, "Lucida Sans Unicode", sans-serif;
+    font-family: "Frutiger VR", Verdana, "Lucida Sans Unicode", sans-serif;
 
     @media (orientation: landscape)
     {
@@ -46,6 +46,7 @@ header
     {
         position: absolute;
         font-size: 1em;
+        font-weight: normal;
     }
 
     
@@ -74,7 +75,7 @@ header
         {
             padding: 1vh 0 1vh 10vw;
             font-size: 1em;
-            color:red;
+            color:$color-primary-foreground;
         }
     }
 
@@ -96,41 +97,10 @@ header
     }
 }
 
-#error
-{
-    margin: 0vh 15vw;
-    height: 50vh;
-    background-color:$color-highlight-background;
-    color: $color-primary-foreground;
-
-    h2
-    {
-        text-align: center;
-        font-size: 1.25rem;
-        font-weight: bold;
-        padding: 8vh 2vw;  
-    }
-
-    p
-    {
-        text-align: center;
-        font-size: 0.75rem;
-        padding: 3vh 2vw; 
-    }
-
-    #three
-    {
-        text-align: center;
-        font-size: 0.5rem;
-        font-weight: bold;
-        padding: 5vh 2vw; 
-    } 
-}
-
 section.content
 {
     position: relative;
-    max-height: 60vh;
+    max-height: 70vh;
     background-color:$color-primary-background;
     
     @media (orientation: landscape)
@@ -142,15 +112,20 @@ section.content
     {
         color:$color-primary-foreground;
         padding: 8vh 0 3vh 10vw;
-        font-size: 0.8em;
+        font-size: 1em;
         font-weight: bold;
         width: 80%;
 
+        @media (orientation: landscape)
+        {
+            font-size: 1.2em; 
+        }
+
         p
         {
-            font-size: 1.2em;
+            font-size: 1em;
             font-weight: bold;
-            color:white;
+            color:$color-primary-foreground;
             padding: 0;
             margin: 0;
 
@@ -166,9 +141,14 @@ section.content
          {
             width: 25%;
             max-height: 19vh;
-            padding: 5vh 25vw 0 33vw;
-            .cls-1{fill:$color-primary-foreground;opacity: 0.25;}
-            .cls-2{font-size:0.75em; fill:$color-primary-foreground;}
+            padding: 6vh 25vw 0 33vw;
+            .cls-1{fill:$color-primary-shadowred;}
+            .cls-2{font-size:0.60em; fill:$color-primary-foreground;}
+
+            @media (orientation: landscape)
+            {
+                .cls-2{font-size:0.40em; fill:$color-primary-foreground;}
+            }
          }
 
         #three
@@ -181,7 +161,7 @@ section.content
 
     div.number
     {
-        color: red; 
+        color: $color-primary-foreground; 
         margin: 8vh 0 0 0;
         width: 90vw;
         height: 4vh;
@@ -190,38 +170,38 @@ section.content
         @media (orientation: landscape)
         {
             height: 7vh; 
-            margin: 5vh 0 0 0; 
+            margin: 0; 
         }
      
 
         h3.flex-item1 
 
         {  
-        background-color:$color-primary-foreground;
-        opacity: 0.25;
-        font-size: 0.85em;
+        background-color:$color-primary-shadowred;
+        font-size: 0.65em;
         padding: 1vh 0 1vh 10vw;
-        width: 30vw;
+        width: 40vw;
           
             @media (orientation: landscape)
             {
-                font-size: 0.65em;  
+                font-size: 0.65em;
+                padding: 2vh 0 2vh 10vw;  
             }
         }
        
         h4.flex-item2 
         {
-            background-color:$color-primary-foreground;
-            opacity: 0.25;
-            font-size: 1em;
+            background-color:$color-primary-shadowred;
+            font-size: 0.75em;
             margin:0;
             padding: 1vh 0 1vh 0;
-            width: 15vw;
+            width: 10vw;
             text-align: center;
 
             @media (orientation: landscape)
             {
-                font-size: 0.75em;  
+                font-size: 0.75em; 
+                padding: 2vh 0 2vh 10vw;  
             }
         }
         
@@ -233,7 +213,11 @@ section.content
             padding: 1vh 0vw 1vh 5vw;
             color:$color-primary-foreground;
 
-
+            @media (orientation: landscape)
+            {
+                font-size: 0.65em; 
+                padding: 2vh 0 2vh 10vw; 
+            }
         }
 
         .no 
@@ -251,13 +235,19 @@ section.room
     article
     {
         padding: 8vh 0 3vh 10vw;
-   
+        
+        h1
+        {
+            font-size: 3em;
+            margin:0 0 1vh 0;
+
+        }
 
         p
         {
-            font-size: 1.2em;
+            font-size: 1em;
             font-weight: bold;
-            color:white;
+            color:$color-primary-foreground;
             padding: 2vh 0 2vh 0;
             margin: 0;
 
@@ -270,9 +260,9 @@ section.room
         #place
         {
             text-transform: uppercase;
-            font-size: 2rem;
+            font-size: 2em;
             font-weight: bold;
-            padding: 2vh 0vw 2vh 0vw;
+            padding: 1vh 0vw 1vh 0vw;
 
             @media (orientation: landscape)
             {
@@ -302,6 +292,11 @@ section.room
         padding: 0 0 0 10vw;
         width: 80%;
         margin: 0;
+
+        @media (orientation: landscape)
+        {
+            font-size: 1.2em;  
+        }
     } 
 
     @media (orientation: landscape)
