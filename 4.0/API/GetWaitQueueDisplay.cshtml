@@ -1,0 +1,39 @@
+@using Stolltec.Vocatis
+@using ISS.Session
+@using iSign
+@{
+    /// Usage:
+    /// GetWaitQueueDisplay.cshtml?queue=1ed91152-e97c-47e3-aaa3-0dff73965004
+    /// - queue (required) id of the queue to add a number
+    try 
+    {
+        Response.ContentType = "application/json";
+
+        var queueid = CommonGuidId.FromString(Request["queue"]);
+        IEnumerable<DisplayNumber> list;
+        using (var voc = SessionInstancesModule.GetInstance().UseSharedInstance<IVocatisData>())
+        {
+            list = voc.Instance.GetWaitQueueDisplay(queueid);
+        }
+
+        var data = from x in list select new {
+            number = x.Number,
+            iconUrl = x.IconUrl,
+            categories = from c in x.Categories select new {
+                name = c.Name,
+                description = c.Description,
+                color = c.Color
+            },
+            room = new {
+                name = x.RoomName,
+                description = x.RoomDescription
+            }
+        };
+        Response.Write(Json.Encode(data));
+    }
+    catch (Exception ex)
+    {
+        Response.StatusCode = 500;
+        <text>{ "message":@Html.Raw(Json.Encode(ex.Message)) }</text>
+    }
+}
