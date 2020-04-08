@@ -43,18 +43,20 @@ body.list
         height: 8vh;
         font-size: 3em;
         margin: 5vh 0 0 0vw;
-        color: white;
+        color: $color-primary-foreground;;
         text-align: center;
-     
 
-        td:first-child 
+        td:first-child
         {
-            color: transparent;
-            
-            
-        }       
-       
-        tr:first-child
+            padding-left: 10vw;
+            text-align: left;
+        }
+        td:last-child
+        {
+            width: 15vw;
+        }
+
+        tr:not(.waiting)
         {
             background-color:$color-primary-foreground;
             font-weight: bold;
@@ -63,15 +65,7 @@ body.list
             td:last-child
             {
                 background-color: $color-secondary-background;
-                font-weight: bold;
                 color: $color-primary-foreground;
-                width: 15vw;
-            }
-            td:first-child
-            {
-                color: inherit;
-                padding-left: 10vw;
-                text-align: left;
             }
         }
     }
