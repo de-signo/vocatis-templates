@@ -23,37 +23,42 @@ body
 body.list
 {
     background-color: $color-primary-background;
-    font-family: Frutiger VR Arial, Verdana, Geneva,Tahoma,sans-serif;
     margin: 0;
     display: block;
 
-    h3
+    header 
     {
-        font-size: 2.5em;
-        padding: 12vh 0 0 10vw;
-        color:$color-highlight-foreground;
-        top: 40vh;
-        width: 80%;
-        margin:0;
+        h3
+        {
+            font-size: 2.5em;
+            color:$color-highlight-foreground;
+            margin:15vh 0 0 10vw;
+        }
     }  
 
-    table
+    table#list
     {
         width: 60%;
-        height: 8vh;
-        font-size: 3em;
+        line-height: 9vh;
+        font-size: 4em;
         margin: 5vh 0 0 0vw;
-        color: $color-primary-foreground;;
+        color: $color-primary-foreground;
         text-align: center;
+        background-color: $color-primary-background;
 
-        td:first-child
+        tr.waiting
+        
         {
-            padding-left: 10vw;
-            text-align: left;
-        }
-        td:last-child
-        {
-            width: 15vw;
+            td.room
+            {
+                margin: 0;
+                
+            }
+            td:last-child
+            {
+                width: 15vw;
+                text-align: center;
+            }
         }
 
         tr:not(.waiting)
@@ -61,11 +66,23 @@ body.list
             background-color:$color-primary-foreground;
             font-weight: bold;
             color: $color-primary-background;
+
+
+            td:first-child
+            {
+               text-align: left;
+               padding-left: 10vw;
+               color: $color-secondary-foreground;
+               
+    
+            }
           
             td:last-child
             {
                 background-color: $color-secondary-background;
                 color: $color-primary-foreground;
+                text-align: center;
+    
             }
         }
     }
@@ -88,7 +105,7 @@ body.list
             font-size: 8em;
             margin:0;
             text-align: left;
-            padding: 15vh 0 5vh 10vw;
+            padding: 10vh 0 5vh 10vw;
             margin-bottom: 0px;
         }
 
@@ -100,7 +117,7 @@ body.list
             width: 80%;
             padding: 6vh 0 0 10vw;
             text-align: left;
-            margin-top:1px;
+            margin:0;
         }
 
         h4
@@ -113,9 +130,7 @@ body.list
             width: 80%;
             margin:0;
         } 
-
-     
-        
+ 
     } 
 }
 
