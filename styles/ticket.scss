@@ -25,16 +25,15 @@ section.ticket
 
     background-color:white;
     color: black;
-
-
-
-
         
     header
     {
         text-align: center;
         font-size: 12px;
+        font-weight: bold;
         line-height: 13px;
+        max-height: 15mm;
+        width: 100%;
     }
 
     h1
@@ -50,39 +49,27 @@ section.ticket
         width: 100%;
     }
 
-    h4
-    {
-        text-transform: uppercase;
-        text-align: center;
-        font-size: 14px;
-        line-height: 17px;
-        font-weight: bold;
-        margin-bottom: 0px;
-    }
-    h5
-    {
-        text-align: center;
-        font-size: 12px;
-        line-height: 13px;
-        font-weight: bold;
-        margin-top: 2px;
-    }        
     
     h6
     {
         text-align: center;
         font-size: 12px;
         font-weight: bold;
-        margin: 5px 0 0 0;
         color:black;
+        width: 100%;
+        margin: 0;
+        padding: 2px;
     }
 
         
-    p
+     p
     {
         text-align: center;
-        font-size: 12px;
-        margin-top:5px;
+        font-size: 10px;
+        width: 100%;
+        margin: 0;
+        padding: 5px;
+        
     }
 
     section.qrcode
@@ -91,17 +78,19 @@ section.ticket
         margin:0px;
         padding:0px;
         text-align: center;
+        font-size: 10px;  
+        
     }
 
     canvas
     {
         width: 23mm; 
+        margin: 0;
     }
   
     footer
     {   text-align: center;
         font-size: 12px;
-
     }
 }
 

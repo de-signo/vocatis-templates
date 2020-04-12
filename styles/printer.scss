@@ -206,18 +206,18 @@ body.printer
     { 
         display: block;
         font-size: 3em;
-        color:black;
+        color:$color-highlight-foreground;
         padding: 0.5vh 1.5vw 0.5vh 1.5vw;
         border: 3px solid $color-primary-background;
         border-radius: 8px;
-        background-color: $color-highlight-foreground;
+        background-color:$color-primary-background;
         float: right;
         margin: 25vh 10vw 0;
 
         &:hover
         {
-            background-color: $color-primary-background;
-            color:$color-highlight-foreground;
+            background-color: $color-highlight-foreground;
+            color:black;
         }
     }   
     
@@ -277,18 +277,18 @@ body.printer
                 #btnOK
                 {
                     font-size: 1em;
-                    color:black;
+                    color:$color-highlight-foreground;
                     padding: 0.5vh 1.5vw 0.5vh 1.5vw;
                     border: 2px solid $color-primary-background;
                     border-radius: 8px;
-                    background-color: $color-highlight-foreground;
+                    background-color: $color-primary-background;
 
                 }
 
                 #btnOK:hover
                 {
-                    background-color: $color-primary-background;
-                    color:$color-highlight-foreground;
+                    background-color:$color-highlight-foreground;
+                    color:black
                 }
             }
         }

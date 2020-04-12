@@ -27,11 +27,12 @@
 @Scripts.Render("js/jquery.qrcode.js", "js/url_polyfill.js")
 <section class="ticket">
   <header>
-  <h4>HERZLICH WILLKOMMEN</h4>
-  <h5>bei Ihrer Berliner Volksbank</h5>
+  <p>HERZLICH WILLKOMMEN<br>bei Ihrer Berliner Volksbank</p>
   </header> 
-  <p>Machen Sie es sich kurz bequem.<br>Wir sind gleich pers&#246;nlich f&#252;r Sie da!</p>
-  <p>Ihre Beratungs-Nr.</p>
+  <div class="info">
+    <p>Machen Sie es sich kurz bequem.<br>Wir sind gleich pers&#246;nlich f&#252;r Sie da!</p>
+    <p>Ihre Beratungs-Nr.</p>
+  </div>
   <h1>
     @ticket.Number
   </h1>
@@ -46,7 +47,6 @@
   <p>QR-Code scannen, um Ihre Position auch online zu verfolgen.</p>
   </section>
   <footer>
-  
     @DateTime.Now.ToString("dd.MM.yyyy")&emsp;
   </footer>
 </section>
