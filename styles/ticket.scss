@@ -29,36 +29,61 @@ section.ticket
 
     header
     {
+        
+        margin: 0px;
+        padding: 0px;
+        max-height: 10mm;
+        width: 100%;
+        top: 0;
+        left: 0;
+        
+        
+        p:first-child
+        {
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 14px;
+        color: black;
+        margin: 0px;
+        padding: 0px;
+        }
+
+        p:last-child
+        {
         text-align: center;
         font-weight: bold;
-        width: 100%;
-        max-height: 15mm;
-        font-size: 14px;
-        line-height: 12px;
-        margin: 0;
-        padding: 5px;   
+        font-size: 12px;
+        margin: 0px;
+        padding: 0px;
+        }
     }
 
     .info
     {
-        padding: 5px;
-        margin: 0;
-    }
-     p
-    {
-        text-align: center; 
-        font-size: 12px;
-        width: 100%;
-        padding: 0;
+        margin: 0px;
+        padding: 0px;
+
+       
+        p
+        {
+            text-align: center; 
+            font-size: 11px;
+            width: 100%;
+            margin:0.5vh 0 0 0; 
+            padding: 0px;
+           
+        }
     }
 
     h1
     {
         text-align: center;
+        width: 100%;
         font-size: 40px;
         color: #000;
-        margin: 2px;
-        padding: 5px;
+        margin: 0 0 1vh 0 ;
+        padding: 0px;
     } 
     
     section.qrcode
@@ -67,8 +92,7 @@ section.ticket
         margin:0px;
         padding:0px;
         text-align: center;
-        font-size: 12px;  
-
+         
                 
         h6
         {
@@ -78,7 +102,13 @@ section.ticket
             color:black;
             width: 100%;
             margin: 0;
-            padding: 2px;
+            padding: 1vh 0 0vh 0;
+        }
+
+        p
+        {
+            font-size: 10px; 
+            margin:0;
         }
         
     }
@@ -92,6 +122,7 @@ section.ticket
     footer
     {   text-align: center;
         font-size: 12px;
+        padding: 8px;
     }
 }
 

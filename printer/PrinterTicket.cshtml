@@ -31,7 +31,7 @@
   <p>bei Ihrer Berliner Volksbank</p>  
   </header> 
   <div class="info">
-    <p>Machen Sie es sich kurz bequem. Wir sind gleich pers&#246;nlich f&#252;r Sie da!</p>
+    <p>Machen Sie es sich kurz bequem.Wir sind gleich pers&#246;nlich f&#252;r Sie da!</p>
     <p>Ihre Beratungs-Nr.</p>
   </div>
   <h1>
@@ -44,8 +44,8 @@
     @if (withQrCode) {
     <a href="@Href("App.cshtml", new {id=ticket.Id, tracking_id})"></a>
     }  
-  <h6>Kleiner Tipp:</h6>
-  <p>QR-Code scannen, um Ihre Position auch online zu verfolgen.</p>
+    <h6>Kleiner Tipp:</h6>
+    <p>QR-Code scannen, um Ihre Position<br>auch online zu verfolgen.</p>
   </section>
   <footer>
     @DateTime.Now.ToString("dd.MM.yyyy")&emsp;
