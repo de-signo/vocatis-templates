@@ -251,25 +251,25 @@ body.printer
                     display: inline-block;
                     width: 2em; 
 
-                    .entf
+                    &.entf
                     {
-                        display:block;
-	                    width:68%;
-	                    height:auto;
-	                    background-image:"images/ENT_s.png";
-                    }
-                    
-                    .ent:hover
-                    {
-                        background-image:"images/ENT_w.png"; 
+                        background-image:url("images/ENT_s.png");
+                        background-size: 55% 45%;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        
                     }
                 }                     
                
-
                 a:hover
                 {
                     background-color: $color-primary-background;
                     color: $color-highlight-foreground;
+
+                    &.entf:hover
+                    {
+                        background-image:url("images/ENT_w.png"); 
+                    }
                 }                   
                 
             } 
