@@ -32,7 +32,7 @@ body.list
         {
             font-size: 2.5em;
             color:$color-highlight-foreground;
-            margin:15vh 0 0 15vw;
+            margin:20vh 0 0 15vw;
         }
     }  
 
@@ -47,19 +47,22 @@ body.list
         background-color: $color-primary-background;
 
         tr.waiting
-        line-height: 9vh;
         {
-            td.room
-            {
-                margin: 0;
-                
-            }
-            td:last-child
-            {
-                width: 15vw;
-                text-align: center;
-            }
+            line-height: 9vh;
         }
+        
+        td.room
+        {
+            margin: 0;
+            
+        }
+        
+        td:last-child
+        {
+            width: 15vw;
+            text-align: center;
+        }
+        
 
         tr:not(.waiting)
         {
@@ -96,7 +99,6 @@ body.list
         bottom: 0px;
         left: 0px;
         right: 0px;
-
         background-color: $color-primary-background;
         color: $color-highlight-foreground;
 
