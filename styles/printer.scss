@@ -222,7 +222,7 @@ body.printer
     }   
     
 
-    fieldset
+    fieldset.stage-1
     {
         border: 0px;
         margin: 0;
@@ -249,14 +249,29 @@ body.printer
                     border-radius: 8px;
                     font-size: 0.8em;
                     display: inline-block;
-                    width: 2em;
+                    width: 2em; 
 
-                } 
+                    .entf
+                    {
+                        display:block;
+	                    width:68%;
+	                    height:auto;
+	                    background-image:"images/ENT_s.png";
+                    }
+                    
+                    .ent:hover
+                    {
+                        background-image:"images/ENT_w.png"; 
+                    }
+                }                     
+               
+
                 a:hover
                 {
                     background-color: $color-primary-background;
                     color: $color-highlight-foreground;
-                }
+                }                   
+                
             } 
 
             .sonderzeichen 
