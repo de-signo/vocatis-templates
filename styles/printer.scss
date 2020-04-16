@@ -231,17 +231,18 @@ body.printer
         #keyboard
         {
             height: 20vh;
-            width: auto;
+            width: 80%;
+            margin-left: 10vw;
             padding-top: 2vh;
             font-size: 2em;
-            text-align: center; 
+           
             color:black; 
             
             
             .tasten
             {
                 padding: 1vh 2vw 1vh 2vw; 
-
+                text-align: right; 
                 a
                 {
                     padding: 0.5vh 0.5vw 0.5vh 0.5vw;
@@ -249,15 +250,18 @@ body.printer
                     border-radius: 8px;
                     font-size: 0.8em;
                     display: inline-block;
+                    text-align: center; 
                     width: 2em; 
 
                     &.entf
                     {
                         background-image:url("images/ENT_s.png");
-                        background-size: 55% 45%;
+                        background-size: 47% 53%;
                         background-repeat: no-repeat;
                         background-position: center;
-                        
+                        margin-left: 4vw;
+                        padding: 0.5vh 2vw 0.5vh 2vw;
+          
                     }
                 }                     
                
@@ -271,12 +275,14 @@ body.printer
                         background-image:url("images/ENT_w.png"); 
                     }
                 }                   
-                
+
             } 
 
             .sonderzeichen 
             {
-                margin-top: 1vh;
+                text-align: right;
+                padding: 1vh 2vw 1vh 2vw;
+                font-size: 0.8em;
                 a
                 {   padding: 0.5vh 3vw 0.5vh 3vw;
                     border: 2px solid $color-primary-background;
@@ -298,13 +304,26 @@ body.printer
                     border: 2px solid $color-primary-background;
                     border-radius: 8px;
                     background-color: $color-primary-background;
-
+                    margin-left: 2.5vw;
+                    padding: 0.5vh 2.5vw 0.5vh 2.5vw;
                 }
 
                 #btnOK:hover
                 {
                     background-color:$color-highlight-foreground;
                     color:black
+                }
+
+                #hyphen
+                {
+                    margin-left: 3vw;
+                    padding: 0.5vh 2.5vw 0.5vh 2.5vw;
+                }
+
+                #space
+                {
+                    margin-left: 3vw;
+                    padding: 0.5vh 9vw 0.5vh 9vw;
                 }
             }
         }
