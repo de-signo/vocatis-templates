@@ -205,7 +205,7 @@ body.printer
     #btnOK2
     { 
         display: block;
-        font-size: 3em;
+        font-size: 2em;
         color:$color-highlight-foreground;
         padding: 0.5vh 1.5vw 0.5vh 1.5vw;
         border: 3px solid $color-primary-background;
@@ -222,7 +222,7 @@ body.printer
     }   
     
 
-    fieldset.stage-1
+    fieldset
     {
         border: 0px;
         margin: 0;
@@ -256,7 +256,7 @@ body.printer
                     &.entf
                     {
                         background-image:url("images/ENT_s.png");
-                        background-size: 47% 53%;
+                        background-size: 45% 55%;
                         background-repeat: no-repeat;
                         background-position: center;
                         margin-left: 4vw;
