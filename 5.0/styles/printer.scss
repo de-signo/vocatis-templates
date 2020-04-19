@@ -1,47 +1,32 @@
-
-body.printer 
-{
-    header
-    {
+body.printer {
+    header {
         display: block;
         margin: 0 15vw 4vh 15vw;
         height: 16vh;
-        width: 100%; 
-      
-        
-        svg
-        {
+        width: 100%;
+        svg {
             height: 20vh;
         }
-
-        .plattformlogo 
-        { 
-            height:100%;
+        .plattformlogo {
+            height: 100%;
         }
-
-        h1 
-        {
+        h1 {
             display: inline;
             text-transform: uppercase;
             font-weight: 900;
             margin: 0 0 0 2vw;
-        } 
-    
+            color: $color-primary-background;
+        }
         clear: both;
         display: block;
     }
-
-    section.info
-    {
+    section.info {
         height: 10vh;
     }
-
-    main, .main
-    {
+    main,
+    .main {
         position: relative;
-
-        section
-        {
+        section {
             position: absolute;
             left: 0;
             right: 0;
@@ -49,125 +34,111 @@ body.printer
             padding: 0 15vw;
             background-color: $color-common-background;
         }
-    
-        section#idle
-        {
-            ul, li
-            {
+        section#idle {
+            position: absolute;
+            ul,
+            li {
                 list-style: none;
                 margin: 0;
                 padding: 0;
             }
-
-            .single-button
-            {
+        
+            .single-button {
                 display: none;
                 line-height: 2vh;
-                
-                img
-                {
+                img {
                     opacity: 0.2;
                     width: 50%;
                 }
+
+                p{
+                    width: 100%;
+                    text-align: center;
+                    padding: 0px;
+                }
             }
-            ul.buttons-1
-            {
-                .btn>div
-                {
+            .qrcode {
+                width: 30%;
+                canvas {
+                    position: absolute;
+                    width: auto;
+                    height: 7vh;
+                    padding-left: 10vw;
+                }
+            }
+            ul.buttons-1 {
+                .btn>div {
                     height: 24vh;
                 }
-                .single-button
-                {
+                .single-button {
                     display: block;
                 }
             }
-            ul.buttons-7, ul.buttons-8
-            {
-                .btn>div
-                {
+            ul.buttons-7,
+            ul.buttons-8 {
+                .btn>div {
                     height: 7vh;
                 }
             }
-            .btn.next-one>div:last-child div:nth-child(2) svg
-            {
+            .btn.next-one>div.queue-status div:nth-child(2) svg {
                 opacity: 0.5;
-                .cls-2 { display:none; }
+                .cls-2 {
+                    display: none;
+                }
             }
-           
-
-            .btn.closed >div:last-child 
-            {
+            .btn.closed>div.queue-status {
                 background-color: $color-highlight-background;
                 padding: 2vh 0vw;
                 text-align: center;
                 box-sizing: border-box;
                 box-shadow: 1px 3px 1px $color-highlight-background;
                 font-size: 0.8em;
-                font-weight: bold; 
-
+                font-weight: bold;
             }
-
-
-            .btn
-            {
-                
+            .btn {
                 display: block;
-                margin: 2vh 0;
-                
-                &>div
-                {
-                    height: 8vh;
-                    float:left;
-
-                    h2
-                    {
+                margin: 1vh 0 2vh 0;
+                &>div {
+                    height: 7vh;
+                    float: left;
+                    top: 0px;
+                    h2 {
                         text-align: center;
                         font-weight: bold;
                         font-size: 2.5em;
                     }
-                    &>svg, .notch
-                    {
+                    &>svg,
+                    .notch {
                         position: absolute;
                         margin-top: 2vh;
                         fill: $color-common-background;
                     }
-                   
-                    &:first-child
-                    {
+                    &:first-child {
                         width: 0%;
                     }
-                    &:nth-child(2)
-                    {
-                        width: 70%;
+                    &:nth-child(2) {
+                        width: 50%;
                         text-align: center;
-                        line-height: 8vh;
+                        line-height: 7vh;
                         font-weight: bold;
                         font-size: 1.5em;
-                        background-color:$color-secondary-background;
+                        background-color: $color-secondary-background;
                         color: $color-secondary-foreground;
-						box-shadow: 1px 3px 1px $color-secondary-shadow;
+                        box-shadow: 1px 3px 1px $color-secondary-shadow;
                     }
-
-                    &:last-child
-                    {
-                        width: 30%;
+                    &.queue-status {
+                        width: 20%;
                         float: left;
                         font-size: 0.75em;
                         background-color: $color-primary-background;
                         color: $color-primary-foreground;
                         box-shadow: 1px 3px 1px $color-primary-shadow;
-
-
-                        div 
-                        {
+                        div {
                             float: left;
-                            &:first-child
-                            {
+                            &:first-child {
                                 width: 50%;
-                                height: 8vh;
-                                
-                                span
-                                {
+                                height: 7vh;
+                                span {
                                     box-sizing: border-box;
                                     height: 7vh;
                                     padding: 0vh 1vw;
@@ -176,97 +147,98 @@ body.printer
                                     text-align: center;
                                 }
                             }
-                            &:nth-child(2)
-                            {
+                            &:nth-child(2) {
                                 width: 50%;
                                 height: 8vh;
                                 line-height: 7vh;
                                 text-align: center;
-                                
                                 /* personenanzahl */
-                                svg
-                                {
+                                svg {
                                     height: 70%;
                                     vertical-align: middle;
-                                    .cls-1{fill:$color-primary-foreground;}
-                                    .cls-2{font-size:1em; color:$color-primary-background;}
+                                    .cls-1 {
+                                        fill: $color-primary-foreground;
+                                    }
+                                    .cls-2 {
+                                        font-size: 1em;
+                                        color: $color-primary-background;
+                                    }
                                 }
                             }
-                            &:last-child
-                            {
+                            &:last-child {
                                 position: relative;
                                 width: 100%;
                                 height: 16vh;
-
-                                span
-                                {
+                                span {
                                     text-align: center;
                                     position: absolute;
                                     bottom: 1vh;
                                     right: 1vw;
-                                    left: 1vw;    
+                                    left: 1vw;
                                 }
-                                img
-                                {
+                                img {
                                     height: 50%;
                                     vertical-align: middle;
                                 }
                             }
-
-
                         }
                     }
-
                 }
-
-                &:after
-                {
+                &:after {
                     content: "";
                     clear: both;
                     display: block;
                 }
-           }
+            }
         }
-           
-        section#waitPopup, section#takePopup
-        {
-            text-align: center; 
-
-            >h4
-            {
-            margin-top: 5vh;
-            font-size: 1.5em;
-            color:$color-secondary-foreground;
+        section#waitPopup,
+        section#takePopup {
+            text-align: center;
+            #wait {
+                width: 40%;
+                opacity: 0.5;
             }
-
-           #wait
-           {
+            >div {
+                padding: 8vh;
+                background-color: $color-secondary-background;
+            }
+            >h6 {
+                font-size: 1.25em;
+                margin-top: 5vh;
+                color: $color-primary-background;
+            }
+        }
+        h4 {
+            font-size: 1.2em;
             width: 40%;
-            opacity: 0.5;
-           } 
-           >div
-           { 
-            padding: 8vh;
-            background-color:$color-secondary-background;
-            } 
-
-            >h6
-            {
-            font-size: 1.25em;
-            margin-top: 5vh;
-            color:$color-primary-background;
+            margin: 0 0 1vh 0;
+            color: $color-primary-background;
+            display: inline-block;
+            &:last-child {
+                padding-left: 20vw;
+                width: 20%;
             }
+        }
+        div.left,
+        div.right {
 
-            
+            display: inline-block;
+            margin:0px;
+            padding: 2vh 0 1vh 0;
+            font-size: 2em;
+            background-color: red;
+
+        }
+        div.Todo{
+            p{
+                font-size: 3em;
+            }
         }
     }
-
-    footer
-    {
+    footer {
         position: fixed;
         bottom: 0mm;
         right: 0;
-        left: 0; 
+        left: 0;
     }
-
 }

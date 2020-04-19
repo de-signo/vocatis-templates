@@ -16,7 +16,7 @@
   <link href="@Href("style.css")" type="text/css" rel="stylesheet" />
 </head>
 <body class="printer">
-  @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js")
+  @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js", "js/jquery.qrcode.js")
 
   <header>
   <img src="plattformlogo_01.png" 
@@ -72,7 +72,18 @@
   <text>
   function hookupButtons() {
     $("a.btn").unbind()
-    .click(function() {
+    .each(function (){
+      // do not block
+      var url = $(this).find(".qrcode").data("url");
+      if (url) {
+          // make absolute
+          var a = document.createElement("a");
+          a.href = url;
+          url = a.href;
+      }
+
+      $(this).find(".qrcode").qrcode({text: url});
+    }).click(function() {
       $("[data-name]").text($(this).data("label"));
     }).printTicket({
       legacy: false,
@@ -108,9 +119,20 @@
   function hookupButtons() {
   
     $("a.btn").unbind()
+    .each(function (){
+      // do not block
+      var url = $(this).find(".qrcode").data("url");
+      if (url) {
+          // make absolute
+          var a = document.createElement("a");
+          a.href = url;
+          url = a.href;
+      }
+      $(this).find(".qrcode").qrcode({text: url});
+    })
     .click(function (ev) {
       ev.preventDefault();
-
+      
       // do not block
       var url = $(this).attr("href");
       if (!url)
@@ -134,7 +156,7 @@
         $("#waitPopup").hide();
       });
     });
-  };
+  }
   </text>
 }
   $(document).ready(function() {
