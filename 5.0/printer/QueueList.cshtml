@@ -23,7 +23,12 @@
   var tracking_id = (string)Model.Style["tracking_id"].Value;
 }
 <section id="idle">
-  @if (buttonCount > 1) { <h4>Bitte wählen Sie den gewünschten Fachbereich aus:</h4> }
+  @if (buttonCount >0) { <div class="title"><h4>Gewünschter Fachbereich:</h4>
+    <h4>Wartemarke</h4></div>
+    <div class="subtitle">
+    <p>DRUCKEN</p>
+    <p>SCANNEN</p>
+    </div> }
   <ul class="buttons-@buttonCount">
     @for (int i = 1; i <= 8; i++) {
       if (!String.IsNullOrEmpty((string)Model.Style["text" + i].Value)) {
@@ -42,7 +47,7 @@
       <div>
         @((string)Model.Style["text" + i].Value)
       </div>
-      <div>
+      <div class="queue-status">
         <div>
           <span>
             @if (status.QueueLength > 3)
@@ -71,6 +76,7 @@
           </span>
         </div>
       </div>
+      <div class="qrcode" data-url="@Href("AppTicket.cshtml", new { q=queueid, c=catids, t=tracking_id })"></div>
     </a></li>
     @* manually closed *@
     } else if ((status.OpenCloseStatus & WaitQueueOpenCloseStatus.Manual) != 0) {
