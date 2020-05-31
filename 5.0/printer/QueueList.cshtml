@@ -1,4 +1,6 @@
 ﻿<!DOCTYPE html>
+@using iSign
+@using System.Linq
 @using System.Web.Optimization
 @using Stolltec.Forms.Model
 @using Stolltec.Vocatis
@@ -30,7 +32,7 @@
     @* Queue open *@
     if (disableOpenClose || (status.OpenCloseStatus & WaitQueueOpenCloseStatus.IsOpen) != 0)
     {
-    <li><a href="@Model.Navigate(ticketUrl, new { queueid=queueid, cat=Model.Style["catid" + i].Value })" data-label="@((string)Model.Style["text" + i].Value)"
+    <li><a href="@Href(ticketUrl, new { queueid=queueid, catid=String.Join(",",((CommonGuidId[])Model.Style["catid" + i].Value).Select(g=>g.ToString()).ToArray()), tid=tracking_id })" data-label="@((string)Model.Style["text" + i].Value)"
     @if (status.QueueLength == 0) {<text>class="btn next-one"</text>} else {<text>class="btn"</text>}>
       <div>
         <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
