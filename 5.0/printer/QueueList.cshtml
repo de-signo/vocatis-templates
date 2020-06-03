@@ -32,7 +32,9 @@
     @* Queue open *@
     if (disableOpenClose || (status.OpenCloseStatus & WaitQueueOpenCloseStatus.IsOpen) != 0)
     {
-    <li><a href="@Href(ticketUrl, new { queueid=queueid, catid=String.Join(",",((CommonGuidId[])Model.Style["catid" + i].Value).Select(g=>g.ToString()).ToArray()), tid=tracking_id })" data-label="@((string)Model.Style["text" + i].Value)"
+      var catidI = Model.Style["catid" + i].Value as CommonGuidId[];
+      string catids = catidI == null ? null : String.Join(",",catidI.Select(g=>g.ToString()).ToArray());
+    <li><a href="@Href(ticketUrl, new { queueid=queueid, catid=catids, tid=tracking_id })" data-label="@((string)Model.Style["text" + i].Value)"
     @if (status.QueueLength == 0) {<text>class="btn next-one"</text>} else {<text>class="btn"</text>}>
       <div>
         <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
