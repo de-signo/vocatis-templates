@@ -41,11 +41,12 @@
 {
     <table id="list">
         <tbody>
-            @foreach (var x in list.Take(1))
+            @foreach (var x in list.Take(6))
             {
                 <tr>
                     <td class="room">@x.RoomName</td>
                     <td class="number">
+
                         @if (x.Categories.Any(cid => cats.Contains(cid.Id)))
                         {
                             <img src="termin.png" class="termin" alt="termin">
@@ -55,10 +56,14 @@
                             <img src="@Href(x.IconUrl)">
                         }
                         @x.Number
-                    </td>
+                    </td> 
+                </tr>                
+                <tr class="spacer">
+                    <td class="spacer"></td>
                 </tr>
+
             }
-            @foreach (var x in waiting.Take(5))
+            @foreach (var x in waiting.Take(3))
             {
                 <tr class="waiting">
                     <td class="room">&nbsp;</td>
@@ -73,6 +78,10 @@
                         }
                         @x.Number
                     </td>
+                
+                </tr>
+                <tr class="spacer">
+                    <td class="spacer"></td>
                 </tr>
             }
         </tbody>
@@ -111,6 +120,7 @@ else
                 <h2>SIE SIND DRAN!</h2>
                 <h4>Kommen Sie einfach direkt zu uns.<br>Wir erwarten Sie an</h4>
                 <h2>~room~</h2>
+               
             </div>
         }
         <script type="text/javascript">

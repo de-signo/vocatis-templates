@@ -1,98 +1,70 @@
-
 /*
  * Main style file for app
  */
- @import "colors.scss";
 
-
-
-body
-{
-        /* fill complete frame */
+@import "colors.scss";
+body {
+    /* fill complete frame */
     height: 100%;
-    width:100%;
-   
-
+    width: 100%;
     /* text */
     font-family: "Frutiger VR", Arial, Helvetica, sans-serif;
-
     /* background */
-    background-color: $color-common-background; 
+    background-color: $color-common-background;
 }
 
-body.list
-{
+body.list {
     background-color: $color-primary-background;
     margin: 0;
     display: block;
-
-    header 
-    {
-        h3
-        {
+    header {
+        h3 {
             font-size: 2.5em;
-            color:$color-highlight-foreground;
-            margin:20vh 0 0 15vw;
+            color: $color-highlight-foreground;
+            margin: 20vh 0 0 15vw;
         }
-    }  
-
-    table#list
-    {
+    }
+    table#list {
         width: 60%;
         line-height: 10vh;
         font-size: 4em;
-        margin: 5vh 0 0 0vw;
+        margin: 5vh 0 5vh 0vw;
         color: $color-primary-foreground;
         text-align: center;
         background-color: $color-primary-background;
-
-        tr.waiting
-        {
+        tr.waiting {
             line-height: 9vh;
-        }
-        
-        td.room
-        {
-            margin: 0;
-            
-        }
-        
-        td:last-child
-        {
-            width: 15vw;
-            text-align: center;
-        }
-        
-
-        tr:not(.waiting)
-        {
-            background-color:$color-primary-foreground;
-            font-weight: bold;
-            color: $color-primary-background;
-      
-
-            td:first-child
-            {
-               
-               text-align: left;
-               padding-left: 15vw;
-               color: $color-secondary-foreground;
-               
-    
+            td:first-child {
+                color: $color-primary-background;
+                background-color: $color-primary-background;
             }
-          
-            td:last-child
-            {
+            td:last-child {
+                width: 15vw;
+                text-align: center;
+                background-color: $color-primary-background;
+                color: $color-primary-foreground;
+            }
+        }
+        tr:not(.waiting) {
+            font-weight: bold;
+            td:first-child {
+                text-align: left;
+                padding-left: 15vw;
+                color: $color-secondary-foreground;
+                background-color: $color-primary-foreground;
+            }
+            td:last-child {
                 background-color: $color-secondary-background;
                 color: $color-primary-foreground;
                 text-align: center;
-    
             }
         }
+        tr.spacer>td.spacer {
+            background-color: $color-primary-background;
+            height: 2vh;
+        }
     }
-
-    div#popup.popup.simple
-    {
+    div#popup.popup.simple {
         position: absolute;
         width: 100%;
         top: 0px;
@@ -101,45 +73,29 @@ body.list
         right: 0px;
         background-color: $color-primary-background;
         color: $color-highlight-foreground;
-
-
-        h1
-        { 
+        h1 {
             font-size: 8em;
-            margin:0;
+            margin: 0;
             text-align: left;
             padding: 10vh 0 5vh 10vw;
             margin-bottom: 0px;
         }
-
-        h2
-        {
-            
+        h2 {
             font-size: 4em;
-            color:$color-highlight-foreground;
+            color: $color-highlight-foreground;
             width: 80%;
             padding: 6vh 0 0 10vw;
             text-align: left;
-            margin:0;
+            margin: 0;
         }
-
-        h4
-        {
+        h4 {
             font-size: 3em;
             padding: 6vh 0 0 10vw;
             text-align: 3.5em;
-            color:$color-highlight-foreground;
+            color: $color-highlight-foreground;
             top: 40vh;
             width: 80%;
-            margin:0;
-        } 
- 
-    } 
+            margin: 0;
+        }
+    }
 }
-
-
-   
-
-
-
-
