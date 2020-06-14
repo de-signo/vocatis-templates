@@ -39,10 +39,12 @@
 
 @helper ItemsList(IEnumerable<DisplayNumber> list, IEnumerable<WaitNumber> waiting, CommonGuidId[] cats)
 {
+    int totalRows = 6;
     <table id="list">
         <tbody>
             @foreach (var x in list.Take(6))
             {
+                totalRows--;
                 <tr>
                     <td class="room">@x.RoomName</td>
                     <td class="number">
@@ -63,7 +65,7 @@
                 </tr>
 
             }
-            @foreach (var x in waiting.Take(3))
+            @foreach (var x in waiting.Take(totalRows))
             {
                 <tr class="waiting">
                     <td class="room">&nbsp;</td>
@@ -78,7 +80,6 @@
                         }
                         @x.Number
                     </td>
-                
                 </tr>
                 <tr class="spacer">
                     <td class="spacer"></td>
