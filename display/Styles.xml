@@ -64,6 +64,15 @@
           <text key="simple">Einfach</text>
         </content_class>
       </field>
+      <field key="notify">
+        <names>
+          <name>Glocke</name>
+        </names>
+         <content_class type="TextChoose">
+          <text key="">Keine</text>
+          <text key="tone.mp3">Standard</text>
+        </content_class>
+      </field>
       <field key="highlightcat">
         <names>
           <name>Termin Kategorie</name>
