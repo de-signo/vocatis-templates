@@ -1,0 +1,36 @@
+﻿@*
+  Printer navigation level 1
+  Get a ticket (no appointment)
+*@
+@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@{
+  // Parse model
+  var Model = new FormsModel(this);
+
+  // setup layout
+  PageData["model"] = Model;
+  PageData["show_home"] = true;
+  PageData["show_back"] = false;
+  Layout = "PrinterLayout.cshtml";
+}
+<div class="site-content">
+ <div class="main">
+    @* Display list when idle *@
+    <div id="queuelist">
+      <h2>WORÜBER MÖCHTEN SIE HEUTE MIT UNS SPRECHEN?</h2>
+      <ul class="flex-container">
+        @for (int i = 1; i <= 8; i++) {
+          if (!String.IsNullOrEmpty((string)Model.Style["text" + i].Value)) {
+            var queueid = Model.Style["queueid" + i].Value;
+            <li>
+              <a class="list-button" href='@Model.Navigate("P2_GetTicket.cshtml", new { index=i })'>
+                @((string)Model.Style["text" + i].Value)
+              </a>
+            </li>
+          }
+        }
+      </ul>
+    </div>
+  </div>
+</div>
