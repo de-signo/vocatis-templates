@@ -120,8 +120,20 @@ body.printer
         background-color:$color-primary-background;
         height: 60vh; 
         width: 100%;
-        position: relative;
+        position: relative; 
 
+     
+        div{
+            >p{ 
+              
+            width: 40%;
+            color:$color-primary-foreground;
+            font-size: 1.5em;
+            margin: 2vh 0 0 10vw;
+            }  
+        }  
+             
+       
         #waitPopup
         {
 
@@ -146,6 +158,16 @@ body.printer
                 font-size: 3.5em;
             }
         }
+
+        .qrcode
+        {
+            position: absolute;
+            top: 10vh;
+            canvas{
+                top: 20vh;
+                left: 55vw;
+            }
+        }
     }   
 
     .Todo, .Todo2
@@ -154,7 +176,7 @@ body.printer
         padding: 4vh 0 0 0vw;
         top: 20vh;
     
-        p
+        >p
         {
             font-size: 3em;
             font-weight: bold;

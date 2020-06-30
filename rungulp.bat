@@ -1,3 +1,3 @@
 @echo off
 
-gulp
+gulp & pause
