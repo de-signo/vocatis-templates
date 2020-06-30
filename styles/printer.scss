@@ -49,11 +49,12 @@ body.printer
 
     h2 
     {
-        font-size: 3em;
+        font-size: 3.5em;
         padding: 12vh 0 0 10vw;
         color:$color-highlight-foreground;
         margin:0;
         width: 80%;
+        text-transform: uppercase;
         
     } 
  
@@ -121,19 +122,57 @@ body.printer
         height: 60vh; 
         width: 100%;
         position: relative; 
+      
+        .left
+        {
+            float: left;
+            width: 35%; 
+            margin: 8vh 0 0 10vw;
 
+            p:second-child
+            {
+                margin-top: 5vh;
+                font-weight: bold;
+            }
+        } 
+        .right
+        {
+            float: right;
+            width: 35%;
+            margin: 8vh 10vw 0 0vw;
+            
+            p:last-child
+            {
+                margin-top: 4vh;
+                font-weight: bold;
+            }
+        } 
+    
      
         div{
             >p{ 
               
-            width: 40%;
             color:$color-primary-foreground;
-            font-size: 1.5em;
-            margin: 2vh 0 0 10vw;
+            font-size: 2em;
+           
             }  
-        }  
+        }        
+        
+        
+        .qrcode
+        {
+            position: absolute;
+            top: 40vh;
+            left: 55vw;
+            canvas{
+                top: 50vh;
+                left: 55vw;
+            }
+        }
+
+
+  
              
-       
         #waitPopup
         {
 
@@ -159,15 +198,7 @@ body.printer
             }
         }
 
-        .qrcode
-        {
-            position: absolute;
-            top: 10vh;
-            canvas{
-                top: 20vh;
-                left: 55vw;
-            }
-        }
+
     }   
 
     .Todo, .Todo2
