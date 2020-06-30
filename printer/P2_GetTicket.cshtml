@@ -27,14 +27,14 @@
   <div class="left">
     <p>Ziehen Sie Ihr Ticket und machen Sie es sich auf dem Sofa bequem.</p> 
     <p>Ticket drucken</p>
-    <img src="printer.png" class="printer" alt="printer">
   </div>
   <div class="right">
     <p>Mögen Sie es lieber papierlos? Einfach Ticket scannen und sehen, wann Sie dran sind.</p> 
     <p>Ticket scannen</p>  
   </div>
-  <a class="print-button" href='@Model.Navigate("PrinterTicket.cshtml", new { index=index })'></a>
+  <a class="print-button" href='@Model.Navigate("PrinterTicket.cshtml", new { index=index })'>&nbsp;</a>
   <div class="qrcode" data-url='@Href("AppTicket.cshtml", new { q=queueid, c=catids, t=tracking_id  })'></div>   
+  <h6>Wir sind ruckzuck für Sie da.</h6>
 </div>
 
 @* wait popup is shown, while generating a new number *@

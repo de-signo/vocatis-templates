@@ -92,7 +92,7 @@ body.printer
         font-size: 3em;
         font-weight: bold;
         color:$color-secondary-background;
-        padding: 15vh 0 0 10vw;
+        padding: 48vh 0 0 10vw;
         width: 80%;
         margin: 0;
     } 
@@ -129,9 +129,9 @@ body.printer
             width: 35%; 
             margin: 8vh 0 0 10vw;
 
-            p:second-child
+            p:last-child
             {
-                margin-top: 5vh;
+                margin-top: 6vh;
                 font-weight: bold;
             }
         } 
@@ -165,9 +165,28 @@ body.printer
             top: 40vh;
             left: 55vw;
             canvas{
-                top: 50vh;
+                top: 51vh;
                 left: 55vw;
             }
+        }
+
+        a.print-button{
+
+            background-color: $color-primary-shadowred;
+            position: absolute;
+            margin-top: 25vh;
+            left: 10vw;
+            width: 19vw;
+            height: 10vh;
+
+          
+            background-image:url("images/printer.png");
+            background-size: 65% 65%;
+            background-repeat: no-repeat;
+            background-position: center;
+           
+
+            
         }
 
 
