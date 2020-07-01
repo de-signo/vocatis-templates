@@ -77,7 +77,11 @@
           a.href = url;
           url = a.href;
       }
-      $(this).qrcode({text: url});
+      $(this).qrcode({
+        text: url,
+        fill: 'white',
+        background: '#002d67'
+      });
     });
   }
 
