@@ -12,6 +12,8 @@
 
 @{
   var showQrCode = PageData["appointment_print_or_scan"];
+  var lang = PageData["lang"];
+  var string_map = PageData["string_map"];
   var debug = false;
   // Parse model
   var Model = new FormsModel(this);
@@ -49,7 +51,7 @@
     default:
     case "1":
         <img src="direction.png" alt="direction">
-        <h1>Bitte scannen Sie den QR-Code aus Ihrer Terminbestätigung!</h1>
+        <h1>@string_map["Appoint_Scan"]</h1>
         <textarea id="scan" ></textarea>
       break;
     case "2":
@@ -60,8 +62,8 @@
       if (m.Count != 1 && !debug)
       {
         <!-- code: @a -->
-        <h2>Ungültiger QR-Code!</h2>
-        <p>Bitte scannen Sie den QR-Code aus ihrer aktuellen Terminbestätigung ein.</p>
+        <h2>@string_map["Appoint_InvalidHeader"]</h2>
+        <p>@string_map["Appoint_InvalidText"]</p>
       }
       else
       {
@@ -79,7 +81,7 @@
         }
         if (entry == null)
         {
-          <h3>Ihr Termin wurde nicht in unserer Liste gefunden.</h3>
+          <h3>@string_map["Appoint_NotFoundHeader"]</h3>
         }
         else
         {
@@ -99,31 +101,31 @@
                 ticket.ReferenceId = entry.id;
                 voc.Instance.UpdateNumber(ticket);
               }
-              ticketUrl = Href("PrinterTicket.cshtml", new { id=ticket.Id, tid=tracking_id });
+              ticketUrl = Href("PrinterTicket.cshtml", new { id=ticket.Id, tid=tracking_id, lang=lang });
               <img src="registration.png" id="registration" alt="registration" />
-              <h3>Sie sind angemeldet</h3>
+              <h3>@string_map["Appoint_TicketHeader"]</h3>
               if (showQrCode)
               {
-                <p>Bitte noch etwas Geduld, drucken oder scannen Sie Ihr Ticket und warten bis Ihre Nummer aufgerufen wird.</p>
+                <p>@string_map["Appoint_TicketTextWScan"]</p>
                 <div class="left">
-                  <p>Ticket drucken</p>
+                  <p>@string_map["Appoint_TicketPrint"]</p>
                   <a class="print-button" href='@ticketUrl'><img src="printer.png" alt="Drucker"> </a>
                 </div>
                 <div class="right">
-                  <p>Ticket scannen</p>
-                  <div class="qrcode" data-url="@Href("App.cshtml", new {i=ticket.Id, t=tracking_id})"></div>
+                  <p>@string_map["Appoint_TicketScan"]</p>
+                  <div class="qrcode" data-url="@Href("App.cshtml", new {i=ticket.Id, t=tracking_id, l=lang })"></div>
                 </div>
               }
               else
               {
-                <p>Bitte noch etwas Geduld,Ihr Aufruf wird zeitnah zur Terminzeit erfolgen.</p>
+                <p>@string_map["Appoint_TicketTextW/OScan"]</p>
                 <a class="print-now" href='@ticketUrl' style="display: none;"></a>
               }
             }
           }
           else
           {
-            <h3>Dieses Gerät ist nicht für Ihren Termin konfiguriert, bitte wenden Sie sich an die korrekte Stelle.</h3>
+            <h3>@string_map["Appoint_TicketNoQueue"]</h3>
           }
         }
       }
@@ -134,35 +136,35 @@
   @if (! partial)
   {
     <div id="loading" style="display: none;">
-      <h3>Einen Moment, Ihr Code wird geprüft.</h3>
+      <h3>@string_map["Appoint_Loading"]</h3>
     </div>
     @* wait popup is shown, while generating a new number *@
     <section id="waitPopup" style="display: none;">
-      <h4>Ihre Wartemarke wird gedruckt</h4>
+      <h4>@string_map["Print_WaitHeader"]</h4>
       <div>
         <img src="wait.gif" id="wait" alt="wait" />
       </div>
-      <p>Bitte entnehmen Sie Ihre Wartenummer</p>
+      <p>@string_map["Print_WaitText"]</p>
       <img src="PfeilRechts.png" />
     </section>
 
     @* take popup is shown, when the printout is ready *@
     <section id="takePopup" style="display: none;">
-        <h4>Ihre Wartemarke wird gedruckt</h4>
+        <h4>@string_map["Print_TakeHeader"]</h4>
       <div>
         <img src="wait.gif" id="wait" alt="wait" />
       </div>
-      <p>Bitte entnehmen Sie Ihre Wartenummer</p>
+      <p>@string_map["Print_TakeText"]</p>
       <img src="PfeilRechts.png" />
     </section>
 
     @* show popup shows the number on the screen *@
     <section id="showPopup" style="display: none;">
-      <h3>Sie werden angemeldet im Fachbereich</h3>
+      <h3>@string_map["Print_ShowHeader"]</h3>
       <h2 data-name></h2>
-      <p>Bitte merken Sie sich Ihre Anmeldenummer:</p>
+      <p>@string_map["Print_ShowText1"]</p>
       <div class="number" data-number></div>
-      <p>Sie werden aufgerufen</p>
+      <p>@string_map["Print_ShowText2"]</p>
     </section>
   }
 </div>
@@ -170,7 +172,7 @@
 @if (! partial)
 {
   <script type="text/javascript">
-    appointment.init('@Html.Raw(Model.Navigate("P1_Appointment.cshtml", new { i="2", a="--text--"}))');
+    appointment.init('@Html.Raw(Model.Navigate("P1_Appointment.cshtml", new { i="2", a="--text--", lang=lang}))');
     @if (String.IsNullOrEmpty(s) && !String.IsNullOrEmpty(a))
     {
       <text>

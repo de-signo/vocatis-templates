@@ -9,6 +9,8 @@
 @{
   var disableOpenClose = !PageData["enable_open_close"];
   var showQrCode = PageData["list_print_or_scan"];
+  var lang = PageData["lang"];
+  var string_map = PageData["string_map"];
 
   // Parse model
   var Model = new FormsModel(this);
@@ -34,14 +36,14 @@
   @if (buttonCount > 0) {
     if (showQrCode) {
       <div class="title">
-        <h4>Gewünschter Fachbereich:</h4>
-        <h4>Wartemarke</h4></div>
+        <h4>@string_map["List_HeaderQr1"]</h4>
+        <h4>@string_map["List_HeaderQr2"]</h4></div>
         <div class="subtitle">
-        <p>DRUCKEN</p>
-        <p>SCANNEN</p>
+        <p>@string_map["List_Print"]</p>
+        <p>@string_map["List_Scan"]</p>
       </div>
     } else {
-      <h4>Bitte wählen Sie den gewünschten Fachbereich aus:</h4>
+      <h4>@string_map["List_HeaderNoQr"]</h4>
     }
   }
   <ul class="buttons-@buttonCount @if (showQrCode) { <text>with-qr-code</text> }">
@@ -54,7 +56,7 @@
     {
       var catidI = Model.Style["catid" + i].Value as CommonGuidId[];
       string catids = catidI == null ? null : String.Join(",",catidI.Select(g=>g.ToString()).ToArray());
-    <li><a href="@Href(ticketUrl, new { queueid=queueid, catid=catids, tid=tracking_id })" data-label="@((string)Model.Style["text" + i].Value)"
+    <li><a href="@Href(ticketUrl, new { queueid=queueid, catid=catids, tid=tracking_id, lang=lang })" data-label="@((string)Model.Style["text" + i].Value)"
     @if (status.QueueLength == 0) {<text>class="btn next-one"</text>} else {<text>class="btn"</text>}>
       <div>
         <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
@@ -67,11 +69,11 @@
           <span>
             @if (status.QueueLength > 3)
             {
-              <text>Es befinden sich noch <b> @status.QueueLength Kunden </b>vor Ihnen</text>
+              <text>@Html.Raw(String.Format(string_map["List_StatusMT3FormatRaw"], status.QueueLength))</text>
             }
             else
             {
-              <text>Bitte halten Sie sich im Wartebereich auf</text>
+              <text>@Html.Raw(String.Format(string_map["List_StatusLT3FormatRaw"], status.QueueLength))</text>
             }
           </span>
         </div>
@@ -92,7 +94,7 @@
         </div>
       </div>
       @if (showQrCode) {
-        <div class="qrcode" data-url="@Href("AppTicket.cshtml", new { q=queueid, c=catids, t=tracking_id })"></div>
+        <div class="qrcode" data-url="@Href("AppTicket.cshtml", new { q=queueid, c=catids, t=tracking_id, l=lang })"></div>
       }
     </a></li>
     @* manually closed *@
@@ -105,7 +107,7 @@
         @((string)Model.Style["text" + i].Value)
       </div>
       <div>
-       Derzeit geschlossen 
+        @string_map["List_Closed"]
       </div>
     </li>
     @* closed by opening hours *@
@@ -118,7 +120,7 @@
         @((string)Model.Style["text" + i].Value)
       </div>
       <div>
-        geschlossen außerhalb der Öffnungszeiten
+        @string_map["List_ClosedHours"]
       </div>
     </li>  
     @* closed by limit *@
@@ -131,7 +133,7 @@
         @((string)Model.Style["text" + i].Value)
       </div>
       <div>
-        Geschlossen, keine freie Kapazität mehr 
+        @string_map["List_ClosedFull"]
       </div>
     </li>
     }}}

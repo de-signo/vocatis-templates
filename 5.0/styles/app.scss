@@ -24,6 +24,7 @@ html, body
     @media (orientation: landscape)
     {
         font-size: 2.5vw;
+        height: 60vh;
     }
     @media (orientation: portrait)
     {
@@ -110,7 +111,7 @@ header
 
 section.logo
 {
-    height: 10vh;
+    height: 8vh;
 
     img 
     {
@@ -169,6 +170,8 @@ section.content
     
     @media (orientation: landscape)
     {
+        height: 40vh;
+
         h2
         {
             text-align: left;
@@ -256,15 +259,17 @@ section.content
     {
         article 
         {
-            height: 52vh;
+            height: 40vh;
             width: 50%;
             float: left;
+            font-size: 0.5rem;
         }
         div.number
         {
-            height: 52vh;
+            height: 40vh;
             width: 50%;
             float: left;
+            font-size: 0.5rem;
 
             h3
             {
@@ -282,7 +287,7 @@ section.content
         {
             h4
             {
-                padding: 15vh 1vw 5vh 1vw; 
+                padding: 12vh 1vw 5vh 1vw; 
             }  
         }
     }
@@ -382,6 +387,50 @@ footer
     right: 0;
     left: 0;
     text-align: center;
-    height: 5vh;
-    margin: 2vh 15vw;
+    height: 4vh;
+    margin: 0vh 0 0vh 15vw;
+    display: inline-flex;
+
+    @media (orientation: landscape)
+    {
+        height: 10vh;
+        margin: 0.5vh 0 0vh 15vw; 
+        top: 70vh;
+
+        .button{
+            padding: 0.5vh 2.3vw 0 2.4vw;
+            img{
+                height: 6vh;
+                width: auto;
+            }
+        }
+
+        
+    }
+
+    .button {
+        background-color: $color-secondary-background;
+        padding: 0.5vh 2.4vw 0 2.4vw;
+        margin: 0 1vw 0 0;
+        display: block;
+        width: 10%;
+
+        a{
+            text-decoration: none;
+        }
+     
+        p {
+            text-align: center;
+            margin: 0px;
+            padding-bottom: 0.3vh;
+            font-size: 0.5em;
+            color: $color-secondary-foreground;
+        }
+          
+        img {
+            width: 80%;   
+        }
+    }
+    
+
 }

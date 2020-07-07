@@ -1,5 +1,10 @@
 @using System.Web.Optimization
 <!doctype html>
+@{
+  var lang = PageData["lang"];
+  var langs = PageData["langs"];
+  var string_map = PageData["string_map"];
+}
 <html>
 <head>
   <meta charset="utf-8">
@@ -12,24 +17,31 @@
 <body>
   <header>
  <img src="plattform_01.png" class="plattform" alt="plattform">
- <h1><span style="text-transform:uppercase">Wartezeit</span>  Live-Abfrage</h1>
+ <h1><span style="text-transform:uppercase">@string_map["App_Title_a"]</span> @string_map["App_Title_b"]</h1>
 </header>
 
 <section class="logo">
   <img src="customerlogo.png" />
 </section>
 
-<div id="content" data-content-src="@Href("AppContent.cshtml", new {id=Request["i"]})">
+<div id="content" data-content-src="@Href("AppContent.cshtml", new {id=Request["i"], lang})">
   <section class="loading content">
-    Laden ...
+    @string_map["App_Loading"]
   </section>
 </div>
 <div id="error" style="display: none;">
- <h2>Fehler aufgetreten!</h2>
- <p>Bitte begeben Sie sich in den Wartebereich!</p>
+ <h2>@string_map["App_ErrorOccuredHeader"]</h2>
+ <p>@string_map["App_ErrorOccuredText"]</p>
 </div>
 
 <footer>
+  @foreach (var l in langs)
+  {
+    <a class="button" href='@Href("App.cshtml", new { lang=l, id=Request["id"] })'>
+      <p>@string_map["lang_" + l]</p>
+      <img src="lang/@(l).png">
+    </a>
+  }
 </footer>
 
 @Scripts.Render("~/Scripts/jquery")

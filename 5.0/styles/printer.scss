@@ -465,4 +465,32 @@ body.queueinfo {
         }
 
     }
+
+    footer
+    {
+        position: fixed;
+        bottom: 0mm;
+        right: 0;
+        left: 0;
+        display: inline-flex;
+        margin: 0 0vw 0vh 15vw;
+        .button {
+            background-color: $color-secondary-background;
+            padding: 0.5vh 1vw 0 0vw;
+            margin: 0 1vw 0 0;
+            display: block;
+            width: 14%;
+            p {
+                text-align: center;
+                margin: 0px;
+                padding-bottom: 0.3vh;
+                font-size: 1.4em;
+                color: $color-secondary-foreground;
+            }
+            img {
+                width: 80%;
+                padding-left: 14%;
+            }
+        }
+    }
 }

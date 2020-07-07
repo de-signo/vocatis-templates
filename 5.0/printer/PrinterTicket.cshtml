@@ -24,12 +24,13 @@
 }
 
 @helper content(bool withQrCode, string tracking_id, WaitNumber ticket) {
+var lang = PageData["lang"];
+var string_map = PageData["string_map"];
 
 @Scripts.Render("js/jquery.qrcode.js", "js/url_polyfill.js")
 <section class="ticket">
   <header>
-    @DateTime.Now.ToString("dd.MM.yyyy")&emsp;
-    @DateTime.Now.ToString("HH:mm")Uhr
+    @Html.Raw(String.Format(string_map["Ticket_TimeFormatRaw"], DateTime.Now))
   </header>
   <h1>
     @ticket.Number
@@ -37,8 +38,8 @@
   <img src="separation.png" class="separation" alt="Trennung">
   <section class="qrcode">
     @if (withQrCode) {
-    <h4>Aufruf verfolgen</h4>
-    <a href="@Href("App.cshtml", new {i=ticket.Id, t=tracking_id})"></a>
+    <h4>@string_map["Ticket_AppHeader"]</h4>
+    <a href="@Href("App.cshtml", new {i=ticket.Id, t=tracking_id, l=lang})"></a>
     }
     <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">
   </section>

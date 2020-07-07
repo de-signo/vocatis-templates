@@ -19,8 +19,11 @@
   }
 }
 @{
-    dynamic id = CommonGuidId.FromString(Request["id"]);
-    var ticket = Vocatis.GetTicket(id);
+  var lang = PageData["lang"];
+  var string_map = PageData["string_map"];
+
+  dynamic id = CommonGuidId.FromString(Request["id"]);
+  var ticket = Vocatis.GetTicket(id);
 }
 @switch ((WaitNumberState)ticket.State)
 {
@@ -32,8 +35,8 @@ case WaitNumberState.Parked:
 <section class="main content">
   <h2>@queuename</h2>
   <article>
-    <p>Es befinden sich noch <b>@status.Position Kunden</b> vor Ihnen</p>     
-    
+    <p>@Html.Raw(String.Format(string_map["App_NumWaitingFormatRaw"], status.Position))</p>
+
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.7 71.2">
       <path class="cls-1" d="M11.6,14.3A6.51,6.51,0,0,0,18.1,8h0a6.38,6.38,0,0,0-6.5-6.3A6.45,6.45,0,0,0,5.1,8a6.51,6.51,0,0,0,6.5,6.3h0" transform="translate(1)"/>
       <path class="cls-1" d="M27,12.8a6.51,6.51,0,0,0,6.5-6.3h0a6.5,6.5,0,0,0-13,0A6.32,6.32,0,0,0,27,12.8h0" transform="translate(1)"/>
@@ -41,12 +44,12 @@ case WaitNumberState.Parked:
       <path class="cls-1" d="M23.3,23a9.15,9.15,0,0,0-5.1-7.9,8.86,8.86,0,0,0-1.7-.8h0a7.52,7.52,0,0,1-9.4,0H6.9C2.8,15.8,0,19.2,0,23V39.4H0a2.71,2.71,0,0,0,2.7,2.4,2.66,2.66,0,0,0,2.2-1.1v27A3.51,3.51,0,0,0,8.4,71h0a3.46,3.46,0,0,0,3.5-3.4V43.4H12V67.7a3.5,3.5,0,0,0,7,0V41.3l.3.1a2.66,2.66,0,0,0,1.2.3,2.64,2.64,0,0,0,2.7-2.4V35.2Z" transform="translate(1)"/>
       <text class="cls-2" text-anchor="middle" transform="translate(12.5 34)">@status.Position</text>
     </svg>
-    <p><b>Bitte halten Sie sich im Wartebereich auf!</b></p>
-    <p id="three">STAND: @DateTime.Now.ToString("HH\\:mm") Uhr</p> 
+    <p><b>@string_map["App_StayClose"]</b></p>
+    <p id="three">@String.Format(string_map["App_TimeFormat"], DateTime.Now)</p>
   </article>
   <div class="notch"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g></svg></div>
   <div class="number">
-    <h3>Ihre Wartemarke:</h3>
+    <h3>@string_map["App_YourNumber"]</h3>
     <h4>@ticket.Number</h4>
   </div>
 </section>
@@ -56,7 +59,7 @@ case WaitNumberState.Parked:
 <section class="wait01 content">
   <h2>@queuename</h2>
   <article>
-    <p>Es befinden sich noch <b>@status.Position Kunden</b> vor Ihnen</p>
+    <p>@Html.Raw(String.Format(string_map["App_NumWaitingFormatRaw"], status.Position))</p>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.7 71.2">
             <path class="cls-1" d="M11.6,14.3A6.51,6.51,0,0,0,18.1,8h0a6.38,6.38,0,0,0-6.5-6.3A6.45,6.45,0,0,0,5.1,8a6.51,6.51,0,0,0,6.5,6.3h0" transform="translate(1)"/>
             <path class="cls-1" d="M27,12.8a6.51,6.51,0,0,0,6.5-6.3h0a6.5,6.5,0,0,0-13,0A6.32,6.32,0,0,0,27,12.8h0" transform="translate(1)"/>
@@ -64,13 +67,13 @@ case WaitNumberState.Parked:
             <path class="cls-1" d="M23.3,23a9.15,9.15,0,0,0-5.1-7.9,8.86,8.86,0,0,0-1.7-.8h0a7.52,7.52,0,0,1-9.4,0H6.9C2.8,15.8,0,19.2,0,23V39.4H0a2.71,2.71,0,0,0,2.7,2.4,2.66,2.66,0,0,0,2.2-1.1v27A3.51,3.51,0,0,0,8.4,71h0a3.46,3.46,0,0,0,3.5-3.4V43.4H12V67.7a3.5,3.5,0,0,0,7,0V41.3l.3.1a2.66,2.66,0,0,0,1.2.3,2.64,2.64,0,0,0,2.7-2.4V35.2Z" transform="translate(1)"/>
             <text class="cls-2" text-anchor="middle" transform="translate(12.5 34)">@status.Position</text>
       </svg>
-    <b>Bitte rechtzeitig den Wartebereich aufsuchen!</b><br>
-    <b>Ihre voraussichtliche</b> Wartezeit betr&auml;gt <b>ca. @((int)status.EstimatedTimeOfCall.TotalMinutes) Minuten</b>.
-    <p id="three">STAND: @DateTime.Now.ToString("HH\\:mm") Uhr</p>
-  </article>  
+    <b>@string_map["App_ComeBack"]</b><br>
+    @Html.Raw(String.Format(string_map["App_WaitingTimeFormatRaw"], (int)status.EstimatedTimeOfCall.TotalMinutes))
+    <p id="three">@String.Format(string_map["App_TimeFormat"], DateTime.Now)</p>
+  </article>
   <div class="notch"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g></svg></div>
   <div class="number">
-    <h3>Ihre Wartemarke:</h3>
+    <h3>@string_map["App_YourNumber"]</h3>
     <h4>@ticket.Number</h4>
   </div>
 </section>
@@ -81,15 +84,15 @@ case WaitNumberState.Called:
   var callInfo = Vocatis.GetTicketCallInfo(id);
 
 <section class="room content">
-  <h2>Aufruf</h2>
+  <h2>@string_map["App_CallHeader"]</h2>
   <article>
-    <p>Ihr Aufruf:</p>   
+    <p>@string_map["App_CallText"]</p>
     <p id="place">@callInfo.RoomName</p>
-    <p id="three">STAND: @DateTime.Now.ToString("HH\\:mm") Uhr</p>     
-  </article>  
+    <p id="three">@String.Format(string_map["App_TimeFormat"], DateTime.Now)</p>
+  </article>
   <div class="notch"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g></svg></div>
   <div class="number">
-    <h3>Ihre Wartemarke:</h3>
+    <h3>@string_map["App_YourNumber"]</h3>
     <h4>@ticket.Number</h4>
   </div>
 </section>
@@ -97,13 +100,13 @@ case WaitNumberState.Called:
 case WaitNumberState.Dismissed:
 
 <section class="danke content">
-  <h2>Bearbeitung ist abgeschlossen</h2>
+  <h2>@string_map["App_FinishedHeader"]</h2>
   <article>
-    <h3>Danke f&uuml;r Ihren Besuch</h3>   
-  </article>  
+    <h3>@string_map["App_FinishedText1"]</h3>
+  </article>
   <div class="notch"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g></svg></div>
   <div class="number">
-    <p>Wir w&uuml;nschen Ihnen einen angenehmen Tag!</p>
+    <p>@string_map["App_FinishedText2"]</p>
   </div>
 </section>
   break;

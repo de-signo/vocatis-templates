@@ -12,16 +12,18 @@ Printer main entry page
   PageData["show_home"] = false;
   PageData["show_back"] = false;
   Layout = "PL_Layout.cshtml";
+  var lang = PageData["lang"];
+  var string_map = PageData["string_map"];
 }
 <div class="site-content">
-  <h2>HERZLICH WILLKOMMEN!</h2>
-  <h3>Haben Sie einen Termin vereinbart?</h3>
+  <h2>@string_map["Entry_Header1"]</h2>
+  <h3>@string_map["Entry_Header2"]</h3>
   <textarea id="scan"></textarea>
 </div>
 
 <nav class="site-nav">
-  <a href='@Model.Navigate("P1_Appointment.cshtml")'>Ich habe<br>einen Termin</a>
-  <a href='@Model.Navigate("Printer.cshtml")'>Heute<br>spontan hier</a>
+  <a href='@Model.Navigate("P1_Appointment.cshtml", new { lang=lang })'>@Html.Raw(string_map["Entry_SelectAppointmentRaw"])</a>
+  <a href='@Model.Navigate("Printer.cshtml", new { lang=lang })'>@Html.Raw(string_map["Entry_SelectTicketRaw"])</a>
 </nav>
 
 @* Qr code scanning *@
@@ -32,7 +34,7 @@ Printer main entry page
       window.clearTimeout(timeoutHandle);
     }
     timeoutHandle = window.setTimeout(function() {
-      var url = '@Html.Raw(Model.Navigate("P1_Appointment.cshtml", new { a="--text--"}))';
+      var url = '@Html.Raw(Model.Navigate("P1_Appointment.cshtml", new { a="--text--", lang=lang }))';
       url = url.replace("--text--", encodeURI($("#scan").val()));
       window.location.href = url;
     }, 100);
