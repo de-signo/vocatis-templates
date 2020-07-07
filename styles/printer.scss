@@ -184,24 +184,8 @@ body.printer
             background-size: 65% 65%;
             background-repeat: no-repeat;
             background-position: center;
-           
-
-            
         }
-
-
-  
-             
-        #waitPopup
-        {
-
-            background-color:$color-primary-background;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0; 
-        }        
+                
         #wait
         {
             width: 10vw;
@@ -216,9 +200,17 @@ body.printer
                 font-size: 3.5em;
             }
         }
-
-
     }   
+
+    #waitPopup
+    {
+        background-color:$color-primary-background;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0; 
+    }
 
     .Todo, .Todo2
     {
