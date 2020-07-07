@@ -52,8 +52,10 @@
   </footer>
 </section>
 <script type="text/javascript">
-  var appurl = new URL($(".qrcode>a").attr("href"), window.location.href).href;
-  $("section.qrcode>a").qrcode({text: appurl})
+  // make absolute
+  var a = document.createElement("a");
+  a.href = $(".qrcode>a").attr("href");
+  $("section.qrcode>a").qrcode({text: a.href})
 </script>
 }
 
