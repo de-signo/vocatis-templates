@@ -1,104 +1,76 @@
-
-body.printer 
-{  
-
-    header
-    {
+body.printer {
+    header {
         display: block;
         background-color: $color-primary-foreground;
         height: 12vh;
-      
-        
-        .home
-        {
+        .home {
             width: 7%;
             margin: 3vh 10vw 0vh 0vw;
-            float:right;
+            float: right;
             border: 10px solid $color-primary-foreground;
-            padding:3vw;
+            padding: 3vw;
         }
-
-        .plattformlogo 
-        { 
+        .plattformlogo {
             height: 40%;
             width: auto;
             margin: 3vh 10vw 0vh 10vw;
-        
         }
-
-        .back
-        {
+        .back {
             height: 40%;
-            float:right;
+            float: right;
             margin: 1.5vh 10vw 0 0;
             border: 10px solid white;
-            padding:3vw;
+            padding: 3vw;
         }
-    }  
-    
-    
-    h1 
-    {
+    }
+    h1 {
         text-transform: uppercase;
         font-size: 7em;
         padding: 12vh 0 0 10vw;
         width: 80%;
-        color:$color-highlight-foreground;
-        margin:0;
-    } 
-
-    h2 
-    {
+        color: $color-highlight-foreground;
+        margin: 0;
+    }
+    h2 {
         font-size: 3.5em;
         padding: 12vh 0 0 10vw;
-        color:$color-highlight-foreground;
-        margin:0;
+        color: $color-highlight-foreground;
+        margin: 0;
         width: 80%;
         text-transform: uppercase;
-        
-    } 
- 
-    h3 
-    {
+    }
+    h3 {
         font-size: 2.5em;
         padding: 12vh 0 0 10vw;
-        color:$color-highlight-foreground;
+        color: $color-highlight-foreground;
         top: 40vh;
         width: 80%;
-        margin:0;
-    } 
-
-    h4 
-    {
+        margin: 0;
+    }
+    h4 {
         text-transform: uppercase;
         font-size: 5em;
         padding: 10vh 0 0 10vw;
         width: 80%;
-        color:$color-highlight-foreground;
-        margin:0;
+        color: $color-highlight-foreground;
+        margin: 0;
     }
-
-    h5 
-    {
+    h5 {
         font-size: 2.5em;
         padding: 4vh 0 0 10vw;
-        color:$color-highlight-foreground;
+        color: $color-highlight-foreground;
         width: 80%;
-        margin:0;
-    } 
-
-    h6
-    {
+        margin: 0;
+    }
+    h6 {
         font-size: 3em;
         font-weight: bold;
-        color:$color-secondary-background;
+        color: $color-secondary-background;
         padding: 48vh 0 0 10vw;
         width: 80%;
         margin: 0;
-    } 
-
-    .list-button
-    {
+    }
+    .list-button {
         background-color: $color-primary-shadowred;
         color: $color-highlight-foreground;
         text-align: left;
@@ -109,128 +81,114 @@ body.printer
         overflow: hidden;
         text-overflow: ellipsis;
     }
-
-    .list-button:hover, input:checked + label.list-button
-    {
+    .list-button:hover,
+    input:checked+label.list-button {
         background-color: $color-highlight-foreground;
-        color: black; 
+        color: black;
     }
-
-    div.site-content 
-    {
-        background-color:$color-primary-background;
-        height: 60vh; 
+    div.site-content {
+        background-color: $color-primary-background;
+        height: 60vh;
         width: 100%;
-        position: relative; 
-      
-        .left
-        {
+        position: relative;
+        .left {
             float: left;
-            width: 35%; 
+            width: 35%;
             margin: 8vh 0 0 10vw;
-
-            p:last-child
-            {
+            p:last-child {
                 margin-top: 6vh;
                 font-weight: bold;
             }
-        } 
-        .right
-        {
+        }
+        .right {
             float: right;
             width: 35%;
             margin: 8vh 10vw 0 0vw;
-            
-            p:last-child
-            {
+            p:last-child {
                 margin-top: 4vh;
                 font-weight: bold;
             }
-        } 
-    
-     
-        div{
-            >p{ 
-              
-            color:$color-primary-foreground;
-            font-size: 2em;
-           
-            }  
-        }        
-        
-        
-        .qrcode
-        {
+        }
+        div {
+            >p {
+                color: $color-primary-foreground;
+                font-size: 2em;
+            }
+        }
+        .qrcode {
             position: absolute;
             top: 40vh;
             left: 55vw;
-            canvas{
+            canvas {
                 top: 51vh;
                 left: 55vw;
             }
         }
-
-        a.print-button{
-
+        a.print-button {
             background-color: $color-primary-shadowred;
             position: absolute;
             margin-top: 25vh;
             left: 10vw;
             width: 19vw;
             height: 10vh;
-
-          
-            background-image:url("images/printer.png");
+            background-image: url("images/printer.png");
             background-size: 65% 65%;
             background-repeat: no-repeat;
             background-position: center;
         }
-                
-        #wait
-        {
-            width: 10vw;
-            margin: 8vh 0 0 43vw;
-        } 
-        
-        #queuelist
-        {
-            
-            h2
-            {
+        #queuelist {
+            h2 {
                 font-size: 3.5em;
             }
         }
-    }   
-
-    #waitPopup
-    {
-        background-color:$color-primary-background;
+    }
+    #waitPopup {
+        background-color: $color-primary-background;
         position: absolute;
-        top: 0;
+        top: 12vh;
         bottom: 0;
         left: 0;
-        right: 0; 
-    }
-
-    .Todo, .Todo2
-    {
-        margin:0;
-        padding: 4vh 0 0 0vw;
-        top: 20vh;
-    
-        >p
-        {
+        right: 0;
+        height: 60vh;
+        img#wait {
+            width: 15vw;
+            height: auto;
+            margin: 30vh 0vw 0 42vw;
+        }
+        p {
             font-size: 3em;
             font-weight: bold;
-            color:$color-primary-foreground;
+            position: absolute;
+            color: $color-secondary-background;
+            background-color: white;
+            top: 63vh;
+            left: 10vw;
+            width: 70%;
+            height: 5%;
+            margin: 0;
+        }
+        h6 {
+            display: none;
+        }
+        img.home {
+            display: none;
+        }
+    }
+    .Todo,
+    .Todo2 {
+        margin: 0;
+        padding: 4vh 0 0 0vw;
+        top: 20vh;
+        >p {
+            font-size: 3em;
+            font-weight: bold;
+            color: $color-primary-foreground;
             padding: 5vh 0 0 10vw;
             width: 80%;
             margin: 0;
-        } 
+        }
     }
-
-    input#txtFind
-    {
+    input#txtFind {
         margin: 3vh 0 0 10vw;
         font-size: 2.5em;
         font-weight: bold;
@@ -238,132 +196,96 @@ body.printer
         height: 5vh;
         padding-left: 5vw;
     }
-
-    .flex-container  
-    {
+    .flex-container {
         display: flex;
         flex-wrap: wrap;
-        
-        .list-button
-        {
+        .list-button {
             display: block;
             width: 37.5vw;
             margin: 2vh 0 0 5vw;
             height: 6vh;
             line-height: 6vh;
-        }        
+        }
     }
-
-    ul
-    {
-        list-style:none;
+    ul {
+        list-style: none;
         padding: 3vh 0 0 5vw;
         margin: 0;
     }
-
-    input[name="ap"]
-    {
+    input[name="ap"] {
         display: none;
     }
-
-    #btnOK2
-    { 
+    #btnOK2 {
         display: block;
         font-size: 2em;
-        color:$color-highlight-foreground;
+        color: $color-highlight-foreground;
         padding: 0.5vh 1.5vw 0.5vh 1.5vw;
         border: 3px solid $color-primary-background;
         border-radius: 8px;
-        background-color:$color-primary-background;
+        background-color: $color-primary-background;
         float: right;
         margin: 25vh 10vw 0;
-
-        &:hover
-        {
+        &:hover {
             background-color: $color-highlight-foreground;
-            color:black;
+            color: black;
         }
-    }   
-    
-
-    fieldset
-    {
+    }
+    fieldset {
         border: 0px;
         margin: 0;
         padding: 0;
-
-        #keyboard
-        {
+        #keyboard {
             height: 20vh;
             width: 80%;
             margin-left: 10vw;
             padding-top: 2vh;
             font-size: 2em;
-           
-            color:black; 
-            
-            
-            .tasten
-            {
-                padding: 1vh 2vw 1vh 2vw; 
-                text-align: right; 
-                a
-                {
+            color: black;
+            .tasten {
+                padding: 1vh 2vw 1vh 2vw;
+                text-align: right;
+                a {
                     padding: 0.5vh 0.5vw 0.5vh 0.5vw;
                     border: 2px solid $color-primary-background;
                     border-radius: 8px;
                     font-size: 0.8em;
                     display: inline-block;
-                    text-align: center; 
-                    width: 2em; 
-
-                    &.entf
-                    {
-                        background-image:url("images/ENT_s.png");
+                    text-align: center;
+                    width: 2em;
+                    &.entf {
+                        background-image: url("images/ENT_s.png");
                         background-size: 45% 55%;
                         background-repeat: no-repeat;
                         background-position: center;
                         margin-left: 4vw;
                         padding: 0.5vh 2vw 0.5vh 2vw;
-          
                     }
-                }                     
-               
-                a:hover
-                {
+                }
+                a:hover {
                     background-color: $color-primary-background;
                     color: $color-highlight-foreground;
-
-                    &.entf:hover
-                    {
-                        background-image:url("images/ENT_w.png"); 
+                    &.entf:hover {
+                        background-image: url("images/ENT_w.png");
                     }
-                }                   
-
-            } 
-
-            .sonderzeichen 
-            {
+                }
+            }
+            .sonderzeichen {
                 text-align: right;
                 padding: 1vh 2vw 1vh 2vw;
                 font-size: 0.8em;
-                a
-                {   padding: 0.5vh 3vw 0.5vh 3vw;
+                a {
+                    padding: 0.5vh 3vw 0.5vh 3vw;
                     border: 2px solid $color-primary-background;
                     border-radius: 8px;
                     margin: 1vh 2vw 0 2vw;
                 }
-
-                a:hover
-                {
+                a:hover {
                     background-color: $color-primary-background;
-                    color:$color-highlight-foreground;
+                    color: $color-highlight-foreground;
                 }
-
-                #btnOK
-                {
+                #btnOK {
                     font-size: 1em;
-                    color:$color-highlight-foreground;
+                    color: $color-highlight-foreground;
                     padding: 0.5vh 1.5vw 0.5vh 1.5vw;
                     border: 2px solid $color-primary-background;
                     border-radius: 8px;
@@ -371,68 +293,44 @@ body.printer
                     margin-left: 2.5vw;
                     padding: 0.5vh 2.5vw 0.5vh 2.5vw;
                 }
-
-                #btnOK:hover
-                {
-                    background-color:$color-highlight-foreground;
-                    color:black
+                #btnOK:hover {
+                    background-color: $color-highlight-foreground;
+                    color: black
                 }
-
-                #hyphen
-                {
+                #hyphen {
                     margin-left: 3vw;
                     padding: 0.5vh 2.5vw 0.5vh 2.5vw;
                 }
-
-                #space
-                {
+                #space {
                     margin-left: 3vw;
                     padding: 0.5vh 9vw 0.5vh 9vw;
                 }
             }
         }
     }
-     
-
-   .site-nav
-   {
+    .site-nav {
         margin: 10vw;
-
-        a
-        {
+        a {
             text-align: left;
             border: 3px solid $color-secondary-background;
-            width: 30vw; 
+            width: 30vw;
             background-color: $color-primary-foreground;
             color: $color-secondary-background;
             padding: 2vh 0.5vw 2vh 0.5vw;
-            
         }
-        
-
-        a:hover
-        {
+        a:hover {
             background-color: $color-secondary-background;
             color: $color-primary-foreground;
-            
         }
-
-
-        a:first-child
-        {   
+        a:first-child {
             float: left;
             font-size: 2.5em;
             padding-left: 2vw;
-           
-            
         }
-
-        a:last-child
-        { 
+        a:last-child {
             float: right;
             font-size: 2.5em;
             padding-left: 2vw;
-        }   
-    
+        }
     }
-}  
+}
