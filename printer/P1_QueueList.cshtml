@@ -18,7 +18,7 @@
  <div class="main">
     @* Display list when idle *@
     <div id="queuelist">
-      <h2>WORÜBER MÖCHTEN SIE HEUTE MIT UNS SPRECHEN?</h2>
+      <p>WORÜBER MÖCHTEN SIE HEUTE MIT UNS SPRECHEN?</p>
       <ul class="flex-container">
         @for (int i = 1; i <= 8; i++) {
           if (!String.IsNullOrEmpty((string)Model.Style["text" + i].Value)) {

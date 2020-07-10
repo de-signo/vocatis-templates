@@ -36,8 +36,6 @@ body.printer {
         padding: 12vh 0 0 10vw;
         color: $color-highlight-foreground;
         margin: 0;
-        width: 80%;
-        text-transform: uppercase;
     }
     h3 {
         font-size: 2.5em;
@@ -136,9 +134,13 @@ body.printer {
             background-repeat: no-repeat;
             background-position: center;
         }
-        #queuelist {
-            h2 {
+        div#queuelist {
+            >p {
+                width: 80%;
                 font-size: 3.5em;
+                padding: 12vh 0 0 10vw;
+                color: $color-highlight-foreground;
+                margin: 0;
             }
         }
     }
