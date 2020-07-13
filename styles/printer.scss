@@ -32,7 +32,7 @@ body.printer {
         margin: 0;
     }
     h2 {
-        font-size: 3.5em;
+        font-size: 3.3em;
         padding: 12vh 0 0 10vw;
         color: $color-highlight-foreground;
         margin: 0;
@@ -93,6 +93,7 @@ body.printer {
             float: left;
             width: 35%;
             margin: 8vh 0 0 10vw;
+            font-size: 1em;
             p:last-child {
                 margin-top: 6vh;
                 font-weight: bold;
@@ -102,6 +103,7 @@ body.printer {
             float: right;
             width: 35%;
             margin: 8vh 10vw 0 0vw;
+            font-size: 1em;
             p:last-child {
                 margin-top: 4vh;
                 font-weight: bold;
@@ -142,6 +144,22 @@ body.printer {
                 color: $color-highlight-foreground;
                 margin: 0;
             }
+        }    
+        
+        div.Todo,
+        div.Todo2 {
+            margin: 0;
+            padding: 4vh 0 0 0vw;
+            top: 20vh; 
+            
+            >p {
+                font-size: 3em;
+                font-weight: bold;
+                color: $color-primary-foreground;
+                padding: 5vh 0 0 10vw;
+                width: 80%;
+                margin: 0;
+            }
         }
     }
     #waitPopup {
@@ -176,20 +194,8 @@ body.printer {
             display: none;
         }
     }
-    .Todo,
-    .Todo2 {
-        margin: 0;
-        padding: 4vh 0 0 0vw;
-        top: 20vh;
-        >p {
-            font-size: 3em;
-            font-weight: bold;
-            color: $color-primary-foreground;
-            padding: 5vh 0 0 10vw;
-            width: 80%;
-            margin: 0;
-        }
-    }
+
+
     input#txtFind {
         margin: 3vh 0 0 10vw;
         font-size: 2.5em;
