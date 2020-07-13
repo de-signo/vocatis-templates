@@ -104,6 +104,7 @@ else
         @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
         <header>
         <h3>
+            Sie sind gleich dran, nur noch ein bisschen Geduld
             Wir beraten gerade
         </h3>
         </header>
@@ -111,6 +112,9 @@ else
         
         @ItemsList(list, waiting, cats)
 
+      
+    
+    
         @{
             var notify = Model.Style["notify"].FieldInstance.Value as string;
             var popup = Model.Style["popup"].FieldInstance.Value as string;
