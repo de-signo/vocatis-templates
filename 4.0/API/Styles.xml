@@ -6,5 +6,13 @@
     <names>
       <name culture="de">Vocatis API (NICHT EINPLANEN)</name>
     </names>
+    <fields>
+      <field key="queueid1">
+        <names>
+          <name>Warteschlange 1</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+    </fields>
   </style>
 </StyleList>

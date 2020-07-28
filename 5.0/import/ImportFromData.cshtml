@@ -9,8 +9,9 @@
     var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
 
     var timeTo = DateTime.Now;
-    var last = Cache.Get("voc_last_import_time");
-    Cache.Insert("voc_last_import_time", timeTo);
+    string cacheKey = "voc_last_import_time" + Request.Url;
+    var last = Cache.Get(cacheKey);
+    Cache.Insert(cacheKey, timeTo);
     var timeFrom = (last == null) ? timeTo : (DateTime)last;
 }
 
@@ -46,19 +47,19 @@
                         Plan = Normalize(item.plan)
                     };
 
-        var planName1 = (string)Model.Style["plan_name1"].FieldInstance.Value;
-        var planName2 = (string)Model.Style["plan_name2"].FieldInstance.Value;
-        var queueid1 = (CommonGuidId)Model.Style["queueid1"].FieldInstance.Value;
-        var queueid2 = (CommonGuidId)Model.Style["queueid2"].FieldInstance.Value;
+        const int count = 4;
+        var planName = new string[count];
+        var queueid = new CommonGuidId[count];
+        for (int i = 0; i < count; i++)
+        {
+            planName[i] = (string)Model.Style["plan_name" + (i+1)].FieldInstance.Value;
+            queueid[i] = (CommonGuidId)Model.Style["queueid" + (i+1)].FieldInstance.Value;
+        }
         var category = (CommonGuidId[]) Model.Style["category"].FieldInstance.Value;
 
         <text>
         Import
         Range: [@timeFrom, @timeTo]
-        Plan1: @planName1
-        Queue1: @queueid1
-        Plan2: @planName2
-        Queue2: @queueid2
         <ul>
         @foreach (var item in addList)
         {
@@ -80,15 +81,11 @@
                 }
             };
             string plan = item.Plan;
-            if (plan == planName1)
+            var index = Array.IndexOf(planName, plan);
+            if (index >= 0)
             {
-                <text>Plan1</text>
-                CreateTicket(queueid1);
-            }
-            else if (plan == planName2)
-            {
-                <text>Plan2</text>
-                CreateTicket(queueid2);
+                <text>Plan @(index+1)</text>
+                CreateTicket(queueid[index]);
             }
             else
             {
@@ -96,9 +93,7 @@
             }
             <li>
                 Item @item.Id
-                Name: @item.Name
                 Start: @item.Start
-                Description: @item.Desc
                 Plan: @plan
             </li>
         }
