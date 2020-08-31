@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@{
+  // Parse model
+  var model = PageData["model"];
+  var tracking_id = (string)model.Style["tracking_id"].Value;
+  var home_url = model.NavigateHome();
+}
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drucker</title>
+  <link href="@Href("style.css")" type="text/css" rel="stylesheet" />
+</head>
+<body class="printer">
+  @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js", "js/jquery.qrcode.js")
+
+  <header>
+    <img src="plattformlogo_01.png" class="plattformlogo" alt="plattformlogo">
+    <h1>Wartenummer</h1>
+    @if (PageData["show_home"] == true) { <a href="@home_url"><img src="images/home.png" alt="home"></a> }
+  </header>
+ 
+  @RenderBody()
+  
+  <script type="text/javascript">
+  $(document).ready(function() {
+    @* 
+      disableSelect disables text selecting
+      clickBlanking prevent two clicks in a row
+      hamertime enables touch features and reduces reaction time
+     *@
+    $("body")
+    .disableSelect()
+    .clickBlanking({ timeout:500 })
+    .autoReset({ timeout: 10000, navigateUrl:"@Html.Raw(home_url)"});
+    var hammertime = new Hammer(document.body, {});
+  });
+  </script>
+
+@if (!String.IsNullOrEmpty(tracking_id)) {
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=@tracking_id"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '@tracking_id');
+  </script>
+}
+</body>
+</html>
+

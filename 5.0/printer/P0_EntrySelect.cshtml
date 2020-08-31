@@ -1,0 +1,23 @@
+﻿@*
+Printer main entry page
+*@
+@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@{
+  // Parse model
+  var Model = new FormsModel(this);
+
+  // setup layout
+  PageData["model"] = Model;
+  PageData["show_home"] = false;
+  Layout = "PL_Layout.cshtml";
+}
+<div class="site-content">
+  <h1>HERZLICH WILLKOMMEN!</h1>
+  <h2>Schön, dass Sie da sind.<br>Haben Sie einen Termin vereinbart?</h2>
+</div>
+
+<nav class="site-nav">
+  <a href='@Model.Navigate("P1_Appointment.cshtml")'>Ich habe<br>einen Termin</a>
+  <a href='@Model.Navigate("Printer.cshtml")'>Heute<br>spontan hier</a>
+</nav>
