@@ -7,6 +7,7 @@
 @using Stolltec.Vocatis.Model
 @{
   var disableOpenClose = false;
+  var showQrCode = true;
 
   // Parse model
   var Model = new FormsModel(this);
@@ -23,12 +24,19 @@
   var tracking_id = (string)Model.Style["tracking_id"].Value;
 }
 <section id="idle">
-  @if (buttonCount >0) { <div class="title"><h4>Gewünschter Fachbereich:</h4>
-    <h4>Wartemarke</h4></div>
-    <div class="subtitle">
-    <p>DRUCKEN</p>
-    <p>SCANNEN</p>
-    </div> }
+  @if (buttonCount > 0) {
+    if (showQrCode) {
+      <div class="title">
+        <h4>Gewünschter Fachbereich:</h4>
+        <h4>Wartemarke</h4></div>
+        <div class="subtitle">
+        <p>DRUCKEN</p>
+        <p>SCANNEN</p>
+      </div>
+    } else {
+      <h4>Bitte wählen Sie den gewünschten Fachbereich aus:</h4>
+    }
+  }
   <ul class="buttons-@buttonCount">
     @for (int i = 1; i <= 8; i++) {
       if (!String.IsNullOrEmpty((string)Model.Style["text" + i].Value)) {
@@ -76,7 +84,9 @@
           </span>
         </div>
       </div>
-      <div class="qrcode" data-url="@Href("AppTicket.cshtml", new { q=queueid, c=catids, t=tracking_id })"></div>
+      @if (showQrCode) {
+        <div class="qrcode" data-url="@Href("AppTicket.cshtml", new { q=queueid, c=catids, t=tracking_id })"></div>
+      }
     </a></li>
     @* manually closed *@
     } else if ((status.OpenCloseStatus & WaitQueueOpenCloseStatus.Manual) != 0) {
