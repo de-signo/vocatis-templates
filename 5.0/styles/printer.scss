@@ -2,7 +2,7 @@ body.printer {
     header {
         display: block;
         margin: 0 15vw 4vh 15vw;
-        height: 16vh;
+        height: 12vh;
         width: 100%;
         svg {
             height: 20vh;
@@ -14,14 +14,221 @@ body.printer {
             display: inline;
             text-transform: uppercase;
             font-weight: 900;
+            font-size: 3rem;
             margin: 0 0 0 2vw;
             color: $color-primary-background;
+        }
+        .home {
+            width: 7%;
+            margin: 6vh 20vw 0vh 0vw;
+            float: right;
+            border: 10px solid $color-primary-foreground;
+            padding: 3vw;
+        }
+        .back {
+            height: 40%;
+            float: right;
+            margin: 1.5vh 10vw 0 0;
+            border: 10px solid white;
+            padding: 3vw;
         }
         clear: both;
         display: block;
     }
     section.info {
         height: 10vh;
+    }
+    div.site-content {
+        background-color: $color-secondary-background;
+        height: 60vh;
+        width: 100%;
+        position: relative;
+        .left {
+            float: left;
+            width: 35%;
+            margin: 8vh 0 0 10vw;
+            font-size: 1em;
+            p:last-child {
+                margin-top: 6vh;
+                font-weight: bold;
+            }
+        }
+        h2 {
+            display: block;
+            text-transform: uppercase;
+            font-size: 6rem;
+            padding: 16vh 0 0 15vw;
+            color: $color-secondary-foreground;
+            margin: 0;
+        }
+        h3 {
+            font-size: 3em;
+            padding: 8vh 0 0 15vw;
+            color: $color-secondary-foreground;
+            margin: 0;
+        }
+    }
+    .site-nav {
+        margin: 10vw;
+        a {
+            text-align: left;
+            border: 3px solid $color-primary-background;
+            width: 30vw;
+            background-color: $color-primary-foreground;
+            color: $color-primary-background;
+            padding: 2vh 0.5vw 2vh 0.5vw;
+        }
+        a:hover {
+            background-color: $color-primary-background;
+            color: $color-primary-foreground;
+        }
+        a:first-child {
+            float: left;
+            font-size: 2.5em;
+            padding-left: 2vw;
+        }
+        a:last-child {
+            float: right;
+            font-size: 2.5em;
+            padding-left: 2vw;
+        }
+    }
+    #stage1 {
+        background-color: $color-secondary-background;
+        height: 60vh;
+        width: 100%;
+        position: absolute;
+        img {
+            width: 30%;
+            padding: 12vh 0 0 35vw;
+        }
+        p {
+            font-size: 3em;
+            padding: 8vh 0 0 15vw;
+            color: $color-secondary-foreground;
+            margin: 0;
+            width: 80%;
+            font-weight: 600;
+            line-height: 1.4em;
+        }
+    }
+    #stage2 {
+        position: relative;
+        top: 0;
+        left: 0;
+        background-color: $color-secondary-background;
+        height: 60vh;
+        width: 100%;
+        #registration {
+            width: 5%;
+            padding: 8vh 0 0 15vw;
+        }
+        h3 {
+            color: $color-secondary-foreground;
+            font-size: 2rem;
+            display: inline;
+            padding: 6vh 0 0 2vw;
+        }
+        p {
+            font-size: 2.6em;
+            padding: 4vh 0 0 12vw;
+            color: $color-secondary-foreground;
+            margin: 0;
+            width: 80%;
+            line-height: 1.4em;
+        }
+        p:last-child(2) {
+            font-size: 1.6rem;
+            padding: 12vh 0 0 15vw;
+        }
+        .left {
+            float: left;
+            width: 32%;
+            margin: 1vh 0 0 0vw;
+            p {
+                margin-top: 2vh;
+                font-size: 2em;
+                font-weight: 600;
+            }
+            a.print-button {
+                background-color: $color-secondary-foreground;
+                position: absolute;
+                margin-top: 2vh;
+                left: 12vw;
+                width: 20vw;
+                height: 11vh;
+                img {
+                    padding: 3vh 0 0 3vw;
+                    width: 60%;
+                }
+            }
+        }
+        .right {
+            float: right;
+            width: 40%;
+            margin: 1vh 5vw 0 0vw;
+            p {
+                margin-top: 2vh;
+                font-size: 2em;
+                font-weight: 600;
+            }
+            .qrcode {
+                position: absolute;
+                top: 41vh;
+                left: 68vw;
+                canvas {
+                    top: 55vh;
+                    left: 60vw;
+                }
+            }
+        }
+        div#queuelist {
+            >p {
+                width: 80%;
+                font-size: 3.5em;
+                padding: 12vh 0 0 10vw;
+                color: $color-highlight-foreground;
+                margin: 0;
+            }
+        }
+    }
+    section#waitPopup,
+    section#takePopup {
+        position: relative;
+        background-color: $color-secondary-background;
+        height: 60vh;
+        width: 100%;
+        div>img#wait {
+            width: 25%;
+            opacity: 0.5;
+            padding: 8vh 5vw 0 20vw;
+        }
+        img {
+            width: 20%;
+            padding: 0vh 5vw 0 23vw;
+        }
+        h4 {
+            font-size: 2em;
+            width: 70%;
+            padding: 8vh 0 1vh 0;
+            color: $color-secondary-foreground;
+            display: inline-block;
+            text-align: center;
+        }
+        p {
+            font-size: 2em;
+            font-weight: 600;
+            width: 70%;
+            padding: 25vh 0 1vh 0;
+            color: $color-primary-background;
+            text-align: center;
+        }
+    }
+    footer {
+        position: fixed;
+        bottom: 0mm;
+        right: 0;
+        left: 0;
     }
     main,
     .main {
@@ -42,7 +249,29 @@ body.printer {
                 margin: 0;
                 padding: 0;
             }
-        
+            div.title>h4 {
+                font-size: 1.2em;
+                width: 40%;
+                margin: 0 0 1vh 0;
+                color: $color-primary-background;
+                display: inline-block;
+                &:last-child {
+                    padding-left: 20vw;
+                    width: 20%;
+                }
+            }
+            div.subtitle>p {
+                font-size: 1em;
+                width: 15%;
+                margin: 0 0 1vh 0;
+                padding-left: 55%;
+                color: $color-primary-background;
+                display: inline-block;
+                &:last-child {
+                    padding-left: 12vw;
+                    width: 10%;
+                }
+            }
             .single-button {
                 display: none;
                 line-height: 2vh;
@@ -50,8 +279,7 @@ body.printer {
                     opacity: 0.2;
                     width: 50%;
                 }
-
-                p{
+                p {
                     width: 100%;
                     text-align: center;
                     padding: 0px;
@@ -86,14 +314,18 @@ body.printer {
                     display: none;
                 }
             }
-            .btn.closed>div.queue-status {
+            .btn.closed>div {
+                width: 20%;
+                font-size: 0.75em;
                 background-color: $color-highlight-background;
-                padding: 2vh 0vw;
+                color: $color-highlight-foreground;
                 text-align: center;
                 box-sizing: border-box;
                 box-shadow: 1px 3px 1px $color-highlight-background;
-                font-size: 0.8em;
                 font-weight: bold;
+                &:last-child {
+                    padding: 2vh 1vw 1vh 1vw;
+                }
             }
             .btn {
                 display: block;
@@ -191,54 +423,18 @@ body.printer {
                 }
             }
         }
-        section#waitPopup,
-        section#takePopup {
-            text-align: center;
-            #wait {
-                width: 40%;
-                opacity: 0.5;
-            }
-            >div {
-                padding: 8vh;
-                background-color: $color-secondary-background;
-            }
-            >h6 {
-                font-size: 1.25em;
-                margin-top: 5vh;
-                color: $color-primary-background;
-            }
-        }
-        h4 {
-            font-size: 1.2em;
-            width: 40%;
-            margin: 0 0 1vh 0;
-            color: $color-primary-background;
-            display: inline-block;
-            &:last-child {
-                padding-left: 20vw;
-                width: 20%;
-            }
-        }
         div.left,
         div.right {
-
             display: inline-block;
-            margin:0px;
+            margin: 0px;
             padding: 2vh 0 1vh 0;
             font-size: 2em;
             background-color: red;
-
         }
-        div.Todo{
-            p{
+        div.Todo {
+            p {
                 font-size: 3em;
             }
         }
-    }
-    footer {
-        position: fixed;
-        bottom: 0mm;
-        right: 0;
-        left: 0;
     }
 }
