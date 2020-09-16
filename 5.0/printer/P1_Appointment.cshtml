@@ -2,7 +2,6 @@
   Printer navigation level 1
   Select appointment
 *@
-<!DOCTYPE html>
 @using System.Web.Optimization
 @using Stolltec.Forms.Model
 @{
@@ -19,34 +18,15 @@
 <div id="stage1">
   <img src="direction.png" alt="direction">
   <p>Bitte scannen Sie den QR-Code aus Ihrer Terminbestätigung!</p>
-</div>
-
-<div id="stage2" style="display:none;">
- <img src="registration.png" id="registration" alt="registration" />
- <h3>Sie sind angemeldet</h3>
- <p>Bitte noch ein bisschen Geduld, Ihr Aufruf wird zeitnah zur Terminzeit erfolgen.</p>
- <p>Ihre Wartenummer:</p>
- <h2 data-name></h2>
- <div class="left">
-    <p>Ticket drucken</p>
-    <a class="print-button" href='about:blank'><img src="printer.png" alt="Drucker"> </a>
-  </div>
-  <div class="right">
-    <p>Ticket scannen</p>
-    <div class="qrcode" data-url='about:blank'></div>
-  </div>
+  <input id="scan">
 </div>
 
 @* Qr code scanning *@
-<input id="scan">
 <script type="text/javascript">
   $('#scan').on("change", function() {
-    $('#stage1').hide();
-    $('#stage2').show();
-    $(".qrcode").qrcode({
-      text: 'test',
-      fill: '#706f6f',
-      background: '#dadada'
-    });
+    var url = '@Html.Raw(Model.Navigate("P2_Appointment.cshtml", new { a="--text--"}))';
+    window.location.href = url.replace("--text--", $("#scan").val());
+  }).blur(function() {
+    window.setTimeout(function () { $("#scan").focus(); }, 20);
   }).focus();
 </script>

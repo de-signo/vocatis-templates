@@ -111,6 +111,13 @@ body.printer {
             font-weight: 600;
             line-height: 1.4em;
         }
+        #scan {
+            /* invisible, but functional */
+            border:none;
+            cursor: none;
+            background-color:transparent;
+            color:$color-secondary-background;
+        }
     }
     #stage2 {
         position: relative;

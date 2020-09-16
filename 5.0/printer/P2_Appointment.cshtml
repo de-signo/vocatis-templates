@@ -1,0 +1,99 @@
+﻿@*
+  Printer navigation level 1
+  Select appointment
+*@
+@using System.Web.Optimization
+@using System.Text.RegularExpressions
+@using Stolltec.Forms.Model
+@using Stolltec.Vocatis.Model
+@{
+  // Parse model
+  var Model = new FormsModel(this);
+
+  // setup layout
+  PageData["model"] = Model;
+  PageData["show_home"] = true;
+  PageData["show_back"] = false;
+  Layout = "PL_Layout.cshtml";
+
+  // Read request
+  var tracking_id = (string)Model.Style["tracking_id"].Value;
+  var a = Request["a"];
+  dynamic queueid = Model.Style["queueid_apt"].Value;
+  dynamic catids = Model.Style["catid_apt"].Value;
+
+  // Read data
+  var re = new Regex("UID:([0-9]*)");
+  var m = re.Matches(a);
+  dynamic entry = null;
+  if (m.Count == 1)
+  {
+    var apt_id = m[0].Groups[0].Value;
+    entry = (from dynamic x in Model.DataSource("import")
+             where String.Equals(x.id, apt_id)
+             select x).FirstOrDefault();
+  }
+  if (entry == null)
+  {
+    <div id="stage2">
+      <h3>Fehler bei der Anmeldung.</h3>
+    </div>
+  }
+  else
+  {
+    var ticket = Vocatis.CreateTicket(queueid, catids);
+
+    <div id="stage2">
+      <img src="registration.png" id="registration" alt="registration" />
+      <h3>Sie sind angemeldet</h3>
+      <p>Bitte noch ein bisschen Geduld, Ihr Aufruf wird zeitnah zur Terminzeit erfolgen.</p>
+      <p>Ihre Wartenummer: @ticket.Number</p>
+      <div class="left">
+        <p>Ticket drucken</p>
+        <a class="print-button" href='@Href("PrintTicket.cshtml", new { id=ticket.id, tid=tracking_id })'><img src="printer.png" alt="Drucker"> </a>
+      </div>
+      <div class="right">
+        <p>Ticket scannen</p>
+        <div class="qrcode" data-url="@Href("App.cshtml", new {id=ticket.Id, tracking_id})"></div>
+      </div>
+    </div>
+  }
+}
+<script type="text/javascript">
+  @* Qr code scanning *@
+  // make absolute  
+  var a = document.createElement("a");
+  a.href = $(".qrcode").data("url");
+  $(".qrcode").qrcode({
+    text: a.href,
+    fill: '#706f6f',
+    background: '#dadada'
+  });
+
+  @* Printing *@
+  $(".print-button").unbind()
+    .printTicket({
+      legacy: false,
+      printErrorTimeout: 60000,
+      stripBody: false,
+      beginPrint: function() {
+        $("#waitPopup").show();
+      },
+      endPrint: function() {
+        $("#waitPopup").hide();
+        $("#takePopup").show();
+        window.setTimeout(function() { $("#takePopup").hide(); }, 3000);
+      },
+      failPrint: function() {
+        $("#waitPopup").hide();
+      }
+    });
+  }
+  $(document).ready(function () {
+    reportPrinterStatus({
+      url: "@Href(Stolltec.Forms.PrinterStatus.Path)",
+      interval: 60000
+	  });
+  });
+  </text>
+</script>

@@ -9,12 +9,21 @@
 
   var Model = new FormsModel(this);
   var tracking_id = Request["tid"];
+  var ticket_id = Request["id"];
+  WaitNumber ticket;
+  if (!String.IsNullOrEmpty(ticket_id))
+  {
+   ticket = Vocatis.GetTicket(CommonGuidId.FromString(id));
+  }
+  else
+  {
+   dynamic queueid = CommonGuidId.FromString(Request["queueid"]);
+   dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["catid"]).Value;
+   ticket = Vocatis.CreateTicket(queueid, catids);
+  }
 }
 
-@helper content(bool withQrCode, string tracking_id) {
-dynamic queueid = CommonGuidId.FromString(Request["queueid"]);
-dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["catid"]).Value;
-var ticket = Vocatis.CreateTicket(queueid, catids);
+@helper content(bool withQrCode, string tracking_id, WaitNumber ticket) {
 
 @Scripts.Render("js/jquery.qrcode.js", "js/url_polyfill.js")
 <section class="ticket">
@@ -45,7 +54,7 @@ var ticket = Vocatis.CreateTicket(queueid, catids);
 }
 
 @if (partial) {
-    @content(withQrCode, tracking_id)
+    @content(withQrCode, tracking_id, ticket)
 }
 else {
 <!DOCTYPE html>
@@ -57,7 +66,7 @@ else {
 <body>
   @Scripts.Render("~/Scripts/jquery")
   <div class="print_ticket" style="display: block !important;">
-    @content(withQrCode, tracking_id)
+    @content(withQrCode, tracking_id, ticket)
   </div>
 </body>
 </html>
