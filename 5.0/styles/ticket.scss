@@ -20,20 +20,24 @@ section.ticket {
     /* paper: 58mm, paper-margin 5mm */
     width: 48mm;
     margin: 5mm;
-    background-color: white;
+
     color: black;
-    header {
+
+    header{ 
+        width: 100%;
+        max-height: 10mm;
         text-align: center;
         font-size: 12px;
-        line-height: 13px;
-        width: 100%;
+        line-height: 2px;
+        margin: 0;
+        padding: 0;    
     }
     h1 {
         text-align: center;
-        font-size: 65px;
-        color: #000;
-        line-height: 1px;
-        margin: 33px;
+        width: 100%;
+        font-size: 40px;
+        margin: 0;
+        padding: 1px 0 0 0;
     }
     img {
         width: 100%;
@@ -42,7 +46,7 @@ section.ticket {
         font-size: 12px;
         float: left;
         color: #000;
-        margin: 1mm;
+        margin: 1mm 1mm 1mm 0;
     }
     canvas {
         width: 23mm;
