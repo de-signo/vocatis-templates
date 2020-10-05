@@ -23,7 +23,7 @@
   dynamic catids = Model.Style["catid_apt"].Value;
 
   // Read data
-  var re = new Regex("UID:([0-9]*)");
+  var re = new Regex("UID[:Ö]([0-9]*)");
   var m = re.Matches(a);
   dynamic entry = null;
   if (m.Count != 1)
