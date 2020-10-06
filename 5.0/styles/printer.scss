@@ -1,6 +1,5 @@
 body.printer {
     header {
-        display: block;
         margin: 0 15vw 4vh 15vw;
         height: 12vh;
         width: 100%;
@@ -100,11 +99,11 @@ body.printer {
         background-color:transparent;
         color:$color-secondary-background;
     }
-    #stage1 {
+    #stages {
         background-color: $color-secondary-background;
         height: 60vh;
-        width: 100%;
-        position: absolute;
+        padding: 6vh 2vw;
+
         img {
             width: 30%;
             padding: 12vh 0 0 35vw;
@@ -118,14 +117,6 @@ body.printer {
             font-weight: 600;
             line-height: 1.4em;
         }
-    }
-    #stage2 {
-        position: relative;
-        top: 0;
-        left: 0;
-        background-color: $color-secondary-background;
-        height: 60vh;
-        width: 100%;
         #registration {
             width: 5%;
             padding: 8vh 0 0 15vw;
@@ -134,19 +125,6 @@ body.printer {
             color: $color-secondary-foreground;
             font-size: 2rem;
             display: inline;
-            padding: 6vh 0 0 2vw;
-        }
-        p {
-            font-size: 2.6em;
-            padding: 4vh 0 0 12vw;
-            color: $color-secondary-foreground;
-            margin: 0;
-            width: 80%;
-            line-height: 1.4em;
-        }
-        p:last-child(2) {
-            font-size: 1.6rem;
-            padding: 12vh 0 0 15vw;
         }
         .left {
             float: left;

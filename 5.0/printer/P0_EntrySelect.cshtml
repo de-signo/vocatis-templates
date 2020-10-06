@@ -27,7 +27,7 @@ Printer main entry page
 @* Qr code scanning *@
 <script type="text/javascript">
   $('#scan').on("change", function() {
-    var url = '@Html.Raw(Model.Navigate("P2_Appointment.cshtml", new { a="--text--"}))';
+    var url = '@Html.Raw(Model.Navigate("P1_Appointment.cshtml", new { a="--text--"}))';
     window.location.href = url.replace("--text--", $("#scan").val());
   }).blur(function() {
     window.setTimeout(function () { $("#scan").focus(); }, 20);
