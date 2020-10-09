@@ -36,7 +36,7 @@
     case "1":
         <img src="direction.png" alt="direction">
         <p>Bitte scannen Sie den QR-Code aus Ihrer Terminbestätigung!</p>
-        <input id="scan">
+        <textarea id="scan"></textarea>
       break;
     case "2":
       // Read data
@@ -88,6 +88,37 @@
     <h3>Einen Moment, Ihr Code wird geprüft.</h3>
   </div>
   <script type="text/javascript">
+    @* load site *@
+    function hookupSite() {
+      @* Qr code *@
+      // make absolute  
+      var a = document.createElement("a");
+      a.href = $(".qrcode").data("url");
+      $(".qrcode").qrcode({
+        text: a.href,
+        fill: '#706f6f',
+        background: '#dadada'
+      });
+
+      @* Printing *@
+      $(".print-button").unbind()
+        .printTicket({
+          legacy: false,
+          printErrorTimeout: 60000,
+          stripBody: false,
+          beginPrint: function() {
+            $("#waitPopup").show();
+          },
+          endPrint: function() {
+            $("#waitPopup").hide();
+            $("#takePopup").show();
+            window.setTimeout(function() { $("#takePopup").hide(); }, 3000);
+          },
+          failPrint: function() {
+            $("#waitPopup").hide();
+          }
+        });
+    }
     @* scan logic *@
     function loadStage2(text) {
       $("#stages").html($("#loading").html());
@@ -98,46 +129,26 @@
         cache: false
       }).done(function (result) {
         $("#stages").html($(result).html());
+        hookupSite();
       });
     }
     @if (String.IsNullOrEmpty(s) && !String.IsNullOrEmpty(a))
     {
-      <text>loadStage2("@Html.Raw(a)");</text>
+      <text>loadStage2('@Html.Raw(a)');</text>
     }
-    $('#scan').on("change", function() {
-      loadStage2($("#scan").val());
+    var timeoutHandle = null;
+    $('#scan').on("keydown", function() {
+      if (timeoutHandle) {
+        window.clearTimeout(timeoutHandle);
+      }
+      timeoutHandle = window.setTimeout(function() {
+        loadStage2($("#scan").val());
+      }, 100);
     }).blur(function() {
       window.setTimeout(function () { $("#scan").focus(); }, 20);
     }).focus();
+    hookupSite();
 
-    @* Qr code *@
-    // make absolute  
-    var a = document.createElement("a");
-    a.href = $(".qrcode").data("url");
-    $(".qrcode").qrcode({
-      text: a.href,
-      fill: '#706f6f',
-      background: '#dadada'
-    });
-
-    @* Printing *@
-    $(".print-button").unbind()
-      .printTicket({
-        legacy: false,
-        printErrorTimeout: 60000,
-        stripBody: false,
-        beginPrint: function() {
-          $("#waitPopup").show();
-        },
-        endPrint: function() {
-          $("#waitPopup").hide();
-          $("#takePopup").show();
-          window.setTimeout(function() { $("#takePopup").hide(); }, 3000);
-        },
-        failPrint: function() {
-          $("#waitPopup").hide();
-        }
-      });
     $(document).ready(function () {
       reportPrinterStatus({
         url: "@Href(Stolltec.Forms.PrinterStatus.Path)",
