@@ -39,19 +39,6 @@
     .autoReset({ timeout: 10000, navigateUrl:"@Html.Raw(home_url)"});
     var hammertime = new Hammer(document.body, {});
   });
-
-  @* https://stackoverflow.com/questions/11415142/event-change-in-ie-not-working-when-pressing-enter-button *@
-  var isIE = !!document.documentMode;
-  if (isIE) {
-
-      $("body").on("keydown", "input", function (e) {
-
-          // Ensure 'change' event is fired on enter in IE
-          if ((e.keyCode || e.which) === 13) {
-              $(this).blur();
-          }
-      });
-  }
   </script>
 
 @if (!String.IsNullOrEmpty(tracking_id)) {

@@ -16,7 +16,7 @@ Printer main entry page
 <div class="site-content">
   <h2>HERZLICH WILLKOMMEN!</h2>
   <h3>Haben Sie einen Termin vereinbart?</h3>
-  <input id="scan">
+  <textarea id="scan"></textarea>
 </div>
 
 <nav class="site-nav">
@@ -26,9 +26,15 @@ Printer main entry page
 
 @* Qr code scanning *@
 <script type="text/javascript">
-  $('#scan').on("change", function() {
-    var url = '@Html.Raw(Model.Navigate("P1_Appointment.cshtml", new { a="--text--"}))';
-    window.location.href = url.replace("--text--", $("#scan").val());
+  var timeoutHandle = null;
+  $('#scan').on("keydown", function() {
+    if (timeoutHandle) {
+      window.clearTimeout(timeoutHandle);
+    }
+    timeoutHandle = window.setTimeout(function() {
+      var url = '@Html.Raw(Model.Navigate("P1_Appointment.cshtml", new { a="--text--"}))';
+      window.location.href = url.replace("--text--", $("#scan").val());
+    }, 100);
   }).blur(function() {
     window.setTimeout(function () { $("#scan").focus(); }, 20);
   }).focus();
