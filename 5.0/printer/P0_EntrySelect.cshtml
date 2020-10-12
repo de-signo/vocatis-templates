@@ -33,7 +33,8 @@ Printer main entry page
     }
     timeoutHandle = window.setTimeout(function() {
       var url = '@Html.Raw(Model.Navigate("P1_Appointment.cshtml", new { a="--text--"}))';
-      window.location.href = url.replace("--text--", $("#scan").val());
+      url = url.replace("--text--", encodeURI($("#scan").val()));
+      window.location.href = url;
     }, 100);
   }).blur(function() {
     window.setTimeout(function () { $("#scan").focus(); }, 20);
