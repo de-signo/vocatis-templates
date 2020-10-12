@@ -45,6 +45,7 @@
       dynamic entry = null;
       if (m.Count != 1)
       {
+        <!-- code: @a -->
         <h2>Ungültiger QR-Code! Ist Ihr Termin heute?</h2>
         <p>Bitte scannen Sie den QR-Code aus ihrer aktuellen Terminbestätigung ein.</p>
       }
@@ -123,7 +124,7 @@
     function loadStage2(text) {
       $("#stages").html($("#loading").html());
       var url = '@Html.Raw(Model.Navigate("P1_Appointment.cshtml", new { s="2", a="--text--"}))';
-      url = url.replace("--text--", text);
+      url = url.replace("--text--", encodeURI(text));
       $.ajax({
         url: url,
         cache: false
@@ -134,7 +135,7 @@
     }
     @if (String.IsNullOrEmpty(s) && !String.IsNullOrEmpty(a))
     {
-      <text>loadStage2('@Html.Raw(a)');</text>
+      <text>loadStage2('@Html.Raw(a.Replace("\n", "\\n").Replace("\r", "\\r"))');</text>
     }
     var timeoutHandle = null;
     $('#scan').on("keydown", function() {
