@@ -94,10 +94,12 @@ body.printer {
     }
     #scan {
         /* invisible, but functional */
-        border:none;
+        border: none;
         cursor: none;
-        background-color:transparent;
-        color:$color-secondary-background;
+        overflow: hidden;
+        resize: none;
+        background-color: transparent;
+        color: $color-secondary-background;
     }       
     
     #loading{
