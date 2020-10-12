@@ -6,6 +6,9 @@
 @using System.Text.RegularExpressions
 @using Stolltec.Forms.Model
 @using Stolltec.Vocatis.Model
+@using Stolltec.Vocatis
+@using ISS.Session
+@using iSign
 
 @{
   // Parse model
@@ -62,20 +65,26 @@
         }
         else
         {
-          var ticket = Vocatis.CreateTicket(queueid, catids);
+          using (var voc = SessionInstancesModule.GetInstance().UseSharedInstance<IVocatisData>())
+          {
+            var ticket = voc.Instance.NewNumber(queueid, catids);
+            ticket.Name = entry.name;
+            ticket.Description = entry.time;
+            voc.Instance.UpdateNumber(ticket);
 
-          <img src="registration.png" id="registration" alt="registration" />
-          <h3>Sie sind angemeldet</h3>
-          <p>Bitte noch etwas Geduld, drucken oder scannen Sie Ihr Ticket und warten bis Ihre Nummer aufgerufen wird.</p>
-          <p>Ihre Wartenummer: @ticket.Number</p>
-          <div class="left">
-            <p>Ticket drucken</p>
-            <a class="print-button" href='@Href("PrintTicket.cshtml", new { id=ticket.Id, tid=tracking_id })'><img src="printer.png" alt="Drucker"> </a>
-          </div>
-          <div class="right">
-            <p>Ticket scannen</p>
-            <div class="qrcode" data-url="@Href("App.cshtml", new {id=ticket.Id, tracking_id})"></div>
-          </div>
+            <img src="registration.png" id="registration" alt="registration" />
+            <h3>Sie sind angemeldet</h3>
+            <p>Bitte noch etwas Geduld, drucken oder scannen Sie Ihr Ticket und warten bis Ihre Nummer aufgerufen wird.</p>
+            <p>Ihre Wartenummer: @ticket.Number</p>
+            <div class="left">
+              <p>Ticket drucken</p>
+              <a class="print-button" href='@Href("PrintTicket.cshtml", new { id=ticket.Id, tid=tracking_id })'><img src="printer.png" alt="Drucker"> </a>
+            </div>
+            <div class="right">
+              <p>Ticket scannen</p>
+              <div class="qrcode" data-url="@Href("App.cshtml", new {id=ticket.Id, tracking_id})"></div>
+            </div>
+          }
         }
       }
       break;
