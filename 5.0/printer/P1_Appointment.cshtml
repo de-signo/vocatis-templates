@@ -35,8 +35,8 @@
     default:
     case "1":
         <img src="direction.png" alt="direction">
-        <p>Bitte scannen Sie den QR-Code aus Ihrer Terminbestätigung!</p>
-        <textarea id="scan"></textarea>
+        <h1>Bitte scannen Sie den QR-Code aus Ihrer Terminbestätigung!</h1>
+        <textarea id="scan" ></textarea>
       break;
     case "2":
       // Read data
@@ -45,8 +45,8 @@
       dynamic entry = null;
       if (m.Count != 1)
       {
-        <h2>Ungültiger QR-Code.</h2>
-        <p>Bitte scannen Sie einen Termin, den Sie online bei uns gebucht haben.</p>
+        <h2>Ungültiger QR-Code! Ist Ihr Termin heute?</h2>
+        <p>Bitte scannen Sie den QR-Code aus ihrer aktuellen Terminbestätigung ein.</p>
       }
       else
       {
@@ -65,7 +65,7 @@
 
           <img src="registration.png" id="registration" alt="registration" />
           <h3>Sie sind angemeldet</h3>
-          <p>Bitte noch ein bisschen Geduld, Ihr Aufruf wird zeitnah zur Terminzeit erfolgen.</p>
+          <p>Bitte noch etwas Geduld, drucken oder scannen Sie Ihr Ticket und warten bis Ihre Nummer aufgerufen wird.</p>
           <p>Ihre Wartenummer: @ticket.Number</p>
           <div class="left">
             <p>Ticket drucken</p>
