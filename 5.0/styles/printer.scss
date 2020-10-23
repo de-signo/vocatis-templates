@@ -13,7 +13,7 @@ body.printer {
             display: inline;
             text-transform: uppercase;
             font-weight: 900;
-            font-size: 3rem;
+            font-size: 3em;
             margin: 0 0 0 2vw;
             color: $color-primary-background;
         }
@@ -55,7 +55,7 @@ body.printer {
         h2 {
             display: block;
             text-transform: uppercase;
-            font-size: 6rem;
+            font-size: 5.5rem;
             padding: 16vh 0 0 15vw;
             color: $color-secondary-foreground;
             margin: 0;
@@ -100,16 +100,15 @@ body.printer {
         resize: none;
         background-color: transparent;
         color: $color-secondary-background;
-    }       
+    }
     
-    #loading{
-        h3 {
-            font-size: 2.6em;
-            margin: 16vh 0 0 15vw;
-            color: $color-highlight-background;
+    div#loading{
+        >h2 {
+            font-size: 3em;
+            padding: 16vh 0 0 15vw;
+            color: $color-secondary-foreground;
             width: 80%;
         }
-
     }
 
     #stages {
@@ -122,13 +121,13 @@ body.printer {
             padding: 12vh 0 0 35vw;
         }
         p {
-            font-size: 3em;
-            padding: 8vh 0 0 15vw;
             color: $color-secondary-foreground;
-            margin: 0;
-            width: 80%;
-            font-weight: normal;
+            font-size: 2.5rem;
             line-height: 1.4em;
+            padding: 4vh 0 0 15vw;
+            line-height: 1.4em;
+            font-weight: normal;
+            width: 80%;
         }
 
         #registration {
@@ -137,7 +136,7 @@ body.printer {
         }
 
         h1 {
-            font-size: 3em;
+            font-size: 2.7em;
             font-weight: bold;
             padding: 16vh 0 0 12vw;
             color: $color-secondary-foreground;
@@ -146,39 +145,49 @@ body.printer {
         }
 
         h2 {
-            font-size: 2.4em;
-            padding: 16vh 0 0 15vw;
             color: $color-highlight-background;
-            margin: 0;
+            font-size: 2.4rem;
+            padding: 16vh 0 0 15vw;
+            font-weight: bold;
             width: 80%;
         }
 
         h3 {
+            font-size: 2em;
+            padding: 16vh 0 2vh 15vw;
             color: $color-secondary-foreground;
-            font-size: 2rem;
-            display: inline;
-            padding: 6vh 0 0 2vw;
+            margin: 0;
+            width: 80%;
+
+            &:nth-child(2) {
+                color: $color-secondary-foreground;
+                font-size: 2.5rem;
+                padding: 2vh 0 0 2vw;
+                font-weight: bold;
+                display: inline;
+            }
         }
 
         .left {
             float: left;
-            width: 32%;
-            margin: 1vh 0 0 0vw;
+            width: 45%;
+            margin: 0vh 0 0 0vw;
             p {
                 margin-top: 2vh;
-                font-size: 2em;
+                font-size: 1.8em;
                 font-weight: 600;
-                padding: 4vh 0 0 12vw;
+                padding: 0vh 0 0 15vw;
             }
             a.print-button {
                 background-color: $color-secondary-foreground;
                 position: absolute;
                 margin-top: 2vh;
-                left: 16vw;
+                left: 17vw;
                 width: 20vw;
                 height: 11vh;
+
                 img {
-                    padding: 3vh 0 0 3vw;
+                    padding: 3vh 0 0 4vw;
                     width: 60%;
                 }
             }
@@ -189,9 +198,9 @@ body.printer {
             margin: 0vh 5vw 0 0vw;
             p {
                 margin-top: 2vh;
-                font-size: 2em;
+                font-size: 1.8em;
                 font-weight: 600;
-                padding: 5vh 0 2vh 6vw;
+                padding: 0vh 0 2vh 7vw;
             }
             .qrcode {
 
@@ -214,20 +223,23 @@ body.printer {
             }
         }
     }
+
     section#waitPopup,
     section#takePopup {
-        position: relative;
+        position: absolute;
         background-color: $color-secondary-background;
         height: 60vh;
         width: 100%;
+
         div>img#wait {
             width: 25%;
             opacity: 0.5;
-            padding: 8vh 5vw 0 20vw;
+            padding: 3vh 5vw 0 20vw;
         }
+
         img {
             width: 20%;
-            padding: 0vh 5vw 0 23vw;
+            padding: 15vh 5vw 0 23vw;
         }
         h4 {
             font-size: 2em;
@@ -272,7 +284,7 @@ body.printer {
                 padding: 0;
             }
             div.title>h4 {
-                font-size: 1.2em;
+                font-size: 1em;
                 width: 40%;
                 margin: 0 0 1vh 0;
                 color: $color-primary-background;
