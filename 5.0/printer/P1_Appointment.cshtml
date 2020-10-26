@@ -40,6 +40,8 @@
       planName[i] = (string)Model.Style["plan_name" + (i+1)].FieldInstance.Value;
       queueid[i] = (CommonGuidId)Model.Style["queueid" + (i+1)].FieldInstance.Value;
   }
+}
+<div class="main">
   <div id="stages">
   @switch (s)
   {
@@ -110,13 +112,45 @@
       break;
   }
   </div>
-}
+
+  @if (! partial)
+  {
+    <div id="loading" style="display: none;">
+      <h3>Einen Moment, Ihr Code wird geprüft.</h3>
+    </div>
+    @* wait popup is shown, while generating a new number *@
+    <section id="waitPopup" style="display: none;">
+      <h4>Ihre Wartemarke wird gedruckt</h4>
+      <div>
+        <img src="wait.gif" id="wait" alt="wait" />
+      </div>
+      <p>Bitte entnehmen Sie Ihre Wartenummer</p>
+      <img src="PfeilUnten.png" />
+    </section>
+
+    @* take popup is shown, when the printout is ready *@
+    <section id="takePopup" style="display: none;">
+        <h4>Ihre Wartemarke wird gedruckt</h4>
+      <div>
+        <img src="wait.gif" id="wait" alt="wait" />
+      </div>
+      <h4>Bitte entnehmen Sie Ihre Wartenummer</h4>
+      <img src="PfeilUnten.png" />
+    </section>
+
+    @* show popup shows the number on the screen *@
+    <section id="showPopup" style="display: none;">
+      <h3>Sie werden angemeldet im Fachbereich</h3>
+      <h2 data-name></h2>
+      <p>Bitte merken Sie sich Ihre Anmeldenummer:</p>
+      <div class="number" data-number></div>
+      <p>Sie werden aufgerufen</p>
+    </section>
+  }
+</div>
 
 @if (! partial)
 {
-  <div id="loading" style="display: none;">
-    <h3>Einen Moment, Ihr Code wird geprüft.</h3>
-  </div>
   <script type="text/javascript">
     @* load site *@
     function hookupSite() {
