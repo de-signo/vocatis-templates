@@ -114,18 +114,17 @@ body.printer {
     #stages {
         background-color: $color-secondary-background;
         height: 60vh;
-        padding: 6vh 2vw;
 
         img {
             width: 30%;
-            padding: 12vh 0 0 35vw;
+            padding: 12vh 0 0vh 35vw;
         }
         p {
             color: $color-secondary-foreground;
-            font-size: 2.5rem;
+            font-size: 2rem;
             line-height: 1.4em;
             padding: 4vh 0 0 15vw;
-            line-height: 1.4em;
+            line-height: 1.2em;
             font-weight: normal;
             width: 80%;
         }
@@ -170,18 +169,19 @@ body.printer {
 
         .left {
             float: left;
+            background-color: $color-secondary-background;
             width: 45%;
-            margin: 0vh 0 0 0vw;
+            margin: 4vh 0 0 0vw;
             p {
-                margin-top: 2vh;
-                font-size: 1.8em;
+               
+                font-size: 1em;
                 font-weight: 600;
                 padding: 0vh 0 0 15vw;
             }
             a.print-button {
                 background-color: $color-secondary-foreground;
                 position: absolute;
-                margin-top: 2vh;
+               
                 left: 17vw;
                 width: 20vw;
                 height: 11vh;
@@ -195,21 +195,20 @@ body.printer {
         .right {
             float: right;
             width: 40%;
-            margin: 0vh 5vw 0 0vw;
+            background-color: $color-secondary-background;
+            margin: 4vh 5vw 0 0vw;
             p {
-                margin-top: 2vh;
-                font-size: 1.8em;
+                font-size: 1em;
                 font-weight: 600;
-                padding: 0vh 0 2vh 7vw;
+                padding: 0vh 0 0vh 7vw;
             }
             .qrcode {
-
                 top: 45vh;
                 left: 68vw;
                 margin-left: 8vw;
                 canvas {
-                    top: 55vh;
-                    left: 60vw;
+                    width: 60%;
+
                 }
             }
         }
@@ -230,31 +229,35 @@ body.printer {
         background-color: $color-secondary-background;
         height: 60vh;
         width: 100%;
+        top: 0;
+        left: 0;
 
         div>img#wait {
             width: 25%;
             opacity: 0.5;
-            padding: 3vh 5vw 0 20vw;
+            padding: 5vh 5vw 0 20vw;
         }
 
         img {
-            width: 20%;
-            padding: 15vh 5vw 0 23vw;
+            width: 13%;
+            padding: 1vh 5vw 0 28vw;
         }
         h4 {
             font-size: 2em;
             width: 70%;
-            padding: 8vh 0 1vh 0;
+            padding: 16vh 0 1vh 0;
             color: $color-secondary-foreground;
             display: inline-block;
             text-align: center;
         }
         p {
-            font-size: 2em;
+            font-size: 1.8em;
             font-weight: 600;
             width: 70%;
-            padding: 25vh 0 1vh 0;
+            margin: 0;
+            padding: 19vh 0 1vh 0;
             color: $color-primary-background;
+            display: inline-block;
             text-align: center;
         }
     }
