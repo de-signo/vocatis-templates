@@ -197,17 +197,107 @@
         </names>
         <content_class type="TextFree" />
       </field>
-      <field key="queueid_apt">
+      <field key="plan_name1">
         <names>
-          <name>Warteschlange Termin</name>
+          <name>Terminplan 1</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid1_apt">
+        <names>
+          <name>Warteschlange Termin 1</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name2">
+        <names>
+          <name>Terminplan 2</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid2_apt">
+        <names>
+          <name>Warteschlange Termin 2</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name3">
+        <names>
+          <name>Terminplan 3</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid3_apt">
+        <names>
+          <name>Warteschlange Termin 3</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name4">
+        <names>
+          <name>Terminplan 4</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid4_apt">
+        <names>
+          <name>Warteschlange Termin 4</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name5">
+        <names>
+          <name>Terminplan 5</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid5_apt">
+        <names>
+          <name>Warteschlange Termin 5</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name6">
+        <names>
+          <name>Terminplan 6</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid6_apt">
+        <names>
+          <name>Warteschlange Termin 6</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name7">
+        <names>
+          <name>Terminplan 7</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid7_apt">
+        <names>
+          <name>Warteschlange Termin 7</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name8">
+        <names>
+          <name>Terminplan 8</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid8_apt">
+        <names>
+          <name>Warteschlange Termin 8</name>
         </names>
         <content_class type="VocatisQueue"  />
       </field>
       <field key="catid_apt">
-          <names>
-            <name>Kategorie Termin</name>
-          </names>
-          <content_class type="VocatisCategories"/>
+        <names>
+          <name>Kategorie Termin</name>
+        </names>
+        <content_class type="VocatisCategories"/>
       </field>
       <field key="import">
         <names>
@@ -236,6 +326,12 @@
       <field key="name">
         <names>
           <name>Name</name>
+        </names>
+        <content_class bind="Column" parentField="import" type="TextFree" />
+      </field>
+      <field key="plan">
+        <names>
+          <name>Terminplan</name>
         </names>
         <content_class bind="Column" parentField="import" type="TextFree" />
       </field>
