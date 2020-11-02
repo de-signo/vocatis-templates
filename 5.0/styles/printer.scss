@@ -171,7 +171,7 @@ body.printer {
             float: left;
             background-color: $color-secondary-background;
             width: 45%;
-            margin: 2vh 0 0 0vw;
+            margin: 4vh 0 0 0vw;
             p {
                
                 font-size: 1em;
@@ -196,7 +196,7 @@ body.printer {
             float: right;
             width: 40%;
             background-color: $color-secondary-background;
-            margin: 2vh 5vw 0 0vw;
+            margin: 4vh 5vw 0 0vw;
             p {
                 font-size: 1em;
                 font-weight: 600;
@@ -229,21 +229,23 @@ body.printer {
         background-color: $color-secondary-background;
         height: 60vh;
         width: 100%;
+        top: 0;
+        left: 0;
 
         div>img#wait {
             width: 25%;
             opacity: 0.5;
-            padding: 3vh 5vw 0 20vw;
+            padding: 5vh 5vw 0 20vw;
         }
 
         img {
-            width: 20%;
-            padding: 15vh 5vw 0 23vw;
+            width: 15%;
+            padding: 0vh 5vw 0 28vw;
         }
         h4 {
             font-size: 2em;
             width: 70%;
-            padding: 8vh 0 1vh 0;
+            padding: 15vh 0 1vh 0;
             color: $color-secondary-foreground;
             display: inline-block;
             text-align: center;
