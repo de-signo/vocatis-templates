@@ -36,7 +36,7 @@
     $("body")
     .disableSelect()
     .clickBlanking({ timeout:500 })
-    .autoReset({ timeout: 10000, navigateUrl:"@Html.Raw(home_url)"});
+    .autoReset({ timeout: 1000000, navigateUrl:"@Html.Raw(home_url)"});
     var hammertime = new Hammer(document.body, {});
   });
   </script>
