@@ -239,13 +239,12 @@ body.printer {
         }
 
         img {
-            width: 15%;
+            width: 13%;
             padding: 0vh 5vw 0 28vw;
         }
         h4 {
             font-size: 2em;
-            width: 70%;
-            padding: 15vh 0 1vh 0;
+            padding: 16vh 0 1vh 0;
             color: $color-secondary-foreground;
             display: inline-block;
             text-align: center;
@@ -254,7 +253,7 @@ body.printer {
             font-size: 2em;
             font-weight: 600;
             width: 70%;
-            padding: 25vh 0 1vh 0;
+            padding: 15vh 0 1vh 0;
             color: $color-primary-background;
             text-align: center;
         }
