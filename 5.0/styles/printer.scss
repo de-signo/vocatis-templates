@@ -352,7 +352,7 @@ body.printer {
                 }
             }
             .btn.closed>div {
-                width: 20%;
+                width: 30%;
                 font-size: 0.75em;
                 background-color: $color-highlight-background;
                 color: $color-highlight-foreground;
@@ -396,7 +396,7 @@ body.printer {
                         box-shadow: 1px 3px 1px $color-secondary-shadow;
                     }
                     &.queue-status {
-                        width: 20%;
+                        width: 30%;
                         float: left;
                         font-size: 0.75em;
                         background-color: $color-primary-background;
