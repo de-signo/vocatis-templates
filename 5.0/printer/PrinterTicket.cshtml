@@ -4,7 +4,7 @@
 @using Stolltec.Vocatis.Model
 @using Stolltec.Forms.Model
 @{
-  var withQrCode = true;
+  var withQrCode = false;
   var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
 
   var Model = new FormsModel(this);
@@ -37,7 +37,7 @@
   <img src="separation.png" class="separation" alt="Trennung">
   <section class="qrcode">
     @if (withQrCode) {
-    <h4>Aufruf verfolgen</h4>
+    <h4></h4>
     <a href="@Href("App.cshtml", new {id=ticket.Id, tracking_id})"></a>
     }
     <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">

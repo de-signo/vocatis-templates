@@ -4,7 +4,7 @@
 @using Stolltec.Vocatis.Model
 @using Stolltec.Forms.Model
 @{
-  var withQrCode = true;
+  var withQrCode = false;
   var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
 
   var tracking_id = Request["t"];

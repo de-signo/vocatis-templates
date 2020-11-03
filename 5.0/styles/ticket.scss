@@ -23,10 +23,12 @@ section.ticket {
     background-color: white;
     color: black;
     header {
-        text-align: center;
-        font-size: 12px;
+        
+        font-size: 10px;
         line-height: 13px;
         width: 100%;
+        text-align: center;
+       
     }
     h1 {
         text-align: center;
@@ -45,6 +47,7 @@ section.ticket {
         margin: 1mm;
     }
     canvas {
+        display: none;
         width: 23mm;
         margin-top: 2px;
     }
