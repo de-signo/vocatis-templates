@@ -4,7 +4,7 @@
 @using Stolltec.Vocatis.Model
 @using Stolltec.Forms.Model
 @{
-  var withQrCode = true;
+  var withQrCode = PageData["ticket_show_qr_code"];
   var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
 
   var Model = new FormsModel(this);

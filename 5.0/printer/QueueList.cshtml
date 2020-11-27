@@ -6,8 +6,8 @@
 @using Stolltec.Vocatis
 @using Stolltec.Vocatis.Model
 @{
-  var disableOpenClose = false;
-  var showQrCode = true;
+  var disableOpenClose = !PageData["enable_open_close"];
+  var showQrCode = PageData["list_print_or_scan"];
 
   // Parse model
   var Model = new FormsModel(this);

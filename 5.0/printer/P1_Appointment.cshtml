@@ -11,7 +11,7 @@
 @using iSign
 
 @{
-  var showQrCode = true;
+  var showQrCode = PageData["appointment_print_or_scan"];
 
   // Parse model
   var Model = new FormsModel(this);
