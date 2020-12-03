@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <StyleList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://stollsoft.de/iSign/v2/Content/Forms/Styles">
-  <style key="vocatic_display3_vbberlin_update"
+  <style key="vocatic_display3_vbberlin_stayhere"
           file="List3.cshtml"
          interactive="false" target="Forms2">
     <names>
-      <name culture="de">vocatis list multi (VB-Berlin update)</name>
+      <name culture="de">vocatis list multi (VB-Berlin stayhere)</name>
     </names>
     <fields>
       <field key="source1">
