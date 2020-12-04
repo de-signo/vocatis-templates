@@ -144,14 +144,12 @@ body.printer {
                 color: $color-highlight-foreground;
                 margin: 0;
             }
-        }    
-        
+        }
         div.Todo,
         div.Todo2 {
             margin: 0;
             padding: 4vh 0 0 0vw;
-            top: 20vh; 
-            
+            top: 20vh;
             >p {
                 font-size: 3em;
                 font-weight: bold;
@@ -170,10 +168,13 @@ body.printer {
         left: 0;
         right: 0;
         height: 60vh;
+        h5 {
+            padding: 15vh 0px 0px 10vw;
+        }
         img#wait {
             width: 15vw;
             height: auto;
-            margin: 30vh 0vw 0 42vw;
+            margin: 20vh 0vw 0 42vw;
         }
         p {
             font-size: 3em;
@@ -194,8 +195,6 @@ body.printer {
             display: none;
         }
     }
-
-
     input#txtFind {
         margin: 3vh 0 0 10vw;
         font-size: 2.5em;
