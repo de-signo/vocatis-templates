@@ -12,7 +12,7 @@
 
 @{
   var showQrCode = PageData["appointment_print_or_scan"];
-
+  var debug = false;
   // Parse model
   var Model = new FormsModel(this);
 
@@ -56,7 +56,7 @@
       var re = new Regex("UID[:Ö]([0-9]*)");
       var m = re.Matches(a);
       dynamic entry = null;
-      if (m.Count != 1)
+      if (m.Count != 1 && !debug)
       {
         <!-- code: @a -->
         <h2>Ungültiger QR-Code!</h2>
@@ -64,11 +64,18 @@
       }
       else
       {
-        var apt_id = m[0].Groups[1].Value;
-        <!-- id: @apt_id -->
-        entry = (from dynamic x in Model.DataSource("import")
-                where String.Equals(x.id, apt_id)
-                select x).FirstOrDefault();
+        if (m.Count != 1 && debug)
+        {
+          entry = new { plan="debug", name="debug name", time="debug time"};
+        }
+        else
+        {
+          var apt_id = m[0].Groups[1].Value;
+          <!-- id: @apt_id -->
+          entry = (from dynamic x in Model.DataSource("import")
+                   where String.Equals(x.id, apt_id)
+                  select x).FirstOrDefault();
+        }
         if (entry == null)
         {
           <h3>Ihr Termin wurde nicht in unserer Liste gefunden.</h3>
