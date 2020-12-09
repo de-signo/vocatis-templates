@@ -40,6 +40,7 @@
       planName[i] = (string)Model.Style["plan_name" + (i+1)].FieldInstance.Value;
       queueid[i] = (CommonGuidId)Model.Style["queueid" + (i+1)].FieldInstance.Value;
   }
+  string ticketUrl = null;
 }
 <div class="main">
   <div id="stages">
@@ -98,26 +99,25 @@
                 ticket.ReferenceId = entry.id;
                 voc.Instance.UpdateNumber(ticket);
               }
+              ticketUrl = Href("PrinterTicket.cshtml", new { id=ticket.Id, tid=tracking_id });
               <img src="registration.png" id="registration" alt="registration" />
               <h3>Sie sind angemeldet</h3>
               if (showQrCode)
               {
                 <p>Bitte noch etwas Geduld, drucken oder scannen Sie Ihr Ticket und warten bis Ihre Nummer aufgerufen wird.</p>
-              }
-              else
-              {
-                <p>Bitte noch etwas Geduld, drucken Sie Ihr Ticket und warten bis Ihre Nummer aufgerufen wird.</p>
-              }
-              <div class="left">
-                <p>Ticket drucken</p>
-                <a class="print-button" href='@Href("PrinterTicket.cshtml", new { id=ticket.Id, tid=tracking_id })'><img src="printer.png" alt="Drucker"> </a>
-              </div>
-              if (showQrCode)
-              {
+                <div class="left">
+                  <p>Ticket drucken</p>
+                  <a class="print-button" href='@ticketUrl'><img src="printer.png" alt="Drucker"> </a>
+                </div>
                 <div class="right">
                   <p>Ticket scannen</p>
                   <div class="qrcode" data-url="@Href("App.cshtml", new {i=ticket.Id, t=tracking_id})"></div>
                 </div>
+              }
+              else
+              {
+                <p>Bitte noch etwas Geduld, ihr Aufruf wird zeitnahe zur Terminzeit erfolgen.</p>
+                <a class="print-now" href='@ticketUrl' style="display: none;"></a>
               }
             }
           }
@@ -183,14 +183,18 @@
       });
 
       @* Printing *@
-      $(".print-button").unbind()
-        .printTicket({
+      var printOptions = {
           legacy: false,
           printErrorTimeout: 60000,
           stripBody: false,
+      @if (showQrCode)
+      {
+        <text>
           beginPrint: function() {
             $("#waitPopup").show();
           },
+        </text>
+      }
           endPrint: function() {
             $("#waitPopup").hide();
             $("#takePopup").show();
@@ -198,7 +202,12 @@
           failPrint: function() {
             $("#waitPopup").hide();
           }
-        });
+        };
+      $(".print-button").unbind().printTicket(printOptions);
+      $(".print-now").each(function() {
+        var pt = new vocatis.printTicket(printOptions);
+        pt.startPrint(this.href);
+      });
     }
     @* scan logic *@
     function loadStage2(text) {
