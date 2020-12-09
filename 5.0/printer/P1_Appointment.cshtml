@@ -94,7 +94,7 @@
               {
                 ticket = voc.Instance.NewNumber(queueid[index], catids);
                 ticket.Name = entry.name;
-                ticket.Description = entry.time;
+                ticket.Phone = entry.time + ": " + entry.title;
                 ticket.ReferenceId = entry.id;
                 voc.Instance.UpdateNumber(ticket);
               }
