@@ -102,8 +102,7 @@ body.queueinfo {
         background-color: transparent;
         color: $color-secondary-background;
     }
-    
-    div#loading{
+    div#loading {
         >h2 {
             font-size: 3em;
             padding: 16vh 0 0 15vw;
@@ -111,11 +110,9 @@ body.queueinfo {
             width: 80%;
         }
     }
-
     #stages {
         background-color: $color-secondary-background;
         height: 60vh;
-
         img {
             width: 30%;
             padding: 12vh 0 0vh 35vw;
@@ -129,12 +126,10 @@ body.queueinfo {
             font-weight: normal;
             width: 80%;
         }
-
         #registration {
             width: 5%;
             padding: 6vh 0 0 15vw;
         }
-
         h1 {
             font-size: 2.7em;
             font-weight: bold;
@@ -143,7 +138,6 @@ body.queueinfo {
             margin: 0;
             width: 80%;
         }
-
         h2 {
             color: $color-highlight-background;
             font-size: 2.4rem;
@@ -151,14 +145,12 @@ body.queueinfo {
             font-weight: bold;
             width: 80%;
         }
-
         h3 {
             font-size: 2em;
             padding: 16vh 0 2vh 15vw;
             color: $color-secondary-foreground;
             margin: 0;
             width: 80%;
-
             &:nth-child(2) {
                 color: $color-secondary-foreground;
                 font-size: 2.5rem;
@@ -167,14 +159,12 @@ body.queueinfo {
                 display: inline;
             }
         }
-
         .left {
             float: left;
             background-color: $color-secondary-background;
             width: 45%;
             margin: 4vh 0 0 0vw;
             p {
-               
                 font-size: 1em;
                 font-weight: 600;
                 padding: 0vh 0 0 15vw;
@@ -182,11 +172,9 @@ body.queueinfo {
             a.print-button {
                 background-color: $color-secondary-foreground;
                 position: absolute;
-               
                 left: 17vw;
                 width: 20vw;
                 height: 11vh;
-
                 img {
                     padding: 3vh 0 0 4vw;
                     width: 60%;
@@ -209,7 +197,6 @@ body.queueinfo {
                 margin-left: 8vw;
                 canvas {
                     width: 60%;
-
                 }
             }
         }
@@ -223,7 +210,6 @@ body.queueinfo {
             }
         }
     }
-
     section#waitPopup,
     section#takePopup {
         position: absolute;
@@ -232,13 +218,11 @@ body.queueinfo {
         width: 100%;
         top: 0;
         left: 0;
-
         div>img#wait {
             width: 25%;
             opacity: 0.5;
             padding: 5vh 5vw 0 20vw;
         }
-
         img {
             width: 13%;
             padding: 1vh 5vw 0 28vw;
@@ -478,7 +462,6 @@ body.queueinfo {
             margin: 0px;
             padding: 2vh 0 1vh 0;
             font-size: 2em;
-            background-color: red;
         }
         div.Todo {
             p {
