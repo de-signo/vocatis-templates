@@ -22,6 +22,7 @@
          <content_class type="TextChoose">
           <text key="">Keine</text>
           <text key="tone.mp3">Standard</text>
+          <text key="~speechurl~?text=~number~ bitte zu ~room~">Sprachausgabe</text>
         </content_class>
       </field>
       <field key="popup">
@@ -105,6 +106,7 @@
          <content_class type="TextChoose">
           <text key="">Keine</text>
           <text key="tone.mp3">Standard</text>
+          <text key="~speechurl~?text=~number~ bitte zu ~room~">Sprachausgabe</text>
         </content_class>
       </field>
       <field key="popup">
