@@ -158,7 +158,7 @@ for (spec of specs) {
     var task_name = `zip_${name}`;
     zip_tasks.push(task_name);
 
-    var zipit = () => gulp.src(spec['files'])
+    var zipit = () => gulp.src(spec['files'], {removeBOM: false})
       .pipe(zip(`${name}_${version}.zip`))
       .pipe(gulp.dest("../dist"));
 
@@ -172,7 +172,7 @@ for (spec of specs) {
         if (spec['templateData']) {
           Object.assign(hbData, spec['templateData']);
         }  
-        return gulp.src(spec['templates'], {base:"./"})
+        return gulp.src(spec['templates'], {base:"./"}, {removeBOM: false})
           .pipe(hb(hbData, hbOptions))
           .pipe(rename(function (path) { path.extname = ""; }))
           .pipe(gulp.dest('.'));
