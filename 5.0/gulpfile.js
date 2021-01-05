@@ -143,7 +143,7 @@ gulp.task("clean_zip", function(done) {
 var version;
 gulp.task("read_version", () =>
   git.exec({
-    args: 'describe --tags',
+    args: 'describe --tags --dirty',
     quiet: true
   }, (err, out) => {
     version = out.trim();
