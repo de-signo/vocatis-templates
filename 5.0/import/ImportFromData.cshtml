@@ -76,6 +76,7 @@
                         Id = item.id,
                         Start = start,
                         Name = item.name,
+                        Title = item.title,
                         Desc = item.description,
                         Plan = Normalize(item.plan)
                     };
@@ -106,6 +107,7 @@
                     var ticket = voc.Instance.NewNumber(ticketNum, queue, category);
                     ticket.Name = item.Name;
                     ticket.Description = item.Desc;
+                    ticket.Phone = item.Start.ToShortTimeString() + ": " + item.Title;
                     ticket.ReferenceId = item.Id;
                     voc.Instance.UpdateNumber(ticket);
                     return ticket;
