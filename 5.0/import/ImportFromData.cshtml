@@ -7,17 +7,31 @@
 @using Stolltec.Vocatis.Model
 @{
     var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
-
-    var timeTo = DateTime.Now;
-    string cacheKey = "voc_last_import_time" + Request.Url;
-    var last = Cache.Get(cacheKey);
-    Cache.Insert(cacheKey, timeTo);
-    var timeFrom = (last == null) ? timeTo : (DateTime)last;
 }
 
-
-@helper import(DateTime timeFrom, DateTime timeTo)
+@helper import()
 {
+    var Model = new FormsModel(this);
+
+    lock (this.GetType())
+    {
+    string cacheKey = "voc_import_list_" + DateTime.Today.ToString("dd-MM-yy") + Request.Url;
+    var idList = Cache.Get(cacheKey) as HashSet<string> ?? new HashSet<string>();
+    
+    // Select import time span
+    var importMode = (string)Model.Style["im"].FieldInstance.Value;
+    DateTime timeTo, timeFrom;
+    if (importMode != "day")
+    {
+        timeFrom = DateTime.Today;
+        timeTo = DateTime.Now;
+    }
+    else
+    {
+        timeFrom = DateTime.Today;
+        timeTo = timeFrom.AddDays(1.0);
+    }
+
     Func<string, string> Normalize = (string text) =>
     {
         if (text.StartsWith("=\"") && text.EndsWith("\""))
@@ -30,14 +44,33 @@
         }
         return text;
     };
+    Func<string, string> ExtractNumber;
+    switch ((string)Model.Style["nm"].FieldInstance.Value)
+    {
+        default:
+        case "whole":
+            ExtractNumber = (string text) => text;
+            break;
+        case "last3":
+            ExtractNumber = (string text) => text.Substring(Math.Max(0, text.Length - 3));
+            break;
+        case "last4":
+            ExtractNumber = (string text) => text.Substring(Math.Max(0, text.Length - 4));
+            break;
+        case "Tlast3":
+            ExtractNumber = (string text) => "T" + text.Substring(Math.Max(0, text.Length - 3));
+            break;
+        case "Tlast4":
+            ExtractNumber = (string text) => "T" + text.Substring(Math.Max(0, text.Length - 4));
+            break;
+    }
 
-    var Model = new FormsModel(this);
     if (timeTo > timeFrom)
     {
         // filter list by time range [from, to)
         var addList = from dynamic item in Model.DataSource("import")
                     let start = DateTime.Parse(item.date) + TimeSpan.Parse(item.time)
-                    where start >= timeFrom && start < timeTo
+                    where start >= timeFrom && start < timeTo && !idList.Contains(item.id)
                     orderby start ascending
                     select new {
                         Id = item.id,
@@ -63,13 +96,11 @@
         <ul>
         @foreach (var item in addList)
         {
+            idList.Add(item.Id);
             Func<CommonGuidId, WaitNumber> CreateTicket = (CommonGuidId queue) =>
             {
                 var id = item.Id;
-                var len = id.Length;
-                if (len < 4)
-                    return null;
-                var ticketNum = "T" + id.Substring(len - 3);
+                var ticketNum = ExtractNumber(id);
                 using (var voc = SessionInstancesModule.GetInstance().UseSharedInstance<IVocatisData>())
                 {
                     var ticket = voc.Instance.NewNumber(ticketNum, queue, category);
@@ -99,12 +130,14 @@
         }
         </ul>
         </text>
+        Cache.Insert(cacheKey, idList);
+    }
     }
 }
 
 @if (partial)
 {
-    @import(timeFrom, timeTo)
+    @import()
 }
 else
 {
@@ -115,7 +148,7 @@ else
   <meta http-equiv="refresh" content="60">
 </head>
 <body>
-  @import(timeFrom, timeTo)
+  @import()
 </body>
 </html>
 }
