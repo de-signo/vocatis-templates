@@ -141,14 +141,15 @@ gulp.task("clean_zip", function(done) {
 
 
 var version;
-gulp.task("read_version", () =>
+gulp.task("read_version", function(done) {
   git.exec({
     args: 'describe --tags --dirty',
     quiet: true
   }, (err, out) => {
     version = out.trim();
-  })
-);
+    done()
+  });
+});
 
 zip_tasks = [];
 for (spec of specs) {
