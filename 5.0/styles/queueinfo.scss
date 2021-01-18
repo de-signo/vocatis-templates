@@ -116,7 +116,7 @@ body.queueinfo {
                         line-height: 5vh;
                         font-size: 0.4em;
                         @media (max-width: 640px) {
-                            height: 12vh;
+                            height: 15vh;
                         }
                         div {
                             &:first-child {
@@ -140,7 +140,7 @@ body.queueinfo {
                                 }
                                 svg {
                                     height: 40%;
-                                    padding-top: 1vh;
+                                    padding-top: 2vh;
                                     @media (max-width: 640px) {
                                         height: 65%;
                                     }
