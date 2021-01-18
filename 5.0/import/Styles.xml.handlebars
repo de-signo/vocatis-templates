@@ -1,11 +1,141 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <StyleList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://stollsoft.de/iSign/v2/Content/Forms/Styles">
 
+  <style key="vocatis_import_appointments_2019_ts"
+          file="ImportFromData.cshtml"
+         interactive="false" target="Forms2">
+    <names>
+      <name culture="de">Vocatis Terminimport mit Zeitpunkt ({{version}})</name>
+    </names>
+    <fields>
+      <field key="im">
+        <names>
+          <name>Zeitpunkt</name>
+        </names>
+        <content_class type="TextChoose">
+          <text key="+5min">5min nach Termin importieren</text>
+          <text key="jit">Zur Terminzeit importieren</text>
+          <text key="-5min">5min vor Termin importieren</text>
+          <text key="-30min">30min vor Termin importieren</text>
+          <text key="-60min">60min vor Termin importieren</text>
+          <text key="day">Ganzen Tag importieren</text>
+        </content_class>
+      </field>
+      <field key="nm">
+        <names>
+          <name>Wartenummer</name>
+        </names>
+        <content_class type="TextChoose">
+          <text key="whole">Komplett</text>
+          <text key="last3">Letzte 3 Stellen</text>
+          <text key="last4">Letzte 4 Stellen</text>
+          <text key="Tlast3">T + Letzte 3 Stellen</text>
+          <text key="Tlast4">T + Letzte 4 Stellen</text>
+        </content_class>
+      </field>
+      <field key="import">
+        <names>
+          <name>Termine</name>
+        </names>
+        <content_class type="DataSource" />
+      </field>
+      <field key="id">
+        <names>
+          <name>ID</name>
+        </names>
+        <content_class bind="Column" parentField="import" type="TextFree" />
+      </field>
+      <field key="ts">
+        <names>
+          <name>Zeitpunkt</name>
+        </names>
+        <content_class bind="Column" parentField="import" type="TextFree" />
+      </field>
+      <field key="name">
+        <names>
+          <name>Name</name>
+        </names>
+        <content_class bind="Column" parentField="import" type="TextFree" />
+      </field>
+      <field key="title">
+        <names>
+          <name>Anliegen</name>
+        </names>
+        <content_class bind="Column" parentField="import" type="TextFree" />
+      </field>
+      <field key="description">
+        <names>
+          <name>Beschreibung</name>
+        </names>
+        <content_class bind="Column" parentField="import" type="TextFree" />
+      </field>
+      <field key="plan">
+        <names>
+          <name>Terminplan</name>
+        </names>
+        <content_class bind="Column" parentField="import" type="TextFree" />
+      </field>
+      <field key="plan_name1">
+        <names>
+          <name>Terminplan 1</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid1">
+        <names>
+          <name>Warteschlange 1</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name2">
+        <names>
+          <name>Terminplan 2</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid2">
+        <names>
+          <name>Warteschlange 2</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name3">
+        <names>
+          <name>Terminplan 3</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid3">
+        <names>
+          <name>Warteschlange 3</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name4">
+        <names>
+          <name>Terminplan 4</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid4">
+        <names>
+          <name>Warteschlange 4</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="category">
+        <names>
+          <name>Kategorie</name>
+        </names>
+        <content_class type="VocatisCategories"  />
+      </field>
+    </fields>
+  </style>
   <style key="vocatic_import_appointments_2019"
           file="ImportFromData.cshtml"
          interactive="false" target="Forms2">
     <names>
-      <name culture="de">Vocatis Terminimport ({{version}})</name>
+      <name culture="de">Vocatis Terminimport mit Zeit und Uhrzeit ({{version}})</name>
     </names>
     <fields>
       <field key="im">
