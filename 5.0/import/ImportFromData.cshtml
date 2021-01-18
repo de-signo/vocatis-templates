@@ -26,7 +26,27 @@
         timeFrom = DateTime.Today;
         timeTo = DateTime.Now;
     }
-    else
+    else if (importMode != "+5min")
+    {
+        timeFrom = DateTime.Today;
+        timeTo = DateTime.Now.AddMinutes(-5);
+    }
+    else if (importMode != "-5min")
+    {
+        timeFrom = DateTime.Today;
+        timeTo = DateTime.Now.AddMinutes(5);
+    }
+    else if (importMode != "-30min")
+    {
+        timeFrom = DateTime.Today;
+        timeTo = DateTime.Now.AddMinutes(30);
+    }
+    else if (importMode != "-60min")
+    {
+        timeFrom = DateTime.Today;
+        timeTo = DateTime.Now.AddHours(1);
+    }
+    else // jit
     {
         timeFrom = DateTime.Today;
         timeTo = timeFrom.AddDays(1.0);
