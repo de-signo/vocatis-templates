@@ -170,74 +170,13 @@
 @if (! partial)
 {
   <script type="text/javascript">
-    @* load site *@
-    function hookupSite() {
-      @* Qr code *@
-      // make absolute  
-      var a = document.createElement("a");
-      a.href = $(".qrcode").data("url");
-      $(".qrcode").qrcode({
-        text: a.href,
-        fill: '#706f6f',
-        background: '#dadada'
-      });
-
-      @* Printing *@
-      var printOptions = {
-          legacy: false,
-          printErrorTimeout: 60000,
-          stripBody: false,
-      @if (showQrCode)
-      {
-        <text>
-          beginPrint: function() {
-            $("#waitPopup").show();
-          },
-        </text>
-      }
-          endPrint: function() {
-            $("#waitPopup").hide();
-            $("#takePopup").show();
-          },
-          failPrint: function() {
-            $("#waitPopup").hide();
-          }
-        };
-      $(".print-button").unbind().printTicket(printOptions);
-      $(".print-now").each(function() {
-        var pt = new vocatis.printTicket(printOptions);
-        pt.startPrint(this.href);
-      });
-    }
-    @* scan logic *@
-    function loadStage2(text) {
-      $("#stages").html($("#loading").html());
-      var url = '@Html.Raw(Model.Navigate("P1_Appointment.cshtml", new { s="2", a="--text--"}))';
-      url = url.replace("--text--", encodeURI(text));
-      $.ajax({
-        url: url,
-        cache: false
-      }).done(function (result) {
-        $("#stages").html($(result).html());
-        hookupSite();
-      });
-    }
+    appointment.init('@Html.Raw(Model.Navigate("P1_Appointment.cshtml", new { s="2", a="--text--"}))');
     @if (String.IsNullOrEmpty(s) && !String.IsNullOrEmpty(a))
     {
-      <text>loadStage2('@Html.Raw(a.Replace("\n", "\\n").Replace("\r", "\\r"))');</text>
+      <text>
+      appointment.loadStage2('@Html.Raw(a.Replace("\n", "\\n").Replace("\r", "\\r"))');
+      </text>
     }
-    var timeoutHandle = null;
-    $('#scan').on("keydown", function() {
-      if (timeoutHandle) {
-        window.clearTimeout(timeoutHandle);
-      }
-      timeoutHandle = window.setTimeout(function() {
-        loadStage2($("#scan").val());
-      }, 100);
-    }).blur(function() {
-      window.setTimeout(function () { $("#scan").focus(); }, 20);
-    }).focus();
-    hookupSite();
 
     $(document).ready(function () {
       reportPrinterStatus({
