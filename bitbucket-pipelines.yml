@@ -16,3 +16,5 @@ pipelines:
             - npm install -g gulp
             - cd 5.0
             - gulp
+          artifacts:
+            - dist/*
