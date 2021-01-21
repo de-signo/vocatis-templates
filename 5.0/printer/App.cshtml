@@ -19,7 +19,7 @@
   <img src="customerlogo.png" />
 </section>
 
-<div id="content" data-content-src="@Href("AppContent.cshtml", new {id=Request["id"]})">
+<div id="content" data-content-src="@Href("AppContent.cshtml", new {id=Request["i"]})">
   <section class="loading content">
     Laden ...
   </section>
@@ -58,7 +58,7 @@
   });
 </script>
 @{
-  var tracking_id = Request["tracking_id"];
+  var tracking_id = Request["t"];
   if (!String.IsNullOrEmpty(tracking_id)) {
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=@tracking_id"></script>
