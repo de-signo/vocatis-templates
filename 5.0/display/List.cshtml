@@ -75,7 +75,7 @@ else
     @ItemsList(list, cats)
 
     @{
-        var notify = Model.Style["notify"].FieldInstance.Value as string;
+        var notify = Model.Style["notify"].FieldInstance.Value as string ?? "";
         if (notify.Contains("~speechurl~"))
         {
             string speechurl = Stolltec.Forms.Speech.SpeechHandler.Register();
