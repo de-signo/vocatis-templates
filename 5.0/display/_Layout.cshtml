@@ -1,0 +1,42 @@
+@using System.Web.Optimization
+@{
+    var Model = PageData["Model"];
+    var notify = Model.Style["notify"].FieldInstance.Value as string ?? "";
+    if (notify.Contains("~speechurl~"))
+    {
+        string speechurl = Stolltec.Forms.Speech.SpeechHandler.Register();
+        notify = notify.Replace("~speechurl~", speechurl);
+    }
+    var popup = Model.Style["popup"].FieldInstance.Value as string;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vocatis</title>
+    <link href="@Href("display.css")" type="text/css" rel="Stylesheet" />
+</head>
+<body class="list">
+    @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "site.js")
+    <header>
+        <img src="plattformlogo_01.png" class="plattformlogo" alt="plattformlogo">
+        <h1>Wartebereich</h1>
+    </header>
+    <h2>
+        Bitte warten Sie, bis Ihre Nummer erscheint:
+    </h2>
+    @RenderBody()
+
+    @if (!String.IsNullOrEmpty(notify))
+    {
+        <audio id="notify" data-src="@Href(notify)">
+        </audio>
+    }
+    @if (!String.IsNullOrEmpty(popup))
+    {
+        <div id="popup" style="display:none;" class="popup @popup">
+            <h3>~room~</h3>
+            <h4>~number~</h4>
+        </div>
+    }
+</body>
+</html>
