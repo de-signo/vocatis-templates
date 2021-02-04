@@ -16,35 +16,32 @@
     // Select import time span
     var importMode = (string)Model.Style["im"].FieldInstance.Value;
     DateTime timeTo, timeFrom;
-    if (importMode != "day")
+    switch (importMode)
     {
-        timeFrom = DateTime.Today;
-        timeTo = DateTime.Now;
-    }
-    else if (importMode != "+5min")
-    {
-        timeFrom = DateTime.Today;
-        timeTo = DateTime.Now.AddMinutes(-5);
-    }
-    else if (importMode != "-5min")
-    {
-        timeFrom = DateTime.Today;
-        timeTo = DateTime.Now.AddMinutes(5);
-    }
-    else if (importMode != "-30min")
-    {
-        timeFrom = DateTime.Today;
-        timeTo = DateTime.Now.AddMinutes(30);
-    }
-    else if (importMode != "-60min")
-    {
-        timeFrom = DateTime.Today;
-        timeTo = DateTime.Now.AddHours(1);
-    }
-    else // jit
-    {
-        timeFrom = DateTime.Today;
-        timeTo = timeFrom.AddDays(1.0);
+        case "day":
+            timeFrom = DateTime.Today;
+            timeTo = timeFrom.AddDays(1.0);
+            break;
+        case "+5min":
+            timeFrom = DateTime.Today;
+            timeTo = DateTime.Now.AddMinutes(-5);
+            break;
+        case "-5min":
+            timeFrom = DateTime.Today;
+            timeTo = DateTime.Now.AddMinutes(5);
+            break;
+        case "-30min":
+            timeFrom = DateTime.Today;
+            timeTo = DateTime.Now.AddMinutes(30);
+            break;
+        case "-60min":
+            timeFrom = DateTime.Today;
+            timeTo = DateTime.Now.AddHours(1);
+            break;
+        default: // jit
+            timeFrom = DateTime.Today;
+            timeTo = DateTime.Now;
+            break;
     }
 
     Func<string, string> Normalize = (string text) =>
