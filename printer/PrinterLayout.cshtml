@@ -32,7 +32,7 @@
   <link href="@Href("style.css")" type="text/css" rel="stylesheet" />
 </head>
 <body class="printer"> 
-  @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js")
+  @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js", "js/hammer.min.js", "js/jquery.qrcode.js", "js/url_polyfill.js")
   <header>
     <img src="images/plattformlogo.png" class="plattformlogo" alt="plattformlogo">
     @if (PageData["show_back"] == true) { <a id="btnBack" href="javascript: window.history.back()" class='@PageData["back_class"] ?? ""'><img src="images/back.png" class="back" alt="back"></a> }

@@ -111,6 +111,11 @@ $(document).ready(function () {
     var url = '@Html.Raw(Model.Navigate("P2_ThankYou.cshtml", new { name="~~name~~", desc="~~desc~~"}))';
     url = url.replace("~~name~~", name).replace("~~desc~~", desc);
     window.location = url;
+  });
+    $(".print-button").click(function() {
+    var url = '@Html.Raw(Model.Navigate("P3_ThankYou.cshtml", new { name="~~name~~", desc="~~desc~~"}))';
+    
+    window.location = url;
   })
 
   // keyboard
