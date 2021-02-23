@@ -1,3 +1,5 @@
+@using System.Globalization
+@using System.Threading
 @using System.Xml
 @using iSign
 @using ISS.Session
@@ -15,7 +17,7 @@
 
     // Select import time span
     var importMode = (string)Model.Style["im"].FieldInstance.Value;
-    DateTime timeTo, timeFrom;
+    DateTime timeTo, timeFrom; // local time!
     switch (importMode)
     {
         case "day":
@@ -76,16 +78,28 @@
             ExtractNumber = (string text) => "T" + text.Substring(Math.Max(0, text.Length - 4));
             break;
     }
+    DateTimeStyles parseFlags;
+    switch((string)Model.Style["tz"].FieldInstance.Value)
+    {
+        case "srv":
+            // Alredy in local time zone.
+            parseFlags = DateTimeStyles.AssumeLocal;
+            break;
+        default:
+        case "utc":
+            parseFlags = DateTimeStyles.AssumeUniversal;
+            break;
+    }
+    var format = Thread.CurrentThread.CurrentCulture;
     Func <dynamic, DateTime> ReadDateTime;
     if (!Model.Style.StyleInstance.StyleKey.EndsWith("_ts"))
     {
-        ReadDateTime = (dynamic item) => DateTime.Parse(item.date) + TimeSpan.Parse(item.time);
+        ReadDateTime = (dynamic item) => DateTime.Parse(item.date, format, parseFlags) + TimeSpan.Parse(item.time);
     }
     else
     {
-        ReadDateTime = (dynamic item) => DateTime.Parse(item.ts);
+        ReadDateTime = (dynamic item) => DateTime.Parse(item.ts, format, parseFlags);
     }
-
     if (timeTo > timeFrom)
     {
         lock (this.GetType())
