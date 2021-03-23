@@ -3,6 +3,20 @@
 @using Stolltec.Forms.Model
 @using Stolltec.Vocatis
 @using Stolltec.Vocatis.Model
+@using System.Web.Caching
+@functions{
+  IEnumerable<DisplayNumber> GetWaitQueueList(CommonGuidId id)
+  {
+    var list = Cache.Get("Vocatis_GetWaitQueueList") as IEnumerable<DisplayNumber>;
+    if (list == null)
+    {
+      list = Vocatis.GetWaitQueueList(id);
+      Cache.Add("Vocatis_GetWaitQueueList", list, null,
+                DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
+    }
+    return list;
+  }
+}
 @{
     var Model = new FormsModel(this);
 
@@ -17,7 +31,7 @@
             continue;
         }
         ids.Add(id);
-        list = list.Concat(Vocatis.GetWaitQueueList(id));
+        list = list.Concat(GetWaitQueueList(id));
     }
     list = list.Take(8);
     var cats = (CommonGuidId[])Model.Style["highlightcat"].FieldInstance.Value ?? new CommonGuidId[0];

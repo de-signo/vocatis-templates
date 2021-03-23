@@ -5,6 +5,7 @@
 @using Stolltec.Forms.Model
 @using Stolltec.Vocatis
 @using Stolltec.Vocatis.Model
+@using System.Web.Caching
 @{
   var disableOpenClose = !PageData["enable_open_close"];
   var showQrCode = PageData["list_print_or_scan"];
@@ -16,8 +17,14 @@
   // Select ticket servce type (JSON vs HTML) by mode
   var ticketUrl = (mode == "print") ? "PrinterTicket.cshtml" : "Ticket.cshtml";
 
-  var queueStatus = @Vocatis.GetWaitQueueOverview();
-
+  IEnumerable<QueueSummary> queueStatus;
+  queueStatus = Cache.Get("Vocatis_GetWaitQueueOverview") as IEnumerable<QueueSummary>;
+  if (queueStatus == null)
+  {
+    queueStatus = @Vocatis.GetWaitQueueOverview();
+    Cache.Add("Vocatis_GetWaitQueueOverview", queueStatus, null,
+              DateTime.Now.AddSeconds(1), Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
+  }
   var buttonCount = (from i in Enumerable.Range(1,8)
                      where !String.IsNullOrEmpty((string)Model.Style["text" + i].Value)
                      select i).Count();
