@@ -7,7 +7,7 @@
 
   // setup layout
   PageData["model"] = Model;
-  PageData["show_home"] = Model.Style.StyleInstance.StyleKey == "vocm19ap";
+  PageData["show_home"] = Model.Style.StyleInstance.StyleKey.StartsWith("vocm19ap");
   Layout = "PL_Layout.cshtml";
 }
 <div class="main">
