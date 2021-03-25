@@ -1,5 +1,4 @@
 @using iSign
-@using System.Web.Optimization
 @using Stolltec.Forms.Model
 @using Stolltec.Vocatis
 @using Stolltec.Vocatis.Model
@@ -19,6 +18,7 @@
 }
 @{
     var Model = new FormsModel(this);
+    PageData["Model"] = Model;
 
     IEnumerable<DisplayNumber> list = new DisplayNumber[0];
     HashSet<CommonGuidId> ids = new HashSet<CommonGuidId>();
@@ -39,99 +39,29 @@
     // the $.fn.vocatisList function requests the page to update the view
     // We minimize the overhead by just sending the required contents.
     var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
+    if (!partial)
+    {
+        Layout = "_Layout.cshtml";
+    }
 }
-
-@helper ItemsList(IEnumerable<DisplayNumber> list, CommonGuidId[] cats)
-{
-    <table id="list">
-        <tbody>
-            @foreach (var x in list)
-            {
-                <tr>
-                    <td class="number">
-                        @if (x.Categories.Any(cid => cats.Contains(cid.Id)))
-                        {
-                            <img src="termin.png" class="termin" alt="termin">
-                        }
-                        @x.Number
-                    </td>
-                    <td class="room">@x.RoomName</td>
-                </tr>
-                <tr class="spacer">
-                    <td colspan="2"></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-@if (partial)
-{
-    @ItemsList(list, cats)
-}
-else
-{
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Vocatis</title>
-        <link href="@Href("display.css")" type="text/css" rel="Stylesheet" />
-    </head>
-    <body class="list">
-        @Scripts.Render("~/Scripts/jquery", "~/Scripts/forms", "~/Scripts/vocatis.js")
-        <header>
-            <img src="plattformlogo_01.png" class="plattformlogo" alt="plattformlogo">
-            <h1>Wartebereich</h1>
-        </header>
-        <h2>
-            Bitte warten Sie, bis Ihre Nummer erscheint:
-        </h2>
-        @ItemsList(list, cats)
-
-        @{
-            var notify = Model.Style["notify"].FieldInstance.Value as string;
-            if (notify.Contains("~speechurl~"))
-            {
-                string speechurl = Stolltec.Forms.Speech.SpeechHandler.Register();
-                notify = notify.Replace("~speechurl~", speechurl);
-            }
-            var popup = Model.Style["popup"].FieldInstance.Value as string;
-        }
-        @if (!String.IsNullOrEmpty(notify))
+<table id="list"> 
+    <tbody>
+        @foreach (var x in list)
         {
-            <audio id="notify" data-src="@Href(notify)">
-            </audio>
-         }
-        @if (!String.IsNullOrEmpty(popup))
-        {
-            <div id="popup" style="display:none;" class="popup @popup">
-                <h3>~room~</h3>
-                <h4>~number~</h4>
-            </div>
+            <tr>
+                <td class="number">
+                    @if (x.Categories.Any(cid => cats.Contains(cid.Id)))
+                    {
+                        <img src="termin.png" class="termin" alt="termin">
+                    }
+                    @x.Number
+                </td>
+                <td class="room">@x.RoomName</td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="2"></td>
+            </tr>
         }
-        <script type="text/javascript">
-            $(document).ready(function () {
-                var popupContent = $("#popup").html();
+    </tbody>
+</table>
 
-                $("#list")
-                    .vocatisList({
-                        interval: 2500
-                    })
-                    .highlightNumbers({
-                        items: "tr:not(.spacer)",
-                        call: function (items) {
-                            var audio = document.getElementById("notify");
-                            if (audio) {
-                                audio.src = $(audio).data("src").replace("~number~", items[0].number).replace("~room~", items[0].room);
-                                audio.play();
-                            }
-                            if (popupContent) {
-                                $("#popup").html(popupContent.replace("~number~", items[0].number).replace("~room~", items[0].room)).show();
-                                window.setTimeout(function () { $("#popup").hide(); }, 10000);
-                            }
-                        }
-                    });
-            });
-        </script>
-    </body>
-</html>
-}
