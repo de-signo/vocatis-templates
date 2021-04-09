@@ -6,11 +6,12 @@
 @functions{
   IEnumerable<DisplayNumber> GetWaitQueueList(CommonGuidId id)
   {
-    var list = Cache.Get("Vocatis_GetWaitQueueList") as IEnumerable<DisplayNumber>;
+    var cacheKey = String.Format("Vocatis_GetWaitQueueList_{0}", id);
+    var list = Cache.Get(cacheKey) as IEnumerable<DisplayNumber>;
     if (list == null)
     {
       list = Vocatis.GetWaitQueueList(id);
-      Cache.Add("Vocatis_GetWaitQueueList", list, null,
+      Cache.Add(cacheKey, list, null,
                 DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
     }
     return list;
