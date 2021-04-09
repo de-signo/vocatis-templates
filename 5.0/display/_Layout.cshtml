@@ -28,7 +28,7 @@
 
     @if (!String.IsNullOrEmpty(notify))
     {
-        <audio id="notify" data-src="@Href(notify)">
+        <audio id="notify" data-src="@Href(notify)" preload="auto">
         </audio>
     }
     @if (!String.IsNullOrEmpty(popup))

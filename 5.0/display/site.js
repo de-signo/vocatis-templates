@@ -44,7 +44,7 @@
                             source.attributes.setNamedItem(atType);
                             audio.appendChild(source);
                         });
-                        if (audio.paused) {
+                        if (audio.paused || audio.ended) {
                             setNextTrack();
                         }
                     }
