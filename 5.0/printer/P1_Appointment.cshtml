@@ -28,7 +28,7 @@
   }
 
   // Read request
-  var s = Request["s"];
+  var s = Request["i"];
   var a = Request["a"];
   var tracking_id = (string)Model.Style["tracking_id"].Value;
   dynamic catids = Model.Style["catid_apt"].Value;
@@ -170,7 +170,7 @@
 @if (! partial)
 {
   <script type="text/javascript">
-    appointment.init('@Html.Raw(Model.Navigate("P1_Appointment.cshtml", new { s="2", a="--text--"}))');
+    appointment.init('@Html.Raw(Model.Navigate("P1_Appointment.cshtml", new { i="2", a="--text--"}))');
     @if (String.IsNullOrEmpty(s) && !String.IsNullOrEmpty(a))
     {
       <text>
