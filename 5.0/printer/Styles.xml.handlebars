@@ -176,6 +176,174 @@
     </fields>
   </style>
 
+  <style key="vocm19aponly{{suffix}}" file="P1_Appointment.cshtml"
+         interactive="true" target="Forms2" preview="preview.png">
+    <names>
+      <name culture="de">vocatis appointments {{option_name}} ({{version}})</name>
+    </names>
+    <fields>
+      <field key="mode">
+        <names>
+          <name>Modus</name>
+        </names>
+         <content_class type="TextChoose">
+          <text key="show">Nummer anzeigen</text>
+          <text key="print">Nummer drucken</text>
+        </content_class>
+      </field>
+      <field key="tracking_id">
+        <names>
+          <name>Tracking-ID</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="plan_name1">
+        <names>
+          <name>Terminplan 1</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid1_apt">
+        <names>
+          <name>Warteschlange Termin 1</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name2">
+        <names>
+          <name>Terminplan 2</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid2_apt">
+        <names>
+          <name>Warteschlange Termin 2</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name3">
+        <names>
+          <name>Terminplan 3</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid3_apt">
+        <names>
+          <name>Warteschlange Termin 3</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name4">
+        <names>
+          <name>Terminplan 4</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid4_apt">
+        <names>
+          <name>Warteschlange Termin 4</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name5">
+        <names>
+          <name>Terminplan 5</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid5_apt">
+        <names>
+          <name>Warteschlange Termin 5</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name6">
+        <names>
+          <name>Terminplan 6</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid6_apt">
+        <names>
+          <name>Warteschlange Termin 6</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name7">
+        <names>
+          <name>Terminplan 7</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid7_apt">
+        <names>
+          <name>Warteschlange Termin 7</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="plan_name8">
+        <names>
+          <name>Terminplan 8</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid8_apt">
+        <names>
+          <name>Warteschlange Termin 8</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid_apt">
+        <names>
+          <name>Kategorie Termin</name>
+        </names>
+        <content_class type="VocatisCategories"/>
+      </field>
+      <field key="import">
+        <names>
+          <name>Termine</name>
+        </names>
+        <content_class type="DataSource" />
+      </field>
+      <field key="id">
+        <names>
+          <name>ID</name>
+        </names>
+        <content_class bind="Column" parentField="import" type="TextFree" />
+      </field>
+      <field key="date">
+        <names>
+          <name>Datum</name>
+        </names>
+        <content_class bind="Column" parentField="import" type="TextFree" />
+      </field>
+      <field key="time">
+        <names>
+          <name>Uhrzeit</name>
+        </names>
+        <content_class bind="Column" parentField="import" type="TextFree" />
+      </field>
+      <field key="name">
+        <names>
+          <name>Name</name>
+        </names>
+        <content_class bind="Column" parentField="import" type="TextFree" />
+      </field>
+      <field key="title">
+        <names>
+          <name>Anliegen</name>
+        </names>
+        <content_class bind="Column" parentField="import" type="TextFree" />
+      </field>
+      <field key="plan">
+        <names>
+          <name>Terminplan</name>
+        </names>
+        <content_class bind="Column" parentField="import" type="TextFree" />
+      </field>
+    </fields>
+  </style>
+
   <style key="vocm19ap{{suffix}}" file="P0_EntrySelect.cshtml"
          interactive="true" target="Forms2" preview="preview.png">
     <names>
