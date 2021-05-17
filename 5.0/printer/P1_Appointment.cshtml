@@ -38,7 +38,7 @@
   for (int i = 0; i < count; i++)
   {
       planName[i] = (string)Model.Style["plan_name" + (i+1)].FieldInstance.Value;
-      queueid[i] = (CommonGuidId)Model.Style["queueid" + (i+1)].FieldInstance.Value;
+      queueid[i] = (CommonGuidId)Model.Style["queueid" + (i+1) + "_apt"].FieldInstance.Value;
   }
   string ticketUrl = null;
 }
