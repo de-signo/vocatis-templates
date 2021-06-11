@@ -1,6 +1,23 @@
 @using iSign
 @using Stolltec.Vocatis
 @using Stolltec.Vocatis.Model
+@using System.Web.Caching
+@functions{
+  string QueueNameCached(CommonGuidId id) {
+    string key = "Vocatis_QueueName_" + id.ToString();
+    string queueName = Cache.Get(key) as string;
+    if (queueName == null)
+    {
+      var q = Vocatis.GetVocatisData().GetQueue(id);
+      if (q != null)
+      {
+        queueName = q.Name;
+        Cache.Add(key, queueName, null, DateTime.Now.AddHours(1), Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
+      }
+    }
+    return queueName;
+  }
+}
 @{
     dynamic id = CommonGuidId.FromString(Request["id"]);
     var ticket = Vocatis.GetTicket(id);
@@ -10,9 +27,10 @@
 case WaitNumberState.Waiting:
 case WaitNumberState.Parked:
   var status = Vocatis.GetTicketWaitInfo(id);
+  var queuename = QueueNameCached(status.QueueId);
   if (ticket.State == WaitNumberState.Waiting && status.Position < 3) {
 <section class="main content">
-  <h2>Warteschlange</h2>
+  <h2>@queuename</h2>
   <article>
     <p>Es befinden sich noch <b>@status.Position Kunden</b> vor Ihnen</p>     
     
@@ -36,7 +54,7 @@ case WaitNumberState.Parked:
 } else {
 
 <section class="wait01 content">
-  <h2>Warteschlange</h2>
+  <h2>@queuename</h2>
   <article>
     <p>Es befinden sich noch <b>@status.Position Kunden</b> vor Ihnen</p>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.7 71.2">
@@ -63,7 +81,7 @@ case WaitNumberState.Called:
   var callInfo = Vocatis.GetTicketCallInfo(id);
 
 <section class="room content">
-  <h2>Warteschlange</h2>
+  <h2>Aufruf</h2>
   <article>
     <p>Ihr Aufruf:</p>   
     <p id="place">@callInfo.RoomName</p>
