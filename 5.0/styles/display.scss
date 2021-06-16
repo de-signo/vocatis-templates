@@ -103,9 +103,6 @@ body {
         color: $color-secondary-foreground;
         box-shadow: 1px 3px 1px $color-secondary-shadow;
     }
-    tr.highlight td {
-        background-color: $color-primary-background;
-    }
     div#popup.popup.simple {
         position: absolute;
         text-align: center;

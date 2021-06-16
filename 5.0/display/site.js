@@ -10,7 +10,7 @@
         }
     }
 
-    sitejs.initVocatis = function(refreshInterval, highlight)
+    sitejs.initVocatis = function(refreshInterval)
     {
         var popupContent = $("#popup").html();
         var audio = sitejs._audio = document.getElementById("notify");
@@ -33,11 +33,6 @@
             .highlightNumbers({
                 items: "tr:not(.spacer)",
                 call: function (items) {
-                    if (highlight) {
-                        items.forEach(function(item) {
-                            item.element.classList.add("highlight");
-                        });
-                    }
                     if (audio) {
                         items.forEach(function(item) {
                             var source = document.createElement("source");
@@ -62,3 +57,7 @@
     };
 
 })(window.sitejs = window.sitejs || {}, jQuery);
+
+$(document).ready(function () {
+    sitejs.initVocatis(2500);
+});

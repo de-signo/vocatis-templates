@@ -8,7 +8,6 @@
         notify = notify.Replace("~speechurl~", speechurl);
     }
     var popup = Model.Style["popup"].FieldInstance.Value as string;
-    var hightlight = Model.Style["hl"].FieldInstance.Value as string == "1";
 }
 <!DOCTYPE html>
 <html>
@@ -39,10 +38,5 @@
             <h4>~number~</h4>
         </div>
     }
-   <script type="text/javascript">
-        $(document).ready(function () {
-            sitejs.initVocatis(2500, @(hightlight ? "true" : "false"));
-        });
-    </script>
 </body>
 </html>
