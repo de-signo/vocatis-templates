@@ -4,6 +4,7 @@ cleanCSS = require("gulp-clean-css"),
 del = require("del"),
 git = require("gulp-git"),
 hb = require("gulp-compile-handlebars"),
+log = require('fancy-log');
 rename = require("gulp-rename"),
 sass = require('gulp-sass'),
 zip = require("gulp-zip");
@@ -48,84 +49,77 @@ specs = [
   }
 ];
 
-var printerSpecBase = {
+// printer option generator
+// make sure test defaults are specified last
+options = [
+  // openclose
+  [
+    {'tag':'noopenclose', 'templateData': { enable_open_close: false }},
+    {'tag':'openclose', 'name': 'open/close', 'templateData': { enable_open_close: true }},
+  ],
+  // app
+  [
+    {'tag': 'noapp',
+    'templateData': {
+      'ticket_show_qr_code': false,
+      'list_print_or_scan': false,
+      'appointment_print_or_scan': false}
+    },
+    {'tag': 'app_noprintorscan', 'name': 'app',
+    'templateData': {
+      'ticket_show_qr_code': true,
+      'list_print_or_scan': false,
+      'appointment_print_or_scan': false}
+    },
+    {'tag': 'app_printorscan', 'name': 'app print or scan',
+    'templateData': {
+      'ticket_show_qr_code': true,
+      'list_print_or_scan': true,
+      'appointment_print_or_scan': true}
+    }
+  ],
+  // openclose
+  [
+    {'tag':'nomultilang', 'templateData': { multilang: false }},
+    {'tag':'multilang', 'name': 'multilang', 'templateData': { multilang: true }},
+  ],
+];
+
+// init options
+var printerSpecs = [{
+  'name': 'printer',
   'clean': "../dist/printer_*.zip",
   'files': ['printer/**', '!printer/*.handlebars'],
-  'templates': ['printer/Styles.xml.handlebars', 'printer/_PageStart.cshtml.handlebars']
-};
+  'templates': ['printer/Styles.xml.handlebars', 'printer/_PageStart.cshtml.handlebars'],
+  'templateData': { 'option_name': ''}
+}];
+for (option of options) {
+  var variantSpecs = [];
+  for (variant of option) {
+    for (s of printerSpecs)
+    {
+      // clone
+      var vs = {};
+      Object.assign(vs, s);
+      vs.templateData = {};
+      Object.assign(vs.templateData, s.templateData);
 
-specs.push(Object.assign({
-  'name': "printer_openclose_app_noprintorscan",
-  'templateData': {
-    'suffix': 'printer_openclose_app_noprintorscan',
-    'option_name': "open/close app",
-    'ticket_show_qr_code': true,
-    'list_print_or_scan': false,
-    'appointment_print_or_scan': false,
-    'enable_open_close': true
+      // apply variant
+      vs.name = s.name + "_" + variant.tag;
+      vs.templateData.suffix = vs.name;
+      if (variant.templateData) {
+        Object.assign(vs.templateData, variant.templateData);
+      }
+      if (variant.name) {
+        vs.templateData.option_name = vs.templateData.option_name + " " + variant.name;
+      }
+      variantSpecs.push(vs);
+    }
   }
-}, printerSpecBase));
-
-specs.push(Object.assign({
-  'name': "printer_openclose_noapp",
-  'templateData': {
-    'suffix': 'printer_openclose_noapp',
-    'option_name': "open/close app",
-    'ticket_show_qr_code': false,
-    'list_print_or_scan': false,
-    'appointment_print_or_scan': false,
-    'enable_open_close': true
-  }
-}, printerSpecBase));
-
-specs.push(Object.assign({
-  'name': "printer_noopenclose_app_printorscan",
-  'templateData': {
-    'suffix': 'printer_noopenclose_app_printorscan',
-    'option_name': "app print or scan",
-    'ticket_show_qr_code': true,
-    'list_print_or_scan': true,
-    'appointment_print_or_scan': true,
-    'enable_open_close': false
-  }
-}, printerSpecBase));
-
-specs.push(Object.assign({
-  'name': "printer_noopenclose_app_noprintorscan",
-  'templateData': {
-    'suffix': 'printer_noopenclose_app_noprintorscan',
-    'option_name': "app",
-    'ticket_show_qr_code': true,
-    'list_print_or_scan': false,
-    'appointment_print_or_scan': false,
-    'enable_open_close': false
-  }
-}, printerSpecBase));
-
-specs.push(Object.assign({
-  'name': "printer_noopenclose_noapp",
-  'templateData': {
-    'suffix': 'printer_noopenclose_noapp',
-    'option_name': "app",
-    'ticket_show_qr_code': false,
-    'list_print_or_scan': false,
-    'appointment_print_or_scan': false,
-    'enable_open_close': false
-  }
-}, printerSpecBase));
-
-// last spec with all options enabled (for testing)
-specs.push(Object.assign({
-  'name': "printer_openclose_app_printorscan",
-  'templateData': {
-    'suffix': 'printer_openclose_app_printorscan',
-    'option_name': "open/close app print or scan",
-    'ticket_show_qr_code': true,
-    'list_print_or_scan': true,
-    'appointment_print_or_scan': true,
-    'enable_open_close': true
-  }
-}, printerSpecBase));
+  printerSpecs = variantSpecs;
+}
+specs = specs.concat(printerSpecs);
+log("Specs: ", printerSpecs);
 
 // create packages
 gulp.task("clean_zip", function(done) {

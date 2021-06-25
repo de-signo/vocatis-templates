@@ -34,6 +34,7 @@
  <p>@string_map["App_ErrorOccuredText"]</p>
 </div>
 
+@if (langs.Count > 1) {
 <footer>
   @foreach (var l in langs)
   {
@@ -43,6 +44,7 @@
     </a>
   }
 </footer>
+}
 
 @Scripts.Render("~/Scripts/jquery")
 <script type="text/javascript">

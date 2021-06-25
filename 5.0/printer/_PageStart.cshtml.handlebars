@@ -15,6 +15,9 @@
 
   // enable open/close
   PageData["enable_open_close"] = {{enable_open_close}};
+
+  // enable Multi-Lang
+  PageData["multilang"] = {{multilang}};
 }
 @*
   // ==============
@@ -58,10 +61,14 @@
 }
 @{
   // read text snippets
-  var lang = Request["lang"] ?? Request["l"] ?? "de";
+  var multilang = PageData["multilang"];
+  var lang = !multilang ? "de" :
+    Request["lang"] ?? Request["l"] ?? "de";
+
   IList<string> langs;
   var string_map = ParseLang(lang, out langs);
+
   PageData["lang"] = lang;
-  PageData["langs"] = langs;
+  PageData["langs"] = multilang ? langs : new string[] { "de" } ;
   PageData["string_map"] = string_map;
 }
