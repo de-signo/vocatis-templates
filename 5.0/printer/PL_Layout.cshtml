@@ -4,6 +4,9 @@
 @{
   // Parse model
   var model = PageData["model"];
+  var string_map = PageData["string_map"];
+  var lang = PageData["lang"];
+  var langs = PageData["langs"];
   var tracking_id = (string)model.Style["tracking_id"].Value;
   var home_url = model.NavigateHome();
 }
@@ -17,15 +20,28 @@
 </head>
 <body class="printer">
   @Scripts.Render("~/Scripts/jquery", "~/Scripts/vocatis.js", "js/forms.min.js", "js/hammer.min.js", "js/jquery.qrcode.js", "js/site.js")
+  <!-- Current language: @(lang) -->
 
   <header>
     <img src="plattformlogo_01.png" class="plattformlogo" alt="plattformlogo">
-    <h1>Anmeldung</h1>
-    @if (PageData["show_home"] == true) { <a href="@home_url"><img src="home.png" class="home"alt="home"></a> }
+    <h1>@string_map["Printer_Header"]</h1>
+    @if (PageData["show_home"] == true) { <a href="@(model.NavigateHome() + "&lang=" + lang)"><img src="home.png" class="home"alt="home"></a> }
   </header>
  
   @RenderBody()
   
+  @if (langs.Count > 1) {
+  <footer>
+    @foreach (var l in langs)
+    {
+      <a class="button" href='@(model.NavigateHome() + "&lang=" + l)'>
+        <p>@string_map["lang_" + l]</p>
+        <img src="lang/@(l).png">
+      </a>
+    }
+  </footer>
+  }
+
   <script type="text/javascript">
   $(document).ready(function() {
     @* 

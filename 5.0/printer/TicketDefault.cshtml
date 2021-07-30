@@ -16,8 +16,7 @@
 @Scripts.Render("~/Scripts/jquery", "js/jquery.qrcode.js", "js/url_polyfill.js")
 <section class="ticket print_ticket">
     <header>
-      @DateTime.Now.ToString("dd.MM.yyyy")&emsp;
-      @DateTime.Now.ToString("HH:mm")Uhr
+      @Html.Raw(String.Format(string_map["Ticket_TimeFormatRaw"], DateTime.Now))
     </header>
   <h1>
     @Model.Style["ticketnumber"].Value
@@ -25,7 +24,7 @@
   <img src="separation.png" class="separation" alt="Trennung">
   <section class="qrcode">
     @if (withQrCode) {
-    <h4>Bitte QR Code einlesen!</h4>
+    <h4>@string_map["Ticket_AppHeader"]</h4>
     <a href="@Href("App.cshtml", new {i=id})"></a>
     }
     <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">

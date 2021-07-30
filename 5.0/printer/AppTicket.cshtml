@@ -7,9 +7,10 @@
   var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
 
   var tracking_id = Request["t"];
+  var lang = Request["lang"] ?? Request["l"];
 
   dynamic queueid = CommonGuidId.FromString(Request["q"]);
   dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["c"]).Value;
   var ticket = Vocatis.CreateTicket(queueid, catids);
-  Response.Redirect(Href("App.cshtml", new {i=ticket.Id, t=tracking_id}));
+  Response.Redirect(Href("App.cshtml", new {i=ticket.Id, t=tracking_id, l=lang}));
 }

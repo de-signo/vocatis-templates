@@ -1,5 +1,9 @@
+@using System.Text
+@using ISS.Data
 @{
+  // ==============
   // Configuration
+  // ==============
   // show qr code on printed ticket?
   PageData["ticket_show_qr_code"] = {{ticket_show_qr_code}};
 
@@ -11,4 +15,60 @@
 
   // enable open/close
   PageData["enable_open_close"] = {{enable_open_close}};
+
+  // enable Multi-Lang
+  PageData["multilang"] = {{multilang}};
+}
+@*
+  // ==============
+  // Multi-Lang
+  // ==============
+*@
+@functions
+{
+  IDictionary<string, string> ParseLang(string lang, out IList<string> langs)
+  {
+    using (var reader = new StreamReader(Server.MapPath("text.csv"), Encoding.UTF8))
+    {
+      var parser = new CsvParser(reader, ';', '\"');
+
+      // read header
+      var line = parser.ReadLine();
+      langs = line.Skip(1).ToList();
+      line = parser.ReadLine();
+
+      // find index
+      var index = langs.IndexOf(lang);
+      if (index < 0)
+        throw new ArgumentException(String.Format("Language with id {0} not found in table.", lang));
+      index += 1;
+
+      // read keys
+      var dict = new Dictionary<string, string>();
+      while (line != null)
+      {
+        if (line.Length <= index || (line.Length == 1 && String.IsNullOrEmpty(line[0])))
+        {
+          line = parser.ReadLine();
+          continue;
+        }
+        dict.Add(line[0], line[index]);
+        line = parser.ReadLine();
+      }
+      return dict;
+    }
+  }
+}
+@{
+  // read text snippets
+  var multilang = PageData["multilang"];
+  var lang = !multilang ? "de" :
+    Request["lang"] ?? Request["l"] ?? "de";
+
+  IList<string> langs;
+  var string_map = ParseLang(lang, out langs);
+
+  PageData["lang"] = lang;
+  PageData["langs"] = multilang ? langs : new string[] { "de" } ;
+  PageData["string_map"] = string_map;
 }
