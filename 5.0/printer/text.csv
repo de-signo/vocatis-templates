@@ -40,7 +40,7 @@ Print_TakeText;Bitte entnehmen Sie Ihre Wartenummer;Please take your queue n
 Print_ShowHeader;Sie werden angemeldet im Fachbereich;You will be registered in the department
 Print_ShowText1;Bitte merken Sie sich Ihre Anmeldenummer:;Please remember your registration number
 Print_ShowText2;Sie werden aufgerufen;You will be called
-Ticket_TimeFormatRaw;{0:dd.MM.yyyy}&emsp{0:HH\:mm}Uhr;{0:yyyy-MM-dd}&emsp{0:hh\:mm tt}
+Ticket_TimeFormatRaw;"{0:dd.MM.yyyy}&emsp;{0:HH\:mm}Uhr";"{0:yyyy-MM-dd}&emsp;{0:hh\:mm tt}"
 Ticket_AppHeader;Aufruf verfolgen;Track your queue number
 List_HeaderQr1;Gewünschter Fachbereich:;Desired department
 List_HeaderQr2;Wartemarke;Ticket number
