@@ -118,6 +118,7 @@
                         Name = item.name,
                         Title = item.title,
                         Desc = item.description,
+                        Reference = item["ref"],
                         Plan = Normalize(item.plan)
                     };
 
@@ -148,7 +149,7 @@
                     ticket.Name = item.Name;
                     ticket.Description = item.Desc;
                     ticket.Phone = item.Start.ToLocalTime().ToShortTimeString() + ": " + item.Title;
-                    ticket.ReferenceId = item.Id;
+                    ticket.ReferenceId = item.Reference;
                     voc.Instance.UpdateNumber(ticket);
                     return ticket;
                 }
