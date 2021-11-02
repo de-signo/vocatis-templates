@@ -9,6 +9,7 @@ rename = require("gulp-rename"),
 sass = require('gulp-sass'),
 zip = require("gulp-zip");
 
+hb.Handlebars.registerHelper('range', require('handlebars-helper-range'));
 sass.compiler = require('node-sass');
 
 // compile styles
