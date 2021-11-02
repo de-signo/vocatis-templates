@@ -41,4 +41,11 @@ Printer main entry page
   }).blur(function() {
     window.setTimeout(function () { $("#scan").focus(); }, 20);
   }).focus();
+
+  @* auto fill the import cache *@
+  var fillCache = function() {
+    $.ajax("@Html.Raw(Model.Navigate("FillCache.cshtml"))", { cache: false });
+  }
+  window.setTimeout(fillCache, 10);
+  window.setInterval(fillCache, 5 * 60 * 1000);
 </script>

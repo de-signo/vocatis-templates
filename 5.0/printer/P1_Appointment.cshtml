@@ -186,5 +186,12 @@
         interval: 60000
       });
     });
+
+    @* auto fill the import cache *@
+    var fillCache = function() {
+      $.ajax("@Html.Raw(Model.Navigate("FillCache.cshtml"))", { cache: false });
+    }
+    window.setInterval(fillCache, 5 * 60 * 1000);
+
   </script>
 }
