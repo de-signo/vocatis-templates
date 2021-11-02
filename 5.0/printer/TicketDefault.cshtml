@@ -24,13 +24,13 @@
   <h1>
     @Model.Style["ticketnumber"].Value
   </h1>
-  <img src="separation.png" class="separation" alt="Trennung">
+  <img src="img/separation.png" class="separation" alt="Trennung">
   <section class="qrcode">
     @if (withQrCode) {
     <h4>@string_map["Ticket_AppHeader"]</h4>
     <a href="@Href("App.cshtml", new {i=id})"></a>
     }
-    <img src="customerlogo.png" class="customerlogo" alt="Ersatztext">
+    <img src="img/customerlogo.png" class="customerlogo" alt="Ersatztext">
   </section>
 <script type="text/javascript">
   window.onload = function () {

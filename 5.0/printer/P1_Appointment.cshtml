@@ -50,7 +50,7 @@
   {
     default:
     case "1":
-        <img src="direction.png" alt="direction">
+        <img src="img/direction.png" alt="direction">
         <h1>@string_map["Appoint_Scan"]</h1>
         <textarea id="scan" ></textarea>
       break;
@@ -102,14 +102,14 @@
                 voc.Instance.UpdateNumber(ticket);
               }
               ticketUrl = Href("PrinterTicket.cshtml", new { id=ticket.Id, tid=tracking_id, lang=lang });
-              <img src="registration.png" id="registration" alt="registration" />
+              <img src="img/registration.png" id="registration" alt="registration" />
               <h3>@string_map["Appoint_TicketHeader"]</h3>
               if (showQrCode)
               {
                 <p>@string_map["Appoint_TicketTextWScan"]</p>
                 <div class="left">
                   <p>@string_map["Appoint_TicketPrint"]</p>
-                  <a class="print-button" href='@ticketUrl'><img src="printer.png" alt="Drucker"> </a>
+                  <a class="print-button" href='@ticketUrl'><img src="img/printer.png" alt="Drucker"> </a>
                 </div>
                 <div class="right">
                   <p>@string_map["Appoint_TicketScan"]</p>
@@ -142,20 +142,20 @@
     <section id="waitPopup" style="display: none;">
       <h4>@string_map["Print_WaitHeader"]</h4>
       <div>
-        <img src="wait.gif" id="wait" alt="wait" />
+        <img src="img/wait.gif" id="wait" alt="wait" />
       </div>
       <p>@string_map["Print_WaitText"]</p>
-      <img src="PfeilRechts.png" />
+      <img src="img/PfeilRechts.png" />
     </section>
 
     @* take popup is shown, when the printout is ready *@
     <section id="takePopup" style="display: none;">
         <h4>@string_map["Print_TakeHeader"]</h4>
       <div>
-        <img src="wait.gif" id="wait" alt="wait" />
+        <img src="img/wait.gif" id="wait" alt="wait" />
       </div>
       <p>@string_map["Print_TakeText"]</p>
-      <img src="PfeilRechts.png" />
+      <img src="img/PfeilRechts.png" />
     </section>
 
     @* show popup shows the number on the screen *@
