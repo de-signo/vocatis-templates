@@ -69,6 +69,6 @@
   var string_map = ParseLang(lang, out langs);
 
   PageData["lang"] = lang;
-  PageData["langs"] = multilang ? langs : new string[] { "de" } ;
+  PageData["langs"] = multilang ? langs : new List<string>() { "de" } ;
   PageData["string_map"] = string_map;
 }
