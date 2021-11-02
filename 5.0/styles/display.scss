@@ -16,6 +16,7 @@
 html {
     height: 100%;
     width: 70%;
+    font-size: 0.83vh; /* 16px / 1920px */
 }
 
 header {
@@ -101,7 +102,7 @@ body {
         font-size: 4em;
         background-color: $color-secondary-background;
         color: $color-secondary-foreground;
-        box-shadow: 1px 3px 1px $color-secondary-shadow;
+        box-shadow: 0.052vh 0.156vh 0.052vh $color-secondary-shadow;
     }
     tr.highlight td {
         background-color: $color-primary-background;
@@ -110,10 +111,10 @@ body {
         position: absolute;
         text-align: center;
         width: 100%;
-        top: 0px;
-        bottom: 0px;
-        left: 0px;
-        right: 0px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         background-color: $color-primary-background;
         color: $color-highlight-foreground;
         h3 {
