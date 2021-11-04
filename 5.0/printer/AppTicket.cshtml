@@ -8,9 +8,10 @@
 
   var tracking_id = Request["t"];
   var lang = Request["lang"] ?? Request["l"];
+  var opt = Request["o"];
 
   dynamic queueid = CommonGuidId.FromString(Request["q"]);
   dynamic catids = GuidIdsFieldInstance.ParseValue("",Request["c"]).Value;
   var ticket = Vocatis.CreateTicket(queueid, catids);
-  Response.Redirect(Href("App.cshtml", new {i=ticket.Id, t=tracking_id, l=lang}));
+  Response.Redirect(Href("App.cshtml", new {i=ticket.Id, t=tracking_id, o=opt, l=lang}));
 }

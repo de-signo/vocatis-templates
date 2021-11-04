@@ -62,18 +62,22 @@ options = [
   [
     {'tag': 'noapp',
     'templateData': {
+      'enable_app': false,
       'ticket_show_qr_code': false,
       'list_print_or_scan': false,
-      'appointment_print_or_scan': false}
+      'appointment_print_or_scan': false},
+      'files': ['!printer/App*.cshtml', '!printer/app.css']
     },
     {'tag': 'app_noprintorscan', 'name': 'app',
     'templateData': {
+      'enable_app': true,
       'ticket_show_qr_code': true,
       'list_print_or_scan': false,
       'appointment_print_or_scan': false}
     },
     {'tag': 'app_printorscan', 'name': 'app print or scan',
     'templateData': {
+      'enable_app': true,
       'ticket_show_qr_code': true,
       'list_print_or_scan': true,
       'appointment_print_or_scan': true}
@@ -113,6 +117,9 @@ for (option of options) {
       }
       if (variant.name) {
         vs.templateData.option_name = vs.templateData.option_name + " " + variant.name;
+      }
+      if (variant.files) {
+        vs.files = vs.files.concat(variant.files);
       }
       variantSpecs.push(vs);
     }

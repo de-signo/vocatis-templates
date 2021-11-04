@@ -32,6 +32,7 @@
   // Read request
   var s = Request["i"];
   var a = Request["a"];
+  var opt = (string)Model.Style["wt"].FieldInstance.Value == "1" ? "wt" : ""; // app options (wt = show wait time)
   var tracking_id = (string)Model.Style["tracking_id"].Value;
   dynamic catids = Model.Style["catid_apt"].Value;
   const int count = 4;
@@ -101,7 +102,7 @@
                 ticket.ReferenceId = entry.id;
                 voc.Instance.UpdateNumber(ticket);
               }
-              ticketUrl = Href("PrinterTicket.cshtml", new { id=ticket.Id, tid=tracking_id, lang=lang });
+              ticketUrl = Href("PrinterTicket.cshtml", new { id=ticket.Id, tid=tracking_id, o=opt, lang=lang });
               <img src="img/registration.png" id="registration" alt="registration" />
               <h3>@string_map["Appoint_TicketHeader"]</h3>
               if (showQrCode)
@@ -113,7 +114,7 @@
                 </div>
                 <div class="right">
                   <p>@string_map["Appoint_TicketScan"]</p>
-                  <div class="qrcode" data-url="@Href("App.cshtml", new {i=ticket.Id, t=tracking_id, l=lang })"></div>
+                  <div class="qrcode" data-url="@Href("App.cshtml", new {i=ticket.Id, t=tracking_id, l=lang, o=opt })"></div>
                 </div>
               }
               else

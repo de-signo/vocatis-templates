@@ -10,6 +10,17 @@
     <text key="print">Nummer drucken</text>
   </content_class>
 </field>
+{{#if enable_app}}
+<field key="wt">
+  <names>
+    <name>App Wartezeit</name>
+  </names>
+    <content_class type="TextChoose">
+    <text key="0">Verbergen</text>
+    <text key="1">Anzeigen</text>
+  </content_class>
+</field>
+{{/if}}
 <field key="tracking_id">
   <names>
     <name>Tracking-ID</name>
