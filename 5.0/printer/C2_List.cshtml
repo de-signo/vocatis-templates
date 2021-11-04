@@ -14,13 +14,19 @@
   PageData["model"] = Model;
   PageData["show_home"] = true;
   Layout="PL_Layout.cshtml";
+  
+  var mode = (string)Model.Style["mode"].FieldInstance.Value;
+  var ticketUrl = (mode == "print") ? "PrinterTicket.cshtml" : "Ticket.cshtml";
+  var opt = Model.Style.StyleInstance.Where(f => f.Key == "wt").Select(f => (string)f.Value).FirstOrDefault() == "1" ? "wt" : ""; // app options (wt = show wait time)
+  var lang = PageData["lang"];
+  var tracking_id = (string)Model.Style["tracking_id"].Value;
   var queueStatus = @Vocatis.GetWaitQueueOverview();
 
   // select category
   var index = Int32.Parse(Request["cat"]);
   var config = PageData["config"]();
-  var cat = config.categories[index];
-  var queues = cat.queues;
+  var cat = config.groups[index];
+  var queues = cat.items;
 }
 <div class="main">
   <section id="idle">
@@ -28,13 +34,14 @@
     <ul class="buttons-@queues.Count">
       @for (int i = 0; i < queues.Count; i++) {
         var queue = queues[i];
-        var queueid = CommonGuidId.FromString((string)queue.id);
+        var queueid = CommonGuidId.FromString((string)queue.queue);
+        string catids = queue.categories == null ? null : String.Join(",",queue.categories);
         var status = queueStatus.Where(s=>s.Id.Equals(queueid)).FirstOrDefault();
-        if (status == null) { throw new ApplicationException("Unknown queue id: " + queue.id); }
+        if (status == null) { throw new ApplicationException("Unknown queue id: " + queue.queue); }
       @* Queue open *@
       if (disableOpenClose || (status.OpenCloseStatus & WaitQueueOpenCloseStatus.IsOpen) != 0)
       {
-      <li><a href="@Model.Navigate("P3_PrintOrScan.cshtml", new { cat=index, btn=i })" data-label="@queue.title"
+      <li><a href="@Href(ticketUrl, new { queueid=queueid, catid=catids, tid=tracking_id, o=opt, lang=lang })" data-label="@queue.title"
       @if (status.QueueLength == 0) {<text>class="btn next-one"</text>} else {<text>class="btn"</text>}>
         <div>
           <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
@@ -117,9 +124,29 @@
 </div>
 
 <script type="text/javascript">
+@if (mode == "print") {
+  @*
+    This script calls the number generation service
+    and prints the number on the default printer.
+    It shows the wait popup while waiting and printing.
+    It shows the take popup when the printout is ready.
+    It reports the printer status to the service.
+   *@
+  <text>
   function hookupButtons() {
     $("a.btn").unbind()
-    .click(function() {
+    .each(function (){
+      // do not block
+      var url = $(this).find(".qrcode").data("url");
+      if (url) {
+          // make absolute
+          var a = document.createElement("a");
+          a.href = url;
+          url = a.href;
+      }
+
+      $(this).find(".qrcode").qrcode({text: url});
+    }).click(function() {
       $("[data-name]").text($(this).data("label"));
     }).printTicket({
       legacy: false,
@@ -143,5 +170,59 @@
       url: "@Href(Stolltec.Forms.PrinterStatus.Path)",
       interval: 60000
 	  });
+  });
+  </text>
+} else {
+  @*
+    This script calls the number generation service,
+    shows the wait popup while waiting and
+    shows the number in show popup when done.
+   *@
+  <text>
+  function hookupButtons() {
+  
+    $("a.btn").unbind()
+    .each(function (){
+      // do not block
+      var url = $(this).find(".qrcode").data("url");
+      if (url) {
+          // make absolute
+          var a = document.createElement("a");
+          a.href = url;
+          url = a.href;
+      }
+      $(this).find(".qrcode").qrcode({text: url});
+    })
+    .click(function (ev) {
+      ev.preventDefault();
+      
+      // do not block
+      var url = $(this).attr("href");
+      if (!url)
+          url = $(this).data("href");
+      if (url) {
+          // make absolute
+          var a = document.createElement("a");
+          a.href = url;
+          url = a.href;
+      }
+
+      $("[data-name]").text($(this).data("label"));
+      $("#waitPopup").show();
+      $.ajax({url:url, cache: false, dataType:"json"}).done(function(data) {
+        $("[data-number]").text(data["number"]);
+        $("#showPopup").show();
+        window.setTimeout(function() {
+          $("#showPopup").hide();
+        }, 10000);
+      }).always(function() {
+        $("#waitPopup").hide();
+      });
+    });
+  }
+  </text>
+}
+  $(document).ready(function() {
+    hookupButtons();
   });
 </script>

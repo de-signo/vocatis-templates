@@ -1,31 +1,31 @@
 {
-  "categories": [
+  "groups": [
     {
       "title": "Prüfungsmanagement",
-      "queues": [
+      "items": [
         {
           "title": "Abschlussarbeiten",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Anmeldungen (Prüfungen, etc.)",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Krankmeldungen",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Anträge (Studiendekan)",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Bescheinigungen",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Ausgabe Praktikumsberichte",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
           "categories": [
             "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
           ]
@@ -34,22 +34,22 @@
     },
     {
       "title": "Studienberatung",
-      "queues": [
+      "items": [
         {
           "title": "Prüfungsrechtliche Rahmenbedingungen",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Bescheinigungen",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Zweitwiederholungsberatung",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Anerkennung - Erststudium",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
           "categories": [
             "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
           ]
@@ -58,30 +58,30 @@
     },
     {
       "title": "Internationales & Masterzulassung",
-      "queues": [
+      "items": [
         {
           "title": "Anerkennung Auslandsleistungen",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Auslandsstudium (Outgoing)",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Double Degree",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Exchange Students (Incoming)",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Learning Agreements",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Externe Masterbewerbung",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
           "categories": [
             "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
           ]
@@ -90,14 +90,14 @@
     },
     {
       "title": "Praktikum",
-      "queues": [
+      "items": [
         {
           "title": "Bachelorpraktikum",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Masterpraktikum",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
           "categories": [
             "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
           ]
@@ -106,14 +106,14 @@
     },
     {
       "title": "Zeugnisse & Leistungsspiegel",
-      "queues": [
+      "items": [
         {
           "title": "Zeugnisse",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c"
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
         },
         {
           "title": "Leistungsspiegel",
-          "id": "c169b7f0-5147-498a-8921-90e984c5283c",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
           "categories": [
             "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
           ]

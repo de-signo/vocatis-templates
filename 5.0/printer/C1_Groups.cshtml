@@ -12,14 +12,14 @@
   <section id="idle">
     <h4>Gewünschter Bereich:</h4>
     <ul>
-      @for (int i = 0; i < config.categories.Count; i++)
+      @for (int i = 0; i < config.groups.Count; i++)
       {
       <li><a class="btn" href="@Model.Navigate("C2_List.cshtml", new { cat=i })">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
         </div>
         <div class="firststep">
-          @config.categories[i].title
+          @config.groups[i].title
         </div>
       </a></li>
       }
