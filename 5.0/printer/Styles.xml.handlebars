@@ -117,6 +117,17 @@
 </field>
 {{/inline}}
 
+{{#if use_groups_config}}
+  <style key="vocatis_multi_2019_groupconfig{{suffix}}" file="C1_Groups.cshtml"
+         interactive="true" target="Forms2">
+    <names>
+      <name culture="de">vocatis printer Gruppenkonfiguration ({{version}})</name>
+    </names>
+    <fields>
+      {{> commonFields}}
+    </fields>
+  </style>
+{{else}}
   <style key="vocatic_multi_2019{{suffix}}" file="Printer.cshtml"
          interactive="true" target="Forms2" preview="preview.png">
     <names>
@@ -150,6 +161,7 @@
       {{> printerFields}}
     </fields>
   </style>
+{{/if}}
 
   <style key="vocatis_ticket_default"
     file="TicketDefault.cshtml"

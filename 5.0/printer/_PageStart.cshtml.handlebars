@@ -1,4 +1,7 @@
 @using System.Text
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Linq
+@using System.IO
 @using ISS.Data
 @{
   // ==============
@@ -58,6 +61,18 @@
       return dict;
     }
   }
+
+{{#if use_groups_config }}
+  JObject ReadConfig()
+  {
+    // deserialize JSON directly from a file
+    using (StreamReader file = File.OpenText(Server.MapPath("config.json")))
+    {
+      JsonSerializer serializer = new JsonSerializer();
+      return (JObject)serializer.Deserialize(file, typeof(JObject));
+    }
+  }
+{{/if}}
 }
 @{
   // read text snippets
@@ -71,4 +86,8 @@
   PageData["lang"] = lang;
   PageData["langs"] = multilang ? langs : new List<string>() { "de" } ;
   PageData["string_map"] = string_map;
+
+{{#if use_groups_config }}
+  PageData["config"] = new Func<JObject>(ReadConfig);
+{{/if}}
 }

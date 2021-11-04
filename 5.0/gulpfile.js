@@ -51,6 +51,22 @@ specs = [
     'clean': "../dist/queueinfo_*.zip",
     'files': ['queueinfo/**', '!queueinfo/*.handlebars'],
     'templates': ['queueinfo/Styles.xml.handlebars']
+  },
+  {
+    'name': "printer_groups_openclose_nomultilang",
+    'clean': "../dist/printergroups_*.zip",
+    'files': ['printer/**', '!printer/*.handlebars'],
+    'templates': ['printer/Styles.xml.handlebars', 'printer/_PageStart.cshtml.handlebars'],
+    'templateData': {
+      'suffix': '_openclose_nomultilang',
+      'use_groups_config': true,
+      'enable_app': false,
+      'ticket_show_qr_code': false,
+      'list_print_or_scan': false,
+      'appointment_print_or_scan': false,
+      'enable_open_close': true,
+      'multilang': false
+    }
   }
 ];
 
@@ -66,6 +82,7 @@ options = [
   [
     {'tag': 'noapp',
     'templateData': {
+      'use_groups_config': false,
       'enable_app': false,
       'ticket_show_qr_code': false,
       'list_print_or_scan': false,
@@ -74,6 +91,7 @@ options = [
     },
     {'tag': 'app_noprintorscan', 'name': 'app',
     'templateData': {
+      'use_groups_config': false,
       'enable_app': true,
       'ticket_show_qr_code': true,
       'list_print_or_scan': false,
@@ -81,6 +99,7 @@ options = [
     },
     {'tag': 'app_printorscan', 'name': 'app print or scan',
     'templateData': {
+      'use_groups_config': false,
       'enable_app': true,
       'ticket_show_qr_code': true,
       'list_print_or_scan': true,
@@ -98,7 +117,7 @@ options = [
 var printerSpecs = [{
   'name': 'printer',
   'clean': "../dist/printer_*.zip",
-  'files': ['printer/**', '!printer/*.handlebars'],
+  'files': ['printer/**', '!printer/*.handlebars', '!printer/config.json'],
   'templates': ['printer/Styles.xml.handlebars', 'printer/_PageStart.cshtml.handlebars'],
   'templateData': { 'option_name': ''}
 }];
