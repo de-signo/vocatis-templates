@@ -40,7 +40,7 @@ var string_map = PageData["string_map"];
   <section class="qrcode">
     @if (withQrCode) {
     <h4>@string_map["Ticket_AppHeader"]</h4>
-    <a href="@Href("App.cshtml", new {i=ticket.Id, t=tracking_id, o=opt, l=lang})"></a>
+    <a href="@Href("app", new {i=ticket.Id, t=tracking_id, o=opt, l=lang})"></a>
     }
     <img src="img/customerlogo.png" class="customerlogo" alt="Ersatztext">
   </section>

@@ -14,10 +14,14 @@ sass.compiler = require('node-sass');
 
 // compile styles
 gulp.task("css", function (done) {
-gulp.src(['styles/style.scss','styles/app.scss'])
+gulp.src(['styles/style.scss'])
     .pipe(sass.sync().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest('printer'));
+gulp.src(['styles/app.scss'])
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest('printer/app'));
 gulp.src(['styles/display.scss'])
     .pipe(sass.sync().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
@@ -66,7 +70,7 @@ options = [
       'ticket_show_qr_code': false,
       'list_print_or_scan': false,
       'appointment_print_or_scan': false},
-      'files': ['!printer/App*.cshtml', '!printer/app.css']
+      'files': ['!printer/app/**', '!printer/App*']
     },
     {'tag': 'app_noprintorscan', 'name': 'app',
     'templateData': {

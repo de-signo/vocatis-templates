@@ -114,7 +114,7 @@
                 </div>
                 <div class="right">
                   <p>@string_map["Appoint_TicketScan"]</p>
-                  <div class="qrcode" data-url="@Href("App.cshtml", new {i=ticket.Id, t=tracking_id, l=lang, o=opt })"></div>
+                  <div class="qrcode" data-url="@Href("app", new {i=ticket.Id, t=tracking_id, l=lang, o=opt })"></div>
                 </div>
               }
               else

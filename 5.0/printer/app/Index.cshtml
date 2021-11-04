@@ -38,7 +38,7 @@
 <footer>
   @foreach (var l in langs)
   {
-    <a class="button" href='@Href("App.cshtml", new { lang=l, id=Request["id"], o=Request["o"] })'>
+    <a class="button" href='@Href("", new { lang=l, id=Request["id"], o=Request["o"] })'>
       <p>@string_map["lang_" + l]</p>
       <img src="lang/@(l).png">
     </a>
