@@ -32,7 +32,7 @@
   // Read request
   var s = Request["i"];
   var a = Request["a"];
-  var opt = (string)Model.Style["wt"].FieldInstance.Value == "1" ? "wt" : ""; // app options (wt = show wait time)
+  var opt = Model.Style.StyleInstance.Where(f => f.Key == "wt").Select(f => (string)f.Value).FirstOrDefault() == "1" ? "wt" : ""; // app options (wt = show wait time)
   var tracking_id = (string)Model.Style["tracking_id"].Value;
   dynamic catids = Model.Style["catid_apt"].Value;
   const int count = 4;

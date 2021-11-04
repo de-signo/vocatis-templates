@@ -15,7 +15,7 @@
   // Parse model
   var Model = new FormsModel(this);
   var mode = (string)Model.Style["mode"].FieldInstance.Value;
-  var opt = (string)Model.Style["wt"].FieldInstance.Value == "1" ? "wt" : ""; // app options (wt = show wait time)
+  var opt = Model.Style.StyleInstance.Where(f => f.Key == "wt").Select(f => (string)f.Value).FirstOrDefault() == "1" ? "wt" : ""; // app options (wt = show wait time)
 
   // Select ticket servce type (JSON vs HTML) by mode
   var ticketUrl = (mode == "print") ? "PrinterTicket.cshtml" : "Ticket.cshtml";
