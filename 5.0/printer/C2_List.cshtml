@@ -7,11 +7,12 @@
 @using Stolltec.Vocatis
 @using Stolltec.Vocatis.Model
 @{
-  var disableOpenClose = false;
 
   // Parse model
-  var Model = new FormsModel(this);
-  PageData["model"] = Model;
+  var Model = PageData["ReadModel"](this);
+  var disableOpenClose = !PageData["enable_open_close"];
+  
+  // setup layout
   PageData["show_home"] = true;
   Layout="PL_Layout.cshtml";
   
@@ -41,7 +42,7 @@
       @* Queue open *@
       if (disableOpenClose || (status.OpenCloseStatus & WaitQueueOpenCloseStatus.IsOpen) != 0)
       {
-      <li><a href="@Href(ticketUrl, new { queueid=queueid, catid=catids, tid=tracking_id, o=opt, lang=lang })" data-label="@queue.title"
+      <li><a href="@Href(ticketUrl, new { queueid=queueid, catid=catids, tid=tracking_id, o=opt, qr=PageData["ticket_show_qr_code"], lang=lang })" data-label="@queue.title"
       @if (status.QueueLength == 0) {<text>class="btn next-one"</text>} else {<text>class="btn"</text>}>
         <div>
           <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>

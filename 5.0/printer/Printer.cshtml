@@ -2,11 +2,10 @@
 @using Stolltec.Forms.Model
 @{
   // Parse model
-  var Model = new FormsModel(this);
+  var Model = PageData["ReadModel"](this);
   var mode = (string)Model.Style["mode"].FieldInstance.Value;
 
   // setup layout
-  PageData["model"] = Model;
   PageData["show_home"] = Model.Style.StyleInstance.StyleKey.StartsWith("vocm19ap");
   Layout = "PL_Layout.cshtml";
 

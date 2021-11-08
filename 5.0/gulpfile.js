@@ -61,9 +61,6 @@ specs = [
       'suffix': '_openclose_nomultilang',
       'use_groups_config': true,
       'enable_app': false,
-      'ticket_show_qr_code': false,
-      'list_print_or_scan': false,
-      'appointment_print_or_scan': false,
       'enable_open_close': true,
       'multilang': false
     }
@@ -78,27 +75,13 @@ options = [
     {'tag': 'noapp',
     'templateData': {
       'use_groups_config': false,
-      'enable_app': false,
-      'ticket_show_qr_code': false,
-      'list_print_or_scan': false,
-      'appointment_print_or_scan': false},
+      'enable_app': false },
       'files': ['!printer/app/**', '!printer/App*']
     },
-    {'tag': 'app_noprintorscan', 'name': 'app',
+    {'tag': 'app', 'name': 'app',
     'templateData': {
       'use_groups_config': false,
-      'enable_app': true,
-      'ticket_show_qr_code': true,
-      'list_print_or_scan': false,
-      'appointment_print_or_scan': false}
-    },
-    {'tag': 'app_printorscan', 'name': 'app print or scan',
-    'templateData': {
-      'use_groups_config': false,
-      'enable_app': true,
-      'ticket_show_qr_code': true,
-      'list_print_or_scan': true,
-      'appointment_print_or_scan': true}
+      'enable_app': true }
     }
   ],
   // openclose

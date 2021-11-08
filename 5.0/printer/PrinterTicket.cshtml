@@ -4,13 +4,12 @@
 @using Stolltec.Vocatis.Model
 @using Stolltec.Forms.Model
 @{
-  var withQrCode = PageData["ticket_show_qr_code"];
   var partial = Request["X-Requested-With"] == "XMLHttpRequest" || (Request.Headers != null && Request.Headers["X-Requested-With"] == "XMLHttpRequest");
 
-  var Model = new FormsModel(this);
   var tracking_id = Request["tid"];
   var ticket_id = Request["id"];
   var opt = Request["o"];
+  var withQrCode = Request["qr"] == "1" || string.Equals(Request["qr"], "true", StringComparison.OrdinalIgnoreCase);
   WaitNumber ticket;
   if (!String.IsNullOrEmpty(ticket_id))
   {

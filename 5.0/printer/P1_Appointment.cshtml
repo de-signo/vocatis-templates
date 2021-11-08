@@ -11,15 +11,14 @@
 @using iSign
 
 @{
+  // Parse model
+  var Model = PageData["ReadModel"](this);
   var showQrCode = PageData["appointment_print_or_scan"];
   var lang = PageData["lang"];
   var string_map = PageData["string_map"];
   var debug = false;
-  // Parse model
-  var Model = new FormsModel(this);
 
   // setup layout
-  PageData["model"] = Model;
   PageData["show_home"] = true;
   PageData["show_back"] = false;
 
@@ -102,7 +101,7 @@
                 ticket.ReferenceId = entry.id;
                 voc.Instance.UpdateNumber(ticket);
               }
-              ticketUrl = Href("PrinterTicket.cshtml", new { id=ticket.Id, tid=tracking_id, o=opt, lang=lang });
+              ticketUrl = Href("PrinterTicket.cshtml", new { id=ticket.Id, tid=tracking_id, o=opt, qr=PageData["ticket_show_qr_code"], lang=lang });
               <img src="img/registration.png" id="registration" alt="registration" />
               <h3>@string_map["Appoint_TicketHeader"]</h3>
               if (showQrCode)

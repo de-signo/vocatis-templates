@@ -1,27 +1,55 @@
+@using Stolltec.Forms.Model
 @using System.Text
 @using Newtonsoft.Json
 @using Newtonsoft.Json.Linq
 @using System.IO
 @using ISS.Data
+@*
+// ==============
+// Configuration
+// ==============
+*@
+@functions
+{
+  FormsModel ReadModel(WebPageBase page)
+  {
+    var model = new FormsModel(page);
+{{#if enable_app }}
+    var qr = Int32.Parse((string)model.Style["qr"].FieldInstance.Value);
+    var qrTicket = (qr & 1) == 1;
+    var qrMonitor = (qr & 2) == 2;
+
+    // show qr code on printed ticket?
+    PageData["ticket_show_qr_code"] = qrTicket;
+
+    // show qr code on queue list?
+    PageData["list_print_or_scan"] = qrMonitor;
+
+    // enable print or scan in appointments
+    PageData["appointment_print_or_scan"] = qrMonitor;
+
+    // app options
+    PageData["app_options"] = model.Style.StyleInstance.Where(f => f.Key == "wt").Select(f => (string)f.Value).FirstOrDefault() == "1" ? "wt" : ""; // app options (wt = show wait time);
+{{else}}
+    PageData["ticket_show_qr_code"] = false;
+    PageData["list_print_or_scan"] = false;
+    PageData["appointment_print_or_scan"] = false;
+    PageData["app_options"] = "";
+{{/if}}
+    PageData["model"] = model;
+    return model;
+  }
+}
 @{
-  // ==============
-  // Configuration
-  // ==============
-  // show qr code on printed ticket?
-  PageData["ticket_show_qr_code"] = {{ticket_show_qr_code}};
-
-  // show qr code on queue list?
-  PageData["list_print_or_scan"] = {{list_print_or_scan}};
-
-  // enable print or scan in appointments
-  PageData["appointment_print_or_scan"] = {{appointment_print_or_scan}};
-
   // enable open/close
   PageData["enable_open_close"] = {{enable_open_close}};
 
   // enable Multi-Lang
   PageData["multilang"] = {{multilang}};
+
+  PageData["ReadModel"] = new Func<WebPageBase, FormsModel>(ReadModel);
 }
+
 @*
   // ==============
   // Multi-Lang
