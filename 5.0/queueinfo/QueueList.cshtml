@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+@using System.Web.Caching
 @using System.Web.Optimization
 @using Stolltec.Forms.Model
 @using Stolltec.Vocatis
@@ -14,7 +15,7 @@
   {
     queueStatus = @Vocatis.GetWaitQueueOverview();
     Cache.Add("Vocatis_GetWaitQueueOverview", queueStatus, null,
-              DateTime.Now.AddSeconds(1), Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
+              DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
   }
 
   var buttonCount = (from i in Enumerable.Range(1,8)
