@@ -4,8 +4,7 @@
 @{
   // Parse model
   var Model = new FormsModel(this);
-  var appointmentUrl = (string) null;
-  appointmentUrl = "https://www.wartemarkendrucker.de/online-terminkalender";
+  var appointmentUrl = (string)Model.Style["appurl"].FieldInstance.Value;
 }
 <html>
 <head>
