@@ -53,7 +53,7 @@ specs = [
     'templates': ['queueinfo/Styles.xml.handlebars']
   },
   {
-    'name': "printer_groups_openclose_nomultilang",
+    'name': "printer_groups_nomultilang",
     'clean': "../dist/printergroups_*.zip",
     'files': ['printer/**', '!printer/*.handlebars'],
     'templates': ['printer/Styles.xml.handlebars', 'printer/_PageStart.cshtml.handlebars'],
@@ -73,11 +73,6 @@ specs = [
 // printer option generator
 // make sure test defaults are specified last
 options = [
-  // openclose
-  [
-    {'tag':'noopenclose', 'templateData': { enable_open_close: false }},
-    {'tag':'openclose', 'name': 'open/close', 'templateData': { enable_open_close: true }},
-  ],
   // app
   [
     {'tag': 'noapp',
@@ -119,7 +114,10 @@ var printerSpecs = [{
   'clean': "../dist/printer_*.zip",
   'files': ['printer/**', '!printer/*.handlebars', '!printer/config.json'],
   'templates': ['printer/Styles.xml.handlebars', 'printer/_PageStart.cshtml.handlebars'],
-  'templateData': { 'option_name': ''}
+  'templateData': {
+    'option_name': '',
+    enable_open_close: true
+  }
 }];
 for (option of options) {
   var variantSpecs = [];
