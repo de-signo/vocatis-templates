@@ -16,7 +16,10 @@
 html {
     height: 100%;
     width: 70%;
-    font-size: 0.83vh; /* 16px / 1920px */
+    font-size: 1.48vh; /* 16px / 1080px */
+    @media only screen and (orientation: portrait) {
+        font-size: 0.83vh; /* 16px / 1920px */
+    }
 }
 
 header {
