@@ -62,7 +62,10 @@
 {
   IDictionary<string, string> ParseLang(string lang, out IList<string> langs)
   {
-    using (var reader = new StreamReader(Server.MapPath("text.csv"), Encoding.UTF8))
+    var file = Server.MapPath("text.csv");
+    if (file.EndsWith(@"\app\text.csv"))
+      file = Server.MapPath("../text.csv");
+    using (var reader = new StreamReader(file, Encoding.UTF8))
     {
       var parser = new CsvParser(reader, ';', '\"');
 
