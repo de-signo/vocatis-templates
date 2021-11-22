@@ -109,6 +109,7 @@ body {
     }
     tr.highlight td {
         background-color: $color-primary-background;
+        color: $color-primary-foreground;
     }
     div#popup.popup.simple {
         position: absolute;
