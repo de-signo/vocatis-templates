@@ -6,7 +6,7 @@ App_Title_a;Wartezeit;Waiting time
 App_Title_b;Live-Abfrage;Real-time request oder Status request
 App_CallHeader;Aufruf;Call
 App_YourNumber;Ihre Wartemarke:;Your ticket:
-App_NumWaitingFormatRaw;Es befinden sich noch <b>{0}</b> vor Ihnen;There are <b>{0}</b> customers in the queue
+App_NumWaitingFormatRaw;Es befinden sich noch<b>{0} Personen</b> vor Ihnen;There are <b>{0} customers</b> in the queue
 App_WaitingTimeFormatRaw;<b>Ihre voraussichtliche</b> Wartezeit beträgt <b>ca. {0} Minuten</b>.;<b>Your estimated</b> waiting time is <b>about {0} minutes</b>
 App_TimeFormat;STAND: {0:HH\:mm} Uhr;Status: 
 App_StayClose;Bitte halten Sie sich im Wartebereich auf!;Please stay in the waiting area!
@@ -47,8 +47,8 @@ List_HeaderQr2;Wartemarke;Ticket number
 List_Print;DRUCKEN;Print
 List_Scan;SCANNEN;Scan
 List_HeaderNoQr;Bitte wählen Sie den gewünschten Fachbereich aus:;Please choose the desired department:
-List_StatusMT3FormatRaw;Es befinden sich noch <b>{0} Personen</b> vor Ihnen;There are <b>{0} customers</b> in the queue
+List_StatusMT3FormatRaw;Es befinden sich noch<br> <b> {0} Personen</b> vor Ihnen;There are <b>{0} customers</b> in the queue
 List_StatusLT3FormatRaw;Bitte halten Sie sich im Wartebereich auf;Please stay in the waiting area
 List_Closed;Derzeit geschlossen;Currently closed
-List_ClosedHours;geschlossen außerhalb der Öffnungszeiten;closed outside opening hours
+List_ClosedHours;geschlossen außerhalb der Öffnungszeiten;closed outside opening hours
 List_ClosedFull;Geschlossen, keine freie Kapazität mehr;Closed, we are full

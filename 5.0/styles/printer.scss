@@ -19,7 +19,7 @@ body.queueinfo {
             color: $color-primary-background;
         }
         .home {
-            width: 5vh;
+            width: 7%;
             margin: 6vh 20vw 0vh 0vw;
             float: right;
             border: 10px solid $color-primary-foreground;
@@ -308,12 +308,12 @@ body.queueinfo {
                 }
             }
             .qrcode {
-                width: 30%;
+             
                 canvas {
                     position: absolute;
                     width: auto;
                     height: 7vh;
-                    padding-left: 10vw;
+                    padding-left: 5vw;
                 }
             }
             ul.buttons-1 {
@@ -338,7 +338,8 @@ body.queueinfo {
             }
             .btn.closed>div {
                 width: 30%;
-                font-size: 0.75em;
+                font-size: 0.9em;
+                line-height: 1vh;
                 background-color: $color-highlight-background;
                 color: $color-highlight-foreground;
                 text-align: center;
@@ -383,7 +384,7 @@ body.queueinfo {
                     &.queue-status {
                         width: 30%;
                         float: left;
-                        font-size: 0.75em;
+                        font-size: 0.9em;
                         background-color: $color-primary-background;
                         color: $color-primary-foreground;
                         box-shadow: 1px 3px 1px $color-primary-shadow;
@@ -395,6 +396,7 @@ body.queueinfo {
                                 span {
                                     box-sizing: border-box;
                                     height: 7vh;
+                                    line-height: 1vh;
                                     padding: 0vh 1vw;
                                     display: table-cell;
                                     vertical-align: middle;
@@ -408,13 +410,15 @@ body.queueinfo {
                                 text-align: center;
                                 /* personenanzahl */
                                 svg {
-                                    height: 70%;
+                                    height: 60%;
+                                    width: auto;
+                                    margin-left: 5vw;
                                     vertical-align: middle;
                                     .cls-1 {
                                         fill: $color-primary-foreground;
                                     }
                                     .cls-2 {
-                                        font-size: 1em;
+                                        font-size: 1.2em;
                                         color: $color-primary-background;
                                     }
                                 }
@@ -446,13 +450,13 @@ body.queueinfo {
             }
             .with-qr-code {
                 .btn.closed>div:last-child {
-                    width: 20%;
+                    width: 30%;
                 }
                 .btn>div:nth-child(2) {
                     width: 50%;
                 }
                 .btn>div.queue-status {
-                    width: 20%;
+                    width: 30%;
                 }
             }
         }
