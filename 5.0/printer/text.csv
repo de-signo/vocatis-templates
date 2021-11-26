@@ -5,50 +5,50 @@ Printer_Header;Wartenummern;Queue numbers
 App_Title_a;Wartezeit;Waiting time
 App_Title_b;Live-Abfrage;Real-time request oder Status request
 App_CallHeader;Aufruf;Call
-App_YourNumber;Ihre Wartemarke:;Your ticket:
-App_NumWaitingFormatRaw;Es befinden sich noch<b>{0} Personen</b> vor Ihnen;There are <b>{0} customers</b> in the queue
-App_WaitingTimeFormatRaw;<b>Ihre voraussichtliche</b> Wartezeit beträgt <b>ca. {0} Minuten</b>.;<b>Your estimated</b> waiting time is <b>about {0} minutes</b>
-App_TimeFormat;STAND: {0:HH\:mm} Uhr;Status: 
+App_YourNumber;Ihre Wartemarke:;Your ticket:
+App_NumWaitingFormatRaw;Es befinden sich noch <b>{0}</b> vor Ihnen;There are <b>{0}</b> customers in the queue
+App_WaitingTimeFormatRaw;<b>Ihre voraussichtliche</b> Wartezeit beträgt <b>ca. {0} Minuten</b>.;<b>Your estimated</b> waiting time is <b>about {0} minutes</b>
+App_TimeFormat;STAND: {0:HH\:mm} Uhr;Status: 
 App_StayClose;Bitte halten Sie sich im Wartebereich auf!;Please stay in the waiting area!
 App_ComeBack;Bitte rechtzeitig den Wartebereich aufsuchen!;Please proceed to the waiting area in time!
-App_Loading;Laden ...;Loading ...
-App_ErrorOccuredHeader;Fehler aufgetreten!;Error occurred
-App_ErrorOccuredText;Bitte begeben Sie sich in den Wartebereich!;Please proceed to the waiting area!
-App_CallText;Ihr Aufruf:;Your call:
-App_FinishedHeader;Bearbeitung ist abgeschlossen;Processing is completed
-App_FinishedText1;Danke für Ihren Besuch;Thank you for your visit
-App_FinishedText2;Wir wünschen Ihnen einen angenehmen Tag!;Have a nice day
-Entry_Header1;HERZLICH WILLKOMMEN!;WELCOME!
-Entry_Header2;Haben Sie einen Termin vereinbart?;Do you have an appointment?
-Entry_SelectAppointmentRaw;Ich habe<br>einen Termin;I have an appointment
-Entry_SelectTicketRaw;Heute<br>spontan hier;Ad hoc visit
-Appoint_Scan;Bitte scannen Sie den QR-Code aus Ihrer Terminbestätigung!;Please scan the QR code indicated on your appointment confirmation
-Appoint_InvalidHeader;Ungültiger QR-Code!;QR code not valid!
-Appoint_InvalidText;Bitte scannen Sie den QR-Code aus ihrer aktuellen Terminbestätigung ein.;Please scan the QR code indicated on your appointment confirmation.
-Appoint_NotFoundHeader;Ihr Termin wurde nicht in unserer Liste gefunden.;Your appointment cannot be found in our list.
-Appoint_TicketHeader;Sie sind angemeldet;You have been registered
-Appoint_TicketTextWScan;Bitte noch etwas Geduld, drucken oder scannen Sie Ihr Ticket und warten bis Ihre Nummer aufgerufen wird.;Please be patient
-Appoint_TicketTextW/Oscan;Bitte noch etwas Geduld, drucken Sie Ihr Ticket und warten bis Ihre Nummer aufgerufen wird.;Please be patient
+App_Loading;Laden ...;Loading ...
+App_ErrorOccuredHeader;Fehler aufgetreten!;Error occurred
+App_ErrorOccuredText;Bitte begeben Sie sich in den Wartebereich!;Please proceed to the waiting area!
+App_CallText;Ihr Aufruf:;Your call:
+App_FinishedHeader;Bearbeitung ist abgeschlossen;Processing is completed
+App_FinishedText1;Danke für Ihren Besuch;Thank you for your visit
+App_FinishedText2;Wir wünschen Ihnen einen angenehmen Tag!;Have a nice day
+Entry_Header1;HERZLICH WILLKOMMEN!;WELCOME!
+Entry_Header2;Haben Sie einen Termin vereinbart?;Do you have an appointment?
+Entry_SelectAppointmentRaw;Ich habe<br>einen Termin;I have an appointment
+Entry_SelectTicketRaw;Heute<br>spontan hier;Ad hoc visit
+Appoint_Scan;Bitte scannen Sie den QR-Code aus Ihrer Terminbestätigung!;Please scan the QR code indicated on your appointment confirmation
+Appoint_InvalidHeader;Ungültiger QR-Code!;QR code not valid!
+Appoint_InvalidText;Bitte scannen Sie den QR-Code aus ihrer aktuellen Terminbestätigung ein.;Please scan the QR code indicated on your appointment confirmation.
+Appoint_NotFoundHeader;Ihr Termin wurde nicht in unserer Liste gefunden.;Your appointment cannot be found in our list.
+Appoint_TicketHeader;Sie sind angemeldet;You have been registered
+Appoint_TicketTextWScan;Bitte noch etwas Geduld, drucken oder scannen Sie Ihr Ticket und warten bis Ihre Nummer aufgerufen wird.;Please be patient
+Appoint_TicketTextW/Oscan;Bitte noch etwas Geduld, drucken Sie Ihr Ticket und warten bis Ihre Nummer aufgerufen wird.;Please be patient
 Appoint_TicketPrint;Ticket drucken;Print ticket
-Appoint_TicketScan;Ticket scannen;Scan ticket
-Appoint_TicketNoQueue;Dieses Gerät ist nicht für Ihren Termin konfiguriert, bitte wenden Sie sich an die korrekte Stelle.;This device is not configured for your appointment
-Appoint_Loading;Einen Moment, Ihr Code wird geprüft.;One moment please
-Print_WaitHeader;Ihre Wartemarke wird gedruckt;Your queue number will be printed
-Print_WaitText;Bitte entnehmen Sie Ihre Wartenummer;Please take your queue number
-Print_TakeHeader;Ihre Wartemarke wird gedruckt;Your queue number will be printed
-Print_TakeText;Bitte entnehmen Sie Ihre Wartenummer;Please take your queue number
-Print_ShowHeader;Sie werden angemeldet im Fachbereich;You will be registered in the department
-Print_ShowText1;Bitte merken Sie sich Ihre Anmeldenummer:;Please remember your registration number
+Appoint_TicketScan;Ticket scannen;Scan ticket
+Appoint_TicketNoQueue;Dieses Gerät ist nicht für Ihren Termin konfiguriert, bitte wenden Sie sich an die korrekte Stelle.;This device is not configured for your appointment
+Appoint_Loading;Einen Moment, Ihr Code wird geprüft.;One moment please
+Print_WaitHeader;Ihre Wartemarke wird gedruckt;Your queue number will be printed
+Print_WaitText;Bitte entnehmen Sie Ihre Wartenummer;Please take your queue number
+Print_TakeHeader;Ihre Wartemarke wird gedruckt;Your queue number will be printed
+Print_TakeText;Bitte entnehmen Sie Ihre Wartenummer;Please take your queue number
+Print_ShowHeader;Sie werden angemeldet im Fachbereich;You will be registered in the department
+Print_ShowText1;Bitte merken Sie sich Ihre Anmeldenummer:;Please remember your registration number
 Print_ShowText2;Sie werden aufgerufen;You will be called
 Ticket_TimeFormatRaw;"{0:dd.MM.yyyy}&emsp;{0:HH\:mm}Uhr";"{0:yyyy-MM-dd}&emsp;{0:hh\:mm tt}"
-Ticket_AppHeader;Aufruf verfolgen;Track your queue number
-List_HeaderQr1;Gewünschter Fachbereich:;Desired department
+Ticket_AppHeader;Aufruf verfolgen;Track your queue number
+List_HeaderQr1;Gewünschter Fachbereich:;Desired department
 List_HeaderQr2;Wartemarke;Ticket number
 List_Print;DRUCKEN;Print
 List_Scan;SCANNEN;Scan
-List_HeaderNoQr;Bitte wählen Sie den gewünschten Fachbereich aus:;Please choose the desired department:
-List_StatusMT3FormatRaw;Es befinden sich noch<br> <b> {0} Personen</b> vor Ihnen;There are <b>{0} customers</b> in the queue
-List_StatusLT3FormatRaw;Bitte halten Sie sich im Wartebereich auf;Please stay in the waiting area
-List_Closed;Derzeit geschlossen;Currently closed
-List_ClosedHours;geschlossen außerhalb der Öffnungszeiten;closed outside opening hours
-List_ClosedFull;Geschlossen, keine freie Kapazität mehr;Closed, we are full
+List_HeaderNoQr;Bitte wählen Sie den gewünschten Fachbereich aus:;Please choose the desired department:
+List_StatusMT3FormatRaw;Es befinden sich noch <b>{0} Personen</b> vor Ihnen;There are <b>{0} customers</b> in the queue
+List_StatusLT3FormatRaw;Bitte halten Sie sich im Wartebereich auf;Please stay in the waiting area
+List_Closed;Derzeit geschlossen;Currently closed
+List_ClosedHours;geschlossen außerhalb der Öffnungszeiten;closed outside opening hours
+List_ClosedFull;Geschlossen, keine freie Kapazität mehr;Closed, we are full
