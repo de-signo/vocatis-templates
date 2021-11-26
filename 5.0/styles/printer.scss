@@ -376,7 +376,7 @@ body.queueinfo {
                         text-align: center;
                         line-height: 7vh;
                         font-weight: bold;
-                        font-size: 1.5em;
+                        font-size: 1.8em;
                         background-color: $color-secondary-background;
                         color: $color-secondary-foreground;
                         box-shadow: 1px 3px 1px $color-secondary-shadow;
@@ -386,7 +386,7 @@ body.queueinfo {
                         float: left;
                         font-size: 0.9em;
                         background-color: $color-primary-background;
-                        color: $color-primary-foreground;
+                        color:$color-primary-foreground;
                         box-shadow: 1px 3px 1px $color-primary-shadow;
                         div {
                             float: left;
@@ -412,13 +412,11 @@ body.queueinfo {
                                 svg {
                                     height: 60%;
                                     width: auto;
-                                    margin-left: 5vw;
                                     vertical-align: middle;
                                     .cls-1 {
                                         fill: $color-primary-foreground;
                                     }
                                     .cls-2 {
-                                        font-size: 1.2em;
                                         color: $color-primary-background;
                                     }
                                 }
