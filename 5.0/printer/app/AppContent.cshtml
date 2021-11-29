@@ -24,6 +24,8 @@
 
   dynamic id = CommonGuidId.FromString(Request["id"]);
   var ticket = Vocatis.GetTicket(id);
+  var opt = Request["o"];
+  var showWaitTime = opt == "wt";
 }
 @switch ((WaitNumberState)ticket.State)
 {
@@ -68,7 +70,7 @@ case WaitNumberState.Parked:
             <text class="cls-2" text-anchor="middle" transform="translate(12.5 34)">@status.Position</text>
       </svg>
     <b>@string_map["App_ComeBack"]</b><br>
-    @Html.Raw(String.Format(string_map["App_WaitingTimeFormatRaw"], (int)status.EstimatedTimeOfCall.TotalMinutes))
+    @if (showWaitTime) { @Html.Raw(String.Format(string_map["App_WaitingTimeFormatRaw"], (int)status.EstimatedTimeOfCall.TotalMinutes)) }
     <p id="three">@String.Format(string_map["App_TimeFormat"], DateTime.Now)</p>
   </article>
   <div class="notch"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g></svg></div>

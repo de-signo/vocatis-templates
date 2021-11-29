@@ -1,0 +1,229 @@
+﻿@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@using iSign
+@using System.Linq
+@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@using Stolltec.Vocatis
+@using Stolltec.Vocatis.Model
+@{
+
+  // Parse model
+  var Model = PageData["ReadModel"](this);
+  var disableOpenClose = !PageData["enable_open_close"];
+  
+  // setup layout
+  PageData["show_home"] = true;
+  Layout="PL_Layout.cshtml";
+  
+  var mode = (string)Model.Style["mode"].FieldInstance.Value;
+  var ticketUrl = (mode == "print") ? "PrinterTicket.cshtml" : "Ticket.cshtml";
+  var opt = Model.Style.StyleInstance.Where(f => f.Key == "wt").Select(f => (string)f.Value).FirstOrDefault() == "1" ? "wt" : ""; // app options (wt = show wait time)
+  var lang = PageData["lang"];
+  var tracking_id = (string)Model.Style["tracking_id"].Value;
+  var queueStatus = @Vocatis.GetWaitQueueOverview();
+
+  // select category
+  var index = Int32.Parse(Request["cat"]);
+  var config = PageData["config"]();
+  var cat = config.groups[index];
+  var queues = cat.items;
+}
+<div class="main">
+  <section id="idle">
+    <h4>@cat.title</h4>
+    <ul class="buttons-@queues.Count">
+      @for (int i = 0; i < queues.Count; i++) {
+        var queue = queues[i];
+        var queueid = CommonGuidId.FromString((string)queue.queue);
+        string catids = queue.categories == null ? null : String.Join(",",queue.categories);
+        var status = queueStatus.Where(s=>s.Id.Equals(queueid)).FirstOrDefault();
+        if (status == null) { throw new ApplicationException("Unknown queue id: " + queue.queue); }
+      @* Queue open *@
+      if (disableOpenClose || (status.OpenCloseStatus & WaitQueueOpenCloseStatus.IsOpen) != 0)
+      {
+      <li><a href="@Href(ticketUrl, new { queueid=queueid, catid=catids, tid=tracking_id, o=opt, qr=PageData["ticket_show_qr_code"], lang=lang })" data-label="@queue.title"
+      @if (status.QueueLength == 0) {<text>class="btn next-one"</text>} else {<text>class="btn"</text>}>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
+        </div>
+        <div>
+          @queue.title
+        </div>
+        <div class="queue-status">
+          <div>
+            <span>
+              @if (status.QueueLength > 3)
+              {
+                <text>Vor Ihnen warten <b>@status.QueueLength Personen</b></text>
+              }
+              else
+              {
+                <text>Bitte halten Sie sich im Wartebereich auf</text>
+              }
+            </span>
+          </div>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.7 71.2">
+              <path class="cls-1" d="M11.6,14.3A6.51,6.51,0,0,0,18.1,8h0a6.38,6.38,0,0,0-6.5-6.3A6.45,6.45,0,0,0,5.1,8a6.51,6.51,0,0,0,6.5,6.3h0" transform="translate(1)"/>
+              <path class="cls-1" d="M27,12.8a6.51,6.51,0,0,0,6.5-6.3h0a6.5,6.5,0,0,0-13,0A6.32,6.32,0,0,0,27,12.8h0" transform="translate(1)"/>
+              <path class="cls-1" d="M38.7,21.5c0-3.9-2.8-7.2-6.8-8.7h0a7.52,7.52,0,0,1-9.4,0h-.1a11.67,11.67,0,0,0-3.1,1.7,9.15,9.15,0,0,1,5.1,7.9V38.8A4.34,4.34,0,0,1,22,42.1a4.4,4.4,0,0,1-1.6.2V66.1a3.5,3.5,0,0,0,7,0V41.9h.1V66.2a3.5,3.5,0,0,0,7,0V39.9a2.6,2.6,0,0,0,1.5.4,2.64,2.64,0,0,0,2.7-2.4h0V21.5Z" transform="translate(1)"/>
+              <path class="cls-1" d="M23.3,23a9.15,9.15,0,0,0-5.1-7.9,8.86,8.86,0,0,0-1.7-.8h0a7.52,7.52,0,0,1-9.4,0H6.9C2.8,15.8,0,19.2,0,23V39.4H0a2.71,2.71,0,0,0,2.7,2.4,2.66,2.66,0,0,0,2.2-1.1v27A3.51,3.51,0,0,0,8.4,71h0a3.46,3.46,0,0,0,3.5-3.4V43.4H12V67.7a3.5,3.5,0,0,0,7,0V41.3l.3.1a2.66,2.66,0,0,0,1.2.3,2.64,2.64,0,0,0,2.7-2.4V35.2Z" transform="translate(1)"/>
+              <text class="cls-2" text-anchor="middle" transform="translate(13 34)">@status.QueueLength</text>
+            </svg>
+          </div>
+          <div class="single-button" >
+            <span>
+              <img src="single-button.gif" /><br>
+              <p>Bitte drücken!</p>
+            </span>
+          </div>
+        </div>
+      </a></li>
+      @* manually closed *@
+      } else if ((status.OpenCloseStatus & WaitQueueOpenCloseStatus.Manual) != 0) {
+      <li class="btn closed closed-manually">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
+        </div>
+        <div>
+          @queue.title
+        </div>
+        <div>
+        Derzeit geschlossen 
+        </div>
+      </li>
+      @* closed by opening hours *@
+      } else if ((status.OpenCloseStatus & WaitQueueOpenCloseStatus.IsOutsideHours) != 0) {
+      <li class="btn closed closed-hours">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
+        </div>
+        <div>
+          @queue.title
+        </div>
+        <div>
+          geschlossen außerhalb der Öffnungszeiten
+        </div>
+      </li>  
+      @* closed by limit *@
+      } else if ((status.OpenCloseStatus & WaitQueueOpenCloseStatus.IsFull) != 0) {
+      <li class="btn closed closed-limit">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
+        </div>
+        <div>
+          @queue.title
+        </div>
+        <div>
+          Geschlossen, keine freie Kapazität mehr 
+        </div>
+      </li>
+      }}
+    </ul>
+  </section>
+</div>
+
+<script type="text/javascript">
+@if (mode == "print") {
+  @*
+    This script calls the number generation service
+    and prints the number on the default printer.
+    It shows the wait popup while waiting and printing.
+    It shows the take popup when the printout is ready.
+    It reports the printer status to the service.
+   *@
+  <text>
+  function hookupButtons() {
+    $("a.btn").unbind()
+    .each(function (){
+      // do not block
+      var url = $(this).find(".qrcode").data("url");
+      if (url) {
+          // make absolute
+          var a = document.createElement("a");
+          a.href = url;
+          url = a.href;
+      }
+
+      $(this).find(".qrcode").qrcode({text: url});
+    }).click(function() {
+      $("[data-name]").text($(this).data("label"));
+    }).printTicket({
+      legacy: false,
+      printErrorTimeout: 60000,
+      stripBody: false,
+      beginPrint: function() {
+        $("#waitPopup").show();
+      },
+      endPrint: function() {
+        $("#waitPopup").hide();
+        $("#takePopup").show();
+        window.setTimeout(function() { $("#takePopup").hide(); }, 3000);
+      },
+      failPrint: function() {
+        $("#waitPopup").hide();
+      }
+    });
+  }
+  $(document).ready(function () {
+    reportPrinterStatus({
+      url: "@Href(Stolltec.Forms.PrinterStatus.Path)",
+      interval: 60000
+	  });
+  });
+  </text>
+} else {
+  @*
+    This script calls the number generation service,
+    shows the wait popup while waiting and
+    shows the number in show popup when done.
+   *@
+  <text>
+  function hookupButtons() {
+  
+    $("a.btn").unbind()
+    .each(function (){
+      // do not block
+      var url = $(this).find(".qrcode").data("url");
+      if (url) {
+          // make absolute
+          var a = document.createElement("a");
+          a.href = url;
+          url = a.href;
+      }
+      $(this).find(".qrcode").qrcode({text: url});
+    })
+    .click(function (ev) {
+      ev.preventDefault();
+      
+      // do not block
+      var url = $(this).attr("href");
+      if (!url)
+          url = $(this).data("href");
+      if (url) {
+          // make absolute
+          var a = document.createElement("a");
+          a.href = url;
+          url = a.href;
+      }
+
+      $("[data-name]").text($(this).data("label"));
+      $("#waitPopup").show();
+      $.ajax({url:url, cache: false, dataType:"json"}).done(function(data) {
+        $("[data-number]").text(data["number"]);
+        $("#showPopup").show();
+        window.setTimeout(function() {
+          $("#showPopup").hide();
+        }, 10000);
+      }).always(function() {
+        $("#waitPopup").hide();
+      });
+    });
+  }
+  </text>
+}
+  $(document).ready(function() {
+    hookupButtons();
+  });
+</script>

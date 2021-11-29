@@ -23,9 +23,9 @@
   <!-- Current language: @(lang) -->
 
   <header>
-    <img src="plattformlogo_01.png" class="plattformlogo" alt="plattformlogo">
+    <img src="img/plattformlogo_01.png" class="plattformlogo" alt="plattformlogo">
     <h1>@string_map["Printer_Header"]</h1>
-    @if (PageData["show_home"] == true) { <a href="@(model.NavigateHome() + "&lang=" + lang)"><img src="home.png" class="home"alt="home"></a> }
+    @if (PageData["show_home"] == true) { <a href="@(model.NavigateHome() + "&lang=" + lang)"><img src="img/home.png" class="home"alt="home"></a> }
   </header>
  
   @RenderBody()

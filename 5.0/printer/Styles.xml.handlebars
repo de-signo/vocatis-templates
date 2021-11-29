@@ -1,178 +1,152 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <StyleList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://stollsoft.de/iSign/v2/Content/Forms/Styles">
+{{#*inline "commonFields"}}
+<field key="mode">
+  <names>
+    <name>Modus</name>
+  </names>
+    <content_class type="TextChoose">
+    <text key="show">Nummer anzeigen</text>
+    <text key="print">Nummer drucken</text>
+  </content_class>
+</field>
+{{#if enable_app}}
+<field key="qr">
+  <names>
+    <name>QR Code</name>
+  </names>
+    <content_class type="TextChoose">
+    <text key="0">Kein</text>
+    <text key="1">Nur Ticket</text>
+    <text key="2">Nur Monitor</text>
+    <text key="3">Monitor und Ticket</text>
+  </content_class>
+</field>
+<field key="wt">
+  <names>
+    <name>App Wartezeit</name>
+  </names>
+    <content_class type="TextChoose">
+    <text key="0">Verbergen</text>
+    <text key="1">Anzeigen</text>
+  </content_class>
+</field>
+{{/if}}
+<field key="tracking_id">
+  <names>
+    <name>Tracking-ID</name>
+  </names>
+  <content_class type="TextFree" />
+</field>
+{{/inline}}
 
+{{#*inline "printerFields"}}
+{{#range 1 9}}
+<field key="text{{this}}">
+  <names>
+    <name>Name {{this}}</name>
+  </names>
+  <content_class type="TextFree" />
+</field>
+<field key="queueid{{this}}">
+  <names>
+    <name>Warteschlange {{this}}</name>
+  </names>
+  <content_class type="VocatisQueue"  />
+</field>
+<field key="catid{{this}}">
+    <names>
+        <name>Kategorie {{this}}</name>
+    </names>
+    <content_class type="VocatisCategories"/>
+</field>
+{{/range}}
+{{/inline}}
+
+{{#*inline "appointmentFields"}}
+{{#range 1 9}}
+<field key="plan_name{{this}}">
+  <names>
+    <name>Terminplan {{this}}</name>
+  </names>
+  <content_class type="TextFree" />
+</field>
+<field key="queueid{{this}}_apt">
+  <names>
+    <name>Warteschlange Termin {{this}}</name>
+  </names>
+  <content_class type="VocatisQueue"  />
+</field>
+{{/range}}
+<field key="catid_apt">
+  <names>
+    <name>Kategorie Termin</name>
+  </names>
+  <content_class type="VocatisCategories"/>
+</field>
+<field key="import">
+  <names>
+    <name>Termine</name>
+  </names>
+  <content_class type="DataSource" />
+</field>
+<field key="id">
+  <names>
+    <name>ID</name>
+  </names>
+  <content_class bind="Column" parentField="import" type="TextFree" />
+</field>
+<field key="date">
+  <names>
+    <name>Datum</name>
+  </names>
+  <content_class bind="Column" parentField="import" type="TextFree" />
+</field>
+<field key="time">
+  <names>
+    <name>Uhrzeit</name>
+  </names>
+  <content_class bind="Column" parentField="import" type="TextFree" />
+</field>
+<field key="name">
+  <names>
+    <name>Name</name>
+  </names>
+  <content_class bind="Column" parentField="import" type="TextFree" />
+</field>
+<field key="title">
+  <names>
+    <name>Anliegen</name>
+  </names>
+  <content_class bind="Column" parentField="import" type="TextFree" />
+</field>
+<field key="plan">
+  <names>
+    <name>Terminplan</name>
+  </names>
+  <content_class bind="Column" parentField="import" type="TextFree" />
+</field>
+{{/inline}}
+
+{{#if use_groups_config}}
+  <style key="vocatis_multi_2019_groupconfig{{suffix}}" file="C1_Groups.cshtml"
+         interactive="true" target="Forms2">
+    <names>
+      <name culture="de">vocatis printer Gruppenkonfiguration ({{version}})</name>
+    </names>
+    <fields>
+      {{> commonFields}}
+    </fields>
+  </style>
+{{else}}
   <style key="vocatic_multi_2019{{suffix}}" file="Printer.cshtml"
          interactive="true" target="Forms2" preview="preview.png">
     <names>
       <name culture="de">vocatis printer {{option_name}} ({{version}})</name>
     </names>
     <fields>
-      <field key="mode">
-        <names>
-          <name>Modus</name>
-        </names>
-         <content_class type="TextChoose">
-          <text key="show">Nummer anzeigen</text>
-          <text key="print">Nummer drucken</text>
-        </content_class>
-      </field>
-      <field key="tracking_id">
-        <names>
-          <name>Tracking-ID</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="text1">
-        <names>
-          <name>Name 1</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid1">
-        <names>
-          <name>Warteschlange 1</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid1">
-          <names>
-              <name>Kategorie 1</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
-
-      <field key="text2">
-        <names>
-          <name>Name 2</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid2">
-        <names>
-          <name>Warteschlange 2</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid2">
-          <names>
-              <name>Kategorie 2</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
-
-      <field key="text3">
-        <names>
-          <name>Name 3</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid3">
-        <names>
-          <name>Warteschlange 3</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid3">
-          <names>
-              <name>Kategorie 3</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
-
-      <field key="text4">
-        <names>
-          <name>Name 4</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid4">
-        <names>
-          <name>Warteschlange 4</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid4">
-          <names>
-              <name>Kategorie 4</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
-
-      <field key="text5">
-        <names>
-          <name>Name 5</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid5">
-        <names>
-          <name>Warteschlange 5</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid5">
-          <names>
-              <name>Kategorie 5</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
-
-      <field key="text6">
-        <names>
-          <name>Name 6</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid6">
-        <names>
-          <name>Warteschlange 6</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid6">
-          <names>
-              <name>Kategorie 6</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
-
-      <field key="text7">
-        <names>
-          <name>Name 7</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid7">
-        <names>
-          <name>Warteschlange 7</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid7">
-          <names>
-              <name>Kategorie 7</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
-
-      <field key="text8">
-        <names>
-          <name>Name 8</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid8">
-        <names>
-          <name>Warteschlange 8</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid8">
-          <names>
-              <name>Kategorie 8</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
+      {{> commonFields}}
+      {{> printerFields}}
     </fields>
   </style>
 
@@ -182,165 +156,8 @@
       <name culture="de">vocatis appointments {{option_name}} ({{version}})</name>
     </names>
     <fields>
-      <field key="mode">
-        <names>
-          <name>Modus</name>
-        </names>
-         <content_class type="TextChoose">
-          <text key="show">Nummer anzeigen</text>
-          <text key="print">Nummer drucken</text>
-        </content_class>
-      </field>
-      <field key="tracking_id">
-        <names>
-          <name>Tracking-ID</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="plan_name1">
-        <names>
-          <name>Terminplan 1</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid1_apt">
-        <names>
-          <name>Warteschlange Termin 1</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="plan_name2">
-        <names>
-          <name>Terminplan 2</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid2_apt">
-        <names>
-          <name>Warteschlange Termin 2</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="plan_name3">
-        <names>
-          <name>Terminplan 3</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid3_apt">
-        <names>
-          <name>Warteschlange Termin 3</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="plan_name4">
-        <names>
-          <name>Terminplan 4</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid4_apt">
-        <names>
-          <name>Warteschlange Termin 4</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="plan_name5">
-        <names>
-          <name>Terminplan 5</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid5_apt">
-        <names>
-          <name>Warteschlange Termin 5</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="plan_name6">
-        <names>
-          <name>Terminplan 6</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid6_apt">
-        <names>
-          <name>Warteschlange Termin 6</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="plan_name7">
-        <names>
-          <name>Terminplan 7</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid7_apt">
-        <names>
-          <name>Warteschlange Termin 7</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="plan_name8">
-        <names>
-          <name>Terminplan 8</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid8_apt">
-        <names>
-          <name>Warteschlange Termin 8</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid_apt">
-        <names>
-          <name>Kategorie Termin</name>
-        </names>
-        <content_class type="VocatisCategories"/>
-      </field>
-      <field key="import">
-        <names>
-          <name>Termine</name>
-        </names>
-        <content_class type="DataSource" />
-      </field>
-      <field key="id">
-        <names>
-          <name>ID</name>
-        </names>
-        <content_class bind="Column" parentField="import" type="TextFree" />
-      </field>
-      <field key="date">
-        <names>
-          <name>Datum</name>
-        </names>
-        <content_class bind="Column" parentField="import" type="TextFree" />
-      </field>
-      <field key="time">
-        <names>
-          <name>Uhrzeit</name>
-        </names>
-        <content_class bind="Column" parentField="import" type="TextFree" />
-      </field>
-      <field key="name">
-        <names>
-          <name>Name</name>
-        </names>
-        <content_class bind="Column" parentField="import" type="TextFree" />
-      </field>
-      <field key="title">
-        <names>
-          <name>Anliegen</name>
-        </names>
-        <content_class bind="Column" parentField="import" type="TextFree" />
-      </field>
-      <field key="plan">
-        <names>
-          <name>Terminplan</name>
-        </names>
-        <content_class bind="Column" parentField="import" type="TextFree" />
-      </field>
+      {{> commonFields}}
+      {{> appointmentFields}}
     </fields>
   </style>
 
@@ -350,318 +167,12 @@
       <name culture="de">vocatis printer and appointments {{option_name}} ({{version}})</name>
     </names>
     <fields>
-      <field key="mode">
-        <names>
-          <name>Modus</name>
-        </names>
-         <content_class type="TextChoose">
-          <text key="show">Nummer anzeigen</text>
-          <text key="print">Nummer drucken</text>
-        </content_class>
-      </field>
-      <field key="tracking_id">
-        <names>
-          <name>Tracking-ID</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="plan_name1">
-        <names>
-          <name>Terminplan 1</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid1_apt">
-        <names>
-          <name>Warteschlange Termin 1</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="plan_name2">
-        <names>
-          <name>Terminplan 2</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid2_apt">
-        <names>
-          <name>Warteschlange Termin 2</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="plan_name3">
-        <names>
-          <name>Terminplan 3</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid3_apt">
-        <names>
-          <name>Warteschlange Termin 3</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="plan_name4">
-        <names>
-          <name>Terminplan 4</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid4_apt">
-        <names>
-          <name>Warteschlange Termin 4</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="plan_name5">
-        <names>
-          <name>Terminplan 5</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid5_apt">
-        <names>
-          <name>Warteschlange Termin 5</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="plan_name6">
-        <names>
-          <name>Terminplan 6</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid6_apt">
-        <names>
-          <name>Warteschlange Termin 6</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="plan_name7">
-        <names>
-          <name>Terminplan 7</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid7_apt">
-        <names>
-          <name>Warteschlange Termin 7</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="plan_name8">
-        <names>
-          <name>Terminplan 8</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid8_apt">
-        <names>
-          <name>Warteschlange Termin 8</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid_apt">
-        <names>
-          <name>Kategorie Termin</name>
-        </names>
-        <content_class type="VocatisCategories"/>
-      </field>
-      <field key="import">
-        <names>
-          <name>Termine</name>
-        </names>
-        <content_class type="DataSource" />
-      </field>
-      <field key="id">
-        <names>
-          <name>ID</name>
-        </names>
-        <content_class bind="Column" parentField="import" type="TextFree" />
-      </field>
-      <field key="date">
-        <names>
-          <name>Datum</name>
-        </names>
-        <content_class bind="Column" parentField="import" type="TextFree" />
-      </field>
-      <field key="time">
-        <names>
-          <name>Uhrzeit</name>
-        </names>
-        <content_class bind="Column" parentField="import" type="TextFree" />
-      </field>
-      <field key="name">
-        <names>
-          <name>Name</name>
-        </names>
-        <content_class bind="Column" parentField="import" type="TextFree" />
-      </field>
-      <field key="title">
-        <names>
-          <name>Anliegen</name>
-        </names>
-        <content_class bind="Column" parentField="import" type="TextFree" />
-      </field>
-      <field key="plan">
-        <names>
-          <name>Terminplan</name>
-        </names>
-        <content_class bind="Column" parentField="import" type="TextFree" />
-      </field>
-      <field key="text1">
-        <names>
-          <name>Name 1</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid1">
-        <names>
-          <name>Warteschlange 1</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid1">
-          <names>
-              <name>Kategorie 1</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
-
-      <field key="text2">
-        <names>
-          <name>Name 2</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid2">
-        <names>
-          <name>Warteschlange 2</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid2">
-          <names>
-              <name>Kategorie 2</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
-
-      <field key="text3">
-        <names>
-          <name>Name 3</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid3">
-        <names>
-          <name>Warteschlange 3</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid3">
-          <names>
-              <name>Kategorie 3</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
-
-      <field key="text4">
-        <names>
-          <name>Name 4</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid4">
-        <names>
-          <name>Warteschlange 4</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid4">
-          <names>
-              <name>Kategorie 4</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
-
-      <field key="text5">
-        <names>
-          <name>Name 5</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid5">
-        <names>
-          <name>Warteschlange 5</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid5">
-          <names>
-              <name>Kategorie 5</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
-
-      <field key="text6">
-        <names>
-          <name>Name 6</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid6">
-        <names>
-          <name>Warteschlange 6</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid6">
-          <names>
-              <name>Kategorie 6</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
-
-      <field key="text7">
-        <names>
-          <name>Name 7</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid7">
-        <names>
-          <name>Warteschlange 7</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid7">
-          <names>
-              <name>Kategorie 7</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
-
-      <field key="text8">
-        <names>
-          <name>Name 8</name>
-        </names>
-        <content_class type="TextFree" />
-      </field>
-      <field key="queueid8">
-        <names>
-          <name>Warteschlange 8</name>
-        </names>
-        <content_class type="VocatisQueue"  />
-      </field>
-      <field key="catid8">
-          <names>
-              <name>Kategorie 8</name>
-          </names>
-          <content_class type="VocatisCategories"/>
-      </field>
+      {{> commonFields}}
+      {{> appointmentFields}}
+      {{> printerFields}}
     </fields>
   </style>
+{{/if}}
 
   <style key="vocatis_ticket_default"
     file="TicketDefault.cshtml"

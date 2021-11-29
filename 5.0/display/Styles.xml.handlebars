@@ -69,54 +69,14 @@
       <name culture="de">vocatis list multi ({{version}})</name>
     </names>
     <fields>
-      <field key="source1">
+      {{#range 1 9}}
+      <field key="source{{this}}">
         <names>
-          <name>Vocatis Warteschlange 1</name>
+          <name>Vocatis Warteschlange {{this}}</name>
         </names>
         <content_class type="VocatisQueue"  />
       </field>
-      <field key="source2">
-        <names>
-          <name>Vocatis Warteschlange 2</name>
-        </names>
-        <content_class type="VocatisQueue" />
-      </field>
-      <field key="source3">
-        <names>
-          <name>Vocatis Warteschlange 3</name>
-        </names>
-        <content_class type="VocatisQueue" />
-      </field>
-      <field key="source4">
-        <names>
-          <name>Vocatis Warteschlange 4</name>
-        </names>
-        <content_class type="VocatisQueue" />
-      </field>
-      <field key="source5">
-        <names>
-          <name>Vocatis Warteschlange 5</name>
-        </names>
-        <content_class type="VocatisQueue" />
-      </field>
-      <field key="source6">
-        <names>
-          <name>Vocatis Warteschlange 6</name>
-        </names>
-        <content_class type="VocatisQueue" />
-      </field>
-      <field key="source7">
-        <names>
-          <name>Vocatis Warteschlange 7</name>
-        </names>
-        <content_class type="VocatisQueue" />
-      </field>
-      <field key="source8">
-        <names>
-          <name>Vocatis Warteschlange 8</name>
-        </names>
-        <content_class type="VocatisQueue" />
-      </field>
+      {{/range}}
       <field key="notify">
         <names>
           <name>Glocke</name>

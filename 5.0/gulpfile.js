@@ -9,14 +9,19 @@ rename = require("gulp-rename"),
 sass = require('gulp-sass'),
 zip = require("gulp-zip");
 
+hb.Handlebars.registerHelper('range', require('handlebars-helper-range'));
 sass.compiler = require('node-sass');
 
 // compile styles
 gulp.task("css", function (done) {
-gulp.src(['styles/style.scss','styles/app.scss'])
+gulp.src(['styles/style.scss'])
     .pipe(sass.sync().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest('printer'));
+gulp.src(['styles/app.scss'])
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest('printer/app'));
 gulp.src(['styles/display.scss'])
     .pipe(sass.sync().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
@@ -46,36 +51,37 @@ specs = [
     'clean': "../dist/queueinfo_*.zip",
     'files': ['queueinfo/**', '!queueinfo/*.handlebars'],
     'templates': ['queueinfo/Styles.xml.handlebars']
+  },
+  {
+    'name': "printer_groups_nomultilang",
+    'clean': "../dist/printergroups_*.zip",
+    'files': ['printer/**', '!printer/*.handlebars'],
+    'templates': ['printer/Styles.xml.handlebars', 'printer/_PageStart.cshtml.handlebars'],
+    'templateData': {
+      'suffix': '_openclose_nomultilang',
+      'use_groups_config': true,
+      'enable_app': false,
+      'enable_open_close': true,
+      'multilang': false
+    }
   }
 ];
 
 // printer option generator
 // make sure test defaults are specified last
 options = [
-  // openclose
-  [
-    {'tag':'noopenclose', 'templateData': { enable_open_close: false }},
-    {'tag':'openclose', 'name': 'open/close', 'templateData': { enable_open_close: true }},
-  ],
   // app
   [
     {'tag': 'noapp',
     'templateData': {
-      'ticket_show_qr_code': false,
-      'list_print_or_scan': false,
-      'appointment_print_or_scan': false}
+      'use_groups_config': false,
+      'enable_app': false },
+      'files': ['!printer/app/**', '!printer/App*']
     },
-    {'tag': 'app_noprintorscan', 'name': 'app',
+    {'tag': 'app', 'name': 'app',
     'templateData': {
-      'ticket_show_qr_code': true,
-      'list_print_or_scan': false,
-      'appointment_print_or_scan': false}
-    },
-    {'tag': 'app_printorscan', 'name': 'app print or scan',
-    'templateData': {
-      'ticket_show_qr_code': true,
-      'list_print_or_scan': true,
-      'appointment_print_or_scan': true}
+      'use_groups_config': false,
+      'enable_app': true }
     }
   ],
   // openclose
@@ -89,9 +95,12 @@ options = [
 var printerSpecs = [{
   'name': 'printer',
   'clean': "../dist/printer_*.zip",
-  'files': ['printer/**', '!printer/*.handlebars'],
+  'files': ['printer/**', '!printer/*.handlebars', '!printer/config.json'],
   'templates': ['printer/Styles.xml.handlebars', 'printer/_PageStart.cshtml.handlebars'],
-  'templateData': { 'option_name': ''}
+  'templateData': {
+    'option_name': '',
+    enable_open_close: true
+  }
 }];
 for (option of options) {
   var variantSpecs = [];
@@ -112,6 +121,9 @@ for (option of options) {
       }
       if (variant.name) {
         vs.templateData.option_name = vs.templateData.option_name + " " + variant.name;
+      }
+      if (variant.files) {
+        vs.files = vs.files.concat(variant.files);
       }
       variantSpecs.push(vs);
     }

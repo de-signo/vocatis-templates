@@ -1,24 +1,58 @@
+@using Stolltec.Forms.Model
 @using System.Text
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Linq
+@using System.IO
 @using ISS.Data
+@*
+// ==============
+// Configuration
+// ==============
+*@
+@functions
+{
+  FormsModel ReadModel(WebPageBase page)
+  {
+    var model = new FormsModel(page);
+{{#if enable_app }}
+    var qr = Int32.Parse((string)model.Style["qr"].FieldInstance.Value);
+    var qrTicket = (qr & 1) == 1;
+    var qrMonitor = (qr & 2) == 2;
+
+    // show qr code on printed ticket?
+    PageData["ticket_show_qr_code"] = qrTicket;
+
+    // show qr code on queue list?
+    PageData["list_print_or_scan"] = qrMonitor;
+
+    // enable print or scan in appointments
+    PageData["appointment_print_or_scan"] = qrMonitor;
+
+    // app options
+    PageData["app_options"] = model.Style.StyleInstance.Where(f => f.Key == "wt").Select(f => (string)f.Value).FirstOrDefault() == "1" ? "wt" : ""; // app options (wt = show wait time);
+{{else}}
+    PageData["ticket_show_qr_code"] = false;
+    PageData["list_print_or_scan"] = false;
+    PageData["appointment_print_or_scan"] = false;
+    PageData["app_options"] = "";
+{{/if}}
+    PageData["model"] = model;
+    return model;
+  }
+}
 @{
-  // ==============
-  // Configuration
-  // ==============
-  // show qr code on printed ticket?
-  PageData["ticket_show_qr_code"] = {{ticket_show_qr_code}};
-
-  // show qr code on queue list?
-  PageData["list_print_or_scan"] = {{list_print_or_scan}};
-
-  // enable print or scan in appointments
-  PageData["appointment_print_or_scan"] = {{appointment_print_or_scan}};
+  // app available?
+  PageData["enable_app"] = {{enable_app}};
 
   // enable open/close
   PageData["enable_open_close"] = {{enable_open_close}};
 
   // enable Multi-Lang
   PageData["multilang"] = {{multilang}};
+
+  PageData["ReadModel"] = new Func<WebPageBase, FormsModel>(ReadModel);
 }
+
 @*
   // ==============
   // Multi-Lang
@@ -28,7 +62,10 @@
 {
   IDictionary<string, string> ParseLang(string lang, out IList<string> langs)
   {
-    using (var reader = new StreamReader(Server.MapPath("text.csv"), Encoding.UTF8))
+    var file = Server.MapPath("text.csv");
+    if (file.EndsWith(@"\app\text.csv"))
+      file = Server.MapPath("../text.csv");
+    using (var reader = new StreamReader(file, Encoding.UTF8))
     {
       var parser = new CsvParser(reader, ';', '\"');
 
@@ -58,6 +95,18 @@
       return dict;
     }
   }
+
+{{#if use_groups_config }}
+  JObject ReadConfig()
+  {
+    // deserialize JSON directly from a file
+    using (StreamReader file = File.OpenText(Server.MapPath("config.json")))
+    {
+      JsonSerializer serializer = new JsonSerializer();
+      return (JObject)serializer.Deserialize(file, typeof(JObject));
+    }
+  }
+{{/if}}
 }
 @{
   // read text snippets
@@ -69,6 +118,10 @@
   var string_map = ParseLang(lang, out langs);
 
   PageData["lang"] = lang;
-  PageData["langs"] = multilang ? langs : new string[] { "de" } ;
+  PageData["langs"] = multilang ? langs : new List<string>() { "de" } ;
   PageData["string_map"] = string_map;
+
+{{#if use_groups_config }}
+  PageData["config"] = new Func<JObject>(ReadConfig);
+{{/if}}
 }

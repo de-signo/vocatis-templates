@@ -11,20 +11,20 @@
   <title>Vocatis</title>
   <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0">
   <meta name="theme-color" content="#53668D"/>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link href="@Href("app.css")" type="text/css" rel="stylesheet" />
 </head>
 <body>
   <header>
- <img src="plattform_01.png" class="plattform" alt="plattform">
+ <img src="img/plattform_01.png" class="plattform" alt="plattform">
  <h1><span style="text-transform:uppercase">@string_map["App_Title_a"]</span> @string_map["App_Title_b"]</h1>
 </header>
 
 <section class="logo">
-  <img src="customerlogo.png" />
+  <img src="img/customerlogo.png" />
 </section>
 
-<div id="content" data-content-src="@Href("AppContent.cshtml", new {id=Request["i"], lang})">
+<div id="content" data-content-src="@Href("AppContent.cshtml", new {id=Request["i"], o=Request["o"], lang})">
   <section class="loading content">
     @string_map["App_Loading"]
   </section>
@@ -38,7 +38,7 @@
 <footer>
   @foreach (var l in langs)
   {
-    <a class="button" href='@Href("App.cshtml", new { lang=l, id=Request["id"] })'>
+    <a class="button" href='@Href("", new { lang=l, id=Request["id"], o=Request["o"] })'>
       <p>@string_map["lang_" + l]</p>
       <img src="lang/@(l).png">
     </a>

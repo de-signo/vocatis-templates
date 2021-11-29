@@ -11,15 +11,14 @@
 @using iSign
 
 @{
+  // Parse model
+  var Model = PageData["ReadModel"](this);
   var showQrCode = PageData["appointment_print_or_scan"];
   var lang = PageData["lang"];
   var string_map = PageData["string_map"];
   var debug = false;
-  // Parse model
-  var Model = new FormsModel(this);
 
   // setup layout
-  PageData["model"] = Model;
   PageData["show_home"] = true;
   PageData["show_back"] = false;
 
@@ -32,6 +31,7 @@
   // Read request
   var s = Request["i"];
   var a = Request["a"];
+  var opt = Model.Style.StyleInstance.Where(f => f.Key == "wt").Select(f => (string)f.Value).FirstOrDefault() == "1" ? "wt" : ""; // app options (wt = show wait time)
   var tracking_id = (string)Model.Style["tracking_id"].Value;
   dynamic catids = Model.Style["catid_apt"].Value;
   const int count = 4;
@@ -50,7 +50,7 @@
   {
     default:
     case "1":
-        <img src="direction.png" alt="direction">
+        <img src="img/direction.png" alt="direction">
         <h1>@string_map["Appoint_Scan"]</h1>
         <textarea id="scan" ></textarea>
       break;
@@ -101,19 +101,19 @@
                 ticket.ReferenceId = entry.id;
                 voc.Instance.UpdateNumber(ticket);
               }
-              ticketUrl = Href("PrinterTicket.cshtml", new { id=ticket.Id, tid=tracking_id, lang=lang });
-              <img src="registration.png" id="registration" alt="registration" />
+              ticketUrl = Href("PrinterTicket.cshtml", new { id=ticket.Id, tid=tracking_id, o=opt, qr=PageData["ticket_show_qr_code"], lang=lang });
+              <img src="img/registration.png" id="registration" alt="registration" />
               <h3>@string_map["Appoint_TicketHeader"]</h3>
               if (showQrCode)
               {
                 <p>@string_map["Appoint_TicketTextWScan"]</p>
                 <div class="left">
                   <p>@string_map["Appoint_TicketPrint"]</p>
-                  <a class="print-button" href='@ticketUrl'><img src="printer.png" alt="Drucker"> </a>
+                  <a class="print-button" href='@ticketUrl'><img src="img/printer.png" alt="Drucker"> </a>
                 </div>
                 <div class="right">
                   <p>@string_map["Appoint_TicketScan"]</p>
-                  <div class="qrcode" data-url="@Href("App.cshtml", new {i=ticket.Id, t=tracking_id, l=lang })"></div>
+                  <div class="qrcode" data-url="@Href("app", new {i=ticket.Id, t=tracking_id, l=lang, o=opt })"></div>
                 </div>
               }
               else
@@ -142,20 +142,20 @@
     <section id="waitPopup" style="display: none;">
       <h4>@string_map["Print_WaitHeader"]</h4>
       <div>
-        <img src="wait.gif" id="wait" alt="wait" />
+        <img src="img/wait.gif" id="wait" alt="wait" />
       </div>
       <p>@string_map["Print_WaitText"]</p>
-      <img src="PfeilRechts.png" />
+      <img src="img/PfeilRechts.png" />
     </section>
 
     @* take popup is shown, when the printout is ready *@
     <section id="takePopup" style="display: none;">
         <h4>@string_map["Print_TakeHeader"]</h4>
       <div>
-        <img src="wait.gif" id="wait" alt="wait" />
+        <img src="img/wait.gif" id="wait" alt="wait" />
       </div>
       <p>@string_map["Print_TakeText"]</p>
-      <img src="PfeilRechts.png" />
+      <img src="img/PfeilRechts.png" />
     </section>
 
     @* show popup shows the number on the screen *@
@@ -186,5 +186,12 @@
         interval: 60000
       });
     });
+
+    @* auto fill the import cache *@
+    var fillCache = function() {
+      $.ajax("@Html.Raw(Model.Navigate("FillCache.cshtml"))", { cache: false });
+    }
+    window.setInterval(fillCache, 5 * 60 * 1000);
+
   </script>
 }

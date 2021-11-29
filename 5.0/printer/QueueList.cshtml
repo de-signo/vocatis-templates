@@ -7,13 +7,13 @@
 @using Stolltec.Vocatis.Model
 @using System.Web.Caching
 @{
+  // Parse model
+  var Model = PageData["ReadModel"](this);
   var disableOpenClose = !PageData["enable_open_close"];
   var showQrCode = PageData["list_print_or_scan"];
   var lang = PageData["lang"];
   var string_map = PageData["string_map"];
-
-  // Parse model
-  var Model = new FormsModel(this);
+  var opt = PageData["app_options"];
   var mode = (string)Model.Style["mode"].FieldInstance.Value;
 
   // Select ticket servce type (JSON vs HTML) by mode
@@ -56,7 +56,7 @@
     {
       var catidI = Model.Style["catid" + i].Value as CommonGuidId[];
       string catids = catidI == null ? null : String.Join(",",catidI.Select(g=>g.ToString()).ToArray());
-    <li><a href="@Href(ticketUrl, new { queueid=queueid, catid=catids, tid=tracking_id, lang=lang })" data-label="@((string)Model.Style["text" + i].Value)"
+    <li><a href="@Href(ticketUrl, new { queueid=queueid, catid=catids, tid=tracking_id, o=opt, qr=PageData["ticket_show_qr_code"], lang=lang })" data-label="@((string)Model.Style["text" + i].Value)"
     @if (status.QueueLength == 0) {<text>class="btn next-one"</text>} else {<text>class="btn"</text>}>
       <div>
         <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
@@ -88,13 +88,13 @@
         </div>
         <div class="single-button" >
           <span>
-            <img src="single-button.gif" /><br>
+            <img src="img/single-button.gif" /><br>
             <p>Bitte drücken!</p>
           </span>
         </div>
       </div>
       @if (showQrCode) {
-        <div class="qrcode" data-url="@Href("AppTicket.cshtml", new { q=queueid, c=catids, t=tracking_id, l=lang })"></div>
+        <div class="qrcode" data-url="@Href("AppTicket.cshtml", new { q=queueid, c=catids, t=tracking_id, l=lang, o=opt })"></div>
       }
     </a></li>
     @* manually closed *@

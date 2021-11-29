@@ -15,14 +15,18 @@
 
 html {
     height: 100%;
-    width: 70%;
+    width: 100%;
+    font-size: 1.48vh; /* 16px / 1080px */
+    @media only screen and (orientation: portrait) {
+        font-size: 0.83vh; /* 16px / 1920px */
+    }
 }
 
 header {
     display: block;
-    padding: 0 5vw 4vh 5vw;
+    padding: 0 10vw 4vh 5vw;
     height: 16vh;
-    width: 70%;
+    width: 80%;
     svg {
         height: 20vh;
     }
@@ -33,6 +37,7 @@ header {
         display: inline;
         text-transform: uppercase;
         font-weight: 900;
+        font-size: 3.5em;
         padding: 0 0 0 3vw;
         color: $color-primary-shadowred;
     }
@@ -43,7 +48,7 @@ header {
 body {
     /* fill complete frame */
     height: 100%;
-    width: 80%;
+    width: 100%;
     /* text */
     font-family: Futura, Arial, Helvetica, sans-serif;
     /* background */
@@ -52,13 +57,13 @@ body {
 
 .list {
     height: 100%;
-    width: 90%;
+    width: 100%;
     position: fixed;
     padding: 0vh 5vw 4vh 5vw;
     h2 {
         padding: 0vh 0 2vh 5vw;
         text-align: left;
-        font-size: 1.5em;
+        font-size: 2em;
         color: $color-primary-background;
         width: 80%;
     }
@@ -91,29 +96,31 @@ body {
         }
     }
     td.room {
-        padding: 0vh 10vw;
+        padding: 0vh 3vw 0vh 6vw;
     }
     td {
         border-spacing: 0;
         vertical-align: middle;
         line-height: 6vh;
         height: 4vh;
-        font-size: 4em;
+        font-size: 5em;
         background-color: $color-secondary-background;
         color: $color-secondary-foreground;
-        box-shadow: 1px 3px 1px $color-secondary-shadow;
+        box-shadow: 0.052vh 0.156vh 0.052vh $color-secondary-shadow;
+        
     }
     tr.highlight td {
         background-color: $color-primary-background;
+        color: $color-primary-foreground;
     }
     div#popup.popup.simple {
         position: absolute;
         text-align: center;
         width: 100%;
-        top: 0px;
-        bottom: 0px;
-        left: 0px;
-        right: 0px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         background-color: $color-primary-background;
         color: $color-highlight-foreground;
         h3 {

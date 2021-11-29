@@ -1,0 +1,124 @@
+{
+  "groups": [
+    {
+      "title": "Prüfungsmanagement",
+      "items": [
+        {
+          "title": "Abschlussarbeiten",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Anmeldungen (Prüfungen, etc.)",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Krankmeldungen",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Anträge (Studiendekan)",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Bescheinigungen",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Ausgabe Praktikumsberichte",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
+          "categories": [
+            "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Studienberatung",
+      "items": [
+        {
+          "title": "Prüfungsrechtliche Rahmenbedingungen",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Bescheinigungen",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Zweitwiederholungsberatung",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Anerkennung - Erststudium",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
+          "categories": [
+            "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Internationales & Masterzulassung",
+      "items": [
+        {
+          "title": "Anerkennung Auslandsleistungen",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Auslandsstudium (Outgoing)",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Double Degree",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Exchange Students (Incoming)",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Learning Agreements",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Externe Masterbewerbung",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
+          "categories": [
+            "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Praktikum",
+      "items": [
+        {
+          "title": "Bachelorpraktikum",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Masterpraktikum",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
+          "categories": [
+            "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Zeugnisse & Leistungsspiegel",
+      "items": [
+        {
+          "title": "Zeugnisse",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c"
+        },
+        {
+          "title": "Leistungsspiegel",
+          "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
+          "categories": [
+            "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
+          ]
+        }
+      ]
+    }
+  ]
+}
