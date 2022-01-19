@@ -100,6 +100,10 @@
                 ticket.Phone = entry.time + ": " + entry.title;
                 ticket.ReferenceId = entry.id;
                 voc.Instance.UpdateNumber(ticket);
+                var postpone = (string)Model.Style["pp"].FieldInstance.Value == "1";
+                if (postpone) {
+                  voc.Instance.PostponeNumber(ticket.Id, DateTime.Today + TimeSpan.Parse(entry.time));
+                }
               }
               ticketUrl = Href("PrinterTicket.cshtml", new { id=ticket.Id, tid=tracking_id, o=opt, qr=PageData["ticket_show_qr_code"], lang=lang });
               <img src="img/registration.png" id="registration" alt="registration" />
