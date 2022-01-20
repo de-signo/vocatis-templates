@@ -1,0 +1,24 @@
+
+@import "colors.scss";
+
+/* redefine defaults */
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+}
+
+html {
+  font-size: 1.48vh; /* 16px / 1080px */
+  @media only screen and (orientation: portrait) {
+    font-size: 0.83vh; /* 16px / 1920px */
+  }
+}
+
+body {
+  /* text */
+  font-family: Futura, Arial, Helvetica, sans-serif;
+  /* background */
+  background-color: $color-common-background;
+}

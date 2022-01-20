@@ -1,6 +1,9 @@
 {
   "version": "5.0.0",
   "name": "vocatis-standardvorlagen",
+  "workspaces": [
+    "5.0/display"
+  ],
   "dependencies": {
     "del": "^6.0.0",
     "gulp": "^4.0.2",

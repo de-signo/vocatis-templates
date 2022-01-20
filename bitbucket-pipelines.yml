@@ -11,9 +11,9 @@ pipelines:
       - step:
           caches:
             - node
-          script: # Modify the commands below to build your repository.
+          script:
             - npm install -g npm@7.24.2
-            - npm install -g gulp
+            - npm install -g gulp @angular/cli
             - npm install
             - git diff
             - cd 5.0
