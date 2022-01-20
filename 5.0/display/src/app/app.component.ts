@@ -3,7 +3,7 @@ import { Observable, timer } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { isEqual } from 'lodash-es';
+import { isEqual, toNumber } from 'lodash-es';
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -24,8 +24,12 @@ export class AppComponent {
   popupEnd: number = 0;
   popupQueue: WaitNumberItem[] = [];
   audioSrc: string = "";
+
+  voices: SpeechSynthesisVoice[] = [];
+  speechUrl: string|null = null;
+  speech: {voice: SpeechSynthesisVoice, text: string, rate: number}|null = null;
   audio: HTMLAudioElement|null = null;
-  audioQueue: any[] = [];
+  audioQueue: HTMLAudioElement[] = [];
   dataParams: Params|null = null;
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
@@ -35,8 +39,22 @@ export class AppComponent {
       .subscribe(params => {
         this.enableHighlight = params["s/hl"] == "1";
         this.enablePopup = !!params["s/popup"];
-        this.audioSrc = params["s/notify"] ?? "";
+        const notify = params["s/notify"] ?? "";
+        this.speech = this.parseSpeechUrl(notify);
+        this.speechUrl = (this.speech) ? notify : null;
+        this.audioSrc = (this.speech) ? "" : notify;
         this.dataParams = params;
+      }
+    );
+
+    // read voices (this seems to be lazy loaded. Thus listen to changed event.)
+    this.voices = speechSynthesis.getVoices();
+    speechSynthesis.addEventListener(
+      "voiceschanged",
+      () => {
+        this.voices = speechSynthesis.getVoices();
+        if (this.speechUrl)
+          this.speech = this.parseSpeechUrl(this.speechUrl);
       }
     );
 
@@ -73,6 +91,17 @@ export class AppComponent {
       if (this.enableHighlight) {
         const hlEnd = Date.now() + this.highlightTimeout;
         this.highlightQueue.push(...(newItems.map(i => { return { item: i, ends: hlEnd }})));
+      }
+
+      if (this.speech) {
+        var speech = this.speech;
+        newItems.forEach(item => {
+          const text = speech.text.replace("~number~", item.number).replace("~room~", item.room);
+          var utterance = new SpeechSynthesisUtterance(text);
+          utterance.voice = speech.voice;
+          utterance.rate = speech.rate;
+          speechSynthesis.speak(utterance);
+        });
       }
 
       if (this.audioSrc)
@@ -112,6 +141,48 @@ export class AppComponent {
     audio.load();
     return audio;
   }
+
+  parseSpeechUrl(url: string) : {voice: SpeechSynthesisVoice, text: string, rate: number}|null {
+    if (!url.startsWith("speech://"))
+      return null;
+
+    const query = url.substring(9);
+    const vars = query.split('&');
+    var voice = "";
+    var text = "";
+    var rate = "";
+    for (var i = 0; i < vars.length; i++) {
+      const pair = vars[i].split('=');
+      const key = decodeURIComponent(pair[0])
+      if (key == "voice") {
+        voice = decodeURIComponent(pair[1]);
+      }
+      else if (key == "text") {
+        text = decodeURIComponent(pair[1]);
+      }
+      else if (key == "rate") {
+        rate = decodeURIComponent(pair[1]);
+      }
+    }
+
+    var voices = speechSynthesis.getVoices();
+    var vvoice = voices[0];
+    if (voice) {
+      var found = voices.find(v => v.name == voice);
+      if (!found)
+        found = voices.find(v => v.name.startsWith(voice));
+      if (!found) {
+        console.log(`Selected voice '${voice}' not found. Available voices: ${voices}`);
+      }
+      else {
+        vvoice = found ?? voices[0];
+      }
+    }
+    var nrate = 1;
+    if (rate)
+      nrate = toNumber(rate);
+    return { voice: vvoice, text: text, rate: nrate };
+}
 
   isHighlighted(item: WaitNumberItem): boolean {
     return !!this.highlightQueue.find(h => isEqual(h.item, item));
