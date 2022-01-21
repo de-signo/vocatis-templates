@@ -4,7 +4,7 @@
   "workspaces": [
     "5.0/display"
   ],
-  "dependencies": {
+  "devDependencies": {
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
