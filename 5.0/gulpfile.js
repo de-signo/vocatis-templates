@@ -6,11 +6,10 @@ git = require("gulp-git"),
 hb = require("gulp-compile-handlebars"),
 log = require('fancy-log');
 rename = require("gulp-rename"),
-sass = require('gulp-sass'),
+sass = require('gulp-sass')(require('sass')),
 zip = require("gulp-zip");
 
 hb.Handlebars.registerHelper('range', require('handlebars-helper-range'));
-sass.compiler = require('node-sass');
 
 // compile styles
 gulp.task("css", function (done) {
