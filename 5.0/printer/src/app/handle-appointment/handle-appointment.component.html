@@ -1,0 +1,27 @@
+<ng-container [ngSwitch]="state">
+  <ng-container *ngSwitchCase="''">
+    <h3>{{ "Appoint_Loading" | translate }}</h3>
+  </ng-container>
+  <ng-container *ngSwitchCase="'invalid'">
+    <h3>{{ "Appoint_InvalidHeader" | translate }}</h3>
+    <p>{{ "Appoint_InvalidText" | translate }}</p>
+  </ng-container>
+  <ng-container *ngSwitchCase="'notfound'">
+    <h3>{{ "Appoint_NotFoundHeader" | translate }}</h3>
+  </ng-container>
+  <ng-container *ngSwitchCase="'noqueue'">
+    <h3>{{ "Appoint_TicketNoQueue" | translate }}</h3>
+  </ng-container>
+  <ng-container *ngSwitchCase="'qr'">
+    <h3><img src="assets/img/registration.png" id="registration" alt="registration" /> {{ "Appoint_TicketHeader" | translate }}</h3>
+    <p>{{ "Appoint_TicketTextWScan" | translate }}</p>
+    <figure class="left">
+      <figcaption>{{ "Appoint_TicketPrint" | translate }}</figcaption>
+      <a class="print-button" (click)="print()"></a>
+    </figure>
+    <figure class="right">
+      <figcaption>{{ "Appoint_TicketScan" | translate }}</figcaption>
+      <qrcode [qrdata]="getAppLink()" [margin]="0" colorLight="#d7d7d7" colorDark="#707173"></qrcode>
+    </figure>
+  </ng-container>
+</ng-container>

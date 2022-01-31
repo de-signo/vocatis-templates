@@ -1,0 +1,20 @@
+{
+	"lang_de": "Deutsch",
+	"lang_en": "English",
+	"App_Title_a": "Waiting time",
+	"App_Title_b": "Real-time request",
+	"App_CallHeader": "Call",
+	"App_YourNumber": "Your ticket:",
+	"App_NumWaitingFormatRaw": "There are {{count}} customers in the queue",
+	"App_WaitingTimeFormatRaw": "Your estimated waiting time is about {{min}} minutes",
+	"App_TimeFormat": "Status: {{date}}",
+	"App_StayClose": "Please stay in the waiting area!",
+	"App_ComeBack": "Please proceed to the waiting area in time!",
+	"App_Loading": "Loading ...",
+	"App_ErrorOccuredHeader": "Error occurred",
+	"App_ErrorOccuredText": "Please proceed to the waiting area!",
+	"App_CallText": "Your call:",
+	"App_FinishedHeader": "Processing is completed",
+	"App_FinishedText1": "Thank you for your visit",
+	"App_FinishedText2": "Have a nice day"
+}

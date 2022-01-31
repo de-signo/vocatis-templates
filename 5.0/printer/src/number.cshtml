@@ -1,0 +1,44 @@
+@using System.Web.Mvc
+@using iSign
+@using Stolltec.Vocatis
+@using Stolltec.Vocatis.Model
+@{
+ /*
+    webservice for number generation
+  */
+  var queueid = CommonGuidId.FromString(Request["queue"]);
+  var catids = GuidIdsFieldInstance.ParseValue("",Request["categories"]).Value as CommonGuidId[];
+
+  var reference = Request["ref"];
+  var name = Request["name"];
+  var phone = Request["phone"];
+  var postpone = Request["postpone"];
+
+  var voc = Vocatis.GetVocatisData();
+
+  // find / create the ticket
+  var ticket = !String.IsNullOrEmpty(reference) ? voc.FindNumber(reference) : null;
+  var isNewTicket = ticket == null;
+  if (ticket == null) {
+    ticket = voc.NewNumber(queueid, catids);
+  }
+
+  // set ticket data
+  if (isNewTicket && !String.IsNullOrEmpty(reference) && !String.IsNullOrEmpty(phone) && !String.IsNullOrEmpty(name)) {
+    ticket.Name = name;
+    ticket.Phone = phone;
+    ticket.ReferenceId = reference;
+    voc.UpdateNumber(ticket);
+  }
+
+  // postpone
+  if (!String.IsNullOrEmpty(postpone)) {
+    voc.PostponeNumber(ticket.Id, DateTime.Today + TimeSpan.Parse(postpone));
+  }
+
+  Response.ContentType="application/json";
+}
+{ 
+  "id":"@ticket.Id",
+  "number":"@ticket.Number"
+}

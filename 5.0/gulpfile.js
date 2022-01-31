@@ -14,14 +14,6 @@ hb.Handlebars.registerHelper('range', require('handlebars-helper-range'));
 
 // compile styles
 gulp.task("css", function (done) {
-gulp.src(['styles/style.scss'])
-    .pipe(sass.sync().on('error', sass.logError))
-    .pipe(cleanCSS({compatibility: 'ie8'}))
-    .pipe(gulp.dest('printer'));
-gulp.src(['styles/app.scss'])
-    .pipe(sass.sync().on('error', sass.logError))
-    .pipe(cleanCSS({compatibility: 'ie8'}))
-    .pipe(gulp.dest('printer/app'));
 gulp.src(['styles/queueinfo.scss'])
     .pipe(sass.sync().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
@@ -38,7 +30,7 @@ specs = [
   },
   {
     'name': "display",
-    'ng': 'display',
+    'ng': ['display'],
     'clean': "../dist/display_*.zip",
     'files': ['display/dist/display/**'],
     'templates': ['display/src/Styles.xml.handlebars']
@@ -51,9 +43,10 @@ specs = [
   },
   {
     'name': "printer_groups_nomultilang",
+    'ng': ['printer'],
     'clean': "../dist/printergroups_*.zip",
-    'files': ['printer/**', '!printer/*.handlebars'],
-    'templates': ['printer/Styles.xml.handlebars', 'printer/_PageStart.cshtml.handlebars'],
+    'files': ['printer/dist/**', "!printer/dist/app/**", "!printer/dist/printer/assets/test*.json"],
+    'templates': [{input: 'printer/Styles.xml.handlebars', dest: 'printer/dist'}, 'printer/src/environments/environment.prod.ts.handlebars'],
     'templateData': {
       'suffix': '_openclose_nomultilang',
       'use_groups_config': true,
@@ -70,10 +63,11 @@ options = [
   // app
   [
     {'tag': 'noapp',
+     'ng': [{'path': 'printer', 'project': 'app'}],
     'templateData': {
       'use_groups_config': false,
       'enable_app': false },
-      'files': ['!printer/app/**', '!printer/App*']
+      'files': ["!printer/dist/app/**"]
     },
     {'tag': 'app', 'name': 'app',
     'templateData': {
@@ -92,8 +86,9 @@ options = [
 var printerSpecs = [{
   'name': 'printer',
   'clean': "../dist/printer_*.zip",
-  'files': ['printer/**', '!printer/*.handlebars', '!printer/config.json'],
-  'templates': ['printer/Styles.xml.handlebars', 'printer/_PageStart.cshtml.handlebars'],
+  'files': ['printer/dist/**', "!printer/dist/printer/assets/test*.json"],
+  'ng': ['printer'],
+  'templates': [{input: 'printer/Styles.xml.handlebars', dest: 'printer/dist'}, 'printer/src/environments/environment.prod.ts.handlebars'],
   'templateData': {
     'option_name': '',
     enable_open_close: true
@@ -121,6 +116,9 @@ for (option of options) {
       }
       if (variant.files) {
         vs.files = vs.files.concat(variant.files);
+      }
+      if (variant.ng) {
+        vs.ng = vs.ng.concat(variant.ng);
       }
       variantSpecs.push(vs);
     }
@@ -167,18 +165,27 @@ for (spec of specs) {
     // template task
     if (spec['templates'])
     {
-      gulp.task(`template_${name}`, () => {
+      gulp.task(`template_${name}`, (done) => {
         var hbData = {
           'version': version
         }
         var hbOptions = {};
         if (spec['templateData']) {
           Object.assign(hbData, spec['templateData']);
-        }  
-        return gulp.src(spec['templates'], {base:"./"}, {removeBOM: false})
+        }
+        var templateObj = spec["templates"].filter(t => typeof t === 'object')
+        var templateStr = spec["templates"].filter(t => typeof t !== 'object')
+        gulp.src(templateStr, {base:"./"}, {removeBOM: false})
           .pipe(hb(hbData, hbOptions))
           .pipe(rename(function (path) { path.extname = ""; }))
           .pipe(gulp.dest('.'));
+        templateObj.forEach(t => {
+          gulp.src(t.input, {base:"./"}, {removeBOM: false})
+            .pipe(hb(hbData, hbOptions))
+            .pipe(rename(function (path) { path.extname = ""; path.dirname = "";}))
+            .pipe(gulp.dest(t.dest))
+          });
+        done();
       });
       tasks.push(`template_${name}`);
     }
@@ -186,14 +193,30 @@ for (spec of specs) {
     // angular task
     if (spec['ng'])
     {
-      gulp.task(`ng_${name}`, function (cb) {
-        exec('ng build', { 'cwd': spec['ng'] }, function (err, stdout, stderr) {
-          console.log(stdout);
-          console.log(stderr);
-          cb(err);
-        });
+      spec['ng'].forEach(function(ng) {
+        let ngTaskName;
+        if (typeof ng === 'object') {
+          ngTaskName = `ng_${name}_${ng.path}_${ng.project}`;
+          gulp.task(ngTaskName, function (cb) {
+            exec(`ng build ${ng.project}`, { 'cwd': ng.path }, function (err, stdout, stderr) {
+              console.log(stdout);
+              console.log(stderr);
+              cb(err);
+            });
+          });
+        }
+        else {
+          ngTaskName = `ng_${name}_${ng}`;
+          gulp.task(ngTaskName, function (cb) {
+            exec('ng build', { 'cwd': ng }, function (err, stdout, stderr) {
+              console.log(stdout);
+              console.log(stderr);
+              cb(err);
+            });
+          });
+        }
+        tasks.push(ngTaskName);
       });
-      tasks.push(`ng_${name}`);
     }
 
     // zip task

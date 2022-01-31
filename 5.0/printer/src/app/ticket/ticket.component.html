@@ -1,0 +1,12 @@
+<ng-container *ngIf="number">
+  <header>{{ now | date : 'short':undefined:locale }}</header>
+  <h1>{{ number.number }}</h1>
+  <img src="assets/img/separation.png" class="separation" alt="Trennung" (load)="onImgLoaded($event)">
+  <footer>
+    <figure *ngIf="showQrCode">
+      <figcaption>{{ "Ticket_AppHeader" | translate }}</figcaption>
+      <qrcode [qrdata]="getAppLink(number)" [margin]="0"></qrcode>
+    </figure>
+    <img src="assets/img/customerlogo.png" class="customerlogo" alt="logo" (load)="onImgLoaded($event)">
+  </footer>
+</ng-container>

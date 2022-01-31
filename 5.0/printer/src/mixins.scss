@@ -1,0 +1,9 @@
+
+
+@mixin panel {
+  background-color: $color-secondary-background;
+  color: $color-secondary-foreground;
+  height: 60vh;
+  margin: 0 -15vw;
+  padding: 0 20vw;
+}

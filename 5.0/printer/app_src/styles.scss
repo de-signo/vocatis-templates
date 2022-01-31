@@ -1,0 +1,44 @@
+
+@import "colors.scss";
+
+
+/* overwrite defaults */
+html, body, h2, h3, article, h4
+{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ 
+ /* global layout */
+ html, body
+ {
+  background-color: $color-common-background;
+  color: $color-common-foreground;
+  font-family: Verdana, "Lucida Sans Unicode", sans-serif;
+
+  @media (orientation: landscape)
+  {
+    font-size: 2.5vw;
+    height: 60vh;
+  }
+  @media (orientation: portrait)
+  {
+    font-size: 4vw;
+  }
+}
+
+body {
+  /* disable select */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+}

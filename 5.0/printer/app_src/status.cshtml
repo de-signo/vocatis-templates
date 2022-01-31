@@ -1,0 +1,37 @@
+@using iSign
+@using Stolltec.Vocatis
+@using Stolltec.Vocatis.Model
+@using System.Web.Caching
+@functions{
+  string QueueNameCached(CommonGuidId id) {
+    string key = "Vocatis_QueueName_" + id.ToString();
+    string queueName = Cache.Get(key) as string;
+    if (queueName == null)
+    {
+      var q = Vocatis.GetVocatisData().GetQueue(id);
+      if (q != null)
+      {
+        queueName = q.Name;
+        Cache.Add(key, queueName, null, DateTime.Now.AddHours(1), Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
+      }
+    }
+    return queueName;
+  }
+}
+@{
+  dynamic id = CommonGuidId.FromString(Request["id"]);
+  var ticket = Vocatis.GetTicket(id);
+  var status = Vocatis.GetTicketWaitInfo(id);
+  var queuename = QueueNameCached(status.QueueId);
+
+  Response.ContentType = "application/json";
+}
+{
+  number: "@ticket.Number",
+  title: "@queuename",
+  state: @ticket.State,
+  position: @status.Position,
+  estimatedTimeOfCall: @status.EstimatedTimeOfCall,
+  room: "@callInfo.RoomName"
+}
+
