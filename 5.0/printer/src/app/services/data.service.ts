@@ -61,7 +61,7 @@ export class DataService {
       {
         queue: queue,
         categories: categories,
-        ref: apt.id,
+        ref: apt.ref,
         name: apt.name,
         phone: apt.time + ": " + apt.title,
         postpone: apt.time

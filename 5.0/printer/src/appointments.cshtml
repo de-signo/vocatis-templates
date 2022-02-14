@@ -11,6 +11,7 @@
                where date == DateTime.Today
                select new {
                   id = x["id"],
+                  @ref = x["ref"],
                   plan = x["plan"],
                   time = date + TimeSpan.Parse(x["time"] as string),
                   title =  x["title"],
