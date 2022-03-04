@@ -15,7 +15,7 @@
   {
     var model = new FormsModel(page);
 {{#if enable_app }}
-    var qr = Int32.Parse((string)model.Style["qr"].FieldInstance.Value);
+    var qr = Int32.Parse((string)model.Style["qr"].FieldInstance.Value ?? "0");
     var qrTicket = (qr & 1) == 1;
     var qrMonitor = (qr & 2) == 2;
 

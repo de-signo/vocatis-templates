@@ -131,6 +131,7 @@
             queueid[i] = (CommonGuidId)Model.Style["queueid" + (i+1)].FieldInstance.Value;
         }
         var category = (CommonGuidId[]) Model.Style["category"].FieldInstance.Value;
+        var postpone = (string)Model.Style["pp"].FieldInstance.Value == "1";
 
         <text>
         Import
@@ -151,6 +152,9 @@
                     ticket.Phone = item.Start.ToLocalTime().ToShortTimeString() + ": " + item.Title;
                     ticket.ReferenceId = item.Reference;
                     voc.Instance.UpdateNumber(ticket);
+                    if (postpone) {
+                        voc.Instance.PostponeNumber(ticket.Id, item.Start);
+                    }
                     return ticket;
                 }
             };
