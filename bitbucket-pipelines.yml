@@ -12,7 +12,8 @@ pipelines:
           caches:
             - node
           script: # Modify the commands below to build your repository.
-            - npm install -g gulp npm@7.24.2
+            - npm install -g npm@7.24.2
+            - npm install -g gulp
             - npm install
             - git diff
             - cd 5.0
