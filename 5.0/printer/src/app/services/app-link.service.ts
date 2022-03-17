@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { AppointmentModel, ButtonModel, GroupModel, WaitNumberModel } from './app-data.model';
-import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { first, tap } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
+import { HttpParams, HttpRequest } from '@angular/common/http';
 import { StyleService } from './style.service';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -12,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root'
 })
 export class AppLinkService {
+  private absoluteAppUrl: string;
   /*
    * app query params:
    * o: Options ("wt": showWaitTime)
@@ -25,7 +22,14 @@ export class AppLinkService {
    * q: queue
    * c: categories
    */
-  constructor(private style: StyleService, private translate: TranslateService) {}
+  constructor(private style: StyleService, private translate: TranslateService) {
+    var appPath = environment.appUrl;
+    // = "../app/index.cshtml"
+    var basePath = document.baseURI;
+    // = "/forms/XYZ/printer"
+    this.absoluteAppUrl = new URL(appPath, document.baseURI).href;
+    // = "http://host/forms/XYZ/app.index.cshtml"
+  }
 
   getAppTicketUrl(queue: string, categories: string[]|undefined) : string {
     const params = new HttpParams()
@@ -35,7 +39,7 @@ export class AppLinkService {
       .set('q', queue)
       .set('c', categories?.join(",") ?? "");
 
-    const request = new HttpRequest('GET', environment.appUrl, null, {params});
+    const request = new HttpRequest('GET', this.absoluteAppUrl, null, {params});
     return request.urlWithParams;
   }
 
@@ -46,7 +50,7 @@ export class AppLinkService {
       .set('lang', this.translate.currentLang)
       .set('id', id);
 
-    const request = new HttpRequest('GET', environment.appUrl, null, {params});
+    const request = new HttpRequest('GET', this.absoluteAppUrl, null, {params});
     return request.urlWithParams;
   }
 }
