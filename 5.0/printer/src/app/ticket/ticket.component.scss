@@ -25,10 +25,11 @@ footer {
   &>* {
     flex: 1;
   }
-}
-figcaption {
-  font-size: 12px;
-}
-qrcode {
-  margin-top: 2px;
+  figure {
+    padding-left: 5px;
+  }
+  figcaption {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
 }
