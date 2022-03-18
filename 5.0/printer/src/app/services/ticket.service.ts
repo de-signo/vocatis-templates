@@ -1,12 +1,13 @@
-import { ElementRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, timer } from 'rxjs';
+import { timer } from 'rxjs';
 import { DataService } from './data.service';
 import { first } from 'rxjs/operators';
 import { ButtonModel, WaitNumberModel } from './app-data.model';
 import { StyleService } from './style.service';
 import { TicketComponent } from '../ticket/ticket.component';
 import { toBlob } from 'html-to-image';
+import { saveAs } from 'file-saver';
 
 declare global {
   interface Window { 
@@ -116,13 +117,14 @@ export class TicketService {
     // https://medium.com/@Idan_Co/angular-print-service-290651c721f9
     const component = this.printComponent;
     await component?.loaded();
+    let blob = await toBlob(component?.element?.nativeElement, { pixelRatio: 2 });
+    if (!blob)
+      return;
     if (this.isPrinterAvailable) {
-      let blob = await toBlob(component?.element?.nativeElement);
-      let buffer = await blob?.arrayBuffer();
-      if (buffer)
-        await window.printer.printImage([...new Uint8Array(buffer)]);
+      let buffer = await blob.arrayBuffer();
+      await window.printer.printImage([...new Uint8Array(buffer)]);
     } else {
-      window.print();
+      saveAs(blob, "ticket.png");
     }
   }
 }

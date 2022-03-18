@@ -5,7 +5,7 @@
   <footer>
     <figure *ngIf="showQrCode">
       <figcaption>{{ "Ticket_AppHeader" | translate }}</figcaption>
-      <qrcode [qrdata]="getAppLink(number)" [margin]="0"></qrcode>
+      <qrcode [qrdata]="getAppLink(number)" [margin]="0" [width]="1600"></qrcode>
     </figure>
     <img src="assets/img/customerlogo.png" class="customerlogo" alt="logo" (load)="onImgLoaded($event)">
   </footer>
