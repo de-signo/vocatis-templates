@@ -113,7 +113,9 @@
             "assets": [
               "app_src/favicon.ico",
               "app_src/assets",
-              "app_src/Styles.xml"
+              "app_src/Styles.xml",
+              "app_src/number.cshtml",
+              "app_src/status.cshtml"
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["../styles", "app_src"]
