@@ -1,0 +1,29 @@
+<header>
+  <img src="assets/img/plattformlogo.png" class="plattformlogo" alt="plattformlogo">
+  <h1>Wartebereich</h1>
+</header>
+
+<h2>Bitte warten Sie, bis Ihre Nummer erscheint:</h2>
+<table> 
+  <tbody>
+    <tr *ngFor="let x of list" [ngClass]="{ 'highlight': isHighlighted(x) }">
+      <td>
+        <img *ngIf="x.marked" src="assets/img/termin.png" alt="termin">
+      </td>
+      <td>{{ x.number }}</td>
+      <td>{{ x.room }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!--
+if (!String.IsNullOrEmpty(notify))
+
+    <audio id="notify" data-src="@Href(notify)" preload="auto">
+    </audio>
+-->
+
+<div *ngIf="popup" class="popup">
+  <h3>{{ popup.room }}</h3>
+  <h4>{{ popup.number }}</h4>
+</div>

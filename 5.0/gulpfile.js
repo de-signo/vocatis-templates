@@ -2,6 +2,7 @@
 var gulp = require("gulp"),
 cleanCSS = require("gulp-clean-css"),
 del = require("del"),
+exec = require('child_process').exec,
 git = require("gulp-git"),
 hb = require("gulp-compile-handlebars"),
 log = require('fancy-log');
@@ -21,10 +22,6 @@ gulp.src(['styles/app.scss'])
     .pipe(sass.sync().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest('printer/app'));
-gulp.src(['styles/display.scss'])
-    .pipe(sass.sync().on('error', sass.logError))
-    .pipe(cleanCSS({compatibility: 'ie8'}))
-    .pipe(gulp.dest('display'));
 gulp.src(['styles/queueinfo.scss'])
     .pipe(sass.sync().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
@@ -41,9 +38,10 @@ specs = [
   },
   {
     'name': "display",
+    'ng': 'display',
     'clean': "../dist/display_*.zip",
-    'files': ['display/**', '!display/*.handlebars'],
-    'templates': ['display/Styles.xml.handlebars']
+    'files': ['display/dist/display/**'],
+    'templates': ['display/src/Styles.xml.handlebars']
   },
   {
     'name': "queueinfo",
@@ -164,10 +162,9 @@ for (spec of specs) {
     var task_name = `zip_${name}`;
     zip_tasks.push(task_name);
 
-    var zipit = () => gulp.src(spec['files'], {removeBOM: false})
-      .pipe(zip(`${name}_${version}.zip`))
-      .pipe(gulp.dest("../dist"));
+    var tasks = [];
 
+    // template task
     if (spec['templates'])
     {
       gulp.task(`template_${name}`, () => {
@@ -183,12 +180,34 @@ for (spec of specs) {
           .pipe(rename(function (path) { path.extname = ""; }))
           .pipe(gulp.dest('.'));
       });
-      gulp.task(task_name, gulp.series(`template_${name}`, zipit));
+      tasks.push(`template_${name}`);
     }
-    else
+
+    // angular task
+    if (spec['ng'])
     {
-      gulp.task(task_name, zipit);
+      gulp.task(`ng_${name}`, function (cb) {
+        exec('ng build', { 'cwd': spec['ng'] }, function (err, stdout, stderr) {
+          console.log(stdout);
+          console.log(stderr);
+          cb(err);
+        });
+      });
+      tasks.push(`ng_${name}`);
     }
+
+    // zip task
+    var zipit = () => gulp.src(spec['files'], {removeBOM: false})
+      .pipe(zip(`${name}_${version}.zip`))
+      .pipe(gulp.dest("../dist"));
+    tasks.push(zipit);
+
+    // execut the tasks
+    if (tasks.length > 1)
+      gulp.task(task_name, gulp.series(tasks));
+    else
+      gulp.task(task_name, tasks[0]);
+
   }) (spec);
 }
 

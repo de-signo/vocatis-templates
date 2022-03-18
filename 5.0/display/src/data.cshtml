@@ -1,0 +1,49 @@
+@using iSign
+@using Newtonsoft.Json
+@using Stolltec.Forms.Model
+@using Stolltec.Vocatis
+@using Stolltec.Vocatis.Model
+@using System.Linq
+@using System.Web.Caching
+@functions{
+  IEnumerable<DisplayNumber> GetWaitQueueList(CommonGuidId id)
+  {
+    var cacheKey = String.Format("Vocatis_GetWaitQueueList_{0}", id);
+    var list = Cache.Get(cacheKey) as IEnumerable<DisplayNumber>;
+    if (list == null)
+    {
+      list = Vocatis.GetWaitQueueList(id);
+      Cache.Add(cacheKey, list, null,
+                DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
+    }
+    return list;
+  }
+}
+@{
+  Response.ContentType = "application/json";
+    
+  var Model = new FormsModel(this);
+  PageData["Model"] = Model;
+
+  IEnumerable<DisplayNumber> list = new DisplayNumber[0];
+  HashSet<CommonGuidId> ids = new HashSet<CommonGuidId>();
+  var sources = Model.Style.StyleInstance.Where(f => f.Key.StartsWith("source"));
+  foreach (var f in sources)
+  {
+    var id = (CommonGuidId)f.Value;
+    if (id.IsEmpty || ids.Contains(id))
+    {
+        continue;
+    }
+    ids.Add(id);
+    list = list.Concat(GetWaitQueueList(id));
+  }
+  var cats = (CommonGuidId[])Model.Style["highlightcat"].FieldInstance.Value ?? new CommonGuidId[0];
+  var result = list.Select(x =>
+    new {
+      number = x.Number,
+      room = x.RoomName,
+      marked = x.Categories.Any(cid => cats.Contains(cid.Id))
+    });
+}
+@Html.Raw(JsonConvert.SerializeObject(result))
