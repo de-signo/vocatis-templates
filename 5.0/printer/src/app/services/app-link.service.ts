@@ -35,7 +35,7 @@ export class AppLinkService {
     const params = new HttpParams()
       .set('o', this.style.showWaitTime ? "wt" : "")
       .set('t', this.style.trackingId)
-      .set('lang', this.translate.currentLang)
+      .set('l', this.translate.currentLang)
       .set('q', queue)
       .set('c', categories?.join(",") ?? "");
 
@@ -47,8 +47,8 @@ export class AppLinkService {
     const params = new HttpParams()
       .set('o', this.style.showWaitTime ? "wt" : "")
       .set('t', this.style.trackingId)
-      .set('lang', this.translate.currentLang)
-      .set('id', id);
+      .set('l', this.translate.currentLang)
+      .set('i', id);
 
     const request = new HttpRequest('GET', this.absoluteAppUrl, null, {params});
     return request.urlWithParams;

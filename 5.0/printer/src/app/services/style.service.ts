@@ -39,7 +39,7 @@ export class StyleService {
         this.view = params["view"] ?? "";
         const wt = params["s/wt"];
         this.showWaitTime = wt == "1" || wt == 1;
-        this.trackingId = params["s/tracking_id"];
+        this.trackingId = params["s/tracking_id"] ?? "";
         // read plan / queue map
         const apt_cats = params["s/catid_apt"] ?? [];
         let i = 1;

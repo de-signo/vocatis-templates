@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
       const opt = params["o"];
       this.showWaitTime = opt == "wt";
       
-      const lang = params["lang"];
+      const lang = params["l"];
       if (lang)
         this.translate.use(lang);
 
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
           data => {
             this.id = data.id;
             this.error = false;
-            router.navigate(["/"], { replaceUrl: true, queryParams: { o: opt, lang: lang, id: data.id }}); // remove queue query
+            router.navigate(["/"], { replaceUrl: true, queryParams: { o: opt, l: lang, i: data.id }}); // remove queue query
           },
           error => {
             this.error = true;
@@ -54,7 +54,7 @@ export class AppComponent implements OnInit, OnDestroy {
         )
       }
       else {
-        this.id = params["id"];
+        this.id = params["i"];
         timer(0, 60 * 1000).pipe(
           switchMap(_ => this.id ? this.data.getStatus(this.id) : of(null))
         ).subscribe(
