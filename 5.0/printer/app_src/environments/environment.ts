@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   statusServiceUrl: "assets/teststatus.json",
-  numberServiceUrl: "assets/testnum.json"
+  numberServiceUrl: "assets/testnum.json",
+  refreshInterval: 10 * 1000 /* ms */
 };
 
 /*

@@ -6,6 +6,7 @@ import { of, Subscription, timer } from 'rxjs';
 import { TicketStatus, WaitNumberState } from './services/models';
 import { DataService } from './services/data.service';
 import { switchMap } from 'rxjs/operators';
+import { environment } from 'app_src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -55,7 +56,7 @@ export class AppComponent implements OnInit, OnDestroy {
       }
       else {
         this.id = params["i"];
-        timer(0, 60 * 1000).pipe(
+        timer(0, environment.refreshInterval).pipe(
           switchMap(_ => this.id ? this.data.getStatus(this.id) : of(null))
         ).subscribe(
           st => {
