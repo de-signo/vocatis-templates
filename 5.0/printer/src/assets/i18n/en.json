@@ -16,7 +16,7 @@
 	"Appoint_TicketTextWOScan": "Please be patient",
 	"Appoint_TicketPrint": "Print ticket",
 	"Appoint_TicketScan": "Scan ticket",
-	"Appoint_TicketNoQueue": "This device is not configured for your appointment",
+	"Appoint_TicketNoQueue": "You cannot use this QR code here. Please go to the correct place.",
 	"Appoint_Loading": "One moment please",
 	"Print_WaitHeader": "Your queue number will be printed",
 	"Print_WaitText": "Please take your queue number",
