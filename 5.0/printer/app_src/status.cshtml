@@ -21,8 +21,23 @@
 @{
   dynamic id = CommonGuidId.FromString(Request["id"]);
   var ticket = Vocatis.GetTicket(id);
-  var status = Vocatis.GetTicketWaitInfo(id);
-  var queuename = QueueNameCached(status.QueueId);
+
+  int position, estTimeOfCall;
+  string roomName, queuename;
+  if (ticket.State == WaitNumberState.Called) {
+    var callInfo = Vocatis.GetTicketCallInfo(id);
+    roomName = callInfo.RoomName;
+    position = 0;
+    estTimeOfCall = 0;
+    queuename = "";
+  }
+  else {
+    var status = Vocatis.GetTicketWaitInfo(id);
+    roomName = "";
+    position = status.Position;
+    estTimeOfCall = status.EstimatedTimeOfCall.TotalSeconds;
+    queuename = QueueNameCached(status.QueueId);
+  }
 
   Response.ContentType = "application/json";
 }
@@ -30,8 +45,8 @@
   number: "@ticket.Number",
   title: "@queuename",
   state: @ticket.State,
-  position: @status.Position,
-  estimatedTimeOfCall: @status.EstimatedTimeOfCall,
-  room: "@callInfo.RoomName"
+  position: @position,
+  estimatedTimeOfCall: @estTimeOfCall,
+  room: "@roomName"
 }
 
