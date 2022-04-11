@@ -15,7 +15,15 @@
     "gulp-sass": "^5.1.0",
     "gulp-zip": "^5.0.2",
     "handlebars-helper-range": "^1.1.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
     "prettier": "^2.6.2",
     "sass": "^1.49.9"
+  },
+  "lint-staged": {
+    "*.{js,css,scss,md,ts,json}": "prettier --write"
+  },
+  "scripts": {
+    "prepare": "husky install"
   }
 }
