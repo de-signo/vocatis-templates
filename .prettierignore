@@ -1,0 +1,7 @@
+# Ignore artifacts:
+dist/
+/node_modules
+.angular
+*.cshtml
+*.handlebars
+*.min.js

@@ -1,7 +1,5 @@
 .angular
 /node_modules
-/dist
-/5.0/display/dist
 /5.0/display/node_modules
 /5.0/display/src/Styles.xml
 /5.0/import/Styles.xml
@@ -12,3 +10,6 @@
 /5.0/printer/src/environments/environment.prod.ts
 /5.0/printer/app-src/environments/environment.prod.ts
 /5.0/queueinfo/queueinfo.css
+
+dist/
+.angular
