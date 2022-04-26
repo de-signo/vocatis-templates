@@ -13,7 +13,6 @@
 	"Appoint_NotFoundHeader": "Your appointment cannot be found in our list.",
 	"Appoint_TicketHeader": "You have been registered",
 	"Appoint_TicketTextWScan": "Please be patient",
-	"Appoint_TicketTextWOScan": "Please be patient",
 	"Appoint_TicketPrint": "Print ticket",
 	"Appoint_TicketScan": "Scan ticket",
 	"Appoint_TicketNoQueue": "You cannot use this QR code here. Please go to the correct place.",

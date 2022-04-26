@@ -12,7 +12,6 @@
 	"Appoint_NotFoundHeader": "Ihr Termin wurde nicht in unserer Liste gefunden.",
 	"Appoint_TicketHeader": "Sie sind angemeldet",
 	"Appoint_TicketTextWScan": "Bitte noch etwas Geduld, drucken oder scannen Sie Ihr Ticket und warten bis Ihre Nummer aufgerufen wird.",
-	"Appoint_TicketTextWOScan": "Bitte noch etwas Geduld, drucken Sie Ihr Ticket und warten bis Ihre Nummer aufgerufen wird.",
 	"Appoint_TicketPrint": "Ticket drucken",
 	"Appoint_TicketScan": "Ticket scannen",
 	"Appoint_TicketNoQueue": "Sie können diesen QR-Code hier nicht verwenden, bitte wenden Sie sich an die korrekte Stelle.",
