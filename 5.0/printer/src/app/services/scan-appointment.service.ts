@@ -34,12 +34,14 @@ export class ScanAppointmentService {
       const apt = appts.find(apt => apt.id == apt_id);
       if (!apt) {
         this.state = "notfound";
+        console.log(`The appointment with id '${apt_id}' was not found in the list.`)
       }
       else {
         const plan = apt.plan;
         const queue = this.style.planToQueue[plan];
         if (!queue) {
           this.state = "noqueue";
+          console.log(`The plan '${plan}' is not configured.`)
         }
         else {
           this.number = await this.data.getTicketFromAppointment(apt, queue.queue, queue.categories);
