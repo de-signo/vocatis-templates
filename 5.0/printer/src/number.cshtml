@@ -32,8 +32,8 @@
   }
 
   // postpone
-  if (!String.IsNullOrEmpty(postpone)) {
-    voc.PostponeNumber(ticket.Id, DateTime.Today + TimeSpan.Parse(postpone));
+  if (!String.IsNullOrEmpty(postpone) && ticket.State != WaitNumberState.Dismissed) {
+    voc.PostponeNumber(ticket.Id, DateTime.Parse(postpone));
   }
 
   Response.ContentType="application/json";
