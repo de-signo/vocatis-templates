@@ -35,7 +35,7 @@
     var status = Vocatis.GetTicketWaitInfo(id);
     roomName = "";
     position = status.Position;
-    estTimeOfCall = status.EstimatedTimeOfCall.TotalSeconds;
+    estTimeOfCall = (int)status.EstimatedTimeOfCall.TotalSeconds;
     queuename = QueueNameCached(status.QueueId);
   }
 
