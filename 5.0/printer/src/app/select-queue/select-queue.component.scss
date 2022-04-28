@@ -94,7 +94,7 @@ table {
         padding: 0 0.5vw;
       }
       svg {
-        width: 60%;
+        max-height: 80%;
         margin: 0 auto;
         .cls-1 {
             fill: $color-primary-foreground;
