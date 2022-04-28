@@ -24,7 +24,7 @@ import { OnInit } from '@angular/core';
   }
 })
 export class AppComponent implements OnInit {
-  langs = ["de", "en"];
+  langs: string[]|null;
   showHome: boolean = true;
 
   @ViewChild("printPage") printPage: ElementRef|null = null;;
@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
   constructor(idle: Idle, private router: Router, private translate: TranslateService,
     private dataService: DataService, private style: StyleService, private ticket: TicketService) {
     // configure languages
+    this.langs = environment.enableMultilang ? ["de", "en"] : null;
     translate.setDefaultLang('de');
     translate.use('de');
 

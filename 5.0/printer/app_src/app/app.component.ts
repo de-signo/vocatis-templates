@@ -22,13 +22,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   showWaitTime = false;
 
-  langs = ["de", "en"];
+  langs: string[]|null;
   locale: string = "de";
   now: number = 0;
   translateSvcSub: Subscription|undefined;
 
   constructor(route: ActivatedRoute, router: Router, private translate: TranslateService, private data: DataService) {
     // configure languages
+    this.langs = environment.enableMultilang ? ["de", "en"] : null;
     translate.setDefaultLang('de');
     translate.use('de');
 

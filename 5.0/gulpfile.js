@@ -46,7 +46,7 @@ specs = [
     'ng': ['printer'],
     'clean': "../dist/printergroups_*.zip",
     'files': ['printer/dist/**', "!printer/dist/app/**", "!printer/dist/printer/assets/test*.json"],
-    'templates': [{input: 'printer/Styles.xml.handlebars', dest: 'printer/dist'}, 'printer/src/environments/environment.prod.ts.handlebars'],
+    'templates': [{input: 'printer/Styles.xml.handlebars', dest: 'printer/dist'}, 'printer/src/environments/environment.prod.ts.handlebars', 'printer/app_src/environments/environment.prod.ts.handlebars'],
     'templateData': {
       'suffix': '_openclose_nomultilang',
       'use_groups_config': true,
