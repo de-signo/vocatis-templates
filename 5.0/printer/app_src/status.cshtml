@@ -42,11 +42,11 @@
   Response.ContentType = "application/json";
 }
 {
-  number: "@ticket.Number",
-  title: "@queuename",
-  state: @ticket.State,
-  position: @position,
-  estimatedTimeOfCall: @estTimeOfCall,
-  room: "@roomName"
+  "number": "@Html.Raw(ticket.Number)",
+  "title": "@Html.Raw(queuename)",
+  "state": @((int)ticket.State),
+  "position": @position,
+  "estimatedTimeOfCall": @estTimeOfCall,
+  "room": "@Html.Raw(roomName)"
 }
 
