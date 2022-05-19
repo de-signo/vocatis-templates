@@ -18,7 +18,7 @@ export class EntrySelectComponent {
     this.timerSub = timer(100).subscribe(_ => {
       let value =  (event.target as HTMLTextAreaElement).value;
       this.scan.handleScan(value).catch(error =>
-        console.error("failed to handle scan input. " + error));
+        console.error("failed to handle scan input. " + (error instanceof String) ? error : error.message));
       });
   }
 }

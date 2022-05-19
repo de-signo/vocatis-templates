@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AppointmentModel, ButtonModel, GroupModel, WaitNumberModel } from './app-data.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParameterCodec, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { first, tap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
@@ -12,6 +12,18 @@ declare global {
     hostOptions: {
       printerStatusUrl: string;
     }|undefined;
+  }
+}
+
+export class CustomHttpParamEncoder implements HttpParameterCodec {
+  encodeKey(key: string): string {
+    return encodeURIComponent(key);
+  }  encodeValue(value: string): string {
+    return encodeURIComponent(value);
+  }  decodeKey(key: string): string {
+    return decodeURIComponent(key);
+  }  decodeValue(value: string): string {
+    return decodeURIComponent(value);
   }
 }
 
@@ -57,15 +69,18 @@ export class DataService {
 
   getTicketFromAppointment(apt: AppointmentModel, queue: string, categories: string[]): Promise<WaitNumberModel> {
     const jsonFile = environment.numberServiceUrl;
-    return this.http.get<WaitNumberModel>(jsonFile, {params: 
-      {
-        queue: queue,
-        categories: categories,
-        ref: apt.ref,
-        name: apt.name,
-        phone: apt.time + ": " + apt.title,
-        postpone: apt.time
-      }}).toPromise();
+    const date = new Date(apt.time);
+
+    let params = new HttpParams({encoder: new CustomHttpParamEncoder()});
+    params = params.appendAll({
+      queue: queue,
+      categories: categories,
+      ref: apt.ref,
+      name: apt.name,
+      phone: date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) + " - " + apt.title,
+      postpone: apt.time
+    });
+    return this.http.get<WaitNumberModel>(jsonFile, {params: params}).toPromise();
   }
 
   postPrinterStatus(displayId: string, printer: string, status: number): Promise<unknown> {
