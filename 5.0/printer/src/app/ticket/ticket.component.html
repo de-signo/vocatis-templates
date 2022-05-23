@@ -1,5 +1,5 @@
 <ng-container *ngIf="number">
-  <header>{{ now | date : 'short':undefined:locale }}</header>
+  <header>{{ now | date : 'mediumDate':undefined:locale }}&nbsp;&nbsp;&nbsp;{{ now | date : 'shortTime':undefined:locale }}</header>
   <h1>{{ number.number }}</h1>
   <img src="assets/img/separation.png" class="separation" alt="Trennung" (load)="onImgLoaded($event)">
   <footer>
