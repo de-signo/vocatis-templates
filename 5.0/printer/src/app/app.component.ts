@@ -37,8 +37,8 @@ export class AppComponent implements OnInit {
     translate.use('de');
 
     // configure idle timeout
-    idle.setIdle(environment.idleTimeout);
-    idle.setTimeout(0);
+    idle.setIdle(environment.idleTimeout - 1);
+    idle.setTimeout(1);
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
     idle.onTimeout.subscribe(() => {
       router.navigate(["/"], { queryParamsHandling:"preserve" });
