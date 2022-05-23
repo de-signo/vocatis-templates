@@ -4,7 +4,7 @@
   var relPath = "./"; 
   // Parse model
   var model = new FormsModel(this);
-  var tracking_id = (string)model.Style["tracking_id"].Value;
+  var tracking_id = model.Style.StyleInstance["tracking_id"];
   var printerStatusUrl = Href(Stolltec.Forms.PrinterStatus.Path);
 }
 <html lang="de">
@@ -22,14 +22,14 @@
     };
   </script>
   <app-root></app-root>
-  @if (!String.IsNullOrEmpty(tracking_id)) {
+  @if (tracking_id != null && !String.IsNullOrEmpty((string)tracking_id.Value)) {
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=@tracking_id"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=@((string)tracking_id.Value)"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', '@tracking_id');
+    gtag('config', '@((string)tracking_id.Value)');
     </script>
   }
 </body>
