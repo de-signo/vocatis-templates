@@ -23,6 +23,12 @@ gulp.task("css", function () {
 
 specs = [
   {
+    name: "api",
+    clean: "../dist/api_*.zip",
+    files: ["api/**", "!api/*.handlebars"],
+    templates: ["api/Styles.xml.handlebars"],
+  },
+  {
     name: "import",
     clean: "../dist/import_*.zip",
     files: ["import/**", "!import/*.handlebars"],
