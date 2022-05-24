@@ -3,16 +3,17 @@
 # Only use spaces to indent your .yml configuration.
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
-image: node:14.15.4
+image: node:16.15.0
 
 pipelines:
   pull-requests:
     '**':
       - step:
+          # Raise the Step limit from 4 GB to 8 GB.
+          size: 2x
           caches:
             - node
           script:
-            - npm install -g npm@7.24.2
             - npm install -g gulp @angular/cli
             - npm install
             - git diff
