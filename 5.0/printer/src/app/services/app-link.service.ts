@@ -36,7 +36,7 @@ export class AppLinkService {
 
   getAppTicketUrl(queue: string, categories: string[] | undefined): string {
     const params = new HttpParams()
-      .set("o", this.style.showWaitTime ? "wt" : "")
+      .set("o", this.style.appShowWaitTime ? "wt" : "")
       .set("t", this.style.trackingId)
       .set("l", this.translate.currentLang)
       .set("q", queue)
@@ -50,7 +50,7 @@ export class AppLinkService {
 
   getAppUrl(id: string): string {
     const params = new HttpParams()
-      .set("o", this.style.showWaitTime ? "wt" : "")
+      .set("o", this.style.appShowWaitTime ? "wt" : "")
       .set("t", this.style.trackingId)
       .set("l", this.translate.currentLang)
       .set("i", id);

@@ -1,11 +1,17 @@
 @import "colors.scss";
 
 :host:not(.view-print) {
-  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 4vh;
 }
 
 header {
-  margin: 0 0 4vh 0;
   padding: 0 15vw;
   display: flex;
   align-items: flex-end;
@@ -23,7 +29,7 @@ header {
 }
 
 main {
-  padding: 0 15vw;
+  position: relative;
 }
 
 h1 {
@@ -34,10 +40,7 @@ h1 {
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
-  right: 15vw;
-  left: 15vw;
+  padding: 0 15vw;
 
   display: flex;
   gap: 1vw;
@@ -56,11 +59,23 @@ footer {
   }
 }
 
+/* designo logo */
+.logo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 10vw;
+  margin: 2vh 2.5vw;
+  fill: #e3e3e3;
+}
+
 /* print hookup */
 @media screen {
   /* do not display ticket on screen */
   :host:not(.view-print) > .print-page {
-    position: relative;
+    /* do not use display: none; here (required for printing) */
+    position: absolute;
+    top: 100vh; /* not on screen */
     .mask {
       position: absolute;
       top: 0;

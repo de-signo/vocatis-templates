@@ -37,10 +37,14 @@ a {
   text-decoration: none;
 }
 
-qrcode canvas {
+qrcode {
   /* overwrite style by angularx/qrcode */
-  width: 100% !important;
-  height: 100% !important;
+  canvas {
+    width: auto !important;
+    height: auto !important;
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 
 #scan {

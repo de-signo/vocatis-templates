@@ -3,6 +3,7 @@ export class ButtonModel {
   categories: string[] = [];
   title: string = "";
   queueLength: number = -1;
+  estimateWaitTime: number = -1;
   openCloseStatus: number = 0;
 }
 

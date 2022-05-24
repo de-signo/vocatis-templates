@@ -1,76 +1,122 @@
 @import "colors.scss";
 @import "mixins.scss";
 
-.title > h4 {
-  font-size: 1em;
-  width: 40%;
-  margin: 0 0 1vh 0;
-  display: inline-block;
-  &:last-child {
-    padding-left: 20vw;
-    width: 20%;
+.buttons {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 15vw;
+  &.buttons-2 {
+    margin: 12vh 15vw 20vh 15vw;
+  }
+  &.buttons-3,
+  &.buttons-4 {
+    margin: 10vh 15vw 10vh 15vw;
+  }
+  display: grid;
+}
+
+.buttons-1 {
+  gap: 15%;
+  grid-template-rows: 1fr 30% 20%; /* respect gaps! */
+  justify-items: center;
+  align-items: center;
+  margin: 10vh 15vw 5vh 15vw;
+
+  &.closed {
+    color: $color-secondary-foreground;
+
+    .single-button {
+      background-color: $color-secondary-foreground;
+    }
+  }
+
+  h5 {
+    font-size: 5rem;
+    text-align: center;
+  }
+
+  .single-button {
+    width: 10vh;
+    height: 10vh;
+    border: solid 1vh;
+    padding: 2vh;
+    @media (orientation: portrait) {
+      width: 20vw;
+      height: 20vw;
+      border: solid 2vw;
+      padding: 4vw;
+    }
+    border-radius: 50%;
+    background-clip: content-box;
+    background-color: $color-common-foreground;
+  }
+
+  svg.person {
+    fill: $color-secondary-foreground;
+
+    .cls-2 {
+      fill: $color-secondary-background;
+    }
+  }
+
+  svg.clock {
+    fill: $color-secondary-foreground;
   }
 }
 
-table {
-  width: 100%;
-  th {
-    text-align: left;
-  }
-  td {
-    margin-bottom: 2vh;
-    vertical-align: top;
-  }
-  td:nth-child(2),
-  th:nth-child(2) {
-    border-left: 5vw solid transparent;
-    width: 7vh;
+.buttons:not(.buttons-1) {
+  grid-auto-rows: 1fr;
+  gap: 2vh 2vw;
+
+  &.buttons-2,
+  &.buttons-3 {
+    gap: 5vh 2vw;
   }
 
-  /* variant by button count */
-  td {
-    height: 7vh;
-    .single-button {
-      display: none;
+  &.with-qr-code {
+    grid-template-columns: 1fr 15%;
+    grid-template-rows: auto;
+    text-align: center;
+    font-size: 1.3rem;
+    > span:first-child {
+      padding-left: 70%;
     }
   }
-  &.buttons-1 td {
-    height: 24vh;
-    .single-button {
-      display: block;
-    }
-    .btn > div.queue-status {
-      grid-template-rows: 1fr 1fr;
-    }
+
+  qrcode {
+    align-self: center;
   }
 
   .btn {
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 30%;
     background-color: $color-secondary-background;
     color: $color-secondary-foreground;
     text-align: center;
 
-    &.open {
-      box-shadow: 1px 3px 1px $color-secondary-shadow;
-    }
-    & > svg {
-      display: block;
+    &::before {
+      content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Cpath fill='" + $color-common-background + "' d='M 0.0,0.0 10.0,10.0 0.0,20.0 Z' /%3E%3C/g%3E%3C/svg%3E%0A");
       position: absolute;
       margin-top: 2vh;
-      fill: $color-common-background;
+    }
+
+    &.open {
+      box-shadow: 1px 3px 1px $color-secondary-shadow;
     }
 
     & > h5 {
       flex-grow: 1;
-      line-height: 7vh;
+      align-self: center;
       font-weight: bold;
-      font-size: 1.8em;
+      font-size: 3.3rem;
     }
 
     & > div {
       box-sizing: border-box;
-      width: 30%;
       font-size: 0.9em;
     }
     &.closed > div {
@@ -97,33 +143,24 @@ table {
       svg {
         max-height: 80%;
         margin: 0 auto;
-        .cls-1 {
-          fill: $color-primary-foreground;
-        }
-        .cls-2 {
-          color: $color-primary-background;
-        }
-      }
-
-      .single-button {
-        grid-row: 2;
-        grid-column: 1/3;
-        line-height: 2vh;
-
-        img {
-          opacity: 0.2;
-          width: 50%;
-        }
-        p {
-          width: 100%;
-        }
       }
     }
-    &.next-one > .queue-status svg {
+    &.next-one > .queue-status svg.person {
       opacity: 0.5;
       .cls-2 {
         display: none;
       }
     }
+  }
+
+  svg.person {
+    fill: $color-primary-foreground;
+    .cls-2 {
+      fill: $color-primary-background;
+    }
+  }
+
+  svg.clock {
+    fill: $color-primary-foreground;
   }
 }

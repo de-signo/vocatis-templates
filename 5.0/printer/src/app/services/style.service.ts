@@ -20,7 +20,8 @@ export class StyleService {
   enablePrint = false;
   enablePostpone = false;
   late: null | number = null;
-  showWaitTime = false;
+  appShowWaitTime = false;
+  listShowWaitTime = false;
   trackingId = "";
   planToQueue: { [key: string]: { queue: string; categories: string[] } } = {};
 
@@ -41,7 +42,8 @@ export class StyleService {
       this.aptErrorInfo = params["s/aei"] ?? "";
       this.view = params["view"] ?? "";
       const wt = params["s/wt"];
-      this.showWaitTime = wt == "1" || wt == 1;
+      this.appShowWaitTime = wt == "2" || wt == 2 || wt == "3" || wt == 3;
+      this.listShowWaitTime = wt == "1" || wt == 1 || wt == "3" || wt == 3;
       this.trackingId = params["s/tracking_id"] ?? "";
       // read plan / queue map
       const apt_cats = params["s/catid_apt"] ?? [];

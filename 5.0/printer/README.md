@@ -29,6 +29,7 @@ http://localhost:4200/select-queue?s=vocm19aponly&s/mode=print
 Mit Auswahl:
 http://localhost:4200/?s/ap_pn1=1&s/ap_qi1=xxx&s/mode=print&s/qr=3
 http://localhost:4200/?s/ap_pn1=1&s/ap_qi1=xxx
+http://localhost:4200/?s/wt=3 (mit Wartezeit)
 UID:1234
 
 Gruppen:

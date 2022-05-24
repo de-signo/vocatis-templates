@@ -1,18 +1,44 @@
 [
-  { "title": "test", "queue": "1234", "openCloseStatus": 1, "queueLength": 3 },
   {
-    "title": "test10",
+    "title": "Langer Name einer Warteschlange",
     "queue": "1234",
     "openCloseStatus": 1,
-    "queueLength": 10
+    "queueLength": 10,
+    "estimateWaitTime": 0
   },
-  { "title": "empty", "queue": "1234", "openCloseStatus": 1, "queueLength": 0 },
-  { "title": "full", "queue": "1234", "openCloseStatus": 2, "queueLength": 0 },
-  { "title": "hours", "queue": "1234", "openCloseStatus": 4, "queueLength": 0 },
+  {
+    "title": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+    "queue": "1234",
+    "openCloseStatus": 1,
+    "queueLength": 3,
+    "estimateWaitTime": 600
+  },
+  {
+    "title": "empty",
+    "queue": "1234",
+    "openCloseStatus": 1,
+    "queueLength": 0,
+    "estimateWaitTime": 1
+  },
+  {
+    "title": "full",
+    "queue": "1234",
+    "openCloseStatus": 2,
+    "queueLength": 0,
+    "estimateWaitTime": 600
+  },
+  {
+    "title": "hours",
+    "queue": "1234",
+    "openCloseStatus": 4,
+    "queueLength": 0,
+    "estimateWaitTime": 600
+  },
   {
     "title": "manually closed",
     "queue": "1234",
-    "openCloseStatus": 8,
-    "queueLength": 0
+    "openCloseStatus": 1,
+    "queueLength": 0,
+    "estimateWaitTime": 600
   }
 ]

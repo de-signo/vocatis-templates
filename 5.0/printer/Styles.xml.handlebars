@@ -22,16 +22,20 @@
     <text key="3">Monitor und Ticket</text>
   </content_class>
 </field>
+{{/if}}
 <field key="wt">
   <names>
-    <name>App Wartezeit</name>
+    <name>Wartezeit</name>
   </names>
     <content_class type="TextChoose">
     <text key="0">Verbergen</text>
-    <text key="1">Anzeigen</text>
+    <text key="1">Nur Monitor</text>
+{{#if enable_app}}
+    <text key="2">Nur App</text>
+    <text key="3">Monitor und App</text>
+{{/if}}
   </content_class>
 </field>
-{{/if}}
 <field key="tracking_id">
   <names>
     <name>Tracking-ID</name>

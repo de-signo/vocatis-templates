@@ -26,6 +26,7 @@ import { OnInit } from "@angular/core";
 export class AppComponent implements OnInit {
   langs: string[] | null;
   showHome: boolean = true;
+  showLogo: boolean;
 
   @ViewChild("printPage") printPage: ElementRef | null = null;
 
@@ -37,6 +38,8 @@ export class AppComponent implements OnInit {
     private style: StyleService,
     private ticket: TicketService
   ) {
+    this.showLogo = environment.showLogo;
+
     // configure languages
     this.langs = environment.enableMultilang ? ["de", "en"] : null;
     translate.setDefaultLang("de");

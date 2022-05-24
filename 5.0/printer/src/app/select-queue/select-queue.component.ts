@@ -17,6 +17,9 @@ export class SelectQueueComponent {
   get showQrCode() {
     return this.styleService.listShowQrCode;
   }
+  get showWaitTime() {
+    return this.styleService.listShowWaitTime;
+  }
 
   constructor(
     dataService: DataService,
@@ -41,14 +44,14 @@ export class SelectQueueComponent {
 
   getViewFor(
     b: ButtonModel
-  ): "open" | "closed_manually" | "closed_hours" | "closed_full" {
+  ): "open" | "closed-manually" | "closed-hours" | "closed-limit" {
     if (!environment.enableOpenClose) return "open";
 
     if (b.openCloseStatus & OpenCloseStatus.IsOutsideHours)
-      return "closed_hours";
-    else if (b.openCloseStatus & OpenCloseStatus.IsFull) return "closed_full";
+      return "closed-hours";
+    else if (b.openCloseStatus & OpenCloseStatus.IsFull) return "closed-limit";
     else if (b.openCloseStatus & OpenCloseStatus.Manual)
-      return "closed_manually";
+      return "closed-manually";
     return "open";
   }
 
