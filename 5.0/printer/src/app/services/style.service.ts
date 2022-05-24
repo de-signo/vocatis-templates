@@ -16,8 +16,10 @@ export class StyleService {
     "select";
   ticketShowQrCode = false;
   listShowQrCode = false;
+  aptErrorInfo: string = "";
   enablePrint = false;
   enablePostpone = false;
+  late: null | number = null;
   showWaitTime = false;
   trackingId = "";
   planToQueue: { [key: string]: { queue: string; categories: string[] } } = {};
@@ -34,6 +36,9 @@ export class StyleService {
       this.enablePrint = params["s/mode"] == "print";
       const pp = params["s/pp"];
       this.enablePostpone = pp == "1" || pp == 1;
+      const lt = parseInt(params["s/lt"]);
+      this.late = Number.isNaN(lt) ? null : lt;
+      this.aptErrorInfo = params["s/aei"] ?? "";
       this.view = params["view"] ?? "";
       const wt = params["s/wt"];
       this.showWaitTime = wt == "1" || wt == 1;
