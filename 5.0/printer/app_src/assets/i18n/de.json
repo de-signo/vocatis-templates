@@ -1,0 +1,20 @@
+{
+	"lang_de": "Deutsch",
+	"lang_en": "English",
+	"App_Title_a": "Wartezeit",
+	"App_Title_b": "Live-Abfrage",
+	"App_CallHeader": "Aufruf",
+	"App_YourNumber": "Ihre Wartemarke:",
+	"App_NumWaitingFormatRaw": "Es befinden sich noch {{count}} vor Ihnen",
+	"App_WaitingTimeFormatRaw": "Ihre voraussichtliche Wartezeit beträgt ca. {{min}} Minuten</b>.",
+	"App_TimeFormat": "STAND: {{date}} Uhr",
+	"App_StayClose": "Bitte halten Sie sich im Wartebereich auf!",
+	"App_ComeBack": "Bitte rechtzeitig den Wartebereich aufsuchen!",
+	"App_Loading": "Laden ...",
+	"App_ErrorOccuredHeader": "Fehler aufgetreten!",
+	"App_ErrorOccuredText": "Bitte begeben Sie sich in den Wartebereich!",
+	"App_CallText": "Ihr Aufruf:",
+	"App_FinishedHeader": "Bearbeitung ist abgeschlossen",
+	"App_FinishedText1": "Danke für Ihren Besuch",
+	"App_FinishedText2": "Wir wünschen Ihnen einen angenehmen Tag!"
+}

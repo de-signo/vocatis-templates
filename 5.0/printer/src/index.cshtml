@@ -1,0 +1,36 @@
+<!doctype html>
+@using Stolltec.Forms.Model
+@{
+  var relPath = "./"; 
+  // Parse model
+  var model = new FormsModel(this);
+  var tracking_id = model.Style.StyleInstance["tracking_id"];
+  var printerStatusUrl = Href(Stolltec.Forms.PrinterStatus.Path);
+}
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Vocatis Drucker</title>
+  <base href='@Href(relPath)'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+</head>
+<body>
+  <script type="text/javascript">
+    window.hostOptions = { 
+      printerStatusUrl: "@Html.Raw(printerStatusUrl)"
+    };
+  </script>
+  <app-root></app-root>
+  @if (tracking_id != null && !String.IsNullOrEmpty((string)tracking_id.Value)) {
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=@((string)tracking_id.Value)"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '@((string)tracking_id.Value)');
+    </script>
+  }
+</body>
+</html>

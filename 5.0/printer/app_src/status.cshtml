@@ -1,0 +1,52 @@
+@using iSign
+@using Stolltec.Vocatis
+@using Stolltec.Vocatis.Model
+@using System.Web.Caching
+@functions{
+  string QueueNameCached(CommonGuidId id) {
+    string key = "Vocatis_QueueName_" + id.ToString();
+    string queueName = Cache.Get(key) as string;
+    if (queueName == null)
+    {
+      var q = Vocatis.GetVocatisData().GetQueue(id);
+      if (q != null)
+      {
+        queueName = q.Name;
+        Cache.Add(key, queueName, null, DateTime.Now.AddHours(1), Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
+      }
+    }
+    return queueName;
+  }
+}
+@{
+  dynamic id = CommonGuidId.FromString(Request["id"]);
+  var ticket = Vocatis.GetTicket(id);
+
+  int position, estTimeOfCall;
+  string roomName, queuename;
+  if (ticket.State == WaitNumberState.Called) {
+    var callInfo = Vocatis.GetTicketCallInfo(id);
+    roomName = callInfo.RoomName;
+    position = 0;
+    estTimeOfCall = 0;
+    queuename = "";
+  }
+  else {
+    var status = Vocatis.GetTicketWaitInfo(id);
+    roomName = "";
+    position = status.Position;
+    estTimeOfCall = (int)status.EstimatedTimeOfCall.TotalSeconds;
+    queuename = QueueNameCached(status.QueueId);
+  }
+
+  Response.ContentType = "application/json";
+}
+{
+  "number": "@Html.Raw(ticket.Number)",
+  "title": "@Html.Raw(queuename)",
+  "state": @((int)ticket.State),
+  "position": @position,
+  "estimatedTimeOfCall": @estTimeOfCall,
+  "room": "@Html.Raw(roomName)"
+}
+

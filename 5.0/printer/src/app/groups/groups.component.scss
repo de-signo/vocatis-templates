@@ -1,0 +1,35 @@
+@import "colors.scss";
+table {
+  width: 100%;
+  th {
+    text-align: left;
+  }
+  td {
+    margin-bottom: 2vh;
+    vertical-align: top;
+    height: 7vh;
+  }
+
+  .btn {
+    position: relative;
+    display: flex;
+    background-color: $color-secondary-background;
+    color: $color-secondary-foreground;
+    text-align: center;
+    box-shadow: 1px 3px 1px $color-secondary-shadow;
+
+    &>svg {
+      display: block;
+      position: absolute;
+      margin-top: 2vh;
+      fill: $color-common-background;
+    }
+
+    &>h5 {
+      flex-grow: 1;
+      line-height: 7vh;
+      font-weight: bold;
+      font-size: 1.8em;
+    }
+  }
+}

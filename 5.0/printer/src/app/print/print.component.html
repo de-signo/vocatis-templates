@@ -1,0 +1,25 @@
+
+<!-- wait popup is shown, while generating a new number -->
+<section *ngIf="ticket.state == 'wait'" id="waitPopup">
+  <h4>{{ "Print_WaitHeader" | translate }}</h4>
+  <img src="assets/img/wait.gif" class="wait" alt="wait" />
+  <p>{{ "Print_WaitText" | translate }}</p>
+  <img src="assets/img/PfeilRechts.png" />
+</section>
+
+<!-- take popup is shown, when the printout is ready -->
+<section *ngIf="ticket.state == 'take'" id="takePopup">
+  <h4>{{ "Print_TakeHeader" | translate }}</h4>
+  <img src="assets/img/wait.gif" class="wait" alt="wait" />
+  <p>{{ "Print_TakeText" | translate }}</p>
+  <img src="assets/img/PfeilRechts.png" />
+</section>
+
+<!-- show popup shows the number on the screen -->
+<section *ngIf="ticket.state == 'show'" id="showPopup">
+  <h3 *ngIf="ticket.button?.queue">{{ "Print_ShowHeader" | translate }}</h3>
+  <h2>{{ ticket.button?.title }}</h2>
+  <p>{{ "Print_ShowText1" | translate }}</p>
+  <div class="number">{{ ticket.current?.number }}</div>
+  <p>{{ "Print_ShowText2" | translate }}</p>
+</section>

@@ -1,0 +1,57 @@
+@using iSign
+@using System.Linq
+@using System.Web.Optimization
+@using Stolltec.Forms.Model
+@using Stolltec.Vocatis
+@using Stolltec.Vocatis.Model
+@using System.Web.Caching
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Linq
+@functions {
+  JObject ReadConfig()
+  {
+    // deserialize JSON directly from a file
+    using (StreamReader file = File.OpenText(Server.MapPath("config.json")))
+    {
+      JsonSerializer serializer = new JsonSerializer();
+      return (JObject)serializer.Deserialize(file, typeof(JObject));
+    }
+  }
+  IEnumerable<QueueSummary> GetQueueStatus() {
+    // Read queue overview (cached)
+    IEnumerable<QueueSummary> queueStatus;
+    queueStatus = Cache.Get("Vocatis_GetWaitQueueOverview") as IEnumerable<QueueSummary>;
+    if (queueStatus == null)
+    {
+      queueStatus = @Vocatis.GetWaitQueueOverview();
+      Cache.Add("Vocatis_GetWaitQueueOverview", queueStatus, null,
+                DateTime.Now.AddSeconds(1), Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
+    }
+    return queueStatus;
+  }
+}
+@{
+  // Parse model
+  var model = new FormsModel(this);
+  var config = ReadConfig();
+  var queueStatus = GetQueueStatus();
+
+  var groups = from g in config["groups"]
+               select new {
+                title = g["title"],
+                items =
+                  from b in g["items"]
+                  let queueid = b["queue"]
+                  let qs = queueStatus.Where(s=>s.Id.Equals(queueid)).FirstOrDefault()
+                  select new {
+                    title = b["title"],
+                    queue = queueid,
+                    categories = b["categories"],
+                    openCloseStatus = qs == null ? 0 : qs.OpenCloseStatus,
+                    queueLength = qs == null ? 0 : qs.QueueLength
+                  } 
+                };
+
+  Response.ContentType = "application/json";
+}
+@Html.Raw(JsonConvert.SerializeObject(groups))

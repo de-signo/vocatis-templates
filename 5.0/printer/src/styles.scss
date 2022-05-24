@@ -1,0 +1,57 @@
+
+@import "colors.scss";
+
+/* redefine defaults */
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+}
+
+html {
+  font-size: 1.48vh; /* 16px / 1080px */
+  @media only screen and (orientation: portrait) {
+    font-size: 0.83vh; /* 16px / 1920px */
+  }
+
+  svg {
+    font-size: initial;
+  }
+}
+
+body {
+  font-family:Arial, Verdana, Geneva,Tahoma,sans-serif;
+  color: $color-common-foreground;
+  background-color: $color-common-background;
+
+  /* disable select */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+qrcode canvas {
+  /* overwrite style by angularx/qrcode */
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#scan {
+  /* invisible, but functional */
+  border: none;
+  outline: none;
+  cursor: none;
+  overflow: hidden;
+  resize: none;
+  background-color: transparent;
+  color: $color-common-background;
+  position: absolute;
+}

@@ -1,0 +1,85 @@
+@import "colors.scss";
+
+:host:not(.view-print) {
+  display: block;
+}
+
+header {
+  margin: 0 0 4vh 0;
+  padding: 0 15vw;
+  display: flex;
+  align-items: flex-end;
+  gap: 2vw;
+
+  .plattformlogo {
+    height: 12vh;
+  }
+  .home {
+    margin-left: auto;
+    img { width: 7vw; }
+  }
+}
+
+main {
+  padding: 0 15vw;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 3em;
+  line-height: 1em;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 15vw;
+  left: 15vw;
+
+  display: flex;
+  gap: 1vw;
+
+  a {
+    background-color: $color-secondary-background;
+    color: $color-secondary-foreground;
+    font-size: 1.4em;
+    text-align: center;
+    padding: 0.5vh 0 0 0vw;
+    display: block;
+    width: 14%;
+    img {
+      width: 80%;
+    }
+  }
+}
+
+
+/* print hookup */
+@media screen {
+  /* do not display ticket on screen */
+  :host:not(.view-print)>.print-page {
+    position: relative;
+    .mask {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background-color: $color-common-background;
+    }
+  }
+  /* behave like printer with ?view=page */
+  :host.view-print>*:not(.print-page) {
+    display: none;
+  }
+}
+
+/* when printing, only show print page */
+@media print {
+  :host>*:not(.print-page) {
+    display: none;
+  }
+}
+
+
