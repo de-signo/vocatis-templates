@@ -35,7 +35,7 @@
   "Ticket_AppHeader": "Aufruf verfolgen",
   "List_Print": "DRUCKEN",
   "List_Scan": "SCANNEN",
-  "List_StatusMT3FormatRaw": "Es befinden sich noch {{length}} Personen vor Ihnen",
+  "List_StatusMT3FormatRaw": "es warten {{length}} Personen",
   "List_StatusLT3FormatRaw": "Bitte halten Sie sich im Wartebereich auf",
   "List_StatusWaitTime": "ca. {{minutes}} Minuten",
   "List_Closed": "Derzeit geschlossen",

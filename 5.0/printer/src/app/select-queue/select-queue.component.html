@@ -27,23 +27,25 @@
       <div class="single-button"></div>
 
       <ng-container [ngSwitch]="view">
-        <div *ngSwitchCase="'open'">
+        <div *ngSwitchCase="'open'" class="queue-status">
+          <ng-template [ngIf]="showWaitTime" [ngIfThen]="svgClock"></ng-template>
+          <span *ngIf="showWaitTime">{{ "List_StatusWaitTime" | translate: { minutes: button.estimateWaitTime / 60 | number: "1.0-0" } }}</span>
+          <ng-container [ngTemplateOutlet]="svgPerson" [ngTemplateOutletContext]="{$implicit: button.queueLength}"></ng-container>
           <span *ngIf="button.queueLength > 3">{{ "List_StatusMT3FormatRaw" | translate: { length: button.queueLength } }}</span>
           <span *ngIf="button.queueLength <= 3">{{ "List_StatusLT3FormatRaw" | translate: { length: button.queueLength } }}</span>
-          <ng-container [ngTemplateOutlet]="svgPerson" [ngTemplateOutletContext]="{$implicit: button.queueLength}"></ng-container>
         </div>
         <!-- queue closed (manually) -->
-        <div *ngSwitchCase="'closed-manually'" class="btn closed closed-manually">
+        <h6 *ngSwitchCase="'closed-manually'" class="btn closed closed-manually">
           {{ "List_Closed" | translate }}
-        </div>
+        </h6>
         <!-- queue closed (opening hours) -->
-        <div *ngSwitchCase="'closed-hours'" class="btn closed closed-hours">
+        <h6 *ngSwitchCase="'closed-hours'" class="btn closed closed-hours">
           {{ "List_ClosedHours" | translate }}
-        </div>
+        </h6>
         <!-- queue full -->
-        <div *ngSwitchCase="'closed-limit'" class="btn closed closed-limit">
+        <h6 *ngSwitchCase="'closed-limit'" class="btn closed closed-limit">
           {{ "List_ClosedFull" | translate }}
-        </div>
+        </h6>
       </ng-container>
     </div>
   </ng-template>
@@ -57,14 +59,18 @@
   <ng-container *ngFor="let button of buttons" [ngSwitch]="getViewFor(button)">
     <div *ngSwitchCase="'open'" (click)="print(button)" class="btn open" [ngClass]="{'next-one': button.queueLength == 0}">
       <h5>{{ button.title }}</h5>
-      <div class="queue-status">
+
+      <div #statusPanel class="queue-status" [ngClass]="{'queue-status-columns': showStatusInColumns}">
+        <ng-container *ngIf="!showStatusInColumns" [ngTemplateOutlet]="svgPerson" [ngTemplateOutletContext]="{$implicit: button.queueLength}"></ng-container>
         <span *ngIf="button.queueLength > 3">{{ "List_StatusMT3FormatRaw" | translate: { length: button.queueLength } }}</span>
         <span *ngIf="button.queueLength <= 3">{{ "List_StatusLT3FormatRaw" | translate: { length: button.queueLength } }}</span>
-        <ng-container [ngTemplateOutlet]="svgPerson" [ngTemplateOutletContext]="{$implicit: button.queueLength}"></ng-container>
+        <ng-container *ngIf="showStatusInColumns" [ngTemplateOutlet]="svgPerson" [ngTemplateOutletContext]="{$implicit: button.queueLength}"></ng-container>
+        <ng-template [ngIf]="!showStatusInColumns && showWaitTime" [ngIfThen]="svgClock"></ng-template>
         <span *ngIf="showWaitTime">{{ "List_StatusWaitTime" | translate: { minutes: button.estimateWaitTime / 60 | number: "1.0-0" } }}</span>
-        <ng-template [ngIf]="showWaitTime" [ngIfThen]="svgClock"></ng-template>
+        <ng-template [ngIf]="showStatusInColumns && showWaitTime" [ngIfThen]="svgClock"></ng-template>
       </div>
     </div>
+
     <!-- queue closed (manually) -->
     <div *ngSwitchCase="'closed-manually'" class="btn closed closed-manually">
       <h5>{{ button.title }}</h5>
