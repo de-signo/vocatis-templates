@@ -67,6 +67,7 @@ export class StyleService {
         this.activeStyle = "printer";
       } else if (style.startsWith("vocatis_ticket_default")) {
         this.activeStyle = "ticket";
+        this.listShowQrCode = environment.enableApp; // overwrite s/qr parameter
       } else {
         this.activeStyle = "select";
       }
