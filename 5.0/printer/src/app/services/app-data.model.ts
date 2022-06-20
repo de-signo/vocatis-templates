@@ -1,4 +1,3 @@
-
 export class ButtonModel {
   queue: string = "";
   categories: string[] = [];

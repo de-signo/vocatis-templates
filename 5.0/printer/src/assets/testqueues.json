@@ -1,8 +1,18 @@
 [
-  { "title": "test", "queue": "1234", "openCloseStatus": 1, "queueLength": 3},
-  { "title": "test10", "queue": "1234", "openCloseStatus": 1, "queueLength": 10},
-  { "title": "empty", "queue": "1234", "openCloseStatus":1, "queueLength": 0},
-  { "title": "full", "queue": "1234", "openCloseStatus": 2, "queueLength": 0},
-  { "title": "hours", "queue": "1234", "openCloseStatus": 4, "queueLength": 0},
-  { "title": "manually closed", "queue": "1234", "openCloseStatus": 8, "queueLength": 0}
+  { "title": "test", "queue": "1234", "openCloseStatus": 1, "queueLength": 3 },
+  {
+    "title": "test10",
+    "queue": "1234",
+    "openCloseStatus": 1,
+    "queueLength": 10
+  },
+  { "title": "empty", "queue": "1234", "openCloseStatus": 1, "queueLength": 0 },
+  { "title": "full", "queue": "1234", "openCloseStatus": 2, "queueLength": 0 },
+  { "title": "hours", "queue": "1234", "openCloseStatus": 4, "queueLength": 0 },
+  {
+    "title": "manually closed",
+    "queue": "1234",
+    "openCloseStatus": 8,
+    "queueLength": 0
+  }
 ]

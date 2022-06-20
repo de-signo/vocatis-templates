@@ -13,7 +13,14 @@
     <h3>{{ "Appoint_TicketNoQueue" | translate }}</h3>
   </ng-container>
   <ng-container *ngSwitchCase="'qr'">
-    <h3><img src="assets/img/registration.png" id="registration" alt="registration" /> {{ "Appoint_TicketHeader" | translate }}</h3>
+    <h3>
+      <img
+        src="assets/img/registration.png"
+        id="registration"
+        alt="registration"
+      />
+      {{ "Appoint_TicketHeader" | translate }}
+    </h3>
     <p>{{ "Appoint_TicketTextWScan" | translate }}</p>
     <figure class="left">
       <figcaption>{{ "Appoint_TicketPrint" | translate }}</figcaption>
@@ -21,7 +28,12 @@
     </figure>
     <figure class="right">
       <figcaption>{{ "Appoint_TicketScan" | translate }}</figcaption>
-      <qrcode [qrdata]="getAppLink()" [margin]="0" colorLight="#d7d7d7" colorDark="#707173"></qrcode>
+      <qrcode
+        [qrdata]="getAppLink()"
+        [margin]="0"
+        colorLight="#d7d7d7"
+        colorDark="#707173"
+      ></qrcode>
     </figure>
   </ng-container>
 </ng-container>

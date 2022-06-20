@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SelectQueueComponent } from './select-queue.component';
+import { SelectQueueComponent } from "./select-queue.component";
 
-describe('SelectQueueComponent', () => {
+describe("SelectQueueComponent", () => {
   let component: SelectQueueComponent;
   let fixture: ComponentFixture<SelectQueueComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SelectQueueComponent ]
-    })
-    .compileComponents();
+      declarations: [SelectQueueComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('SelectQueueComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

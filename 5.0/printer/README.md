@@ -12,7 +12,6 @@ Zum Starten des Entwicklungsservers den Befehl `ng serve` ausführen. Die App be
 Um eine iSign Vorlage zu erzeugen muss das Projekt mit der Konfiguration "production" ausgeführt weren. Zum Test mit iSign bietet sich der Befehl `ng build --watch` bzw `ng build --watch app` an.
 In iSign muss dann die Styles.xml aus dem Ordner "dist" importiert werden. Änderungen im src Verzeichnis werden durch die "--watch" Option automatisch übersetzt und in "dist" übernommen.
 
-
 ## Übersetzung
 
 Die Übersetzungen sind in assets/i18n zu finden. Diese können mit https://www.npmjs.com/package/ngx-translate-extract-csv von oder zu CSV konvertiert werden.

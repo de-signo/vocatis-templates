@@ -7,7 +7,9 @@
   <tbody>
     <tr *ngFor="let g of groups; index as i">
       <td (click)="selectGroup(g, i)" class="btn">
-        <svg xmlns="http://www.w3.org/2000/svg"><g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g></svg>
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <g><path d="M 0.0,0.0 10.0,10.0 0.0,20.0 Z" /></g>
+        </svg>
         <h5>{{ g.title }}</h5>
       </td>
     </tr>

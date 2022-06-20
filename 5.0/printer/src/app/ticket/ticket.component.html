@@ -1,12 +1,30 @@
 <ng-container *ngIf="number">
-  <header>{{ now | date : 'mediumDate':undefined:locale }}&nbsp;&nbsp;&nbsp;{{ now | date : 'shortTime':undefined:locale }}</header>
+  <header>
+    {{ now | date: "mediumDate":undefined:locale }}&nbsp;&nbsp;&nbsp;{{
+      now | date: "shortTime":undefined:locale
+    }}
+  </header>
   <h1>{{ number.number }}</h1>
-  <img src="assets/img/separation.png" class="separation" alt="Trennung" (load)="onImgLoaded($event)">
+  <img
+    src="assets/img/separation.png"
+    class="separation"
+    alt="Trennung"
+    (load)="onImgLoaded($event)"
+  />
   <footer>
     <figure *ngIf="showQrCode">
       <figcaption>{{ "Ticket_AppHeader" | translate }}</figcaption>
-      <qrcode [qrdata]="getAppLink(number)" [margin]="0" [width]="1600"></qrcode>
+      <qrcode
+        [qrdata]="getAppLink(number)"
+        [margin]="0"
+        [width]="1600"
+      ></qrcode>
     </figure>
-    <img src="assets/img/customerlogo.png" class="customerlogo" alt="logo" (load)="onImgLoaded($event)">
+    <img
+      src="assets/img/customerlogo.png"
+      class="customerlogo"
+      alt="logo"
+      (load)="onImgLoaded($event)"
+    />
   </footer>
 </ng-container>

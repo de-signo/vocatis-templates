@@ -26,9 +26,7 @@
         {
           "title": "Ausgabe Praktikumsberichte",
           "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
-          "categories": [
-            "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
-          ]
+          "categories": ["f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"]
         }
       ]
     },
@@ -50,9 +48,7 @@
         {
           "title": "Anerkennung - Erststudium",
           "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
-          "categories": [
-            "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
-          ]
+          "categories": ["f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"]
         }
       ]
     },
@@ -82,9 +78,7 @@
         {
           "title": "Externe Masterbewerbung",
           "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
-          "categories": [
-            "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
-          ]
+          "categories": ["f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"]
         }
       ]
     },
@@ -98,9 +92,7 @@
         {
           "title": "Masterpraktikum",
           "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
-          "categories": [
-            "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
-          ]
+          "categories": ["f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"]
         }
       ]
     },
@@ -114,9 +106,7 @@
         {
           "title": "Leistungsspiegel",
           "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
-          "categories": [
-            "f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"
-          ]
+          "categories": ["f781c7f5-1b7e-4810-b7ab-75b69b20c0a8"]
         }
       ]
     }

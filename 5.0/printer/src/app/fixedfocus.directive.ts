@@ -1,8 +1,14 @@
-import { AfterViewInit, Directive, ElementRef, HostListener, Input } from "@angular/core";
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+} from "@angular/core";
 import { timer } from "rxjs";
 
 @Directive({
-  selector: '[fixedfocus]',
+  selector: "[fixedfocus]",
 })
 export class FixedFocusDirective implements AfterViewInit {
   private shouldFocus = true;
@@ -13,15 +19,14 @@ export class FixedFocusDirective implements AfterViewInit {
     this.checkFocus();
   }
 
-  constructor(private readonly elementRef: ElementRef) { }
+  constructor(private readonly elementRef: ElementRef) {}
 
   public ngAfterViewInit() {
     this.checkFocus();
   }
 
-  @HostListener('blur') onBlur() {
-    timer(100).subscribe(_ =>
-      this.checkFocus());
+  @HostListener("blur") onBlur() {
+    timer(100).subscribe((_) => this.checkFocus());
   }
 
   private checkFocus() {

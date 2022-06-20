@@ -1,9 +1,13 @@
-
-
 <header>
-  <img src="assets/img/plattformlogo_01.png" class="plattformlogo" alt="plattformlogo">
-  <h1>{{ 'Printer_Header' | translate }}</h1>
-  <a *ngIf="showHome" routerLink="/" queryParamsHandling="preserve" class="home"><img src="assets/img/home.png" alt="home"></a>
+  <img
+    src="assets/img/plattformlogo_01.png"
+    class="plattformlogo"
+    alt="plattformlogo"
+  />
+  <h1>{{ "Printer_Header" | translate }}</h1>
+  <a *ngIf="showHome" routerLink="/" queryParamsHandling="preserve" class="home"
+    ><img src="assets/img/home.png" alt="home"
+  /></a>
 </header>
 
 <main>
@@ -13,11 +17,14 @@
 <footer *ngIf="langs">
   <a *ngFor="let l of langs" (click)="setLanguage(l)">
     <span>{{ "lang_" + l | translate }}</span>
-    <img [src]="'assets/lang/' + l + '.png'">
+    <img [src]="'assets/lang/' + l + '.png'" />
   </a>
 </footer>
 
 <div class="print-page" #printPage>
   <div class="mask"></div>
-  <router-outlet name="print" (activate)="onPrinterOutletActivate($event)"></router-outlet>
+  <router-outlet
+    name="print"
+    (activate)="onPrinterOutletActivate($event)"
+  ></router-outlet>
 </div>

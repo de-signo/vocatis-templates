@@ -16,7 +16,9 @@ header {
   }
   .home {
     margin-left: auto;
-    img { width: 7vw; }
+    img {
+      width: 7vw;
+    }
   }
 }
 
@@ -54,11 +56,10 @@ footer {
   }
 }
 
-
 /* print hookup */
 @media screen {
   /* do not display ticket on screen */
-  :host:not(.view-print)>.print-page {
+  :host:not(.view-print) > .print-page {
     position: relative;
     .mask {
       position: absolute;
@@ -70,16 +71,14 @@ footer {
     }
   }
   /* behave like printer with ?view=page */
-  :host.view-print>*:not(.print-page) {
+  :host.view-print > *:not(.print-page) {
     display: none;
   }
 }
 
 /* when printing, only show print page */
 @media print {
-  :host>*:not(.print-page) {
+  :host > *:not(.print-page) {
     display: none;
   }
 }
-
-

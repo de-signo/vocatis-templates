@@ -2,9 +2,18 @@
   <h2>{{ "Entry_Header1" | translate }}</h2>
   <h3>{{ "Entry_Header2" | translate }}</h3>
 </div>
-<textarea id="scan" (keydown)="onScanInput($event)" fixedfocus spellcheck="false"></textarea>
+<textarea
+  id="scan"
+  (keydown)="onScanInput($event)"
+  fixedfocus
+  spellcheck="false"
+></textarea>
 
 <nav class="site-nav">
-  <a routerLink="/scan-appointment" queryParamsHandling="preserve" >{{ "Entry_SelectAppointment" | translate }}</a>
-  <a routerLink="/select-queue" queryParamsHandling="preserve" >{{ "Entry_SelectTicket" | translate }}</a>
+  <a routerLink="/scan-appointment" queryParamsHandling="preserve">{{
+    "Entry_SelectAppointment" | translate
+  }}</a>
+  <a routerLink="/select-queue" queryParamsHandling="preserve">{{
+    "Entry_SelectTicket" | translate
+  }}</a>
 </nav>

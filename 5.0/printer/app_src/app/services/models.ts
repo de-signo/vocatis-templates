@@ -1,6 +1,3 @@
-
-
-
 export class TicketStatus {
   number: string = "";
   title: string = "";
@@ -10,12 +7,12 @@ export class TicketStatus {
   room: string = "";
 }
 
-export   enum WaitNumberState {
+export enum WaitNumberState {
   Waiting,
   Called,
   Dismissed,
   Parked,
-  Postponed
+  Postponed,
 }
 
 export class WaitNumberModel {
