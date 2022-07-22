@@ -8,17 +8,17 @@ var gulp = require("gulp"),
 (rename = require("gulp-rename")),
   (sass = require("gulp-sass")(require("sass"))),
   (zip = require("gulp-zip"));
-
+var debug = require("gulp-debug");
+var merge = require("merge-stream");
 hb.Handlebars.registerHelper("range", require("handlebars-helper-range"));
 
 // compile styles
-gulp.task("css", function (done) {
-  gulp
+gulp.task("css", function () {
+  return gulp
     .src(["styles/queueinfo.scss"])
     .pipe(sass.sync().on("error", sass.logError))
     .pipe(cleanCSS({ compatibility: "ie8" }))
     .pipe(gulp.dest("queueinfo"));
-  done();
 });
 
 specs = [
@@ -182,7 +182,7 @@ for (spec of specs) {
 
     // template task
     if (spec["templates"]) {
-      gulp.task(`template_${name}`, (done) => {
+      gulp.task(`template_${name}`, () => {
         var hbData = {
           version: version,
         };
@@ -196,28 +196,33 @@ for (spec of specs) {
         var templateStr = spec["templates"].filter(
           (t) => typeof t !== "object"
         );
-        gulp
-          .src(templateStr, { base: "./" }, { removeBOM: false })
-          .pipe(hb(hbData, hbOptions))
-          .pipe(
-            rename(function (path) {
-              path.extname = "";
-            })
-          )
-          .pipe(gulp.dest("."));
-        templateObj.forEach((t) => {
+        var streams = [];
+        streams.push(
           gulp
-            .src(t.input, { base: "./" }, { removeBOM: false })
+            .src(templateStr, { base: "./" }, { removeBOM: false })
             .pipe(hb(hbData, hbOptions))
             .pipe(
               rename(function (path) {
                 path.extname = "";
-                path.dirname = "";
               })
             )
-            .pipe(gulp.dest(t.dest));
+            .pipe(gulp.dest("."))
+        );
+        templateObj.forEach((t) => {
+          streams.push(
+            gulp
+              .src(t.input, { base: "./" }, { removeBOM: false })
+              .pipe(hb(hbData, hbOptions))
+              .pipe(
+                rename(function (path) {
+                  path.extname = "";
+                  path.dirname = "";
+                })
+              )
+              .pipe(gulp.dest(t.dest))
+          );
         });
-        done();
+        return merge(streams);
       });
       tasks.push(`template_${name}`);
     }
@@ -254,12 +259,14 @@ for (spec of specs) {
     }
 
     // zip task
-    var zipit = () =>
-      gulp
+    const zipitTaskName = `zipit_${name}`;
+    gulp.task(zipitTaskName, function () {
+      return gulp
         .src(spec["files"], { removeBOM: false })
         .pipe(zip(`${name}_${version}.zip`))
         .pipe(gulp.dest("../dist"));
-    tasks.push(zipit);
+    });
+    tasks.push(zipitTaskName);
 
     // execut the tasks
     if (tasks.length > 1) gulp.task(task_name, gulp.series(tasks));
