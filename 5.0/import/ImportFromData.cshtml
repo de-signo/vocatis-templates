@@ -90,7 +90,8 @@
             parseFlags = DateTimeStyles.AssumeUniversal;
             break;
     }
-    var format = Thread.CurrentThread.CurrentCulture;
+    var datef = (string)Model.Style["datef"].FieldInstance.Value;
+    IFormatProvider format = (datef == "iso8601") ? null : CultureInfo.GetCultureInfo(datef);
     Func <dynamic, DateTime> ReadDateTime;
     if (!Model.Style.StyleInstance.StyleKey.EndsWith("_ts"))
     {
