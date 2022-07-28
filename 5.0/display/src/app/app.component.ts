@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { isEqual, toNumber } from "lodash-es";
 import { ActivatedRoute, Params } from "@angular/router";
+import { WaitNumberItem } from "./model";
 
 @Component({
   selector: "app-root",
@@ -16,7 +17,6 @@ export class AppComponent {
   readonly highlightTimeout = 5000;
   readonly popupTimeout = 10000;
 
-  now: Date = new Date();
   list: WaitNumberItem[] = [];
   enableHighlight = false;
   highlightQueue: { item: WaitNumberItem; ends: number }[] = [];
@@ -61,7 +61,6 @@ export class AppComponent {
         (error) => console.error(error)
       );
 
-    timer(0, 10000).subscribe((_) => (this.now = new Date()));
     timer(0, 500).subscribe((data) => this.updateHighlight());
   }
 
@@ -185,13 +184,7 @@ export class AppComponent {
     return { voice: vvoice, text: text, rate: nrate };
   }
 
-  isHighlighted(item: WaitNumberItem): boolean {
-    return !!this.highlightQueue.find((h) => isEqual(h.item, item));
+  getHighlightedItems(): WaitNumberItem[] {
+    return this.highlightQueue.map((h) => h.item);
   }
-}
-
-class WaitNumberItem {
-  number!: string;
-  room!: string;
-  marked = false;
 }

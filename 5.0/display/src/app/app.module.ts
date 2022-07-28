@@ -5,11 +5,13 @@ import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import localeDe from "@angular/common/locales/de";
+import { PopupComponent } from "./popup/popup.component";
+import { ListComponent } from "./list/list.component";
 
 registerLocaleData(localeDe);
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PopupComponent, ListComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
