@@ -16,6 +16,7 @@ export class AppComponent {
   readonly highlightTimeout = 5000;
   readonly popupTimeout = 10000;
 
+  now: Date = new Date();
   list: WaitNumberItem[] = [];
   enableHighlight = false;
   highlightQueue: { item: WaitNumberItem; ends: number }[] = [];
@@ -60,6 +61,7 @@ export class AppComponent {
         (error) => console.error(error)
       );
 
+    timer(0, 10000).subscribe((_) => (this.now = new Date()));
     timer(0, 500).subscribe((data) => this.updateHighlight());
   }
 
