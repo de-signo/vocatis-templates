@@ -111,7 +111,10 @@ export class DataService {
       ref: apt.ref,
       name: apt.name,
       phone:
-        date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) +
+        date.toLocaleTimeString("de-DE", {
+          hour: "2-digit",
+          minute: "2-digit",
+        }) +
         " - " +
         apt.title,
       postpone: apt.time,
