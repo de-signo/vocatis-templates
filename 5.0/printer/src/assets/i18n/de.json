@@ -7,6 +7,7 @@
   "Entry_SelectAppointment": "Ich habe einen Termin",
   "Entry_SelectTicket": "Heute spontan hier",
   "Appoint_Scan": "Bitte scannen Sie den QR-Code aus Ihrer Terminbestätigung!",
+  "Appoint_ForgotInvite": "QR-Code vergessen",
   "Appoint_InvalidHeader": "Ungültiger QR-Code!",
   "Appoint_InvalidText": "Bitte scannen Sie den QR-Code aus Ihrer aktuellen Terminbestätigung ein.",
   "Appoint_NotFoundHeader": "Nicht gefunden",

@@ -8,3 +8,9 @@
   fixedfocus
   spellcheck="false"
 ></textarea>
+
+<nav *ngIf="showForgotQR">
+  <a (click)="printForgotQrCode()">
+    {{ "Appoint_ForgotInvite" | translate }}
+  </a>
+</nav>

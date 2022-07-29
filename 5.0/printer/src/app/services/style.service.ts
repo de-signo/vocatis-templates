@@ -25,6 +25,11 @@ export class StyleService {
   trackingId = "";
   planToQueue: { [key: string]: { queue: string; categories: string[] } } = {};
 
+  // forgot qr code
+  scanShowForgotQrCode = false;
+  forgotQrCodeQueue: string = "";
+  forgotQrCodeCategories: string[] = [];
+
   // for default ticket
   ticketId: string = "";
   ticketNumber: string = "";
@@ -59,6 +64,12 @@ export class StyleService {
         i++;
       }
       this.planToQueue = p2q;
+
+      // forgot qrCode params
+      const fg = params["s/fg"];
+      this.scanShowForgotQrCode = fg == "1" || fg == 1;
+      this.forgotQrCodeCategories = params["s/fgc"] ?? [];
+      this.forgotQrCodeQueue = params["s/fgq"];
 
       // default ticket params
       this.ticketId = params["s/id"];

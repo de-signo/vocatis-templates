@@ -1,4 +1,10 @@
-export class ButtonModel {
+export interface LeanButtonModel {
+  queue: string;
+  categories: string[];
+  title: string;
+}
+
+export class ButtonModel implements LeanButtonModel {
   queue: string = "";
   categories: string[] = [];
   title: string = "";

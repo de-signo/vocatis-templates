@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { Subscription, timer } from "rxjs";
 import { ScanAppointmentService } from "../services/scan-appointment.service";
+import { StyleService } from "../services/style.service";
+import { TicketService } from "../services/ticket.service";
 
 @Component({
   selector: "vpr-scan-appointment",
@@ -8,8 +10,15 @@ import { ScanAppointmentService } from "../services/scan-appointment.service";
   styleUrls: ["./scan-appointment.component.scss"],
 })
 export class ScanAppointmentComponent {
-  constructor(private scan: ScanAppointmentService) {}
+  constructor(
+    private scan: ScanAppointmentService,
+    private style: StyleService,
+    private ticket: TicketService
+  ) {}
 
+  get showForgotQR() {
+    return this.style.scanShowForgotQrCode;
+  }
   private timerSub: Subscription | undefined;
   async onScanInput(event: Event) {
     if (this.timerSub) {
@@ -22,6 +31,14 @@ export class ScanAppointmentComponent {
         .catch((error) =>
           console.error("failed to handle scan input. " + error)
         );
+    });
+  }
+
+  printForgotQrCode() {
+    this.ticket.handleGetNewNumber({
+      queue: this.style.forgotQrCodeQueue,
+      categories: this.style.forgotQrCodeCategories,
+      title: "",
     });
   }
 }

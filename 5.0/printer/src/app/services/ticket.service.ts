@@ -3,7 +3,11 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { timer } from "rxjs";
 import { DataService } from "./data.service";
 import { first } from "rxjs/operators";
-import { ButtonModel, WaitNumberModel } from "./app-data.model";
+import {
+  ButtonModel,
+  LeanButtonModel,
+  WaitNumberModel,
+} from "./app-data.model";
 import { StyleService } from "./style.service";
 import { TicketComponent } from "../ticket/ticket.component";
 import { toBlob } from "html-to-image";
@@ -36,7 +40,7 @@ export class TicketService {
   isPlayerAvailable = false;
 
   current: WaitNumberModel = { id: "", number: "dummy" };
-  button: ButtonModel | null = null;
+  button: LeanButtonModel | null = null;
   state: "wait" | "show" | "take" = "wait";
   printComponent: TicketComponent | null = null; // must be set by app component when ticket is loaded
 
@@ -85,7 +89,7 @@ export class TicketService {
     await this.dataService.postPrinterStatus(displayId, "default", status);
   }
 
-  async handleGetNewNumber(b: ButtonModel) {
+  async handleGetNewNumber(b: LeanButtonModel) {
     this.state = "wait";
     this.button = b;
     await this.router.navigate(["/print-status"], {
