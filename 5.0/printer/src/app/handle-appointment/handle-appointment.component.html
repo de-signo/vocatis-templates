@@ -1,46 +1,46 @@
 <ng-container [ngSwitch]="state">
   <ng-container *ngSwitchCase="''">
-    <h3>{{ "Appoint_Loading" | translate }}</h3>
+    <h1>{{ "Appoint_Loading" | translate }}</h1>
   </ng-container>
   <ng-container *ngSwitchCase="'invalid'">
-    <h3><img src="assets/img/error.png" id="error" alt="error" /> {{ "Appoint_InvalidHeader" | translate }}</h3>
+    <img src="assets/img/error.png" id="error" alt="error" />
+    <h3> {{ "Appoint_InvalidHeader" | translate }}</h3>
     <p>{{ "Appoint_InvalidText" | translate }}</p>
     <p>{{ errorInfo }}</p>
   </ng-container>
   <ng-container *ngSwitchCase="'notfound'">
-    <h3><img src="assets/img/error.png" id="error" alt="error" /> {{ "Appoint_NotFoundHeader" | translate }}</h3>
+    <img src="assets/img/error.png" id="error" alt="error" />
+    <h3> {{ "Appoint_NotFoundHeader" | translate }}</h3>
     <p>{{ "Appoint_NotFoundText" | translate }}</p>
     <p>{{ errorInfo }}</p>
   </ng-container>
   <ng-container *ngSwitchCase="'notfound_early'">
-    <h3><img src="assets/img/error.png" id="error" alt="error" /> {{ "Appoint_NotFoundEarlyHeader" | translate }}</h3>
+    <img src="assets/img/error.png" id="error" alt="error" />
+    <h3> {{ "Appoint_NotFoundEarlyHeader" | translate }}</h3>
     <p>{{ "Appoint_NotFoundEarlyText" | translate: {date: aptDate | date: 'longDate':undefined:locale, time: aptDate | date: 'shortTime':undefined:locale}  }}</p>
     <p>{{ errorInfo }}</p>
   </ng-container>
   <ng-container *ngSwitchCase="'notfound_late'">
-    <h3><img src="assets/img/error.png" id="error" alt="error" /> {{ "Appoint_NotFoundLateHeader" | translate }}</h3>
+    <img src="assets/img/error.png" id="error" alt="error" />
+    <h3> {{ "Appoint_NotFoundLateHeader" | translate }}</h3>
     <p>{{ "Appoint_NotFoundLateText" | translate: {date: aptDate | date: 'longDate':undefined:locale, time: aptDate | date: 'shortTime':undefined:locale}  }}</p>
     <p>{{ errorInfo }}</p>
   </ng-container>
   <ng-container *ngSwitchCase="'noqueue'">
-    <h3><img src="assets/img/error.png" id="error" alt="error" /> {{ "Appoint_NoQueueHeader" | translate }}</h3>
+    <img src="assets/img/error.png" id="error" alt="error" />
+    <h3> {{ "Appoint_NoQueueHeader" | translate }}</h3>
     <p>{{ "Appoint_NoQueueText" | translate }}</p>
     <p>{{ errorInfo }}</p>
   </ng-container>
   <ng-container *ngSwitchCase="'late'">
-    <h3><img src="assets/img/error.png" id="error" alt="error" /> {{ "Appoint_LateHeader" | translate }}</h3>
+    <img src="assets/img/error.png" id="error" alt="error" />
+    <h3> {{ "Appoint_LateHeader" | translate }}</h3>
     <p>{{ "Appoint_LateText" | translate: {date: aptDate | date: 'longDate':undefined:locale, time: aptDate | date: 'shortTime':undefined:locale} }}</p>
     <p>{{ errorInfo }}</p>
   </ng-container>
-  <ng-container *ngSwitchCase="'qr'">
-    <h3>
-      <img
-        src="assets/img/registration.png"
-        id="registration"
-        alt="registration"
-      />
-      {{ "Appoint_TicketHeader" | translate }}
-    </h3>
+  <ng-container *ngSwitchCase="'qr'"> 
+    <img src="assets/img/registration.png" id="registration" alt="registration"/>
+    <h3>{{ "Appoint_TicketHeader" | translate }}</h3>
     <p>{{ "Appoint_TicketTextWScan" | translate }}</p>
     <figure class="left">
       <figcaption>{{ "Appoint_TicketPrint" | translate }}</figcaption>

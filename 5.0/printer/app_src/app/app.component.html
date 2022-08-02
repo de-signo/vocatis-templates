@@ -137,10 +137,10 @@
     </div>
   </ng-template>
 </main>
-
 <footer *ngIf="langs">
   <a *ngFor="let l of langs" (click)="setLanguage(l)">
     <span>{{ "lang_" + l | translate }}</span>
     <img [src]="'assets/lang/' + l + '.png'" />
   </a>
-</footer>
+</footer>  
+
