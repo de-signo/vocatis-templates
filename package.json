@@ -3,6 +3,7 @@
   "name": "vocatis-standardvorlagen",
   "workspaces": [
     "5.0/display",
+    "5.0/room-display",
     "5.0/printer"
   ],
   "devDependencies": {

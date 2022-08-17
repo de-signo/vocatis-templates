@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<StyleList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://stollsoft.de/iSign/v2/Content/Forms/Styles">
+
+  <style key="vocatic_display_2019"
+          file="index.cshtml" preview="assets/img/preview_list.png"
+         interactive="false" target="chromium">
+    <names>
+      <name culture="de">vocatis list (v2022-03-30-41-gb657b70-dirty)</name>
+    </names>
+    <fields>
+      <field key="source1">
+        <names>
+          <name>Warteschlange</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="notify">
+        <names>
+          <name>Glocke</name>
+        </names>
+         <content_class type="TextChoose">
+          <text key="">Keine</text>
+          <text key="assets/audio/tone.mp3">Standard</text>
+          <text key="assets/audio/done-for-you-612.mp3">Done for you</text>
+          <text key="assets/audio/eventually-590.mp3">Eventually</text>
+          <text key="assets/audio/goes-without-saying-608.mp3">Goes without saying</text>
+          <text key="assets/audio/happy-ending-415.mp3">Happy ending</text>
+          <text key="assets/audio/inflicted-601.mp3">Inflicted</text>
+          <text key="assets/audio/no-more-waiting-209.mp3">No more waiting</text>
+          <text key="assets/audio/piece-of-cake-611.mp3">Piece of cake</text>
+          <text key="assets/audio/quite-impressed-565.mp3">Quite impressed</text>
+          <text key="assets/audio/slow-spring-board-longer-tail-571.mp3">Slow spring board</text>
+          <text key="speech://voice=Microsoft Hedda Desktop&amp;text=~number~ bitte zu ~room~">Sprachausgabe (Hedda)</text>
+        </content_class>
+      </field>
+      <field key="popup">
+        <names>
+          <name>Popup</name>
+        </names>
+         <content_class type="TextChoose">
+          <text key="">Keines</text>
+          <text key="simple">Einfach</text>
+        </content_class>
+      </field>
+      <field key="hl">
+        <names>
+          <name>Hervorheben</name>
+        </names>
+         <content_class type="TextChoose">
+          <text key="0">Nein</text>
+          <text key="1">Ja</text>
+        </content_class>
+      </field>
+      <field key="highlightcat">
+        <names>
+          <name>Termin Kategorie</name>
+        </names>
+        <content_class type="VocatisCategories" />
+      </field>
+    </fields>
+  </style>
+
+
+  <style key="vocatic_display3_2019"
+          file="index.cshtml" preview="assets/img/preview_multilist.png"
+         interactive="false" target="chromium">
+    <names>
+      <name culture="de">vocatis list multi (v2022-03-30-41-gb657b70-dirty)</name>
+    </names>
+    <fields>
+      <field key="source1">
+        <names>
+          <name>Vocatis Warteschlange 1</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="source2">
+        <names>
+          <name>Vocatis Warteschlange 2</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="source3">
+        <names>
+          <name>Vocatis Warteschlange 3</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="source4">
+        <names>
+          <name>Vocatis Warteschlange 4</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="source5">
+        <names>
+          <name>Vocatis Warteschlange 5</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="source6">
+        <names>
+          <name>Vocatis Warteschlange 6</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="source7">
+        <names>
+          <name>Vocatis Warteschlange 7</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="source8">
+        <names>
+          <name>Vocatis Warteschlange 8</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="notify">
+        <names>
+          <name>Glocke</name>
+        </names>
+         <content_class type="TextChoose">
+          <text key="">Keine</text>
+          <text key="assets/audio/tone.mp3">Standard</text>
+          <text key="assets/audio/done-for-you-612.mp3">Done for you</text>
+          <text key="assets/audio/eventually-590.mp3">Eventually</text>
+          <text key="assets/audio/goes-without-saying-608.mp3">Goes without saying</text>
+          <text key="assets/audio/happy-ending-415.mp3">Happy ending</text>
+          <text key="assets/audio/inflicted-601.mp3">Inflicted</text>
+          <text key="assets/audio/no-more-waiting-209.mp3">No more waiting</text>
+          <text key="assets/audio/piece-of-cake-611.mp3">Piece of cake</text>
+          <text key="assets/audio/quite-impressed-565.mp3">Quite impressed</text>
+          <text key="assets/audio/slow-spring-board-longer-tail-571.mp3">Slow spring board</text>
+          <text key="speech://voice=Microsoft Hedda Desktop&amp;text=~number~ bitte zu ~room~">Sprachausgabe (Hedda)</text>
+        </content_class>
+      </field>
+      <field key="popup">
+        <names>
+          <name>Popup</name>
+        </names>
+         <content_class type="TextChoose">
+          <text key="">Keines</text>
+          <text key="simple">Einfach</text>
+        </content_class>
+      </field>
+      <field key="hl">
+        <names>
+          <name>Hervorheben</name>
+        </names>
+         <content_class type="TextChoose">
+          <text key="0">Nein</text>
+          <text key="1">Ja</text>
+        </content_class>
+      </field>
+      <field key="highlightcat">
+        <names>
+          <name>Termin Kategorie</name>
+        </names>
+        <content_class type="VocatisCategories" />
+      </field>
+    </fields>
+  </style>
+
+</StyleList>

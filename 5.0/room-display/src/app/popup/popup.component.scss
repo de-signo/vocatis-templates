@@ -1,0 +1,22 @@
+@import "colors.scss";
+
+:host {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+
+  background-color: $color-primary-background;
+  color: $color-highlight-foreground;
+  h3 {
+    font-size: 8rem;
+    padding-top: 6rem;
+    font-weight: normal;
+  }
+  h4 {
+    font-size: 20rem;
+    margin-top: 18rem;
+  }
+}

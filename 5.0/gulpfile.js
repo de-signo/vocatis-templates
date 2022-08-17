@@ -36,6 +36,13 @@ specs = [
     templates: ["display/src/Styles.xml.handlebars"],
   },
   {
+    name: "room-display",
+    ng: ["room-display"],
+    clean: "../dist/room-display_*.zip",
+    files: ["room-display/dist/room-display/**"],
+    templates: ["room-display/src/Styles.xml.handlebars"],
+  },
+  {
     name: "queueinfo",
     clean: "../dist/queueinfo_*.zip",
     files: ["queueinfo/**", "!queueinfo/*.handlebars"],
