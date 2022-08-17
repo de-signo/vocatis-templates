@@ -22,6 +22,7 @@ export class StyleService {
   late: null | number = null;
   appShowWaitTime = false;
   listShowWaitTime = false;
+  arrow: "right" | "down" = "right";
   trackingId = "";
   planToQueue: { [key: string]: { queue: string; categories: string[] } } = {};
 
@@ -40,6 +41,8 @@ export class StyleService {
       this.listShowQrCode = environment.enableApp && (qr == 1 || qr == 3);
       this.ticketShowQrCode = environment.enableApp && (qr == 2 || qr == 3);
       this.enablePrint = params["s/mode"] == "print";
+      const ar = params["s/ar"];
+      this.arrow = ar == "d" ? "down" : "right";
       const pp = params["s/pp"];
       this.enablePostpone = pp == "1" || pp == 1;
       const lt = parseInt(params["s/lt"]);

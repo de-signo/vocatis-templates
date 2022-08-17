@@ -16,6 +16,10 @@ export class ScanAppointmentComponent {
     private ticket: TicketService
   ) {}
 
+  get arrow() {
+    return this.style.arrow;
+  }
+
   get showForgotQR() {
     return this.style.scanShowForgotQrCode;
   }

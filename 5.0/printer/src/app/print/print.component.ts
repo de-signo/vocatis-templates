@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+import { StyleService } from "../services/style.service";
 import { TicketService } from "../services/ticket.service";
 
 @Component({
@@ -7,5 +8,9 @@ import { TicketService } from "../services/ticket.service";
   styleUrls: ["./print.component.scss"],
 })
 export class PrintComponent {
-  constructor(public ticket: TicketService) {}
+  get arrow() {
+    return this.style.arrow;
+  }
+
+  constructor(public ticket: TicketService, private style: StyleService) {}
 }
