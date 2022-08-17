@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  dataServiceUrl: "assets/testdata.json"
+  dataServiceUrl: "assets/testdata.json",
 };
 
 /*
