@@ -21,13 +21,6 @@
   gap: 10vw;
   a {
     flex: 1;
-    border: 3px solid $color-common-foreground;
-    color: $color-common-foreground;
-    padding: 2vh 2vw;
-    font-size: 2.5em;
-  }
-  a:hover {
-    background-color: $color-primary-background;
-    color: $color-primary-foreground;
+    @include nav-button;
   }
 }
