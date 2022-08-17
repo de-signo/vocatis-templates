@@ -8,6 +8,13 @@ import { WaitNumberItem } from "../model";
 })
 export class PopupComponent {
   @Input() waitNumber!: WaitNumberItem;
+  @Input() highlight!: boolean;
 
   constructor() {}
+
+  getRoomNumber(item: WaitNumberItem): string {
+    const regex = /^\D*/;
+    const room = item.room;
+    return room.replace(regex, "");
+  }
 }

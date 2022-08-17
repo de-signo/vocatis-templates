@@ -14,18 +14,14 @@ import { WaitNumberItem } from "./model";
 })
 export class AppComponent {
   readonly updateInterval = 2500;
-  readonly highlightTimeout = 5000;
-  readonly popupTimeout = 10000;
+  readonly highlightTimeout = 10000;
 
-  list: WaitNumberItem[] = [];
-  enableHighlight = false;
-  highlightQueue: { item: WaitNumberItem; ends: number }[] = [];
-  enablePopup = false;
+  private list: WaitNumberItem[] = [];
   popup: WaitNumberItem | null = null;
-  popupEnd: number = 0;
-  popupQueue: WaitNumberItem[] = [];
-  audioSrc: string = "";
+  highlight = false;
+  private highlightEnd: number = 0;
 
+  audioSrc: string = "";
   voices: SpeechSynthesisVoice[] = [];
   speechUrl: string | null = null;
   speech: { voice: SpeechSynthesisVoice; text: string; rate: number } | null =
@@ -34,16 +30,17 @@ export class AppComponent {
   audioQueue: HTMLAudioElement[] = [];
   dataParams: Params | null = null;
 
+  private roomFilter = "";
+
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.enableHighlight = params["s/hl"] == "1";
-      this.enablePopup = !!params["s/popup"];
       const notify = params["s/notify"] ?? "";
       this.speech = this.parseSpeechUrl(notify);
       this.speechUrl = this.speech ? notify : null;
       this.audioSrc = this.speech ? "" : notify;
+      this.roomFilter = params["s/room"] ?? "";
       this.dataParams = params;
     });
 
@@ -72,25 +69,13 @@ export class AppComponent {
   }
 
   updateList(items: WaitNumberItem[]) {
+    if (this.roomFilter) items = items.filter((i) => i.room == this.roomFilter);
+
     var oldList = this.list;
     const newItems = items.filter((v) => !oldList.find((o) => isEqual(v, o)));
-
     this.list = items;
 
     if (newItems.length) {
-      if (this.enablePopup) {
-        this.popupQueue.push(...newItems);
-      }
-
-      if (this.enableHighlight) {
-        const hlEnd = Date.now() + this.highlightTimeout;
-        this.highlightQueue.push(
-          ...newItems.map((i) => {
-            return { item: i, ends: hlEnd };
-          })
-        );
-      }
-
       if (this.speech) {
         var speech = this.speech;
         newItems.forEach((item) => {
@@ -114,15 +99,20 @@ export class AppComponent {
   updateHighlight() {
     // highlight
     const now = Date.now();
-    this.highlightQueue = this.highlightQueue.filter((h) => h.ends > now);
 
     // popup
-    if (this.popup && this.popupEnd <= now) {
-      this.popup = null;
+    if (this.highlight && this.highlightEnd <= now) {
+      this.highlight = false;
     }
-    if (!this.popup && this.popupQueue.length) {
-      this.popup = this.popupQueue.shift() ?? null;
-      this.popupEnd = Date.now() + this.popupTimeout;
+    if (
+      !this.highlight &&
+      this.list.length &&
+      (this.popup?.number != this.list[0]?.number ||
+        this.popup?.room != this.list[0].room)
+    ) {
+      this.popup = this.list[0];
+      this.highlight = true;
+      this.highlightEnd = Date.now() + this.highlightTimeout;
     }
 
     // audio
@@ -182,9 +172,5 @@ export class AppComponent {
     var nrate = 1;
     if (rate) nrate = toNumber(rate);
     return { voice: vvoice, text: text, rate: nrate };
-  }
-
-  getHighlightedItems(): WaitNumberItem[] {
-    return this.highlightQueue.map((h) => h.item);
   }
 }

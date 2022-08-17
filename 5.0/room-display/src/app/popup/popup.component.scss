@@ -1,22 +1,61 @@
 @import "colors.scss";
 
 :host {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 
+.left {
   background-color: $color-primary-background;
-  color: $color-highlight-foreground;
+  text-align: center;
+  color: $color-primary-foreground;
+
   h3 {
     font-size: 8rem;
-    padding-top: 6rem;
+    padding-top: 10vh;
     font-weight: normal;
+  }
+  h2 {
+    font-size: 40rem;
+    font-weight: normal;
+    padding: 0;
+  }
+}
+
+.right {
+  background-color: $color-primary-foreground;
+  color: $color-secondary-foreground;
+
+  img {
+    width: 30%;
+    padding: 8vh 0vw 0vh 31vw;
   }
   h4 {
     font-size: 20rem;
-    margin-top: 18rem;
+    padding-top: 18vh;
+    font-weight: normal;
+    text-align: center;
+  }
+  /* designo logo */
+  .logo {
+    height: 2em;
+    fill: #e3e3e3;
+    justify-self: center;
+    padding: 20vh 23vw 0vh 23vw;
+  }
+}
+
+.highlight {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    color: $color-primary-background;
   }
 }

@@ -6,12 +6,11 @@ import { RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import localeDe from "@angular/common/locales/de";
 import { PopupComponent } from "./popup/popup.component";
-import { ListComponent } from "./list/list.component";
 
 registerLocaleData(localeDe);
 
 @NgModule({
-  declarations: [AppComponent, PopupComponent, ListComponent],
+  declarations: [AppComponent, PopupComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

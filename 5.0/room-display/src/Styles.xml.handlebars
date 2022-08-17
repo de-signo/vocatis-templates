@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <StyleList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://stollsoft.de/iSign/v2/Content/Forms/Styles">
 
-  <style key="vocatic_display_2019"
+  <style key="vocatis_room_display_radiologicumwien"
           file="index.cshtml" preview="assets/img/preview_list.png"
          interactive="false" target="chromium">
     <names>
-      <name culture="de">vocatis list ({{version}})</name>
+      <name culture="de">vocatis room display Radiologicum Wien ({{version}})</name>
     </names>
     <fields>
       <field key="source1">
@@ -33,39 +33,21 @@
           <text key="speech://voice=Microsoft Hedda Desktop&amp;text=~number~ bitte zu ~room~">Sprachausgabe (Hedda)</text>
         </content_class>
       </field>
-      <field key="popup">
+      <field key="room">
         <names>
-          <name>Popup</name>
+          <name>Schalter</name>
         </names>
-         <content_class type="TextChoose">
-          <text key="">Keines</text>
-          <text key="simple">Einfach</text>
-        </content_class>
-      </field>
-      <field key="hl">
-        <names>
-          <name>Hervorheben</name>
-        </names>
-         <content_class type="TextChoose">
-          <text key="0">Nein</text>
-          <text key="1">Ja</text>
-        </content_class>
-      </field>
-      <field key="highlightcat">
-        <names>
-          <name>Termin Kategorie</name>
-        </names>
-        <content_class type="VocatisCategories" />
+        <content_class type="TextFree"  />
       </field>
     </fields>
   </style>
 
 
-  <style key="vocatic_display3_2019"
+  <style key="vocatis_room_display3_radiologicumwien"
           file="index.cshtml" preview="assets/img/preview_multilist.png"
          interactive="false" target="chromium">
     <names>
-      <name culture="de">vocatis list multi ({{version}})</name>
+      <name culture="de">vocatis room display multi Radiologicum Wien ({{version}})</name>
     </names>
     <fields>
       {{#range 1 9}}
@@ -95,29 +77,11 @@
           <text key="speech://voice=Microsoft Hedda Desktop&amp;text=~number~ bitte zu ~room~">Sprachausgabe (Hedda)</text>
         </content_class>
       </field>
-      <field key="popup">
+      <field key="room">
         <names>
-          <name>Popup</name>
+          <name>Schalter</name>
         </names>
-         <content_class type="TextChoose">
-          <text key="">Keines</text>
-          <text key="simple">Einfach</text>
-        </content_class>
-      </field>
-      <field key="hl">
-        <names>
-          <name>Hervorheben</name>
-        </names>
-         <content_class type="TextChoose">
-          <text key="0">Nein</text>
-          <text key="1">Ja</text>
-        </content_class>
-      </field>
-      <field key="highlightcat">
-        <names>
-          <name>Termin Kategorie</name>
-        </names>
-        <content_class type="VocatisCategories" />
+        <content_class type="TextFree"  />
       </field>
     </fields>
   </style>

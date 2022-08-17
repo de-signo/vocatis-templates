@@ -38,12 +38,10 @@
     ids.Add(id);
     list = list.Concat(GetWaitQueueList(id));
   }
-  var cats = (CommonGuidId[])Model.Style["highlightcat"].FieldInstance.Value ?? new CommonGuidId[0];
   var result = list.Select(x =>
     new {
       number = x.Number,
-      room = x.RoomName,
-      marked = x.Categories.Any(cid => cats.Contains(cid.Id))
+      room = x.RoomName
     });
 }
 @Html.Raw(JsonConvert.SerializeObject(result))
