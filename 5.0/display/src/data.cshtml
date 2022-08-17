@@ -39,7 +39,7 @@
     list = list.Concat(GetWaitQueueList(id));
   }
   var cats = (CommonGuidId[])Model.Style["highlightcat"].FieldInstance.Value ?? new CommonGuidId[0];
-  var result = list.Select(x =>
+  var result = list.Take(8).Select(x =>
     new {
       number = x.Number,
       room = x.RoomName,
