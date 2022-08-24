@@ -33,13 +33,5 @@
   "Print_ShowHeader": "You will be registered in the department",
   "Print_ShowText1": "Please remember your registration number",
   "Print_ShowText2": "You will be called",
-  "Ticket_AppHeader": "Track your queue number",
-  "List_Print": "Print",
-  "List_Scan": "Scan",
-  "List_StatusMT3FormatRaw": "{{length}} customers are waiting",
-  "List_StatusLT3FormatRaw": "Please stay in the waiting area",
-  "List_StatusWaitTime": "approx. {{minutes}} minutes",
-  "List_Closed": "Currently closed",
-  "List_ClosedHours": "closed outside opening hours",
-  "List_ClosedFull": "Closed, we are full"
+  "Ticket_AppHeader": "Track your queue number"
 }

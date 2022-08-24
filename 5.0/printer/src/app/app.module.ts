@@ -8,7 +8,6 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { QRCodeModule } from "angularx-qrcode";
 import { AppComponent } from "./app.component";
 import { EntrySelectComponent } from "./entry-select/entry-select.component";
-import { SelectQueueComponent } from "./select-queue/select-queue.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import localeDe from "@angular/common/locales/de";
 import localeEn from "@angular/common/locales/en";
@@ -17,7 +16,7 @@ import { ScanAppointmentComponent } from "./scan-appointment/scan-appointment.co
 import { HandleAppointmentComponent } from "./handle-appointment/handle-appointment.component";
 import { PrintComponent } from "./print/print.component";
 import { FixedFocusDirective } from "./fixedfocus.directive";
-import { GroupsComponent } from "./groups/groups.component";
+import { SelectAppointmentOrPrint } from "./select-appointment-or-print/select-appointment-or-print.component";
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
@@ -32,12 +31,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     FixedFocusDirective,
     AppComponent,
     EntrySelectComponent,
-    SelectQueueComponent,
+    SelectAppointmentOrPrint,
     TicketComponent,
     ScanAppointmentComponent,
     HandleAppointmentComponent,
     PrintComponent,
-    GroupsComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,10 +43,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgIdleModule.forRoot(),
     RouterModule.forRoot([
       { path: "ticket", component: TicketComponent, outlet: "print" },
-      { path: "groups/:index", component: SelectQueueComponent },
-      { path: "groups", component: GroupsComponent },
       { path: "print-status", component: PrintComponent },
-      { path: "select-queue", component: SelectQueueComponent },
+      { path: "select-ap", component: SelectAppointmentOrPrint },
       { path: "scan-appointment", component: ScanAppointmentComponent },
       { path: "handle-appointment", component: HandleAppointmentComponent },
       { path: "**", component: EntrySelectComponent },

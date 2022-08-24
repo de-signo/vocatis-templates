@@ -3,11 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { timer } from "rxjs";
 import { DataService } from "./data.service";
 import { first } from "rxjs/operators";
-import {
-  ButtonModel,
-  LeanButtonModel,
-  WaitNumberModel,
-} from "./app-data.model";
+import { LeanButtonModel, WaitNumberModel } from "./app-data.model";
 import { StyleService } from "./style.service";
 import { TicketComponent } from "../ticket/ticket.component";
 import { toBlob } from "html-to-image";

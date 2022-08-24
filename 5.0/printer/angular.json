@@ -25,9 +25,7 @@
             "assets": [
               "src/appointments.cshtml",
               "src/config.json",
-              "src/groups.cshtml",
               "src/number.cshtml",
-              "src/queues.cshtml",
               "src/favicon.ico",
               "src/assets",
               "src/Styles.xml"

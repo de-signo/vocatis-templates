@@ -1,0 +1,18 @@
+<div class="site-content">
+  <h2>Haben Sie einen Termin vereinbart?</h2>
+</div>
+<textarea
+  id="scan"
+  (keydown)="onScanInput($event)"
+  fixedfocus
+  spellcheck="false"
+></textarea>
+
+<nav class="site-nav">
+  <a routerLink="/scan-appointment" queryParamsHandling="preserve">
+    Ja, ich habe einen Termin.
+  </a>
+  <a (click)="print2()">
+    Nein, ich habe keinen Termin.
+  </a>
+</nav>

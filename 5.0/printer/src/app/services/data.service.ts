@@ -1,18 +1,13 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-import {
-  AppointmentModel,
-  ButtonModel,
-  GroupModel,
-  WaitNumberModel,
-} from "./app-data.model";
+import { AppointmentModel, WaitNumberModel } from "./app-data.model";
 import {
   HttpClient,
   HttpHeaders,
   HttpParameterCodec,
   HttpParams,
 } from "@angular/common/http";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 import { first, tap } from "rxjs/operators";
 import { BehaviorSubject } from "rxjs";
 
@@ -46,34 +41,10 @@ export class CustomHttpParamEncoder implements HttpParameterCodec {
   providedIn: "root",
 })
 export class DataService {
-  public groups: BehaviorSubject<GroupModel[]> = new BehaviorSubject<
-    GroupModel[]
-  >([]);
-  public buttons: BehaviorSubject<ButtonModel[]> = new BehaviorSubject<
-    ButtonModel[]
-  >([]);
   public appointments: BehaviorSubject<AppointmentModel[]> =
     new BehaviorSubject<AppointmentModel[]>([]);
 
   constructor(private http: HttpClient) {}
-
-  loadGroups(): Observable<GroupModel[]> {
-    const jsonFile = environment.groupsServiceUrl;
-    return this.http.get<GroupModel[]>(jsonFile + window.location.search).pipe(
-      tap((data) => {
-        this.groups.next(data);
-      })
-    );
-  }
-
-  loadButtons(): Observable<ButtonModel[]> {
-    const jsonFile = environment.queueServiceUrl;
-    return this.http.get<ButtonModel[]>(jsonFile + window.location.search).pipe(
-      tap((data) => {
-        this.buttons.next(data);
-      })
-    );
-  }
 
   loadAppointments(): Observable<AppointmentModel[]> {
     const jsonFile = environment.appointmentsServiceUrl;

@@ -5,11 +5,11 @@ import { StyleService } from "../services/style.service";
 import { TicketService } from "../services/ticket.service";
 
 @Component({
-  selector: "vpr-entry-select",
-  templateUrl: "./entry-select.component.html",
-  styleUrls: ["./entry-select.component.scss"],
+  selector: "vpr-select-appointment-or-print",
+  templateUrl: "./select-appointment-or-print.component.html",
+  styleUrls: ["./select-appointment-or-print.component.scss"],
 })
-export class EntrySelectComponent {
+export class SelectAppointmentOrPrint {
   constructor(
     private scan: ScanAppointmentService,
     private style: StyleService,
@@ -18,15 +18,8 @@ export class EntrySelectComponent {
 
   private timerSub: Subscription | undefined;
 
-  get text1() {
-    return this.style.buttons[0]?.title;
-  }
-  get text2() {
-    return this.style.buttons[1]?.title;
-  }
-
-  print1() {
-    this.ticket.handleGetNewNumber(this.style.buttons[0]);
+  print2() {
+    this.ticket.handleGetNewNumber(this.style.buttons[1]);
   }
 
   async onScanInput(event: Event) {

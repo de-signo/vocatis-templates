@@ -10,10 +10,6 @@
 ></textarea>
 
 <nav class="site-nav">
-  <a routerLink="/scan-appointment" queryParamsHandling="preserve">{{
-    "Entry_SelectAppointment" | translate
-  }}</a>
-  <a routerLink="/select-queue" queryParamsHandling="preserve">{{
-    "Entry_SelectTicket" | translate
-  }}</a>
+  <a (click)="print1()">{{ text1 }}</a>
+  <a routerLink="/select-ap" queryParamsHandling="preserve">{{ text2 }}</a>
 </nav>

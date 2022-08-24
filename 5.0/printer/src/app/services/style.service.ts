@@ -1,19 +1,14 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-import { ButtonModel, WaitNumberModel } from "./app-data.model";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { tap } from "rxjs/operators";
-import { BehaviorSubject } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
+import { LeanButtonModel } from "./app-data.model";
 
 @Injectable({
   providedIn: "root",
 })
 export class StyleService {
   view: "" | "print" = "";
-  activeStyle: "select" | "printer" | "appointment" | "groups" | "ticket" =
-    "select";
+  activeStyle: "select" | "ticket" = "select";
   ticketShowQrCode = false;
   listShowQrCode = false;
   aptErrorInfo: string = "";
@@ -25,6 +20,7 @@ export class StyleService {
   arrow: "right" | "down" = "right";
   trackingId = "";
   planToQueue: { [key: string]: { queue: string; categories: string[] } } = {};
+  buttons: LeanButtonModel[] = [];
 
   // forgot qr code
   scanShowForgotQrCode = false;
@@ -68,6 +64,19 @@ export class StyleService {
       }
       this.planToQueue = p2q;
 
+      // read buttons
+      let j = 1;
+      let btns = [] as LeanButtonModel[];
+      while (true) {
+        let t = params["s/text" + j];
+        let qi = params["s/queueid" + j];
+        let ci = params["s/catid" + j];
+        if (!t && !qi) break;
+        btns.push({ title: t, queue: qi, categories: ci });
+        j++;
+      }
+      this.buttons = btns;
+
       // forgot qrCode params
       const fg = params["s/fg"];
       this.scanShowForgotQrCode = fg == "1" || fg == 1;
@@ -80,13 +89,7 @@ export class StyleService {
 
       // detect witch style was selected
       var style = params["s"] ?? "";
-      if (style.startsWith("vocm19aponly")) {
-        this.activeStyle = "appointment";
-      } else if (style.startsWith("vocatis_multi_2019_groupconfig")) {
-        this.activeStyle = "groups";
-      } else if (style.startsWith("vocatic_multi_2019")) {
-        this.activeStyle = "printer";
-      } else if (style.startsWith("vocatis_ticket_default")) {
+      if (style.startsWith("vocatis_ticket_default")) {
         this.activeStyle = "ticket";
         this.listShowQrCode = environment.enableApp; // overwrite s/qr parameter
       } else {

@@ -42,34 +42,6 @@ specs = [
     files: ["room-display/dist/room-display/**"],
     templates: ["room-display/src/Styles.xml.handlebars"],
   },
-  {
-    name: "queueinfo",
-    clean: "../dist/queueinfo_*.zip",
-    files: ["queueinfo/**", "!queueinfo/*.handlebars"],
-    templates: ["queueinfo/Styles.xml.handlebars"],
-  },
-  {
-    name: "printer_groups_nomultilang",
-    ng: ["printer"],
-    clean: "../dist/printergroups_*.zip",
-    files: [
-      "printer/dist/**",
-      "!printer/dist/app/**",
-      "!printer/dist/printer/assets/test*.json",
-    ],
-    templates: [
-      { input: "printer/Styles.xml.handlebars", dest: "printer/dist" },
-      "printer/src/environments/environment.prod.ts.handlebars",
-      "printer/app_src/environments/environment.prod.ts.handlebars",
-    ],
-    templateData: {
-      suffix: "_openclose_nomultilang",
-      use_groups_config: true,
-      enable_app: false,
-      enable_open_close: true,
-      multilang: false,
-    },
-  },
 ];
 
 // printer option generator
@@ -96,10 +68,7 @@ options = [
     },
   ],
   // openclose
-  [
-    { tag: "nomultilang", templateData: { multilang: false } },
-    { tag: "multilang", name: "multilang", templateData: { multilang: true } },
-  ],
+  [{ tag: "nomultilang", templateData: { multilang: false } }],
 ];
 
 // init options
@@ -111,6 +80,7 @@ var printerSpecs = [
     ng: ["printer"],
     templates: [
       { input: "printer/Styles.xml.handlebars", dest: "printer/dist" },
+      "printer/app_src/environments/environment.prod.ts.handlebars",
       "printer/src/environments/environment.prod.ts.handlebars",
     ],
     templateData: {

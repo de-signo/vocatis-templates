@@ -53,29 +53,6 @@
 </field>
 {{/inline}}
 
-{{#*inline "printerFields"}}
-{{#range 1 9}}
-<field key="text{{this}}">
-  <names>
-    <name>Name {{this}}</name>
-  </names>
-  <content_class type="TextFree" />
-</field>
-<field key="queueid{{this}}">
-  <names>
-    <name>Warteschlange {{this}}</name>
-  </names>
-  <content_class type="VocatisQueue"  />
-</field>
-<field key="catid{{this}}">
-    <names>
-        <name>Kategorie {{this}}</name>
-    </names>
-    <content_class type="VocatisCategories"/>
-</field>
-{{/range}}
-{{/inline}}
-
 {{#*inline "appointmentFields"}}
 {{#range 1 9}}
 <field key="ap_pn{{this}}">
@@ -208,51 +185,52 @@
 </field>
 {{/inline}}
 
-{{#if use_groups_config}}
-  <style key="vocatis_multi_2019_groupconfig{{suffix}}" file="printer/index.cshtml"
-         interactive="true" target="chromium" preview="printer/assets/img/preview.png">
-    <names>
-      <name culture="de">vocatis printer Gruppenkonfiguration ({{version}})</name>
-    </names>
-    <fields>
-      {{> commonFields}}
-    </fields>
-  </style>
-{{else}}
-  <style key="vocatic_multi_2019{{suffix}}" file="printer/index.cshtml"
+  <style key="vocatis_radiologicummargareten{{suffix}}" file="printer/index.cshtml"
          interactive="true" target="chromium" preview="printer/assets/img/preview.png">
     <names>
       <name culture="de">vocatis printer {{option_name}} ({{version}})</name>
     </names>
     <fields>
       {{> commonFields}}
-      {{> printerFields}}
-    </fields>
-  </style>
-
-  <style key="vocm19aponly{{suffix}}" file="printer/index.cshtml"
-         interactive="true" target="chromium" preview="printer/assets/img/preview.png">
-    <names>
-      <name culture="de">vocatis appointments {{option_name}} ({{version}})</name>
-    </names>
-    <fields>
-      {{> commonFields}}
+      <field key="text1">
+        <names>
+          <name>Text Befund</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid1">
+        <names>
+          <name>Warteschlange Befund</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid1">
+          <names>
+              <name>Kategorie Befund</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
+      <field key="text2">
+        <names>
+          <name>Text Untersuchung</name>
+        </names>
+        <content_class type="TextFree" />
+      </field>
+      <field key="queueid2">
+        <names>
+          <name>Warteschlange Untersuchung</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="catid2">
+          <names>
+              <name>Kategorie Untersuchung</name>
+          </names>
+          <content_class type="VocatisCategories"/>
+      </field>
       {{> appointmentFields}}
     </fields>
   </style>
-
-  <style key="vocm19ap{{suffix}}" file="printer/index.cshtml"
-         interactive="true" target="chromium" preview="printer/assets/img/preview.png">
-    <names>
-      <name culture="de">vocatis printer and appointments {{option_name}} ({{version}})</name>
-    </names>
-    <fields>
-      {{> commonFields}}
-      {{> appointmentFields}}
-      {{> printerFields}}
-    </fields>
-  </style>
-{{/if}}
 
   <style key="vocatis_ticket_default"
     file="printer/index.cshtml"

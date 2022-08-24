@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SelectQueueComponent } from "./select-queue.component";
+import { EntrySelectComponent } from "./entry-select.component";
 
-describe("SelectQueueComponent", () => {
-  let component: SelectQueueComponent;
-  let fixture: ComponentFixture<SelectQueueComponent>;
+describe("EntrySelectComponent", () => {
+  let component: EntrySelectComponent;
+  let fixture: ComponentFixture<EntrySelectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SelectQueueComponent],
+      declarations: [EntrySelectComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SelectQueueComponent);
+    fixture = TestBed.createComponent(EntrySelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
