@@ -84,9 +84,8 @@ export class ScanAppointmentService {
           console.log(`The plan '${plan}' is not configured.`);
         } else {
           const appTime = Date.parse(apt.time);
-          const cutOffTime = !this.style.late
-            ? 0
-            : Date.now() - this.style.late * 60000;
+          const cutOffTime =
+            this.style.late == null ? 0 : Date.now() - this.style.late * 60000;
 
           this.currentDate = new Date(appTime);
           if (appTime < cutOffTime) {
