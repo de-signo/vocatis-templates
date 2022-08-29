@@ -52,10 +52,11 @@
 
 .highlight {
   animation: blinker 1s linear infinite;
+  color: $color-primary-background;
 }
 
 @keyframes blinker {
   50% {
-    color: $color-primary-background;
+    opacity: 0.6;
   }
 }
