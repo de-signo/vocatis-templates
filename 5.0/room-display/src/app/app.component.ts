@@ -6,6 +6,7 @@ import { HttpClient } from "@angular/common/http";
 import { isEqual, toNumber } from "lodash-es";
 import { ActivatedRoute, Params } from "@angular/router";
 import { WaitNumberItem } from "./model";
+import { PlayerService } from "./player.service";
 
 @Component({
   selector: "app-root",
@@ -32,7 +33,11 @@ export class AppComponent {
 
   private roomFilter = "";
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private player: PlayerService
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -91,16 +96,13 @@ export class AppComponent {
 
       if (this.audioSrc)
         this.audioQueue.push(...newItems.map((i) => this.prepareAudio(i)));
-
-      this.updateHighlight();
     }
+    this.updateHighlight();
   }
 
   updateHighlight() {
     // highlight
     const now = Date.now();
-
-    // popup
     if (this.highlight && this.highlightEnd <= now) {
       this.highlight = false;
     }
@@ -110,10 +112,13 @@ export class AppComponent {
       (this.popup?.number != this.list[0]?.number ||
         this.popup?.room != this.list[0].room)
     ) {
-      this.popup = this.list[0];
       this.highlight = true;
       this.highlightEnd = Date.now() + this.highlightTimeout;
     }
+
+    // popup
+    this.popup = this.list.length ? this.list[0] : null;
+    this.player.setPaused(!this.list.length);
 
     // audio
     if (this.audio && (this.audio.paused || this.audio.ended)) {
