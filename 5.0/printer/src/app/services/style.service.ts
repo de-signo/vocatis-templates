@@ -70,7 +70,7 @@ export class StyleService {
       while (true) {
         let t = params["s/text" + j];
         let qi = params["s/queueid" + j];
-        let ci = params["s/catid" + j];
+        let ci = params["s/catid" + j] ?? [];
         if (!t && !qi) break;
         btns.push({ title: t, queue: qi, categories: ci });
         j++;
