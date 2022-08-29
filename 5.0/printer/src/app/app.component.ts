@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from "@angular/core";
+import { Component, ElementRef, HostListener, ViewChild } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { DEFAULT_INTERRUPTSOURCES, Idle } from "@ng-idle/core";
 import { Router } from "@angular/router";
@@ -120,5 +120,18 @@ export class AppComponent implements OnInit {
     else if (activeStyle == "groups" && component instanceof GroupsComponent)
       this.showHome = false;
     else this.showHome = true;
+  }
+
+  @HostListener("touchstart", ["$event"])
+  touchHandler(event: any) {
+    if (event.touches.length > 1) {
+      // prevent mult touch
+      event.preventDefault();
+    }
+  }
+
+  @HostListener("contextmenu", ["$event"])
+  onRightClick(event: any) {
+    if (environment.production) event.preventDefault();
   }
 }
