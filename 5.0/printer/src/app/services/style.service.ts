@@ -19,7 +19,7 @@ export class StyleService {
   listShowWaitTime = false;
   arrow: "right" | "down" = "right";
   trackingId = "";
-  planToQueue: { [key: string]: { queue: string; categories: string[] } } = {};
+  planToQueue!: { queue: string; categories: string[] };
   buttons: LeanButtonModel[] = [];
 
   // forgot qr code
@@ -51,18 +51,8 @@ export class StyleService {
       this.trackingId = params["s/tracking_id"] ?? "";
       // read plan / queue map
       const apt_cats = params["s/catid_apt"] ?? [];
-      let i = 1;
-      let p2q = {} as {
-        [key: string]: { queue: string; categories: string[] };
-      };
-      while (true) {
-        let pn = params["s/ap_pn" + i];
-        let qi = params["s/ap_qi" + i];
-        if (!pn && !qi) break;
-        p2q[pn] = { queue: qi, categories: apt_cats };
-        i++;
-      }
-      this.planToQueue = p2q;
+      const apt_qi = params["s/ap_qi"];
+      this.planToQueue = { queue: apt_qi, categories: apt_cats };
 
       // read buttons
       let j = 1;

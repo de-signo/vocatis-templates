@@ -8,7 +8,7 @@ import {
   HttpParams,
 } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { first, tap } from "rxjs/operators";
+import { first } from "rxjs/operators";
 import { BehaviorSubject } from "rxjs";
 
 declare global {
@@ -41,21 +41,7 @@ export class CustomHttpParamEncoder implements HttpParameterCodec {
   providedIn: "root",
 })
 export class DataService {
-  public appointments: BehaviorSubject<AppointmentModel[]> =
-    new BehaviorSubject<AppointmentModel[]>([]);
-
   constructor(private http: HttpClient) {}
-
-  loadAppointments(): Observable<AppointmentModel[]> {
-    const jsonFile = environment.appointmentsServiceUrl;
-    return this.http
-      .get<AppointmentModel[]>(jsonFile + window.location.search)
-      .pipe(
-        tap((data) => {
-          this.appointments.next(data);
-        })
-      );
-  }
 
   getNewNumber(
     queue: string,
@@ -88,7 +74,7 @@ export class DataService {
         }) +
         " - " +
         apt.title,
-      postpone: apt.time,
+      postpone: apt.time.toISOString(),
     });
     return this.http
       .get<WaitNumberModel>(jsonFile, { params: params })

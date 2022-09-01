@@ -23,7 +23,6 @@
               }
             },
             "assets": [
-              "src/appointments.cshtml",
               "src/config.json",
               "src/number.cshtml",
               "src/favicon.ico",

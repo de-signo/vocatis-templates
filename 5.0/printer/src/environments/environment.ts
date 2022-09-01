@@ -7,7 +7,6 @@ export const environment = {
   groupsServiceUrl: "assets/testgroups.json",
   queueServiceUrl: "assets/testqueues.json",
   numberServiceUrl: "assets/testnum.json",
-  appointmentsServiceUrl: "assets/testappts.json",
   enableMultilang: false,
   enableApp: true,
   appUrl: "http://localhost:4201/",

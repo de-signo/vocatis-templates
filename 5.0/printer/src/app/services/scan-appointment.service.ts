@@ -2,25 +2,17 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 import { Subscription, timer } from "rxjs";
-import { first } from "rxjs/operators";
-import { AppointmentModel, WaitNumberModel } from "./app-data.model";
+import { WaitNumberModel } from "./app-data.model";
 import { DataService } from "./data.service";
 import { StyleService } from "./style.service";
 import { TicketService } from "./ticket.service";
+import * as ical from "./ical";
 
 @Injectable({
   providedIn: "root",
 })
 export class ScanAppointmentService {
-  state:
-    | ""
-    | "invalid"
-    | "notfound"
-    | "notfound_early"
-    | "notfound_late"
-    | "noqueue"
-    | "late"
-    | "qr" = "";
+  state: "" | "invalid" | "late" | "qr" = "";
   currentDate: Date | undefined;
   number: WaitNumberModel | undefined;
 
@@ -38,73 +30,52 @@ export class ScanAppointmentService {
       queryParamsHandling: "preserve",
     });
 
-    const regex = /UID[:Ö]([0-9]*)/;
-    let match = data.match(regex);
-    if (!match || match.length < 2) {
+    let icsres: ical.FullCalendar | undefined = undefined;
+    try {
+      icsres = ical.parseICS(data);
+      console.log(icsres);
+    } catch (icserr) {
+      this.state = "invalid";
+      console.error(icserr);
+    }
+
+    if (!icsres || Object.keys(icsres).length != 1) {
       this.state = "invalid";
     } else {
-      let apt_id = match[1];
-      const appts = await this.data.appointments.pipe(first()).toPromise();
-
-      const apt = appts.find((apt) => apt.id == apt_id);
-      if (!apt) {
-        // find time
-        const dtregex = /DTSTART[:Ö]([0-9]*)T([0-9]*)/;
-        const dtmatch = data.match(dtregex);
-        if (dtmatch && dtmatch.length == 3) {
-          const date = this.parseICalDateTime(dtmatch[1], dtmatch[2]);
-          const dateDate = this.getDateWithoutTime(date);
-          const now = new Date();
-          const nowDate = this.getDateWithoutTime(now);
-          const tomorrowDate = new Date(
-            nowDate.getTime() + 24 * 60 * 60 * 1000
-          );
-          if (dateDate < nowDate) {
-            this.state = "notfound_late";
-          } else if (dateDate >= tomorrowDate) {
-            this.state = "notfound_early";
-          } else {
-            this.state = "notfound";
-          }
-          this.currentDate = date;
-          console.log(
-            `The appointment with id '${apt_id}' was not found in the list. DTSTART is ${date}`
-          );
-        } else {
-          this.state = "notfound";
-          console.log(
-            `The appointment with id '${apt_id}' was not found in the list.`
-          );
-        }
+      const apt = Object.values(icsres)[0];
+      if (!apt.uid || !apt.start || !apt.description || !apt.contact) {
+        this.state = "invalid";
       } else {
-        const plan = apt.plan;
-        const queue = this.style.planToQueue[plan];
-        if (!queue) {
-          this.state = "noqueue";
-          console.log(`The plan '${plan}' is not configured.`);
-        } else {
-          const appTime = Date.parse(apt.time);
-          const cutOffTime =
-            this.style.late == null ? 0 : Date.now() - this.style.late * 60000;
+        const queue = this.style.planToQueue;
+        const appTime = apt.start.getTime();
+        const cutOffTime =
+          this.style.late == null ? 0 : Date.now() - this.style.late * 60000;
 
-          this.currentDate = new Date(appTime);
-          if (appTime < cutOffTime) {
-            // too late
-            this.state = "late";
-            console.log(
-              `The appointment with id '${apt_id}' was at ${appTime}. Too late.`
-            );
-          } else {
-            this.number = await this.data.getTicketFromAppointment(
-              apt,
-              queue.queue,
-              queue.categories
-            );
-            if (this.style.listShowQrCode) this.state = "qr";
-            else {
-              await this.print.handlePrintTicket(this.number);
-              return;
-            }
+        this.currentDate = new Date(appTime);
+        if (appTime < cutOffTime) {
+          // too late
+          this.state = "late";
+          console.log(
+            `The appointment with id '${apt.uid}' was at ${apt.start}. Too late.`
+          );
+        } else {
+          const contact =
+            typeof apt.contact == "string" ? apt.contact : apt.contact.val;
+          this.number = await this.data.getTicketFromAppointment(
+            {
+              id: apt.uid,
+              ref: apt.uid,
+              time: apt.start,
+              name: contact,
+              title: apt.description,
+            },
+            queue.queue,
+            queue.categories
+          );
+          if (this.style.listShowQrCode) this.state = "qr";
+          else {
+            await this.print.handlePrintTicket(this.number);
+            return;
           }
         }
       }

@@ -2,16 +2,11 @@ import { Component, ElementRef, HostListener, ViewChild } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { DEFAULT_INTERRUPTSOURCES, Idle } from "@ng-idle/core";
 import { Router } from "@angular/router";
-import { of, timer } from "rxjs";
-import { DataService } from "./services/data.service";
-import { concatMap, switchMap } from "rxjs/operators";
 import { EntrySelectComponent } from "./entry-select/entry-select.component";
-import { ScanAppointmentComponent } from "./scan-appointment/scan-appointment.component";
 import { StyleService } from "./services/style.service";
 import { TicketService } from "./services/ticket.service";
 import { TicketComponent } from "./ticket/ticket.component";
 import { environment } from "src/environments/environment";
-import { OnInit } from "@angular/core";
 
 @Component({
   selector: "app-root",
@@ -21,7 +16,7 @@ import { OnInit } from "@angular/core";
     "[class.view-print]": "style.view == 'print'",
   },
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   langs: string[] | null;
   showHome: boolean = true;
   showLogo: boolean;
@@ -32,7 +27,6 @@ export class AppComponent implements OnInit {
     idle: Idle,
     private router: Router,
     private translate: TranslateService,
-    private dataService: DataService,
     private style: StyleService,
     private ticket: TicketService
   ) {
@@ -53,23 +47,6 @@ export class AppComponent implements OnInit {
       idle.watch();
     });
     idle.watch();
-  }
-
-  ngOnInit(): void {
-    // configure data loading
-    timer(0, 5 * 60 * 1000)
-      .pipe(
-        switchMap((_) => {
-          const activeStyle = this.style.activeStyle;
-          if (activeStyle == "select") {
-            return this.dataService.loadAppointments();
-          } else return of(null);
-        })
-      )
-      .subscribe(
-        (_) => {},
-        (error) => console.error(error)
-      );
   }
 
   onPrinterOutletActivate(c: any): void {

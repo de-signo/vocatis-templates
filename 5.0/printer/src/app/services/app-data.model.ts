@@ -12,8 +12,7 @@ export class WaitNumberModel {
 export class AppointmentModel {
   id!: string;
   ref!: string;
-  plan!: string;
-  time!: string;
+  time!: Date;
   title!: string;
   name!: string;
 }
