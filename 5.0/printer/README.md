@@ -18,14 +18,8 @@ Die Übersetzungen sind in assets/i18n zu finden. Diese können mit https://www.
 
 ## Test Urls
 
-http://localhost:4200/?/text1=Befund&s/text2=Untersuchung&s/queueid1=88&s/queueid2=dd&s/fg=1
-
-Mit Auswahl:
-http://localhost:4200/?s/ap_pn1=1&s/ap_qi1=xxx&s/mode=print&s/qr=3
-http://localhost:4200/?s/ap_pn1=1&s/ap_qi1=xxx
-http://localhost:4200/?s/fg=1 // mit QR-Code vergessen
-http://localhost:4200/?s/ar=d // Pfeil nach unten
-UID:1234
+http://localhost:4200/?s/text1=Befund&s/text2=Untersuchung&s/queueid1=88&s/queueid2=dd&s/fg=1&s/mode=print
+http://localhost:4200/?s/text1=Befund&s/text2=Untersuchung&s/queueid1=88&s/queueid2=dd&s/fg=1&s/mode=print&s/qr=3
 
 Ticket:
 http://localhost:4200/(print:ticket)?view=print
