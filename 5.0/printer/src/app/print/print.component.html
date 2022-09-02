@@ -1,27 +1,14 @@
-<ng-template #svgArrow>
-  <svg *ngIf="arrow != 'down'" viewBox="0 0 106.95 106.47"><g>
-    <polygon points="41.74,106.13 94.9,53.34 41.74,0.82 41.74,1.33 41.74,25.03 13.04,25.03 13.04,81.44 13.04,81.91 40.74,81.91 41.74,81.91 41.74,104.66"/>
-  </g></svg>
-  <svg *ngIf="arrow == 'down'" viewBox="0 0 106.95 106.47"><g>
-    <polygon points="0.58,41.5 53.37,94.66 105.89,41.5 105.38,41.5 81.68,41.5 81.68,12.8 25.27,12.8 24.8,12.8 24.8,40.5 24.8,41.5 2.05,41.5"/>
-  </g></svg>
-</ng-template>
-
 <!-- wait popup is shown, while generating a new number -->
 <section *ngIf="ticket.state == 'wait'" id="waitPopup">
-  <h4>{{ "Print_WaitHeader" | translate }}</h4>
   <img src="assets/img/wait.gif" class="wait" alt="wait" />
-  <p>{{ "Print_WaitText" | translate }}</p>
-  <ng-container [ngTemplateOutlet]="svgArrow"></ng-container>
 </section>
+<h4 *ngIf="ticket.state == 'wait'">{{ "Print_WaitText" | translate }}</h4>
 
 <!-- take popup is shown, when the printout is ready -->
 <section *ngIf="ticket.state == 'take'" id="takePopup">
-  <h4>{{ "Print_TakeHeader" | translate }}</h4>
   <img src="assets/img/wait.gif" class="wait" alt="wait" />
-  <p>{{ "Print_TakeText" | translate }}</p>
-  <ng-container [ngTemplateOutlet]="svgArrow"></ng-container>
 </section>
+<h4 *ngIf="ticket.state == 'take'">{{ "Print_TakeText" | translate }}</h4>
 
 <!-- show popup shows the number on the screen -->
 <section *ngIf="ticket.state == 'show'" id="showPopup">

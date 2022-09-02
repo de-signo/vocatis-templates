@@ -22,12 +22,6 @@ section {
     width: 13%;
     fill: $color-secondary-foreground;
   }
-  h4 {
-    padding-top: 8vh;
-    font-size: 3em;
-    color: $color-secondary-foreground;
-    display: inline-block;
-  }
   p {
     font-size: 2em;
     font-weight: 600;
@@ -37,4 +31,10 @@ section {
   .number {
     font-size: 4em;
   }
+}
+
+h4 {
+  padding-top: 8vh;
+  font-size: 3em;
+  text-align: center;
 }
