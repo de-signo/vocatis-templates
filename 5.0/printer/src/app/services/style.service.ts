@@ -62,7 +62,7 @@ export class StyleService {
         let qi = params["s/queueid" + j];
         let ci = params["s/catid" + j] ?? [];
         if (!t && !qi) break;
-        btns.push({ title: t, queue: qi, categories: ci });
+        btns.push({ title: t, queue: qi, categories: ci, printView: "" });
         j++;
       }
       this.buttons = btns;

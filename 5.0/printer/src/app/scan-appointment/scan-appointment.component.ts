@@ -43,6 +43,7 @@ export class ScanAppointmentComponent {
       queue: this.style.forgotQrCodeQueue,
       categories: this.style.forgotQrCodeCategories,
       title: "",
+      printView: "forgot",
     });
   }
 }

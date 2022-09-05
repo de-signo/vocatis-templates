@@ -1,13 +1,11 @@
 <!-- wait popup is shown, while generating a new number -->
-<section *ngIf="ticket.state == 'wait'" id="waitPopup">
+<section *ngIf="ticket.state == 'wait' || ticket.state == 'take'" id="waitPopup">
+  <h3 *ngIf="ticket.view != ''" ><img src="assets/img/registration.png" alt="registration"/>Ihr Check-In war erfolgreich!</h3>
+  <p *ngIf="ticket.view != ''">Bitte nehmen Sie im Wartebereich Platz und warten auf den Aufruf der Wartenummer über den Monitor</p>
   <img src="assets/img/wait.gif" class="wait" alt="wait" />
 </section>
-<h4 *ngIf="ticket.state == 'wait'">{{ "Print_WaitText" | translate }}</h4>
 
-<!-- take popup is shown, when the printout is ready -->
-<section *ngIf="ticket.state == 'take'" id="takePopup">
-  <img src="assets/img/wait.gif" class="wait" alt="wait" />
-</section>
+<h4 *ngIf="ticket.state == 'wait'">{{ "Print_WaitText" | translate }}</h4>
 <h4 *ngIf="ticket.state == 'take'">{{ "Print_TakeText" | translate }}</h4>
 
 <!-- show popup shows the number on the screen -->

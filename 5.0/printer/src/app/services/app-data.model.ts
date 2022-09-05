@@ -2,6 +2,7 @@ export interface LeanButtonModel {
   queue: string;
   categories: string[];
   title: string;
+  printView: "" | "forgot" | "appointment";
 }
 
 export class WaitNumberModel {

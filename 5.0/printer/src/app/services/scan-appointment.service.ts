@@ -74,7 +74,7 @@ export class ScanAppointmentService {
           );
           if (this.style.listShowQrCode) this.state = "qr";
           else {
-            await this.print.handlePrintTicket(this.number);
+            await this.print.handlePrintTicket(this.number, "appointment");
             return;
           }
         }

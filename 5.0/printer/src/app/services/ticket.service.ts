@@ -38,6 +38,7 @@ export class TicketService {
   current: WaitNumberModel = { id: "", number: "dummy" };
   button: LeanButtonModel | null = null;
   state: "wait" | "show" | "take" = "wait";
+  view: "" | "forgot" | "appointment" = "";
   printComponent: TicketComponent | null = null; // must be set by app component when ticket is loaded
 
   constructor(
@@ -86,6 +87,7 @@ export class TicketService {
   }
 
   async handleGetNewNumber(b: LeanButtonModel) {
+    this.view = b.printView;
     this.state = "wait";
     this.button = b;
     await this.router.navigate(["/print-status"], {
@@ -117,7 +119,11 @@ export class TicketService {
     await this.router.navigate(["/"], { queryParamsHandling: "preserve" });
   }
 
-  async handlePrintTicket(num: WaitNumberModel): Promise<void> {
+  async handlePrintTicket(
+    num: WaitNumberModel,
+    view: "" | "forgot" | "appointment"
+  ): Promise<void> {
+    this.view = view;
     this.state = "wait";
     this.button = null;
     this.current = num;

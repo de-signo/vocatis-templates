@@ -43,6 +43,6 @@ export class HandleAppointmentComponent {
   print() {
     if (!this.scan.number) return;
     this.scan.abort();
-    this.ticket.handlePrintTicket(this.scan.number);
+    this.ticket.handlePrintTicket(this.scan.number, "appointment");
   }
 }

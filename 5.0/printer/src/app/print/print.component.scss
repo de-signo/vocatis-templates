@@ -3,29 +3,36 @@
 
 section {
   @include panel;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   & > * {
-    margin: auto;
+    margin: auto 0;
   }
   img.wait {
     width: 25%;
     opacity: 0.5;
+    margin: auto;
   }
-  img {
-    width: 13%;
-  }
+
   svg {
     width: 13%;
     fill: $color-secondary-foreground;
   }
+
+  h3 {
+    font-size: 2.5em;
+    font-weight: normal;
+    img {
+      vertical-align: baseline;
+      height: 2em;
+      padding-right: 0.5em;
+    }
+  }
+
   p {
-    font-size: 2em;
-    font-weight: 600;
-    color: $color-primary-background;
+    font-size: 3.5rem;
+    line-height: 5rem;
   }
 
   .number {
