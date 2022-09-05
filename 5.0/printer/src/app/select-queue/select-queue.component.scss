@@ -58,6 +58,21 @@
     border-radius: 50%;
     background-clip: content-box;
     background-color: $color-common-foreground;
+
+    /*----animation single-button-----*/
+    animation: blink 3s linear infinite;
+  }
+
+  @keyframes blink {
+    0% {
+      opacity: 0.35;
+    }
+    50% {
+      opacity: 0.75;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   .button-with-qr {
@@ -67,6 +82,11 @@
     column-gap: 20vw;
     text-align: center;
     font-size: 2rem;
+
+    .single-button {
+      border: solid 0.5vh;
+      padding: 0.8vh;
+    }
   }
 
   .queue-status {
