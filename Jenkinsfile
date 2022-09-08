@@ -79,9 +79,9 @@ pipeline {
                 attachLog: true,
                 attachmentsPattern: 'dist/**/*',
                 presendScript: '''
-                  recipients = msg.getRecipients(javax.mail.Message.RecipientType.TO)
+                  recipients = msg.getRecipients(jakarta.mail.Message.RecipientType.TO)
                   filtered = recipients.findAll { addr -> addr.toString().contains('@de-signo.de') }
-                  msg.setRecipients(javax.mail.Message.RecipientType.TO, filtered as javax.mail.Address[])
+                  msg.setRecipients(jakarta.mail.Message.RecipientType.TO, filtered as jakarta.mail.Address[])
                 '''
 
       script {
