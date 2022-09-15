@@ -115,6 +115,7 @@
                     orderby start ascending
                     select new {
                         Id = item.id,
+                        WaitNumber = item.wn,
                         Start = start,
                         Name = item.name,
                         Title = item.title,
@@ -143,8 +144,7 @@
             idList.Add(item.Id);
             Func<CommonGuidId, WaitNumber> CreateTicket = (CommonGuidId queue) =>
             {
-                var id = item.Id;
-                var ticketNum = ExtractNumber(id);
+                var ticketNum = ExtractNumber(item.WaitNumber);
                 using (var voc = SessionInstancesModule.GetInstance().UseSharedInstance<IVocatisData>())
                 {
                     var ticket = voc.Instance.NewNumber(ticketNum, queue, category);
