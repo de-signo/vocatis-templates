@@ -40,6 +40,7 @@ http://localhost:4200/?s=vocatis_multi_2019_groupconfig
 
 Ticket:
 http://localhost:4200/(print:ticket)?view=print
+http://localhost:4200/(print:ticket)?view=print&s/qr=3 (mit QR-Code)
 http://localhost:4200/?s=vocatis_ticket_default&s/ticketnumber=B12
 
 App:

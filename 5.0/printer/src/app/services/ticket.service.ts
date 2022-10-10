@@ -39,7 +39,7 @@ export class TicketService {
   isPrinterAvailable = false;
   isPlayerAvailable = false;
 
-  current: WaitNumberModel = { id: "", number: "dummy" };
+  current: WaitNumberModel = { id: "", number: "AA 530" };
   button: LeanButtonModel | null = null;
   state: "wait" | "show" | "take" = "wait";
   printComponent: TicketComponent | null = null; // must be set by app component when ticket is loaded
