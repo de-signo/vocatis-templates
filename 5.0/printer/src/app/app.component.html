@@ -5,9 +5,12 @@
     alt="plattformlogo"
   />
   <h1>{{ "Printer_Header" | translate }}</h1>
-  <a *ngIf="showHome" routerLink="/" queryParamsHandling="preserve" class="home"
-    ><img src="assets/img/home.png" alt="home"
-  /></a>
+  <a *ngIf="showHome" routerLink="/" queryParamsHandling="preserve" class="home">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 22">
+    <polygon points="12,0 0,10.31 2.45,10.31 2.45,22 10.16,22 10.16,16.06 13.9,16.06 13.9,22 21.61,22 21.61,10.31 24,10.31 "/>
+    <polygon points="16.86,0.48 16.86,3.15 20.96,6.55 20.96,0.48 "/>
+  </svg>
+  </a>
 </header>
 
 <main>
