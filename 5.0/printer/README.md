@@ -23,6 +23,7 @@ http://localhost:4200/?s/text1=Befund&s/text2=Untersuchung&s/queueid1=88&s/queue
 
 Ticket:
 http://localhost:4200/(print:ticket)?view=print
+http://localhost:4200/(print:ticket)?view=print&s/qr=3 (mit QR-Code)
 http://localhost:4200/?s=vocatis_ticket_default&s/ticketnumber=B12
 
 App:
