@@ -72,6 +72,9 @@ export class AppComponent {
   }
 
   updateList(items: WaitNumberItem[]) {
+    // limit to 8 items
+    items = items?.slice(0, 8);
+
     var oldList = this.list;
     const newItems = items.filter((v) => !oldList.find((o) => isEqual(v, o)));
 
