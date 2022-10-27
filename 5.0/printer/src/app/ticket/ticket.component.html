@@ -1,8 +1,11 @@
 <ng-container *ngIf="number">
   <header>
-    {{ now | date: "mediumDate":undefined:locale }}&nbsp;&nbsp;&nbsp;{{
-      now | date: "shortTime":undefined:locale
-    }}
+    <img
+    src="assets/img/customerlogo.png"
+    class="customerlogo"
+    alt="logo"
+    (load)="onImgLoaded($event)"
+    />
   </header>
   <h1>{{ number.number }}</h1>
   <img
@@ -18,13 +21,9 @@
         [qrdata]="getAppLink(number)"
         [margin]="0"
         [width]="1600"
-      ></qrcode>
-    </figure>
-    <img
-      src="assets/img/customerlogo.png"
-      class="customerlogo"
-      alt="logo"
-      (load)="onImgLoaded($event)"
-    />
+      ></qrcode>     
+    </figure> 
+    <p>{{ now | date: "shortTime":undefined:locale}} Uhr</p>
+    <p>{{ now | date: "mediumDate":undefined:locale }}</p>
   </footer>
 </ng-container>

@@ -39,11 +39,13 @@ a {
 
 qrcode {
   /* overwrite style by angularx/qrcode */
-  canvas {
-    width: auto !important;
-    height: auto !important;
-    max-width: 100%;
-    max-height: 100%;
+  div.qrcode {
+    display: flex;
+    canvas {
+      flex: 1 1 auto;
+      width: initial !important;
+      height: initial !important;
+    }
   }
 }
 
