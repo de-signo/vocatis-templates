@@ -35,7 +35,7 @@ export class TicketService {
   isPrinterAvailable = false;
   isPlayerAvailable = false;
 
-  current: WaitNumberModel = { id: "", number: "dummy" };
+  current: WaitNumberModel = { id: "", number: "Z455" };
   button: LeanButtonModel | null = null;
   state: "wait" | "show" | "take" = "wait";
   view: "" | "forgot" | "appointment" = "";

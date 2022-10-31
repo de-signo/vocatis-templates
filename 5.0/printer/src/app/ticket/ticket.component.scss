@@ -4,7 +4,7 @@
   /* complete drawing width of printer: 228px */
   box-sizing: border-box;
   width: 228px;
-  padding: 1mm;
+  padding: 2mm;
 
   background-color: white;
   color: black;
@@ -15,22 +15,46 @@ header {
 }
 h1 {
   font-size: 40px;
-  margin: 5mm 0;
+  margin: 2mm 0;
+}
+h2 {
+  font-size: 23px;
+  text-align: center;
+  padding: 4mm 0 0 0;
+  font-weight: normal;
+}
+.customerlogo {
+  width: 80%;
 }
 img {
   width: 100%;
 }
 
 footer {
-  display: flex;
-  align-items: center;
-  padding: 2mm;
-  gap: 2mm;
+  text-align: left;
+  font-size: 1rem;
+
   & > * {
     flex: 1;
   }
   figcaption {
-    font-size: 12px;
-    margin-bottom: 5px;
+    font-size: 10px;
+    text-align: center;
+    padding: 1mm 0;
+  }
+
+  qrcode {
+    display: block;
+    padding: 1mm 11mm;
+  }
+
+  p {
+    padding: 2mm 0mm 2mm 11mm;
+    float: left;
+    font-size: 11px;
+  }
+  p:last-child {
+    float: right;
+    padding: 2mm 11mm 2mm 0mm;
   }
 }
