@@ -39,10 +39,22 @@ export class ScanAppointmentService {
       console.error(icserr);
     }
 
-    if (!icsres || Object.keys(icsres).length != 1) {
+    // find first vevent
+    let apt: ical.CalendarComponent | undefined;
+    if (icsres && Object.keys(icsres).length == 1) {
+      const component = Object.values(icsres)[0];
+      // Contains VCALENDAR
+      if (component.type === "VCALENDAR") {
+        apt = Object.values(component).filter((c) => c?.type == "VEVENT")[0];
+      } else if (component.type === "VEVENT") {
+        // VEVENT only
+        apt = component;
+      }
+    }
+
+    if (!apt) {
       this.state = "invalid";
     } else {
-      const apt = Object.values(icsres)[0];
       if (!apt.uid || !apt.start || !apt.description || !apt.contact) {
         this.state = "invalid";
       } else {

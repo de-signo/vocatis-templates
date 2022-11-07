@@ -6,6 +6,7 @@
 // Minimum TypeScript Version: 3.9
 
 export type CalendarComponentType =
+  | "VCALENDAR"
   | "VEVENT"
   | "VTODO"
   | "VJOURNAL"
