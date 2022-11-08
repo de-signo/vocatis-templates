@@ -24,9 +24,8 @@ header {
   }
   h1 {
     text-transform: uppercase;
-
     font-weight: 900;
-    font-size: 5em;
+    font-size: clamp(4.5em, calc(1em + 1vw), 6em);
   }
 }
 
