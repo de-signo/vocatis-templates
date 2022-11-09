@@ -24,7 +24,17 @@
     <div *ngFor="let button of buttons" (click)="view == 'open' ? print(button) : null"
          [class]="'buttons buttons-1 btn ' + view" [ngClass]="{'open': view == 'open', 'closed': view != 'open', 'next-one': buttons[0].queueLength == 0}">
       <h5>{{ button.title }}</h5>
-      <div class="single-button"></div>
+
+      <ng-template [ngIf]="!showQrCode">
+        <div class="single-button">
+        </div>
+      </ng-template>
+      <ng-template [ngIf]="showQrCode">
+        <div class="button-with-qr">
+          <div class="single-button"></div>
+          <qrcode *ngIf="showQrCode" [qrdata]="getAppTicketLink(buttons[0])" [margin]="0" (click)="qrClick(buttons[0])"></qrcode>
+        </div>
+      </ng-template>
 
       <ng-container [ngSwitch]="view">
         <div *ngSwitchCase="'open'" class="queue-status">
