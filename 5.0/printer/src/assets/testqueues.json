@@ -37,7 +37,14 @@
   {
     "title": "manually closed",
     "queue": "1234",
-    "openCloseStatus": 1,
+    "openCloseStatus": 128,
+    "queueLength": 0,
+    "estimateWaitTime": 600
+  },
+  {
+    "title": "manually open",
+    "queue": "1234",
+    "openCloseStatus": 135,
     "queueLength": 0,
     "estimateWaitTime": 600
   }
