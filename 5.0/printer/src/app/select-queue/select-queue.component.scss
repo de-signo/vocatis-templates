@@ -27,9 +27,11 @@
 
   &.closed {
     color: $color-secondary-foreground;
+    grid-template-rows: 1fr 20%; /* respect gaps! */
 
     .single-button {
       background-color: $color-secondary-foreground;
+      display: none;
     }
   }
 
