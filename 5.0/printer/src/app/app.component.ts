@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // configure data loading
-    timer(0, 5 * 60 * 1000)
+    timer(0, 1 * 60 * 1000)
       .pipe(
         switchMap((_) => {
           const activeStyle = this.style.activeStyle;

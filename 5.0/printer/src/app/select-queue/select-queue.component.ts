@@ -75,12 +75,14 @@ export class SelectQueueComponent implements OnDestroy, AfterViewInit {
   ): "open" | "closed-manually" | "closed-hours" | "closed-limit" {
     if (!environment.enableOpenClose) return "open";
 
-    if (b.openCloseStatus & OpenCloseStatus.IsOutsideHours)
-      return "closed-hours";
-    else if (b.openCloseStatus & OpenCloseStatus.IsFull) return "closed-limit";
+    if (b.openCloseStatus & OpenCloseStatus.IsOpen) return "open";
     else if (b.openCloseStatus & OpenCloseStatus.Manual)
       return "closed-manually";
-    return "open";
+    else if (b.openCloseStatus & OpenCloseStatus.IsOutsideHours)
+      return "closed-hours";
+    else if (b.openCloseStatus & OpenCloseStatus.IsFull) return "closed-limit";
+
+    return "closed-manually";
   }
 
   getAppTicketLink(b: ButtonModel): string {
