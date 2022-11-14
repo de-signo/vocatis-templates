@@ -57,6 +57,12 @@
     background-color: $color-common-foreground;
   }
 
+  .button-with-qr {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20vw;
+  }
+
   .queue-status {
     height: 100%;
     display: grid;
