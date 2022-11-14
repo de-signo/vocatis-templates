@@ -27,9 +27,11 @@
 
   &.closed {
     color: $color-secondary-foreground;
+    grid-template-rows: 1fr 20%; /* respect gaps! */
 
     .single-button {
       background-color: $color-secondary-foreground;
+      display: none;
     }
   }
 
@@ -39,7 +41,7 @@
   }
 
   h6 {
-    font-size: 4rem;
+    font-size: 3rem;
     text-align: center;
     color: $color-highlight-background;
   }
