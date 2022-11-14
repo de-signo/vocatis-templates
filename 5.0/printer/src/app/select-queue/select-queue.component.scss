@@ -120,12 +120,6 @@
     color: $color-secondary-foreground;
     text-align: center;
 
-    &::before {
-      content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Cpath fill='" + $color-common-background + "' d='M 0.0,0.0 10.0,10.0 0.0,20.0 Z' /%3E%3C/g%3E%3C/svg%3E%0A");
-      position: absolute;
-      margin-top: 2vh;
-    }
-
     &.open {
       box-shadow: 1px 3px 1px $color-secondary-shadow;
     }
