@@ -60,7 +60,10 @@
   .button-with-qr {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20vw;
+    row-gap: 5vw;
+    column-gap: 20vw;
+    text-align: center;
+    font-size: 2rem;
   }
 
   .queue-status {
