@@ -93,7 +93,7 @@
     fill: $color-secondary-foreground;
 
     .cls-2 {
-      fill: $color-secondary-background;
+      fill: $color-primary-foreground;
     }
   }
 
@@ -109,6 +109,36 @@
   &.buttons-2,
   &.buttons-3 {
     gap: 5vh 2vw;
+  }
+
+  &.buttons-2 {
+    .btn > div.queue-status {
+      padding: 1em;
+      gap: 1em;
+      &:not(.queue-status-columns) {
+        grid-template-rows: 3fr auto;
+        font-size: 2rem;
+      }
+    }
+    .btn > div {
+      font-size: 1.6rem;
+    }
+  }
+
+  &.buttons-3,
+  &.buttons-4,
+  &.buttons-5 {
+    .btn > div.queue-status {
+      padding: 1em;
+      gap: 1em;
+      &:not(.queue-status-columns) {
+        grid-template-rows: 3fr auto;
+        font-size: 1.5rem;
+      }
+    }
+    .btn > div {
+      font-size: 1.5rem;
+    }
   }
 
   &.with-qr-code {
@@ -148,9 +178,9 @@
     & > div {
       /* all status */
       font-weight: bold;
-      font-size: 1rem;
-      padding: 0.5vh 0.5vw;
-      gap: 0.5vh 0.5vw;
+      font-size: 1.2rem;
+      padding: 0.75em;
+      gap: 1em;
       overflow: hidden;
     }
     &.closed > div {
@@ -164,15 +194,15 @@
     & > div.queue-status {
       display: grid;
       &:not(.queue-status-columns) {
-        grid-template-rows: 4fr 3fr;
+        grid-template-rows: 3fr auto;
         grid-auto-flow: column;
-        padding-top: 2vh;
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
       &.queue-status-columns {
         grid-template-columns: 4fr 2fr;
         grid-auto-flow: row;
         padding-top: 0.5vh;
+        font-size: 1.2rem;
       }
 
       & > * {
@@ -201,7 +231,6 @@
     fill: $color-primary-foreground;
     .cls-2 {
       fill: $color-primary-background;
-      font-size: 2rem;
     }
   }
 }
