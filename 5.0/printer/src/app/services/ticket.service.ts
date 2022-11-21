@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { timer } from "rxjs";
 import { DataService } from "./data.service";
@@ -43,6 +43,7 @@ export class TicketService {
   button: LeanButtonModel | null = null;
   state: "wait" | "show" | "take" = "wait";
   printComponent: TicketComponent | null = null; // must be set by app component when ticket is loaded
+  onNumberGenerated = new EventEmitter();
 
   constructor(
     private router: Router,
@@ -102,6 +103,7 @@ export class TicketService {
       .pipe(first())
       .toPromise();
     this.current = data;
+    this.onNumberGenerated.emit();
     if (this.style.enablePrint) {
       await this.router.navigate(
         [{ outlets: { primary: ["print-status"], print: ["ticket"] } }],
