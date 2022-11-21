@@ -29,6 +29,9 @@ p {
 .left {
   grid-column: 1;
   grid-row: 3;
+  img {
+    width: auto;
+  }
 }
 .right {
   grid-column: 2;
@@ -43,7 +46,7 @@ figure {
     font-weight: 600;
   }
 
-  a {
+  a.print-button {
     background: $color-secondary-foreground url(/assets/img/printer.png)
       no-repeat center;
     display: block;
