@@ -4,6 +4,8 @@
 @using System.Web.Caching
 @functions{
   string QueueNameCached(CommonGuidId id) {
+    if (id.IsEmpty) return null;
+
     string key = "Vocatis_QueueName_" + id.ToString();
     string queueName = Cache.Get(key) as string;
     if (queueName == null)
