@@ -37,7 +37,7 @@
   "List_Print": "DRUCKEN",
   "List_Scan": "SCANNEN",
   "List_StatusMT3FormatRaw": "es warten {{length}} Personen",
-  "List_StatusLT3FormatRaw": "Bitte warten",
+  "List_StatusLT3FormatRaw": "Bitte bleiben Sie in der Nähe",
   "List_StatusWaitTime": "ca. {{minutes}} Minuten",
   "List_Closed": "Derzeit geschlossen",
   "List_ClosedHours": "geschlossen außerhalb der Öffnungszeiten",
