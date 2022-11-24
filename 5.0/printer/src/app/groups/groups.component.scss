@@ -1,8 +1,11 @@
 @import "colors.scss";
 table {
-  width: 100%;
+  width: 70%;
+  margin: 0 15vw;
   th {
     text-align: left;
+    font-size: 1.5rem;
+    padding-bottom: 1vh;
   }
   td {
     margin-bottom: 2vh;
@@ -17,13 +20,6 @@ table {
     color: $color-secondary-foreground;
     text-align: center;
     box-shadow: 1px 3px 1px $color-secondary-shadow;
-
-    & > svg {
-      display: block;
-      position: absolute;
-      margin-top: 2vh;
-      fill: $color-common-background;
-    }
 
     & > h5 {
       flex-grow: 1;
