@@ -2,9 +2,9 @@ import { Component, ElementRef, HostListener, ViewChild } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { DEFAULT_INTERRUPTSOURCES, Idle } from "@ng-idle/core";
 import { Router } from "@angular/router";
-import { of, timer } from "rxjs";
+import { of, Subject, timer } from "rxjs";
 import { DataService } from "./services/data.service";
-import { concatMap, switchMap } from "rxjs/operators";
+import { concatMap, startWith, switchMap } from "rxjs/operators";
 import { EntrySelectComponent } from "./entry-select/entry-select.component";
 import { SelectQueueComponent } from "./select-queue/select-queue.component";
 import { ScanAppointmentComponent } from "./scan-appointment/scan-appointment.component";
@@ -59,8 +59,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // configure data loading
-    timer(0, 1 * 60 * 1000)
+    this.ticket.onNumberGenerated
+      .asObservable()
       .pipe(
+        startWith(0),
+        switchMap(() => timer(0, 1 * 20 * 1000)),
         switchMap((_) => {
           const activeStyle = this.style.activeStyle;
           if (activeStyle == "groups") {
