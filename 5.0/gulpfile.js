@@ -50,7 +50,7 @@ specs = [
   {
     name: "printer_groups_nomultilang",
     ng: ["printer"],
-    clean: "../dist/printergroups_*.zip",
+    clean: "../dist/printergroups_nomultilang*.zip",
     files: [
       "printer/dist/**",
       "!printer/dist/app/**",
@@ -67,6 +67,28 @@ specs = [
       enable_app: false,
       enable_open_close: true,
       multilang: false,
+    },
+  },
+  {
+    name: "printer_groups_multilang",
+    ng: ["printer"],
+    clean: "../dist/printergroups_multilang*.zip",
+    files: [
+      "printer/dist/**",
+      "!printer/dist/app/**",
+      "!printer/dist/printer/assets/test*.json",
+    ],
+    templates: [
+      { input: "printer/Styles.xml.handlebars", dest: "printer/dist" },
+      "printer/src/environments/environment.prod.ts.handlebars",
+      "printer/app_src/environments/environment.prod.ts.handlebars",
+    ],
+    templateData: {
+      suffix: "_openclose_multilang",
+      use_groups_config: true,
+      enable_app: false,
+      enable_open_close: true,
+      multilang: true,
     },
   },
 ];

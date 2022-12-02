@@ -23,7 +23,7 @@
   <ng-template [ngIf]="getViewFor(buttons[0])" let-view>
     <div *ngFor="let button of buttons" (click)="view == 'open' ? print(button) : null"
          [class]="'buttons buttons-1 btn ' + view" [ngClass]="{'open': view == 'open', 'closed': view != 'open', 'next-one': buttons[0].queueLength == 0}">
-      <h5>{{ button.title }}</h5>
+      <h5>{{ button.title | selectLang }}</h5>
       <ng-template [ngIf]="!showQrCode">
         <span *ngIf="showQrCode">{{ "List_Print" | translate }}</span> 
         <div class="single-button">
@@ -70,7 +70,7 @@
    
   <ng-container *ngFor="let button of buttons" [ngSwitch]="getViewFor(button)">
     <div *ngSwitchCase="'open'" (click)="print(button)" class="btn open" [ngClass]="{'next-one': button.queueLength == 0}">
-      <h5>{{ button.title }}</h5>
+      <h5>{{ button.title | selectLang }}</h5>
 
       <div #statusPanel class="queue-status" [ngClass]="{'queue-status-columns': showStatusInColumns}">
         <ng-container *ngIf="!showStatusInColumns" [ngTemplateOutlet]="svgPerson" [ngTemplateOutletContext]="{$implicit: button.queueLength}"></ng-container>
@@ -85,17 +85,17 @@
 
     <!-- queue closed (manually) -->
     <div *ngSwitchCase="'closed-manually'" class="btn closed closed-manually">
-      <h5>{{ button.title }}</h5>
+      <h5>{{ button.title | selectLang }}</h5>
       <div>{{ "List_Closed" | translate }}</div>
     </div>
     <!-- queue closed (opening hours) -->
     <div *ngSwitchCase="'closed-hours'" class="btn closed closed-hours">
-      <h5>{{ button.title }}</h5>
+      <h5>{{ button.title | selectLang }}</h5>
       <div>{{ "List_ClosedHours" | translate }}</div>
     </div>
     <!-- queue full -->
     <div *ngSwitchCase="'closed-limit'" class="btn closed closed-limit">
-      <h5>{{ button.title }}</h5>
+      <h5>{{ button.title | selectLang }}</h5>
       <div>{{ "List_ClosedFull" | translate }}</div>
     </div>
 

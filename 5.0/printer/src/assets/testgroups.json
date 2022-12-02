@@ -1,9 +1,9 @@
 [
   {
-    "title": "Prüfungsmanagement",
+    "title": { "de": "Prüfungsmanagement", "en": "Exam management" },
     "items": [
       {
-        "title": "Abschlussarbeiten",
+        "title": { "de": "Abschlussarbeiten", "en": "Final exams" },
         "queue": "c169b7f0-5147-498a-8921-90e984c5283c",
         "openCloseStatus": 1,
         "queueLength": 3
