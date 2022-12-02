@@ -1,5 +1,4 @@
-@using Stolltec.Vocatis
-@using ISS.Session
+@using Stolltec.Vocatis.Model
 @using iSign
 @{
     /// Usage:
@@ -11,7 +10,7 @@
     /// - desc (optional) description to be stored with the number
     /// - phone (optional) phone to be stored with the number
     /// - ref (optional) reference id to be stored with the number
-    try 
+    try
     {
         Response.ContentType = "application/json";
 
@@ -25,19 +24,17 @@
         var phone = Request["phone"];
         var refid = Request["ref"];
 
-        using (var voc = SessionInstancesModule.GetInstance().UseSharedInstance<IVocatisData>())
-        {
-            var ticket = voc.Instance.NewNumber(queueid, catids);
-            ticket.Name = name;
-            ticket.Description = desc;
-            ticket.Phone = phone;
-            ticket.ReferenceId = refid;
-            voc.Instance.UpdateNumber(ticket);
-            <text>{
-                "id": "@ticket.Id.ToString()",
-                "number": "@ticket.Number"
-            }</text>
-        }
+        var voc = Vocatis.GetVocatisData();
+        var ticket = voc.NewNumber(queueid, catids);
+        ticket.Name = name;
+        ticket.Description = desc;
+        ticket.Phone = phone;
+        ticket.ReferenceId = refid;
+        voc.UpdateNumber(ticket);
+        <text>{
+            "id": "@ticket.Id.ToString()",
+            "number": "@ticket.Number"
+        }</text>
     }
     catch (Exception ex)
     {
