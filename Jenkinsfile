@@ -68,6 +68,14 @@ pipeline {
         }
       }
     }
+
+    stage('appointment-scripts') {
+      steps {
+        dir('appointment-scripts') {
+          bat 'npx gulp'
+        }
+      }
+    }
   }
 
   post {
