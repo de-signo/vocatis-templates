@@ -2,9 +2,16 @@ import { Component, ElementRef, HostListener, ViewChild } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { DEFAULT_INTERRUPTSOURCES, Idle } from "@ng-idle/core";
 import { Router } from "@angular/router";
-import { of, Subject, timer } from "rxjs";
+import { of, Subject, throwError, timer } from "rxjs";
 import { DataService } from "./services/data.service";
-import { concatMap, startWith, switchMap } from "rxjs/operators";
+import {
+  catchError,
+  concatMap,
+  delay,
+  retryWhen,
+  startWith,
+  switchMap,
+} from "rxjs/operators";
 import { EntrySelectComponent } from "./entry-select/entry-select.component";
 import { SelectQueueComponent } from "./select-queue/select-queue.component";
 import { ScanAppointmentComponent } from "./scan-appointment/scan-appointment.component";
@@ -27,6 +34,7 @@ export class AppComponent implements OnInit {
   langs: string[] | null;
   showHome: boolean = true;
   showLogo: boolean;
+  private readonly updateInterval = 1 * 20 * 1000;
 
   @ViewChild("printPage") printPage: ElementRef | null = null;
 
@@ -63,7 +71,7 @@ export class AppComponent implements OnInit {
       .asObservable()
       .pipe(
         startWith(0),
-        switchMap(() => timer(0, 1 * 20 * 1000)),
+        switchMap(() => timer(0, this.updateInterval)),
         switchMap((_) => {
           const activeStyle = this.style.activeStyle;
           if (activeStyle == "groups") {
@@ -77,7 +85,12 @@ export class AppComponent implements OnInit {
               .loadAppointments()
               .pipe(concatMap((_) => this.dataService.loadButtons()));
           } else return of(null);
-        })
+        }),
+        catchError((error) => {
+          console.error(error);
+          return throwError(error);
+        }),
+        retryWhen((errors) => errors.pipe(delay(this.updateInterval)))
       )
       .subscribe(
         (_) => {},
