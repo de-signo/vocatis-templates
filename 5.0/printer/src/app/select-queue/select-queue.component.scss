@@ -46,7 +46,7 @@
   h6 {
     font-size: 3rem;
     text-align: center;
-    color: $color-highlight-background;
+    color: $color-error-background;
   }
 
   .single-button {
@@ -209,8 +209,8 @@
       overflow: hidden;
     }
     &.closed > div {
-      background-color: $color-highlight-background;
-      color: $color-highlight-foreground;
+      background-color: $color-error-background;
+      color: $color-error-foreground;
 
       display: flex;
       align-items: center;
