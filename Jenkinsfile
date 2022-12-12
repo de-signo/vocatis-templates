@@ -10,7 +10,7 @@ pipeline {
   }
 
   options {
-    timeout(time: 10, unit: 'MINUTES')
+    timeout(time: 15, unit: 'MINUTES')
   }
 
   stages {
@@ -48,6 +48,16 @@ pipeline {
       }
       steps {
         bat 'git diff --exit-code'
+      }
+    }
+
+    stage('test-display') {
+      steps {
+        dir('5.0') {
+          dir('display') {
+            bat 'ng test --karma-config karma.conf.srv.js'
+          }
+        }
       }
     }
 
