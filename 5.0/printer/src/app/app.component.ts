@@ -21,6 +21,7 @@ import { OnInit } from "@angular/core";
   styleUrls: ["./app.component.scss"],
   host: {
     "[class.view-print]": "style.view == 'print'",
+    "[class.view-ticket]": "style.activeStyle == 'ticket'",
   },
 })
 export class AppComponent implements OnInit {

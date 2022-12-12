@@ -90,6 +90,9 @@ footer {
   :host.view-print > *:not(.print-page) {
     display: none;
   }
+  :host.view-ticket > *:not(.print-page) {
+    display: none;
+  }
 }
 
 /* when printing, only show print page */
