@@ -19,7 +19,7 @@ pipeline {
         // Initialize params as envvars, workaround for bug https://issues.jenkins-ci.org/browse/JENKINS-41929
         script { params.each { k, v -> env[k] = v } }
 
-        bat 'ng --version'
+        bat 'ng version'
 
         script {
           currentBuild.description = bat(returnStdout: true, script:"@git describe --tags --dirty").trim()
