@@ -41,7 +41,7 @@
                 title = g["title"],
                 items =
                   from b in g["items"]
-                  let queueid = b["queue"]
+                  let queueid = CommonGuidId.FromString((string)b["queue"])
                   let qs = queueStatus.Where(s=>s.Id.Equals(queueid)).FirstOrDefault()
                   select new {
                     title = b["title"],
