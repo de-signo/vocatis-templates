@@ -26,7 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
   popupQueue: WaitNumberItem[] = [];
   audioSrc: string = "";
 
-  voices: SpeechSynthesisVoice[] = [];
+  private voicesLoaded = false;
   speechUrl: string | null = null;
   speech: { voice: SpeechSynthesisVoice; text: string; rate: number } | null =
     null;
@@ -49,9 +49,8 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     // read voices (this seems to be lazy loaded. Thus listen to changed event.)
-    this.voices = speechSynthesis.getVoices();
     speechSynthesis.addEventListener("voiceschanged", () => {
-      this.voices = speechSynthesis.getVoices();
+      this.voicesLoaded = true;
       if (this.speechUrl) this.speech = this.parseSpeechUrl(this.speechUrl);
     });
 
@@ -189,15 +188,22 @@ export class AppComponent implements OnInit, OnDestroy {
       var found = voices.find((v) => v.name == voice);
       if (!found) found = voices.find((v) => v.name.startsWith(voice));
       if (!found) {
-        console.log(
-          `Selected voice '${voice}' not found. Available voices: ${voices}`
-        );
+        if (this.voicesLoaded) {
+          console.log(
+            `Selected voice '${voice}' not found. Available voices: ${voices.map(
+              (v) => v.name
+            )}`
+          );
+        }
       } else {
         vvoice = found ?? voices[0];
       }
     }
     var nrate = 1;
     if (rate) nrate = toNumber(rate);
+    if (vvoice) {
+      console.log(`Using voice: ${vvoice?.name}`);
+    }
     return { voice: vvoice, text: text, rate: nrate };
   }
 
