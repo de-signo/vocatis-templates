@@ -12,6 +12,9 @@ var debug = require("gulp-debug");
 var merge = require("merge-stream");
 hb.Handlebars.registerHelper("range", require("handlebars-helper-range"));
 
+const customersuffix = "";
+const customername = "";
+
 // compile styles
 gulp.task("css", function () {
   return gulp
@@ -33,6 +36,10 @@ specs = [
     clean: "../dist/import_*.zip",
     files: ["import/**", "!import/*.handlebars"],
     templates: ["import/Styles.xml.handlebars"],
+    templateData: {
+      suffix: customersuffix,
+      option_name: customername,
+    },
   },
   {
     name: "display",
@@ -40,17 +47,25 @@ specs = [
     clean: "../dist/display_*.zip",
     files: ["display/dist/display/**"],
     templates: ["display/src/Styles.xml.handlebars"],
+    templateData: {
+      suffix: customersuffix,
+      option_name: customername,
+    },
   },
   {
     name: "queueinfo",
     clean: "../dist/queueinfo_*.zip",
     files: ["queueinfo/**", "!queueinfo/*.handlebars"],
     templates: ["queueinfo/Styles.xml.handlebars"],
+    templateData: {
+      suffix: customersuffix,
+      option_name: customername,
+    },
   },
   {
     name: "printer_groups_nomultilang",
     ng: ["printer"],
-    clean: "../dist/printergroups_*.zip",
+    clean: "../dist/printergroups_nomultilang*.zip",
     files: [
       "printer/dist/**",
       "!printer/dist/app/**",
@@ -62,11 +77,35 @@ specs = [
       "printer/app_src/environments/environment.prod.ts.handlebars",
     ],
     templateData: {
-      suffix: "_openclose_nomultilang",
+      suffix: "_openclose_nomultilang" + customersuffix,
+      option_name: customername,
       use_groups_config: true,
       enable_app: false,
       enable_open_close: true,
       multilang: false,
+    },
+  },
+  {
+    name: "printer_groups_multilang",
+    ng: ["printer"],
+    clean: "../dist/printergroups_multilang*.zip",
+    files: [
+      "printer/dist/**",
+      "!printer/dist/app/**",
+      "!printer/dist/printer/assets/test*.json",
+    ],
+    templates: [
+      { input: "printer/Styles.xml.handlebars", dest: "printer/dist" },
+      "printer/src/environments/environment.prod.ts.handlebars",
+      "printer/app_src/environments/environment.prod.ts.handlebars",
+    ],
+    templateData: {
+      suffix: "_openclose_multilang" + customersuffix,
+      option_name: customername,
+      use_groups_config: true,
+      enable_app: false,
+      enable_open_close: true,
+      multilang: true,
     },
   },
 ];
@@ -113,7 +152,8 @@ var printerSpecs = [
       "printer/src/environments/environment.prod.ts.handlebars",
     ],
     templateData: {
-      option_name: "",
+      suffix: customersuffix,
+      option_name: customername,
       enable_open_close: true,
     },
   },

@@ -130,11 +130,11 @@
 </field>
 {{/inline}}
 
-  <style key="vocatis_import_appointments_2019_ts"
+  <style key="vocatis_import_appointments_2019_ts{{suffix}}"
           file="ImportFromData.cshtml" preview="preview.png"
          interactive="false" target="chromium">
     <names>
-      <name culture="de">Vocatis Terminimport mit Zeitpunkt ({{version}})</name>
+      <name culture="de">Vocatis Terminimport mit Zeitpunkt {{option_name}} ({{version}})</name>
     </names>
     <fields>
       {{> configFields}}
@@ -149,11 +149,11 @@
       {{> queueFields}}
     </fields>
   </style>
-  <style key="vocatic_import_appointments_2019"
+  <style key="vocatic_import_appointments_2019{{suffix}}"
           file="ImportFromData.cshtml" preview="preview.png"
          interactive="false" target="chromium">
     <names>
-      <name culture="de">Vocatis Terminimport mit Zeit und Uhrzeit ({{version}})</name>
+      <name culture="de">Vocatis Terminimport mit Zeit und Uhrzeit {{option_name}} ({{version}})</name>
     </names>
     <fields>
       {{> configFields}}

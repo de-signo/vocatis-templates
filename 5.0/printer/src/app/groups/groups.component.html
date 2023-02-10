@@ -7,7 +7,7 @@
   <tbody>
     <tr *ngFor="let g of groups; index as i">
       <td (click)="selectGroup(g, i)" class="btn">
-        <h5>{{ g.title }}</h5>
+        <h5>{{ g.title | selectLang }}</h5>
       </td>
     </tr>
   </tbody>

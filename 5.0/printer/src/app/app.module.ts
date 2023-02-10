@@ -18,6 +18,7 @@ import { HandleAppointmentComponent } from "./handle-appointment/handle-appointm
 import { PrintComponent } from "./print/print.component";
 import { FixedFocusDirective } from "./fixedfocus.directive";
 import { GroupsComponent } from "./groups/groups.component";
+import { SelectLangPipe } from "./select-lang.pipe";
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
@@ -30,6 +31,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     FixedFocusDirective,
+    SelectLangPipe,
     AppComponent,
     EntrySelectComponent,
     SelectQueueComponent,
