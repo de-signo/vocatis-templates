@@ -1,0 +1,34 @@
+@import "colors.scss";
+
+:host {
+  display: block;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 2vh;
+
+  td {
+    padding: 1vw;
+    background-color: $color-secondary-background;
+    color: $color-secondary-foreground;
+    box-shadow: 0.052vh 0.156vh 0.052vh $color-secondary-shadow;
+  }
+}
+
+button,
+a {
+  display: inline-block;
+  padding: 2px;
+  margin: 2px;
+  background-color: $color-primary-background;
+  color: $color-primary-foreground;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+svg {
+  height: 24px;
+  fill: $color-primary-foreground;
+}

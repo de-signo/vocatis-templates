@@ -1,0 +1,56 @@
+@import "colors.scss";
+
+header {
+  height: 80px;
+  margin: 0 15vw;
+  display: flex;
+  align-items: baseline;
+  gap: 3vw;
+
+  color: $color-primary-shadowred;
+
+  img {
+    height: 100%;
+  }
+  h1 {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 2em;
+  }
+}
+
+section,
+app-list {
+  margin: 5vh 15vw 0vh 15vw;
+}
+
+.error {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15vh 15vw;
+  background-color: black;
+  color: white;
+  opacity: 0.7;
+  white-space: pre-wrap;
+}
+
+footer {
+  padding: 3vh 3vw;
+  align-self: end;
+
+  display: grid;
+  grid-template-columns: 1fr;
+
+  color: $color-secondary-foreground;
+  font-size: 2.5rem;
+
+  /* designo logo */
+  .logo {
+    height: 1em;
+    fill: #e3e3e3;
+    justify-self: center;
+  }
+}
