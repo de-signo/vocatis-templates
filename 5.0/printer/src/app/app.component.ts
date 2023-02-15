@@ -55,7 +55,8 @@ export class AppComponent implements OnInit {
     translate.use("de");
 
     // configure idle timeout
-    idle.setIdle(environment.idleTimeout - 1);
+    this.style.updated.subscribe(() => idle.setIdle(style.idleTimeout - 1));
+    idle.setIdle(style.idleTimeout - 1);
     idle.setTimeout(1);
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
     idle.onTimeout.subscribe(() => {

@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { ActivatedRoute } from "@angular/router";
 
@@ -11,6 +11,7 @@ export class StyleService {
     "select";
   ticketShowQrCode = false;
   listShowQrCode = false;
+  idleTimeout = 10;
   aptErrorInfo: string = "";
   enablePrint = false;
   postponeOffset?: number;
@@ -30,12 +31,16 @@ export class StyleService {
   ticketId: string = "";
   ticketNumber: string = "";
 
+  updated = new EventEmitter();
+
   constructor(route: ActivatedRoute) {
     route.queryParams.subscribe((params) => {
       const qr = params["s/qr"];
       this.listShowQrCode = environment.enableApp && (qr == 1 || qr == 3);
       this.ticketShowQrCode = environment.enableApp && (qr == 2 || qr == 3);
       this.enablePrint = params["s/mode"] == "print";
+      const it = parseInt(params["s/it"]);
+      this.idleTimeout = Number.isNaN(it) ? 10 : it;
       const ar = params["s/ar"];
       this.arrow = ar == "d" ? "down" : "right";
       const pp = params["s/pp"];
@@ -88,6 +93,8 @@ export class StyleService {
       } else {
         this.activeStyle = "select";
       }
+
+      this.updated.emit();
     });
   }
 }
