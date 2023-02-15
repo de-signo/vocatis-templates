@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 import { Subscription, timer } from "rxjs";
 import { first } from "rxjs/operators";
-import { AppointmentModel, WaitNumberModel } from "./app-data.model";
+import { WaitNumberModel } from "./app-data.model";
 import { DataService } from "./data.service";
 import { StyleService } from "./style.service";
 import { TicketService } from "./ticket.service";
@@ -98,7 +98,8 @@ export class ScanAppointmentService {
             this.number = await this.data.getTicketFromAppointment(
               apt,
               queue.queue,
-              queue.categories
+              queue.categories,
+              this.style.postponeOffset
             );
             if (this.style.listShowQrCode) this.state = "qr";
             else {
