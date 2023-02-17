@@ -1,0 +1,15 @@
+@import "colors.scss";
+
+/* redefine defaults */
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+body {
+  /* text */
+  font-family: Futura, Arial, Helvetica, sans-serif;
+  /* background */
+  background-color: $color-common-background;
+}

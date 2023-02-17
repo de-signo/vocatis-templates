@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<StyleList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://stollsoft.de/iSign/v2/Content/Forms/Styles">
+
+{{#*inline "appointmentFields"}}
+{{#range 1 13}}
+<field key="ap_pn{{this}}">
+  <names>
+    <name>Terminplan {{this}}</name>
+  </names>
+  <content_class type="TextFree" />
+</field>
+<field key="ap_qi{{this}}">
+  <names>
+    <name>Warteschlange Termin {{this}}</name>
+  </names>
+  <content_class type="VocatisQueue"  />
+</field>
+{{/range}}
+<field key="ap_cat">
+  <names>
+    <name>Kategorie Termin</name>
+  </names>
+  <content_class type="VocatisCategories"/>
+</field>
+<field key="pp">
+  <names>
+    <name>Zurückstellen bis Termin</name>
+  </names>
+  <content_class type="TextChoose">
+    <text key="">Nein</text>
+    <text key="10">Ja, bis 10 Minuten nach Termin</text>
+    <text key="5">Ja, bis 5 Minuten nach Termin</text>
+    <text key="2">Ja, bis 2 Minuten nach Termin</text>
+    <text key="1">Ja, bis 1 Minute nach Termin</text>
+    <text key="0">Ja, bis Terminzeit</text>
+    <text key="-1">Ja, bis 1 Minute vor Termin</text>
+    <text key="-2">Ja, bis 2 Minuten vor Termin</text>
+    <text key="-5">Ja, bis 5 Minuten vor Termin</text>
+    <text key="-10">Ja, bis 10 Minuten vor Termin</text>
+  </content_class>
+</field>
+{{/inline}}
+
+  <style key="vocatis_appointmentui_{{suffix}}"
+         file="index.cshtml" preview="assets/img/preview_list.png"
+         interactive="false" target="chromium">
+    <names>
+      <name culture="de">vocatis appointment ui {{option_name}} ({{version}})</name>
+    </names>
+    <fields>
+      {{> appointmentFields}}
+    </fields>
+  </style>
+</StyleList>

@@ -53,6 +53,17 @@ specs = [
     },
   },
   {
+    name: "appointment-ui",
+    ng: ["appointment-ui"],
+    clean: "../dist/appointment-ui_*.zip",
+    files: ["appointment-ui/dist/appointment-ui/**"],
+    templates: ["appointment-ui/src/Styles.xml.handlebars"],
+    templateData: {
+      suffix: customersuffix,
+      option_name: customername,
+    },
+  },
+  {
     name: "queueinfo",
     clean: "../dist/queueinfo_*.zip",
     files: ["queueinfo/**", "!queueinfo/*.handlebars"],
