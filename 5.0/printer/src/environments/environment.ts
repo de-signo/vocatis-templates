@@ -12,7 +12,6 @@ export const environment = {
   enableOpenClose: true,
   enableApp: true,
   appUrl: "http://localhost:4201/",
-  appointmentTimeout: 100,
   showLogo: true,
 };
 

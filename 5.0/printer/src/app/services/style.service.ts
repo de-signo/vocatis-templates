@@ -12,6 +12,7 @@ export class StyleService {
   ticketShowQrCode = false;
   listShowQrCode = false;
   idleTimeout = 10;
+  appointmentTimeout = 5;
   aptErrorInfo: string = "";
   enablePrint = false;
   postponeOffset?: number;
@@ -41,6 +42,8 @@ export class StyleService {
       this.enablePrint = params["s/mode"] == "print";
       const it = parseInt(params["s/it"]);
       this.idleTimeout = Number.isNaN(it) ? 10 : it;
+      const at = parseInt(params["s/at"]);
+      this.appointmentTimeout = Number.isNaN(at) || at == 0 ? it : at;
       const ar = params["s/ar"];
       this.arrow = ar == "d" ? "down" : "right";
       const pp = params["s/pp"];
