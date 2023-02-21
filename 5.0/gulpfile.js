@@ -293,7 +293,7 @@ for (spec of specs) {
         } else {
           ngTaskName = `ng_${name}_${ng}`;
           gulp.task(ngTaskName, function (cb) {
-            exec("ng build", { cwd: ng }, function (err, stdout, stderr) {
+            exec(`ng build ${ng}`, { cwd: ng }, function (err, stdout, stderr) {
               console.log(stdout);
               console.log(stderr);
               cb(err);
