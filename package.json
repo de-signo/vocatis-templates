@@ -1,13 +1,14 @@
 {
   "version": "5.0.0",
   "name": "vocatis-standardvorlagen",
+  "type": "module",
   "workspaces": [
     "5.0/display",
     "5.0/printer"
   ],
   "devDependencies": {
     "@angular/cli": "^13.0.0",
-    "del": "^6.0.0",
+    "del": "^7.0.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-compile-handlebars": "^0.6.1",
@@ -17,10 +18,10 @@
     "gulp-sass": "^5.1.0",
     "gulp-zip": "^5.0.2",
     "handlebars-helper-range": "^1.1.1",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.3.7",
-    "prettier": "^2.6.2",
-    "sass": "^1.49.9"
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
+    "prettier": "^2.8.4",
+    "sass": "^1.58.3"
   },
   "lint-staged": {
     "*.{js,css,scss,md,ts,json}": "prettier --write"

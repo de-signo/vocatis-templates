@@ -1,16 +1,20 @@
-var gulp = require("gulp"),
-  cleanCSS = require("gulp-clean-css"),
-  del = require("del"),
-  exec = require("child_process").exec,
-  git = require("gulp-git"),
-  hb = require("gulp-compile-handlebars"),
-  log = require("fancy-log");
-(rename = require("gulp-rename")),
-  (sass = require("gulp-sass")(require("sass"))),
-  (zip = require("gulp-zip"));
-var debug = require("gulp-debug");
-var merge = require("merge-stream");
-hb.Handlebars.registerHelper("range", require("handlebars-helper-range"));
+import { deleteSync as del } from "del";
+import gulp from "gulp";
+import cleanCSS from "gulp-clean-css";
+import { exec } from "child_process";
+import git from "gulp-git";
+import hb from "gulp-compile-handlebars";
+import log from "fancy-log";
+import rename from "gulp-rename";
+import gulp_sass from "gulp-sass";
+import mod_sass from "sass";
+let sass = gulp_sass(mod_sass);
+import zip from "gulp-zip";
+import debug from "gulp-debug";
+import merge from "merge-stream";
+import handlebars_helper_range from "handlebars-helper-range";
+
+hb.Handlebars.registerHelper("range", handlebars_helper_range);
 
 const customersuffix = "";
 const customername = "";
@@ -24,7 +28,7 @@ gulp.task("css", function () {
     .pipe(gulp.dest("queueinfo"));
 });
 
-specs = [
+let specs = [
   {
     name: "api",
     clean: "../dist/api_*.zip",
@@ -112,7 +116,7 @@ specs = [
 
 // printer option generator
 // make sure test defaults are specified last
-options = [
+let options = [
   // app
   [
     {
@@ -158,10 +162,10 @@ var printerSpecs = [
     },
   },
 ];
-for (option of options) {
+for (let option of options) {
   var variantSpecs = [];
-  for (variant of option) {
-    for (s of printerSpecs) {
+  for (let variant of option) {
+    for (let s of printerSpecs) {
       // clone
       var vs = {};
       Object.assign(vs, s);
@@ -194,7 +198,7 @@ log("Specs: ", printerSpecs);
 
 // create packages
 gulp.task("clean_zip", function (done) {
-  for (spec of specs) {
+  for (let spec of specs) {
     if (spec["clean"]) {
       del(spec["clean"], { force: true });
     }
@@ -216,8 +220,8 @@ gulp.task("read_version", function (done) {
   );
 });
 
-zip_tasks = [];
-for (spec of specs) {
+let zip_tasks = [];
+for (let spec of specs) {
   // context for tasks
   (function (spec) {
     var name = spec["name"];
