@@ -1,10 +1,5 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-import { ButtonModel, WaitNumberModel } from "./app-data.model";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { tap } from "rxjs/operators";
-import { BehaviorSubject } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 
 @Injectable({
@@ -18,7 +13,7 @@ export class StyleService {
   listShowQrCode = false;
   aptErrorInfo: string = "";
   enablePrint = false;
-  enablePostpone = false;
+  postponeOffset?: number;
   late: null | number = null;
   appShowWaitTime = false;
   listShowWaitTime = false;
@@ -44,7 +39,8 @@ export class StyleService {
       const ar = params["s/ar"];
       this.arrow = ar == "d" ? "down" : "right";
       const pp = params["s/pp"];
-      this.enablePostpone = pp == "1" || pp == 1;
+      this.postponeOffset =
+        !pp && pp != "0" && pp != 0 ? undefined : 1000 * parseInt(pp);
       const lt = parseInt(params["s/lt"]);
       this.late = Number.isNaN(lt) ? null : lt;
       this.aptErrorInfo = params["s/aei"] ?? "";

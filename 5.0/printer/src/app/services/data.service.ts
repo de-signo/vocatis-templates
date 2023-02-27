@@ -99,7 +99,8 @@ export class DataService {
   getTicketFromAppointment(
     apt: AppointmentModel,
     queue: string,
-    categories: string[]
+    categories: string[],
+    postponeOffset?: number
   ): Promise<WaitNumberModel> {
     const jsonFile = environment.numberServiceUrl;
     const date = new Date(apt.time);
@@ -117,8 +118,13 @@ export class DataService {
         }) +
         " - " +
         apt.title,
-      postpone: apt.time,
     });
+    if (postponeOffset !== undefined) {
+      params = params.append(
+        "postpone",
+        new Date(+date + +postponeOffset).toISOString()
+      );
+    }
     return this.http
       .get<WaitNumberModel>(jsonFile, { params: params })
       .toPromise();
