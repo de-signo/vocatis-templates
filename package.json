@@ -3,11 +3,11 @@
   "name": "vocatis-standardvorlagen",
   "type": "module",
   "workspaces": [
+    "5.0/appointment-ui",
     "5.0/display",
     "5.0/printer"
   ],
   "devDependencies": {
-    "@angular/cli": "^13.0.0",
     "del": "^7.0.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",

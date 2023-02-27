@@ -1,11 +1,9 @@
 .angular
-/node_modules
-/5.0/display/node_modules
+node_modules
 /5.0/display/src/Styles.xml
 /5.0/import/Styles.xml
 /5.0/queueinfo/Styles.xml
 /5.0/printer/dist
-/5.0/printer/node_modules
 /5.0/printer/src/Styles.xml
 /5.0/printer/src/environments/environment.prod.ts
 /5.0/printer/app-src/environments/environment.prod.ts
