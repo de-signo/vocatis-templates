@@ -40,10 +40,27 @@ export class StyleService {
       this.listShowQrCode = environment.enableApp && (qr == 1 || qr == 3);
       this.ticketShowQrCode = environment.enableApp && (qr == 2 || qr == 3);
       this.enablePrint = params["s/mode"] == "print";
+
+      // timeouts
+      // if only one is set, use it for both, if non is set, use max
       const it = parseInt(params["s/it"]);
-      this.idleTimeout = Number.isNaN(it) ? 10 : it;
       const at = parseInt(params["s/at"]);
-      this.appointmentTimeout = Number.isNaN(at) || at == 0 ? it : at;
+      if (Number.isNaN(it)) {
+        if (Number.isNaN(at)) {
+          this.idleTimeout = 60;
+          this.appointmentTimeout = 60;
+        } else {
+          this.idleTimeout = at;
+          this.appointmentTimeout = at;
+        }
+      } else if (Number.isNaN(at)) {
+        this.idleTimeout = it;
+        this.appointmentTimeout = it;
+      } else {
+        this.idleTimeout = it;
+        this.appointmentTimeout = at == 0 ? it : at;
+      }
+
       const ar = params["s/ar"];
       this.arrow = ar == "d" ? "down" : "right";
       const pp = params["s/pp"];

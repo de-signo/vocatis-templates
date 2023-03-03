@@ -45,6 +45,15 @@
     <text key="d">unten</text>
   </content_class>
 </field>
+<field key="tracking_id">
+  <names>
+    <name>Tracking-ID</name>
+  </names>
+  <content_class type="TextFree" />
+</field>
+{{/inline}}
+
+{{#*inline "timeoutField"}}
 <field key="it">
   <names>
     <name>Leerlauf Timeout</name>
@@ -58,12 +67,6 @@
     <text key="40">40 Sekunden</text>
     <text key="60">60 Sekunden</text>
   </content_class>
-</field>
-<field key="tracking_id">
-  <names>
-    <name>Tracking-ID</name>
-  </names>
-  <content_class type="TextFree" />
 </field>
 {{/inline}}
 
@@ -252,6 +255,7 @@
     </names>
     <fields>
       {{> commonFields}}
+      {{> timeoutField}}
     </fields>
   </style>
 {{else}}
@@ -263,6 +267,9 @@
     <fields>
       {{> commonFields}}
       {{> printerFields}}
+      {{#if multilang}}
+        {{> timeoutField}}
+      {{/if}}
     </fields>
   </style>
 
@@ -274,6 +281,9 @@
     <fields>
       {{> commonFields}}
       {{> appointmentFields}}
+      {{#if multilang}}
+        {{> timeoutField}}
+      {{/if}}
     </fields>
   </style>
 
@@ -286,6 +296,7 @@
       {{> commonFields}}
       {{> appointmentFields}}
       {{> printerFields}}
+      {{> timeoutField}}
     </fields>
   </style>
 {{/if}}
