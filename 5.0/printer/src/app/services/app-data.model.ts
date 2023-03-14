@@ -1,12 +1,12 @@
 export interface LeanButtonModel {
   queue: string;
-  categories: string[];
+  categories?: string[];
   title: string | { [key: string]: string };
 }
 
 export class ButtonModel implements LeanButtonModel {
   queue: string = "";
-  categories: string[] = [];
+  categories?: string[] = [];
   title: string | { [key: string]: string } = "";
   queueLength: number = -1;
   estimateWaitTime: number = -1;
