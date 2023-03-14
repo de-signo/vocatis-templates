@@ -53,6 +53,23 @@
 </field>
 {{/inline}}
 
+{{#*inline "timeoutField"}}
+<field key="it">
+  <names>
+    <name>Leerlauf Timeout</name>
+  </names>
+  <content_class type="TextChoose">
+    <text key="8">8 Sekunden</text>
+    <text key="10">10 Sekunden</text>
+    <text key="15">15 Sekunden</text>
+    <text key="20">20 Sekunden</text>
+    <text key="30">30 Sekunden</text>
+    <text key="40">40 Sekunden</text>
+    <text key="60">60 Sekunden</text>
+  </content_class>
+</field>
+{{/inline}}
+
 {{#*inline "printerFields"}}
 {{#range 1 10}}
 <field key="text{{this}}">
@@ -156,6 +173,20 @@
   </names>
   <content_class type="TextFree" />
 </field>
+<field key="at">
+  <names>
+    <name>Termin Timeout</name>
+  </names>
+  <content_class type="TextChoose">
+    <text key="0">Wie Leerlauf-Timeout</text>
+    <text key="5">5 Sekunden</text>
+    <text key="10">10 Sekunden</text>
+    <text key="15">15 Sekunden</text>
+    <text key="20">20 Sekunden</text>
+    <text key="30">30 Sekunden</text>
+    <text key="40">40 Sekunden</text>
+  </content_class>
+</field>
 <field key="import">
   <names>
     <name>Termine</name>
@@ -224,6 +255,7 @@
     </names>
     <fields>
       {{> commonFields}}
+      {{> timeoutField}}
     </fields>
   </style>
 {{else}}
@@ -235,6 +267,9 @@
     <fields>
       {{> commonFields}}
       {{> printerFields}}
+      {{#if multilang}}
+        {{> timeoutField}}
+      {{/if}}
     </fields>
   </style>
 
@@ -246,6 +281,9 @@
     <fields>
       {{> commonFields}}
       {{> appointmentFields}}
+      {{#if multilang}}
+        {{> timeoutField}}
+      {{/if}}
     </fields>
   </style>
 
@@ -258,6 +296,7 @@
       {{> commonFields}}
       {{> appointmentFields}}
       {{> printerFields}}
+      {{> timeoutField}}
     </fields>
   </style>
 {{/if}}

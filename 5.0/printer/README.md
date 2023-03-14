@@ -18,6 +18,8 @@ Die Übersetzungen sind in assets/i18n zu finden. Diese können mit https://www.
 
 ## Test Urls
 
+http://localhost:4200/?s/it=1000 // langer timeout
+
 Nur Warteschlagen:
 http://localhost:4200/select-queue?s=vocatic_multi_2019
 http://localhost:4200/select-queue?s=vocatic_multi_2019&s/mode=print

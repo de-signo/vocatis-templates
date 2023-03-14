@@ -110,8 +110,8 @@ export class ScanAppointmentService {
         }
       }
     }
-    this.timerSub = timer(environment.appointmentTimeout * 1000).subscribe(
-      (_) => this.router.navigate(["/"], { queryParamsHandling: "preserve" })
+    this.timerSub = timer(this.style.appointmentTimeout * 1000).subscribe((_) =>
+      this.router.navigate(["/"], { queryParamsHandling: "preserve" })
     );
   }
 
