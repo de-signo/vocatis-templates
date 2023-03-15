@@ -88,11 +88,11 @@ export class DataService {
 
   getNewNumber(
     queue: string,
-    categories: string[]
+    categories?: string[]
   ): Observable<WaitNumberModel> {
     const jsonFile = environment.numberServiceUrl;
     return this.http.get<WaitNumberModel>(jsonFile, {
-      params: { queue: queue, categories: categories },
+      params: { queue: queue, categories: categories ?? "" },
     });
   }
 
