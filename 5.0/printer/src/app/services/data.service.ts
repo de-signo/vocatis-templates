@@ -12,7 +12,7 @@ import {
   HttpParameterCodec,
   HttpParams,
 } from "@angular/common/http";
-import { Observable, of } from "rxjs";
+import { firstValueFrom, Observable } from "rxjs";
 import { first, tap } from "rxjs/operators";
 import { BehaviorSubject } from "rxjs";
 
@@ -125,9 +125,9 @@ export class DataService {
         new Date(+date + +postponeOffset).toISOString()
       );
     }
-    return this.http
-      .get<WaitNumberModel>(jsonFile, { params: params })
-      .toPromise();
+    return firstValueFrom(
+      this.http.get<WaitNumberModel>(jsonFile, { params: params })
+    );
   }
 
   postPrinterStatus(

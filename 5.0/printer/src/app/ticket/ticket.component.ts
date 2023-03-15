@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnDestroy, OnInit } from "@angular/core";
 import { LangChangeEvent, TranslateService } from "@ngx-translate/core";
-import { Subject, Subscription } from "rxjs";
-import { first } from "rxjs/operators";
+import { firstValueFrom, Subject, Subscription } from "rxjs";
 import { WaitNumberModel } from "../services/app-data.model";
 import { AppLinkService } from "../services/app-link.service";
 import { StyleService } from "../services/style.service";
@@ -72,7 +71,7 @@ export class TicketComponent implements OnInit, OnDestroy {
 
   loaded(): Promise<any> {
     if (this.isLoaded) return Promise.resolve();
-    else return this.loadedSubject.pipe(first()).toPromise();
+    else return firstValueFrom(this.loadedSubject);
   }
 
   onImgLoaded(event: any) {
@@ -80,7 +79,7 @@ export class TicketComponent implements OnInit, OnDestroy {
     let count = this.element.nativeElement.getElementsByTagName("img").length;
     if (this.loadedImages >= count) {
       this.isLoaded = true;
-      this.loadedSubject.next();
+      this.loadedSubject.next(true);
     }
   }
 }

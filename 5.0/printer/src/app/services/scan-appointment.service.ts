@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { environment } from "src/environments/environment";
-import { Subscription, timer } from "rxjs";
+import { Subscription, timer, firstValueFrom } from "rxjs";
 import { first } from "rxjs/operators";
 import { WaitNumberModel } from "./app-data.model";
 import { DataService } from "./data.service";
@@ -44,9 +43,9 @@ export class ScanAppointmentService {
       this.state = "invalid";
     } else {
       let apt_id = match[1];
-      const appts = await this.data.appointments.pipe(first()).toPromise();
+      const appts = await firstValueFrom(this.data.appointments);
 
-      const apt = appts.find((apt) => apt.id == apt_id);
+      const apt = appts?.find((apt) => apt.id == apt_id);
       if (!apt) {
         // find time
         const dtregex = /DTSTART[:Ö]([0-9]*)T([0-9]*)/;

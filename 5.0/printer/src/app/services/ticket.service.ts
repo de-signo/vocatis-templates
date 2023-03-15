@@ -1,13 +1,9 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { timer } from "rxjs";
+import { firstValueFrom, timer } from "rxjs";
 import { DataService } from "./data.service";
 import { first } from "rxjs/operators";
-import {
-  ButtonModel,
-  LeanButtonModel,
-  WaitNumberModel,
-} from "./app-data.model";
+import { LeanButtonModel, WaitNumberModel } from "./app-data.model";
 import { StyleService } from "./style.service";
 import { TicketComponent } from "../ticket/ticket.component";
 import { toBlob } from "html-to-image";
@@ -98,10 +94,9 @@ export class TicketService {
     });
 
     // get number from server
-    let data = await this.dataService
-      .getNewNumber(b.queue, b.categories)
-      .pipe(first())
-      .toPromise();
+    let data = await firstValueFrom(
+      this.dataService.getNewNumber(b.queue, b.categories)
+    );
     this.current = data;
     this.onNumberGenerated.emit();
     if (this.style.enablePrint) {
