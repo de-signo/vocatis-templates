@@ -7,13 +7,13 @@
   bottom: 0;
   left: 0;
   right: 0;
-  margin: 0 15vw;
+  margin: 0 $hmargin;
   &.buttons-2 {
-    margin: 12vh 15vw 20vh 15vw;
+    margin: 12vh $hmargin 20vh $hmargin;
   }
   &.buttons-3,
   &.buttons-4 {
-    margin: 10vh 15vw 10vh 15vw;
+    margin: 10vh $hmargin 10vh $hmargin;
   }
   display: grid;
 }
@@ -23,7 +23,7 @@
   grid-template-rows: 1fr 30% 20%; /* respect gaps! */
   justify-items: center;
   align-items: center;
-  margin: 10vh 15vw 5vh 15vw;
+  margin: 10vh $hmargin 5vh $hmargin;
 
   &.closed {
     color: $color-secondary-foreground;

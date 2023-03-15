@@ -1,15 +1,17 @@
+$hmargin: 10vw;
+
 @mixin panel {
   background-color: $color-secondary-background;
   color: $color-secondary-foreground;
-  height: 60vh;
-  padding: 0 15vw;
+  height: 50vh;
+  padding: 0 $hmargin;
 }
 
 @mixin nav-button {
   /* common style for navigation buttons */
-  border: 0.2rem solid $color-common-foreground;
+  border: 0.3rem solid $color-common-foreground;
   color: $color-common-foreground;
-  padding: 2vh 2vw;
+  padding: 1.5vh 1.5vw;
   font-size: 2.5em;
 
   &:hover {

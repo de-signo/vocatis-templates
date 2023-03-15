@@ -19,6 +19,7 @@ import { PrintComponent } from "./print/print.component";
 import { FixedFocusDirective } from "./fixedfocus.directive";
 import { GroupsComponent } from "./groups/groups.component";
 import { SelectLangPipe } from "./select-lang.pipe";
+import { InfoComponent } from "./info/info.component";
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
@@ -40,6 +41,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HandleAppointmentComponent,
     PrintComponent,
     GroupsComponent,
+    InfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       { path: "select-queue", component: SelectQueueComponent },
       { path: "scan-appointment", component: ScanAppointmentComponent },
       { path: "handle-appointment", component: HandleAppointmentComponent },
+      { path: "info", component: InfoComponent },
       { path: "**", component: EntrySelectComponent },
     ]),
     TranslateModule.forRoot({

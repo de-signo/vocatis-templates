@@ -34,6 +34,7 @@ import { OnInit } from "@angular/core";
 export class AppComponent implements OnInit {
   langs: string[] | null;
   showHome: boolean = true;
+  showInfo: boolean = true;
   showLogo: boolean;
   private readonly updateInterval = 1 * 20 * 1000;
 
@@ -55,7 +56,10 @@ export class AppComponent implements OnInit {
     translate.use("de");
 
     // configure idle timeout
-    this.style.updated.subscribe(() => idle.setIdle(style.idleTimeout - 1));
+    this.style.updated.subscribe(() => {
+      this.showInfo = !!style.aptErrorInfo;
+      idle.setIdle(style.idleTimeout - 1);
+    });
     idle.setIdle(style.idleTimeout - 1);
     idle.setTimeout(1);
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
