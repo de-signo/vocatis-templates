@@ -12,15 +12,20 @@ import {
   startWith,
   switchMap,
 } from "rxjs/operators";
-import { EntrySelectComponent } from "./entry-select/entry-select.component";
+import {
+  appoinmentModeToEntryRoute,
+  EntrySelectComponent,
+} from "./entry-select/entry-select.component";
 import { SelectQueueComponent } from "./select-queue/select-queue.component";
 import { ScanAppointmentComponent } from "./scan-appointment/scan-appointment.component";
-import { StyleService } from "./services/style.service";
+import { AppointmentModes, StyleService } from "./services/style.service";
 import { TicketService } from "./services/ticket.service";
 import { TicketComponent } from "./ticket/ticket.component";
 import { environment } from "src/environments/environment";
 import { GroupsComponent } from "./groups/groups.component";
 import { OnInit } from "@angular/core";
+import { EnterAppointIdComponent } from "./enter-appoint-id/enter-appoint-id.component";
+import { SelectAppointModeComponent } from "./select-appoint-mode/select-appoint-mode.component";
 
 @Component({
   selector: "app-root",
@@ -117,11 +122,12 @@ export class AppComponent implements OnInit {
     const activeStyle = this.style.activeStyle;
     if (component instanceof EntrySelectComponent) {
       this.showHome = false;
-      if (activeStyle == "appointment")
-        this.router.navigate(["/scan-appointment"], {
+      if (activeStyle == "appointment") {
+        const aRoute = appoinmentModeToEntryRoute(this.style.appointmentMode);
+        this.router.navigate([aRoute], {
           queryParamsHandling: "preserve",
         });
-      else if (activeStyle == "printer") {
+      } else if (activeStyle == "printer") {
         this.router.navigate(["/select-queue"], {
           queryParamsHandling: "preserve",
         });
@@ -137,12 +143,19 @@ export class AppComponent implements OnInit {
       component instanceof SelectQueueComponent
     )
       this.showHome = false;
-    else if (
-      activeStyle == "appointment" &&
-      component instanceof ScanAppointmentComponent
-    )
-      this.showHome = false;
-    else if (activeStyle == "groups" && component instanceof GroupsComponent)
+    else if (activeStyle == "appointment") {
+      const apm =
+        this.style.appointmentMode &
+        (AppointmentModes.QRCode | AppointmentModes.AppointmentId);
+      this.showHome = !(
+        (component instanceof ScanAppointmentComponent &&
+          apm == AppointmentModes.QRCode) ||
+        (component instanceof EnterAppointIdComponent &&
+          apm == AppointmentModes.AppointmentId) ||
+        (component instanceof SelectAppointModeComponent &&
+          apm == (AppointmentModes.AppointmentId | AppointmentModes.QRCode))
+      );
+    } else if (activeStyle == "groups" && component instanceof GroupsComponent)
       this.showHome = false;
     else this.showHome = true;
   }

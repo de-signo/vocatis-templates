@@ -9,10 +9,13 @@ $hmargin: 10vw;
 
 @mixin nav-button {
   /* common style for navigation buttons */
+  display: block;
   border: 0.3rem solid $color-common-foreground;
   color: $color-common-foreground;
   padding: 1.5vh 1.5vw;
-  font-size: 2.5em;
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
 
   &:hover {
     background-color: $color-primary-background;

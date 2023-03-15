@@ -1,0 +1,80 @@
+@import "colors.scss";
+@import "mixins.scss";
+
+section {
+  @include panel;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.code-row {
+  display: grid;
+  grid-template-columns: 70% 1fr;
+  gap: 2vw;
+
+  & > :not(.code) {
+    justify-self: end;
+    width: 8vw;
+  }
+}
+
+.code {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+
+  input {
+    background-color: $color-secondary-foreground;
+    color: $color-secondary-background;
+    width: 8vw;
+    height: 8vw;
+    font-size: 3.5em;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+.code-row button {
+  background-color: inherit;
+  fill: $color-secondary-foreground;
+  box-shadow: 1px 3px 7px $color-secondary-foreground;
+  margin-bottom: 2vh;
+
+  > svg {
+    display: block;
+    padding: 0.6vh 1vw;
+    border: solid 0.2rem $color-secondary-foreground;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 2rem;
+  margin: 2vh 0;
+}
+
+.keyboard {
+  padding: 8vh $hmargin;
+
+  div {
+    text-align: center;
+
+    button {
+      color: $color-primary-background;
+      background-color: inherit;
+      font-size: 5em;
+
+      display: inline-block;
+      border: 0.2rem solid $color-highlight-background;
+      padding: 0vh 2.5vw;
+      margin: 1.5vh 1.8vw;
+    }
+
+    button:hover {
+      background-color: $color-highlight-background;
+      color: $color-primary-foreground;
+    }
+  }
+}

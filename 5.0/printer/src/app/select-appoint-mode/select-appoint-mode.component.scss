@@ -3,8 +3,21 @@
 
 .site-content {
   @include panel;
-
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+
+  img {
+    padding-bottom: 10vh;
+  }
+}
+
+nav {
+  margin: 0 $hmargin;
+
+  a {
+    @include nav-button;
+    margin: 2vh 0;
+    font-size: 3.3rem;
+  }
 }

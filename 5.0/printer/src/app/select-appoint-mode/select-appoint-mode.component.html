@@ -1,0 +1,20 @@
+<div class="site-content">
+  <h3>{{ "SelectMode_Header" | translate }}</h3>
+  <img src="assets/img/confirmation_code_qr.png">
+</div>
+<textarea
+  id="scan"
+  (keydown)="onScanInput($event)"
+  fixedfocus
+  spellcheck="false"
+></textarea>
+
+<nav>
+  <h3>{{ "SelectMode_Info" | translate }}</h3>
+  <a routerLink="/scan-appointment" queryParamsHandling="preserve">{{
+    "SelectMode_SelectScanQR" | translate
+  }}</a>
+  <a routerLink="/enter-appoint-id" queryParamsHandling="preserve">{{
+    "SelectMode_SelectEnterId" | translate
+  }}</a>
+</nav>

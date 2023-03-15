@@ -146,24 +146,31 @@
     <text key="60">60 min</text>
   </content_class>
 </field>
-<field key="fg">
+<field key="apm">
   <names>
-    <name>Zeige "QR Code vergessen"</name>
+    <name>Anmelden mit"</name>
   </names>
   <content_class type="TextChoose">
-    <text key="0">Nein</text>
-    <text key="1">Ja</text>
+    <!-- flags
+      1: qr-code
+      2: id
+      4: forgot
+    -->
+    <text key="1">QR-Code</text>
+    <text key="5">QR-Code und "QR-Code vergessen"</text>
+    <text key="2">Terminnummer</text>
+    <text key="3">QR-Code und Terminnummer</text>
   </content_class>
 </field>
 <field key="fgq">
   <names>
-    <name>Warteschlange Vergessen</name>
+    <name>Warteschlange "Vergessen"</name>
   </names>
   <content_class type="VocatisQueue"  />
 </field>
 <field key="fgc">
   <names>
-    <name>Kategorie Vergessen</name>
+    <name>Kategorie "Vergessen"</name>
   </names>
   <content_class type="VocatisCategories"/>
 </field>

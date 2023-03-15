@@ -23,7 +23,8 @@ export class StyleService {
   trackingId = "";
   planToQueue: { [key: string]: { queue: string; categories: string[] } } = {};
 
-  // forgot qr code
+  // appointment mode and forgot qr code
+  appointmentMode = AppointmentModes.QRCode;
   scanShowForgotQrCode = false;
   forgotQrCodeQueue: string = "";
   forgotQrCodeCategories: string[] = [];
@@ -89,9 +90,11 @@ export class StyleService {
       }
       this.planToQueue = p2q;
 
-      // forgot qrCode params
-      const fg = params["s/fg"];
-      this.scanShowForgotQrCode = fg == "1" || fg == 1;
+      // appointment mode and forgot
+      const apm = parseInt(params["s/apm"] ?? "1");
+      this.appointmentMode = apm;
+      this.scanShowForgotQrCode =
+        (apm & AppointmentModes.Forgot) == AppointmentModes.Forgot;
       this.forgotQrCodeCategories = params["s/fgc"] ?? [];
       this.forgotQrCodeQueue = params["s/fgq"];
 
@@ -117,4 +120,10 @@ export class StyleService {
       this.updated.emit();
     });
   }
+}
+
+export enum AppointmentModes {
+  QRCode = 1,
+  AppointmentId = 2,
+  Forgot = 4,
 }
