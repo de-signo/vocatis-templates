@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
 import { StyleService } from "../services/style.service";
 import { TicketService } from "../services/ticket.service";
 
@@ -12,5 +14,24 @@ export class PrintComponent {
     return this.style.arrow;
   }
 
-  constructor(public ticket: TicketService, private style: StyleService) {}
+  isAppointment = false;
+
+  private subscriptions: Subscription[] = [];
+  constructor(
+    public ticket: TicketService,
+    private style: StyleService,
+    route: ActivatedRoute
+  ) {
+    this.subscriptions.push(
+      route.params.subscribe((params) => {
+        const i = params["type"];
+        this.isAppointment = i === "appointment";
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    for (const sub of this.subscriptions) sub.unsubscribe();
+    this.subscriptions = [];
+  }
 }

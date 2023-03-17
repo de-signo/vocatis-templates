@@ -89,7 +89,7 @@ export class TicketService {
   async handleGetNewNumber(b: LeanButtonModel) {
     this.state = "wait";
     this.button = b;
-    await this.router.navigate(["/print-status"], {
+    await this.router.navigate(["/print-status", "ticket"], {
       queryParamsHandling: "preserve",
     });
 
@@ -101,7 +101,11 @@ export class TicketService {
     this.onNumberGenerated.emit();
     if (this.style.enablePrint) {
       await this.router.navigate(
-        [{ outlets: { primary: ["print-status"], print: ["ticket"] } }],
+        [
+          {
+            outlets: { primary: ["print-status", "ticket"], print: ["ticket"] },
+          },
+        ],
         { queryParamsHandling: "preserve" }
       );
       await this.printNumber(data);
@@ -118,18 +122,21 @@ export class TicketService {
     await this.router.navigate(["/"], { queryParamsHandling: "preserve" });
   }
 
-  async handlePrintTicket(num: WaitNumberModel): Promise<void> {
+  async handlePrintTicket(
+    num: WaitNumberModel,
+    type: "appointment" | "ticket" = "ticket"
+  ): Promise<void> {
     this.state = "wait";
     this.button = null;
     this.current = num;
-    await this.router.navigate(["/print-status"], {
+    await this.router.navigate(["/print-status", type], {
       queryParamsHandling: "preserve",
     });
 
     // get number from server
     if (this.style.enablePrint) {
       await this.router.navigate(
-        [{ outlets: { primary: ["print-status"], print: ["ticket"] } }],
+        [{ outlets: { primary: ["print-status", type], print: ["ticket"] } }],
         { queryParamsHandling: "preserve" }
       );
       await this.printNumber(num);

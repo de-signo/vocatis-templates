@@ -55,7 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       { path: "ticket", component: TicketComponent, outlet: "print" },
       { path: "groups/:index", component: SelectQueueComponent },
       { path: "groups", component: GroupsComponent },
-      { path: "print-status", component: PrintComponent },
+      { path: "print-status/:type", component: PrintComponent },
       { path: "select-queue", component: SelectQueueComponent },
       { path: "select-appoint-mode", component: SelectAppointModeComponent },
       { path: "scan-appointment", component: ScanAppointmentComponent },
