@@ -1,29 +1,65 @@
 @import "colors.scss";
 @import "mixins.scss";
 
-section {
-  @include panel;
+:host {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  flex-grow: 1;
 }
-svg {
-  width: 30%;
-  align-self: center;
-  fill: $color-secondary-foreground;
-}
-h1 {
-  font-size: 3em;
-  line-height: 4rem;
-  font-weight: bold;
+
+section {
+  @include panel;
+  box-sizing: border-box;
+  padding: 5vh $hmargin;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 5vh;
+
+  & > div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  svg {
+    width: 30%;
+    align-self: center;
+    fill: $color-secondary-foreground;
+  }
+
+  img {
+    width: 40%;
+    border: 0.3rem solid $color-secondary-foreground;
+    border-radius: 1rem;
+  }
 }
 
 nav {
+  margin: 0 $hmargin;
+  flex-grow: 1;
+
   display: flex;
-  margin: 5vh 15vw;
+  flex-direction: column;
+  justify-content: space-evenly;
+  & > * {
+    margin: 0;
+  }
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+    svg {
+      background-color: $color-highlight-background;
+      fill: $color-primary-foreground;
+      border-radius: 50%;
+      height: 2.7em;
+      flex: 0 0 auto;
+    }
+  }
 
   a {
-    flex: 1;
     text-align: center;
 
     @include nav-button;

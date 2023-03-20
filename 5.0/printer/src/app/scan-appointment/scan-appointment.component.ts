@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { Subscription, timer } from "rxjs";
+import { Component, OnInit } from "@angular/core";
+import { Subscription, firstValueFrom, timer } from "rxjs";
 import { ScanAppointmentService } from "../services/scan-appointment.service";
 import { StyleService } from "../services/style.service";
 import { TicketService } from "../services/ticket.service";
@@ -9,7 +9,9 @@ import { TicketService } from "../services/ticket.service";
   templateUrl: "./scan-appointment.component.html",
   styleUrls: ["./scan-appointment.component.scss"],
 })
-export class ScanAppointmentComponent {
+export class ScanAppointmentComponent implements OnInit {
+  timeout = false;
+
   constructor(
     private scan: ScanAppointmentService,
     private style: StyleService,
@@ -23,6 +25,13 @@ export class ScanAppointmentComponent {
   get showForgotQR() {
     return this.style.scanShowForgotQrCode;
   }
+
+  ngOnInit(): void {
+    firstValueFrom(timer(4000)).then(() => {
+      this.timeout = true;
+    });
+  }
+
   private timerSub: Subscription | undefined;
   async onScanInput(event: Event) {
     if (this.timerSub) {
