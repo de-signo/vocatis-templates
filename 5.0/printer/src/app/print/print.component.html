@@ -8,7 +8,7 @@
 </ng-template>
 
 <!-- wait popup is shown, while generating a new number -->
-<section *ngIf="ticket.state == 'wait'" id="waitPopup">
+<section *ngIf="state == 'wait'" id="waitPopup">
   <h4>{{ (isAppointment ? "Print_WaitHeader_Apt" : "Print_WaitHeader") | translate }}</h4>
   <img src="assets/img/wait.gif" class="wait" alt="wait" />
   <p>{{ "Print_WaitText" | translate }}</p>
@@ -16,7 +16,7 @@
 </section>
 
 <!-- take popup is shown, when the printout is ready -->
-<section *ngIf="ticket.state == 'take'" id="takePopup">
+<section *ngIf="state == 'take'" id="takePopup">
   <h4>{{ (isAppointment ? "Print_TakeHeader_Apt" : "Print_TakeHeader") | translate }}</h4>
   <img src="assets/img/wait.gif" class="wait" alt="wait" />
   <p>{{ "Print_TakeText" | translate }}</p>
@@ -24,7 +24,7 @@
 </section>
 
 <!-- show popup shows the number on the screen -->
-<section *ngIf="ticket.state == 'show'" id="showPopup">
+<section *ngIf="state == 'show'" id="showPopup">
   <h3 *ngIf="ticket.button?.queue">{{ "Print_ShowHeader" | translate }}</h3>
   <h2>{{ ticket.button?.title }}</h2>
   <p>{{ "Print_ShowText1" | translate }}</p>

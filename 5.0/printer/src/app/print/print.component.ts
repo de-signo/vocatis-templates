@@ -15,6 +15,7 @@ export class PrintComponent {
   }
 
   isAppointment = false;
+  state: "wait" | "take" | "show" = "wait";
 
   private subscriptions: Subscription[] = [];
   constructor(
@@ -26,6 +27,7 @@ export class PrintComponent {
       route.params.subscribe((params) => {
         const i = params["type"];
         this.isAppointment = i === "appointment";
+        this.state = params["state"];
       })
     );
   }

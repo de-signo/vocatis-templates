@@ -51,3 +51,12 @@ http://localhost:4200/?s=vocatis_ticket_default&s/ticketnumber=B12
 
 App:
 http://localhost:4201/
+
+Nur Ansichten ohne Funktion:
+Druckstatus:
+http://localhost:4200/print-status/ticket/wait
+http://localhost:4200/print-status/ticket/print
+http://localhost:4200/print-status/ticket/show
+http://localhost:4200/print-status/appointment/wait
+http://localhost:4200/print-status/appointment/print
+http://localhost:4200/print-status/appointment/show

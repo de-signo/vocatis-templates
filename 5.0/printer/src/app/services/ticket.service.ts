@@ -37,7 +37,6 @@ export class TicketService {
 
   current: WaitNumberModel = { id: "", number: "AA 530" };
   button: LeanButtonModel | null = null;
-  state: "wait" | "show" | "take" = "wait";
   printComponent: TicketComponent | null = null; // must be set by app component when ticket is loaded
   onNumberGenerated = new EventEmitter();
 
@@ -87,9 +86,8 @@ export class TicketService {
   }
 
   async handleGetNewNumber(b: LeanButtonModel) {
-    this.state = "wait";
     this.button = b;
-    await this.router.navigate(["/print-status", "ticket"], {
+    await this.router.navigate(["/print-status", "ticket", "wait"], {
       queryParamsHandling: "preserve",
     });
 
@@ -109,15 +107,19 @@ export class TicketService {
         { queryParamsHandling: "preserve" }
       );
       await this.printNumber(data);
-      this.state = "take";
+      await this.router.navigate(["/print-status", "ticket", "take"], {
+        queryParamsHandling: "preserve",
+      });
+
       await timer(3000).toPromise();
     } else {
       // show the number
-      this.state = "show";
+      await this.router.navigate(["/print-status", "ticket", "show"], {
+        queryParamsHandling: "preserve",
+      });
       await timer(10000).toPromise();
     }
 
-    this.state = "wait";
     // warning: race condition with timer (see above)
     await this.router.navigate(["/"], { queryParamsHandling: "preserve" });
   }
@@ -126,10 +128,9 @@ export class TicketService {
     num: WaitNumberModel,
     type: "appointment" | "ticket" = "ticket"
   ): Promise<void> {
-    this.state = "wait";
     this.button = null;
     this.current = num;
-    await this.router.navigate(["/print-status", type], {
+    await this.router.navigate(["/print-status", type, "wait"], {
       queryParamsHandling: "preserve",
     });
 
@@ -140,15 +141,18 @@ export class TicketService {
         { queryParamsHandling: "preserve" }
       );
       await this.printNumber(num);
-      this.state = "take";
+      await this.router.navigate(["/print-status", type, "take"], {
+        queryParamsHandling: "preserve",
+      });
       await timer(3000).toPromise();
     } else {
       // show the number
-      this.state = "show";
+      await this.router.navigate(["/print-status", type, "show"], {
+        queryParamsHandling: "preserve",
+      });
       await timer(10000).toPromise();
     }
 
-    this.state = "wait";
     // warning: race condition with timer (see above)
     await this.router.navigate(["/"], { queryParamsHandling: "preserve" });
   }
