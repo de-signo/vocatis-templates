@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<StyleList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://stollsoft.de/iSign/v2/Content/Forms/Styles">
+
+  <style key="vocatis_display_popup_{{suffix}}"
+          file="index.cshtml" preview="assets/img/preview_list.png"
+         interactive="false" target="chromium">
+    <names>
+      <name culture="de">vocatis display popup {{option_name}} ({{version}})</name>
+    </names>
+    <fields>
+      <field key="source1">
+        <names>
+          <name>Warteschlange</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      <field key="notify">
+        <names>
+          <name>Glocke</name>
+        </names>
+         <content_class type="TextChoose">
+          <text key="">Keine</text>
+          <text key="assets/audio/tone.mp3">Standard</text>
+          <text key="assets/audio/done-for-you-612.mp3">Done for you</text>
+          <text key="assets/audio/eventually-590.mp3">Eventually</text>
+          <text key="assets/audio/goes-without-saying-608.mp3">Goes without saying</text>
+          <text key="assets/audio/happy-ending-415.mp3">Happy ending</text>
+          <text key="assets/audio/inflicted-601.mp3">Inflicted</text>
+          <text key="assets/audio/no-more-waiting-209.mp3">No more waiting</text>
+          <text key="assets/audio/piece-of-cake-611.mp3">Piece of cake</text>
+          <text key="assets/audio/quite-impressed-565.mp3">Quite impressed</text>
+          <text key="assets/audio/slow-spring-board-longer-tail-571.mp3">Slow spring board</text>
+          <text key="speech://voice=Microsoft Hedda Desktop&amp;text=~number~ bitte zu ~room~">Sprachausgabe (Hedda)</text>
+        </content_class>
+      </field>
+    </fields>
+  </style>
+
+
+  <style key="vocatis_display_popup3_{{suffix}}"
+          file="index.cshtml" preview="assets/img/preview_multilist.png"
+         interactive="false" target="chromium">
+    <names>
+      <name culture="de">vocatis display popup multi {{option_name}} ({{version}})</name>
+    </names>
+    <fields>
+      {{#range 1 9}}
+      <field key="source{{this}}">
+        <names>
+          <name>Vocatis Warteschlange {{this}}</name>
+        </names>
+        <content_class type="VocatisQueue"  />
+      </field>
+      {{/range}}
+      <field key="notify">
+        <names>
+          <name>Glocke</name>
+        </names>
+         <content_class type="TextChoose">
+          <text key="">Keine</text>
+          <text key="assets/audio/tone.mp3">Standard</text>
+          <text key="assets/audio/done-for-you-612.mp3">Done for you</text>
+          <text key="assets/audio/eventually-590.mp3">Eventually</text>
+          <text key="assets/audio/goes-without-saying-608.mp3">Goes without saying</text>
+          <text key="assets/audio/happy-ending-415.mp3">Happy ending</text>
+          <text key="assets/audio/inflicted-601.mp3">Inflicted</text>
+          <text key="assets/audio/no-more-waiting-209.mp3">No more waiting</text>
+          <text key="assets/audio/piece-of-cake-611.mp3">Piece of cake</text>
+          <text key="assets/audio/quite-impressed-565.mp3">Quite impressed</text>
+          <text key="assets/audio/slow-spring-board-longer-tail-571.mp3">Slow spring board</text>
+          <text key="speech://voice=Microsoft Hedda Desktop&amp;text=~number~ bitte zu ~room~">Sprachausgabe (Hedda)</text>
+        </content_class>
+      </field>
+    </fields>
+  </style>
+
+</StyleList>

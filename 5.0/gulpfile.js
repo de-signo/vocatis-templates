@@ -57,6 +57,17 @@ let specs = [
     },
   },
   {
+    name: "display-popup",
+    ng: ["display-popup"],
+    clean: "../dist/display-popup_*.zip",
+    files: ["display-popup/dist/display-popup/**"],
+    templates: ["display-popup/src/Styles.xml.handlebars"],
+    templateData: {
+      suffix: customersuffix,
+      option_name: customername,
+    },
+  },
+  {
     name: "appointment-ui",
     ng: ["appointment-ui"],
     clean: "../dist/appointment-ui_*.zip",

@@ -1,0 +1,37 @@
+@import "colors.scss";
+
+:host {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: 15vh 20vw;
+
+  display: grid;
+  align-items: center;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+h1 {
+  width: fit-content;
+  font-size: 10rem;
+  padding: 1vh 5vw;
+  background-color: $color-primary-background;
+  color: $color-primary-foreground;
+}
+
+h2 {
+  font-size: 8rem;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 4.5rem;
+}
+
+h4 {
+  font-size: 5rem;
+  text-transform: uppercase;
+}
