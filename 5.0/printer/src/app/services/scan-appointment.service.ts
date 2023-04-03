@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subscription, timer, firstValueFrom } from "rxjs";
 import { first } from "rxjs/operators";
-import { WaitNumberModel } from "./app-data.model";
+import { AppointmentModel, WaitNumberModel } from "./app-data.model";
 import { DataService } from "./data.service";
 import { StyleService } from "./style.service";
 import { TicketService } from "./ticket.service";
@@ -76,42 +76,60 @@ export class ScanAppointmentService {
           );
         }
       } else {
-        const plan = apt.plan;
-        const queue = this.style.planToQueue[plan];
-        if (!queue) {
-          this.state = "noqueue";
-          console.log(`The plan '${plan}' is not configured.`);
-        } else {
-          const appTime = Date.parse(apt.time);
-          const cutOffTime =
-            this.style.late == null ? 0 : Date.now() - this.style.late * 60000;
-
-          this.currentDate = new Date(appTime);
-          if (appTime < cutOffTime) {
-            // too late
-            this.state = "late";
-            console.log(
-              `The appointment with id '${apt_id}' was at ${appTime}. Too late.`
-            );
-          } else {
-            this.number = await this.data.getTicketFromAppointment(
-              apt,
-              queue.queue,
-              queue.categories,
-              this.style.postponeOffset
-            );
-            if (this.style.listShowQrCode) this.state = "qr";
-            else {
-              await this.print.handlePrintTicket(this.number);
-              return;
-            }
-          }
-        }
+        if (await this.handleAppointment(apt)) return;
       }
     }
     this.timerSub = timer(this.style.appointmentTimeout * 1000).subscribe((_) =>
       this.router.navigate(["/"], { queryParamsHandling: "preserve" })
     );
+  }
+
+  async findAppointment(code: string): Promise<AppointmentModel | undefined> {
+    const appts = await firstValueFrom(this.data.appointments);
+    const aptmatches = appts
+      .filter((apt) => apt.id.endsWith(code))
+      .sort((a, b) => a.time.localeCompare(b.time));
+    const apt = aptmatches[0];
+    return apt;
+  }
+
+  async handleAppointment(apt: AppointmentModel): Promise<boolean> {
+    await this.router.navigate(["/handle-appointment"], {
+      queryParamsHandling: "preserve",
+    });
+
+    const plan = apt.plan;
+    const queue = this.style.planToQueue[plan];
+    if (!queue) {
+      this.state = "noqueue";
+      console.log(`The plan '${plan}' is not configured.`);
+    } else {
+      const appTime = Date.parse(apt.time);
+      const cutOffTime =
+        this.style.late == null ? 0 : Date.now() - this.style.late * 60000;
+
+      this.currentDate = new Date(appTime);
+      if (appTime < cutOffTime) {
+        // too late
+        this.state = "late";
+        console.log(
+          `The appointment with id '${apt.id}' was at ${appTime}. Too late.`
+        );
+      } else {
+        this.number = await this.data.getTicketFromAppointment(
+          apt,
+          queue.queue,
+          queue.categories,
+          this.style.postponeOffset
+        );
+        if (this.style.listShowQrCode) this.state = "qr";
+        else {
+          await this.print.handlePrintTicket(this.number, "appointment");
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   abort() {

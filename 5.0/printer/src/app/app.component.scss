@@ -1,4 +1,5 @@
 @import "colors.scss";
+@import "mixins.scss";
 
 :host:not(.view-print) {
   position: fixed;
@@ -7,23 +8,30 @@
   left: 0;
   right: 0;
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 4vh;
+  grid-template-rows: 8vh 1fr auto;
+  gap: 2vh;
 }
 
 header {
-  padding: 0 15vw;
+  padding: 0 $hmargin;
   display: flex;
   align-items: flex-end;
   gap: 2vw;
 
   .plattformlogo {
-    height: 12vh;
+    height: 100%;
   }
-  .home {
-    margin-left: auto;
+
+  h1 {
+    flex-grow: 1;
+  }
+
+  .btn {
+    border-radius: 50%;
+    background-color: #d7d7d7;
     svg {
-      width: 7vw;
+      vertical-align: bottom;
+      height: 5vh;
       fill: #53668d;
     }
   }
@@ -31,6 +39,9 @@ header {
 
 main {
   position: relative;
+  // enable flex features for router outlet
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -41,7 +52,7 @@ h1 {
 }
 
 footer {
-  padding: 0 15vw;
+  padding: 0 $hmargin;
 
   display: flex;
   gap: 1vw;
@@ -65,9 +76,10 @@ footer {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 10vw;
-  margin: 2vh 2.5vw;
+  width: 9vw;
+  margin: 2vh 0.8vw;
   fill: #e3e3e3;
+  transform: rotate(-90deg);
 }
 
 /* print hookup */

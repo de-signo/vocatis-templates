@@ -8,25 +8,37 @@
 </ng-template>
 
 <!-- wait popup is shown, while generating a new number -->
-<section *ngIf="ticket.state == 'wait'" id="waitPopup">
-  <h4>{{ "Print_WaitHeader" | translate }}</h4>
+<section *ngIf="state == 'wait'" class="top" id="waitPopup">
+  <h4>
+    <img *ngIf="isAppointment" src="assets/img/registration.png" alt="registration"/>
+    {{ (isAppointment ? "Print_WaitHeader_Apt" : "Print_WaitHeader") | translate }}
+  </h4>
   <img src="assets/img/wait.gif" class="wait" alt="wait" />
+</section>
+<section *ngIf="state == 'wait'" class="bottom">
   <p>{{ "Print_WaitText" | translate }}</p>
   <ng-container [ngTemplateOutlet]="svgArrow"></ng-container>
 </section>
 
 <!-- take popup is shown, when the printout is ready -->
-<section *ngIf="ticket.state == 'take'" id="takePopup">
-  <h4>{{ "Print_TakeHeader" | translate }}</h4>
+<section *ngIf="state == 'take'" class="top" id="takePopup">
+  <h4>
+    <img *ngIf="isAppointment" src="assets/img/registration.png" alt="registration"/>
+    {{ (isAppointment ? "Print_TakeHeader_Apt" : "Print_TakeHeader") | translate }}
+  </h4>
   <img src="assets/img/wait.gif" class="wait" alt="wait" />
+</section>
+<section *ngIf="state == 'take'" class="bottom">
   <p>{{ "Print_TakeText" | translate }}</p>
   <ng-container [ngTemplateOutlet]="svgArrow"></ng-container>
 </section>
 
 <!-- show popup shows the number on the screen -->
-<section *ngIf="ticket.state == 'show'" id="showPopup">
+<section *ngIf="state == 'show'" class="top" id="showPopup">
   <h3 *ngIf="ticket.button?.queue">{{ "Print_ShowHeader" | translate }}</h3>
   <h2>{{ ticket.button?.title }}</h2>
+</section>
+<section *ngIf="state == 'show'" class="bottom">
   <p>{{ "Print_ShowText1" | translate }}</p>
   <div class="number">{{ ticket.current.number }}</div>
   <p>{{ "Print_ShowText2" | translate }}</p>

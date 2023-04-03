@@ -1,23 +1,23 @@
 @import "colors.scss";
 @import "mixins.scss";
 
-h2 {
-  text-transform: uppercase;
-}
-
 .site-content {
   @include panel;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 8vh;
+  justify-content: space-evenly;
+
+  img {
+    padding-bottom: 10vh;
+  }
 }
 
-.site-nav {
+nav {
   margin: 0 $hmargin;
-  a {
-    margin: 1vh 0;
 
+  a {
     @include nav-button;
+    margin: 2vh 0;
+    font-size: 3.3rem;
   }
 }
