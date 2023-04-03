@@ -39,6 +39,9 @@ header {
 
 main {
   position: relative;
+  // enable flex features for router outlet
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
