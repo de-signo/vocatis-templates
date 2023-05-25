@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import {
   ButtonModel,
-  GroupModel,
+  TopLevelItemModel,
   WaitNumberModel,
 } from "./app-data.model";
 import {
@@ -49,8 +49,8 @@ export class CustomHttpParamEncoder implements HttpParameterCodec {
   providedIn: "root",
 })
 export class DataService {
-  public groups: BehaviorSubject<GroupModel[]> = new BehaviorSubject<
-    GroupModel[]
+  public groups: BehaviorSubject<TopLevelItemModel[]> = new BehaviorSubject<
+    TopLevelItemModel[]
   >([]);
   public buttons: BehaviorSubject<ButtonModel[]> = new BehaviorSubject<
     ButtonModel[]
@@ -60,13 +60,15 @@ export class DataService {
 
   constructor(private http: HttpClient) {}
 
-  loadGroups(): Observable<GroupModel[]> {
+  loadGroups(): Observable<TopLevelItemModel[]> {
     const jsonFile = environment.groupsServiceUrl;
-    return this.http.get<GroupModel[]>(jsonFile + window.location.search).pipe(
-      tap((data) => {
-        this.groups.next(data);
-      })
-    );
+    return this.http
+      .get<TopLevelItemModel[]>(jsonFile + window.location.search)
+      .pipe(
+        tap((data) => {
+          this.groups.next(data);
+        })
+      );
   }
 
   loadButtons(): Observable<ButtonModel[]> {

@@ -26,11 +26,12 @@ export class WaitNumberModel {
   number: string = "";
 }
 
-export class ConfigModel {
-  groups: GroupModel[] = [];
-}
+export type TopLevelItemModel = {
+  title: string | { [key: string]: string };
+} & (GroupItemModel | AppointmentItemModel);
 
-export class GroupModel {
-  title!: string | { [key: string]: string };
-  items: ButtonModel[] = [];
-}
+export type GroupItemModel = {
+  type: "group" | undefined;
+  items: ButtonModel[];
+};
+export type AppointmentItemModel = { type: "appointment"; mode: "scan" | "id" };

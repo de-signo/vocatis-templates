@@ -37,7 +37,8 @@
   var queueStatus = GetQueueStatus();
 
   var groups = from g in config["groups"]
-               select new {
+               let type = g["type"]
+               select (type != null && (string)type != "group") ? (object)g : new {
                 title = g["title"],
                 items =
                   from b in g["items"]
