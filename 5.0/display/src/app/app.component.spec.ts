@@ -48,7 +48,7 @@ describe("AppComponent", () => {
 
       httpMock.verify();
 
-      tick(2500);
+      tick(environment.updateInterval);
       req = httpMock.expectOne(`${environment.dataServiceUrl}`);
       expect(req.request.method).toBe("GET");
       req.flush([]);
@@ -78,7 +78,7 @@ describe("AppComponent", () => {
       expect(spy).toHaveBeenCalled();
       spy.calls.reset();
 
-      tick(2500);
+      tick(environment.updateInterval);
       req = httpMock.expectOne(`${environment.dataServiceUrl}`, "request 2");
       expect(req.request.method).toBe("GET");
       req.error(new ProgressEvent("error"));
@@ -87,7 +87,7 @@ describe("AppComponent", () => {
       expect(spy).toHaveBeenCalled();
       spy.calls.reset();
 
-      tick(2500);
+      tick(environment.updateInterval);
       req = httpMock.expectOne(`${environment.dataServiceUrl}`, "request 3");
       expect(req.request.method).toBe("GET");
       req.flush([]);
@@ -96,7 +96,7 @@ describe("AppComponent", () => {
       expect(spy).not.toHaveBeenCalled();
       spy.calls.reset();
 
-      tick(2500);
+      tick(environment.updateInterval);
       req = httpMock.expectOne(`${environment.dataServiceUrl}`, "request 4");
       expect(req.request.method).toBe("GET");
       req.error(new ProgressEvent("error"));
@@ -105,7 +105,7 @@ describe("AppComponent", () => {
       expect(spy).toHaveBeenCalled();
       spy.calls.reset();
 
-      tick(2500);
+      tick(environment.updateInterval);
       req = httpMock.expectOne(`${environment.dataServiceUrl}`, "request 5");
       expect(req.request.method).toBe("GET");
       req.flush([]);
@@ -114,7 +114,7 @@ describe("AppComponent", () => {
       expect(spy).not.toHaveBeenCalled();
       spy.calls.reset();
 
-      tick(2500);
+      tick(environment.updateInterval);
       req = httpMock.expectOne(`${environment.dataServiceUrl}`, "request 6");
       expect(req.request.method).toBe("GET");
       req.error(new ProgressEvent("error"));
@@ -123,7 +123,7 @@ describe("AppComponent", () => {
       expect(spy).toHaveBeenCalled();
       spy.calls.reset();
 
-      tick(2500);
+      tick(environment.updateInterval);
       req = httpMock.expectOne(`${environment.dataServiceUrl}`, "request 7");
       expect(req.request.method).toBe("GET");
       req.flush([]);
