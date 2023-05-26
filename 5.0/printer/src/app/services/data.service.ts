@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import {
-  AppointmentModel,
   ButtonModel,
   GroupModel,
   WaitNumberModel,
@@ -15,6 +14,10 @@ import {
 import { firstValueFrom, Observable } from "rxjs";
 import { first, tap } from "rxjs/operators";
 import { BehaviorSubject } from "rxjs";
+import {
+  AppointmentModel,
+  WaitNumberRequestModel,
+} from "vocatis-lib/dist/vocatis-appointments";
 
 declare global {
   interface Window {
@@ -96,35 +99,21 @@ export class DataService {
     });
   }
 
-  getTicketFromAppointment(
-    apt: AppointmentModel,
-    queue: string,
-    categories: string[],
-    postponeOffset?: number
-  ): Promise<WaitNumberModel> {
+  createTicket(wn: WaitNumberRequestModel): Promise<WaitNumberModel> {
     const jsonFile = environment.numberServiceUrl;
-    const date = new Date(apt.time);
 
     let params = new HttpParams({ encoder: new CustomHttpParamEncoder() });
     params = params.appendAll({
-      queue: queue,
-      categories: categories,
-      ref: apt.ref,
-      name: apt.name,
-      phone:
-        date.toLocaleTimeString("de-DE", {
-          hour: "2-digit",
-          minute: "2-digit",
-        }) +
-        " - " +
-        apt.title,
+      appointment: wn.appointment,
+      queue: wn.queue,
+      categories: wn.categories,
     });
-    if (postponeOffset !== undefined) {
-      params = params.append(
-        "postpone",
-        new Date(+date + +postponeOffset).toISOString()
-      );
-    }
+    if (wn.number) params = params.append("number", wn.number);
+    if (wn.ref) params = params.append("ref", wn.ref);
+    if (wn.name) params = params.append("name", wn.name);
+    if (wn.phone) params = params.append("phone", wn.phone);
+    if (wn.postpone)
+      params = params.append("postpone", wn.postpone.toISOString());
     return firstValueFrom(
       this.http.get<WaitNumberModel>(jsonFile, { params: params })
     );

@@ -22,6 +22,8 @@ import { SelectLangPipe } from "./select-lang.pipe";
 import { InfoComponent } from "./info/info.component";
 import { EnterAppointIdComponent } from "./enter-appoint-id/enter-appoint-id.component";
 import { SelectAppointModeComponent } from "./select-appoint-mode/select-appoint-mode.component";
+import { StyleService } from "./services/style.service";
+import { APPOINTMENT_OPTIONS } from "vocatis-lib/dist/vocatis-appointments";
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
@@ -74,7 +76,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     QRCodeModule,
   ],
-  providers: [],
+  providers: [{ provide: APPOINTMENT_OPTIONS, useExisting: StyleService }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

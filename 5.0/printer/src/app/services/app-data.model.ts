@@ -26,15 +26,6 @@ export class WaitNumberModel {
   number: string = "";
 }
 
-export class AppointmentModel {
-  id!: string;
-  ref!: string;
-  plan!: string;
-  time!: string;
-  title!: string;
-  name!: string;
-}
-
 export class ConfigModel {
   groups: GroupModel[] = [];
 }

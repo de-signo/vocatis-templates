@@ -1,11 +1,12 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { ActivatedRoute } from "@angular/router";
+import { IAppointmentOptions } from "vocatis-lib/dist/vocatis-appointments";
 
 @Injectable({
   providedIn: "root",
 })
-export class StyleService {
+export class StyleService implements IAppointmentOptions {
   view: "" | "print" = "";
   activeStyle: "select" | "printer" | "appointment" | "groups" | "ticket" =
     "select";

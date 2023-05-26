@@ -23,7 +23,11 @@
               }
             },
             "assets": [
-              "src/appointments.cshtml",
+              {
+                "glob": "appointments.cshtml",
+                "input": "../../node_modules/vocatis-lib/dist/vocatis-appointments/",
+                "output": ""
+              },
               "src/config.json",
               "src/groups.cshtml",
               "src/number.cshtml",

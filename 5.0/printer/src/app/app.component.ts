@@ -86,7 +86,9 @@ export class AppComponent implements OnInit {
         switchMap((_) => {
           const activeStyle = this.style.activeStyle;
           if (activeStyle == "groups") {
-            return this.dataService.loadGroups();
+            return this.dataService
+              .loadGroups()
+              .pipe(concatMap((_) => this.dataService.loadAppointments()));
           } else if (activeStyle == "appointment") {
             return this.dataService.loadAppointments();
           } else if (activeStyle == "printer") {
