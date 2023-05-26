@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { AppointmentModel } from "../services/model";
+import { AppointmentModel } from "vocatis-lib/dist/vocatis-appointments";
 
 @Component({
   selector: "app-list",

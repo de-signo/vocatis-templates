@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { IAppointmentOptions } from "vocatis-lib/dist/vocatis-appointments";
 
 @Injectable({
   providedIn: "root",
 })
-export class StyleService {
-  postponeOffset?: Number;
+export class StyleService implements IAppointmentOptions {
+  postponeOffset?: number;
   planToQueue: { [key: string]: { queue: string; categories: string[] } } = {};
 
   constructor(route: ActivatedRoute) {

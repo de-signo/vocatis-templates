@@ -217,6 +217,14 @@ gulp.task("clean_zip", function (done) {
   done();
 });
 
+gulp.task("build_libs", function (cb) {
+  exec(`ng build`, { cwd: "../lib/vocatis" }, function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+});
+
 var version;
 gulp.task("read_version", function (done) {
   git.exec(
@@ -337,6 +345,6 @@ for (let spec of specs) {
 
 gulp.task(
   "zip",
-  gulp.series("clean_zip", "read_version", gulp.series(zip_tasks))
+  gulp.series("clean_zip", "read_version", "build_libs", gulp.series(zip_tasks))
 );
 gulp.task("default", gulp.series(["css", "zip"]));
