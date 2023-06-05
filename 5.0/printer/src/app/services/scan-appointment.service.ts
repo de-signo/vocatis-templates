@@ -15,6 +15,8 @@ import {
   providedIn: "root",
 })
 export class ScanAppointmentService {
+  private readonly numberField: string = "Number";
+
   state:
     | ""
     | "invalid"
@@ -92,7 +94,7 @@ export class ScanAppointmentService {
   async findAppointment(code: string): Promise<AppointmentModel | undefined> {
     const appts = await firstValueFrom(this.data.appointments);
     const aptmatches = appts
-      .filter((apt) => apt.sourceId.endsWith(code))
+      .filter((apt) => apt.userData?.[this.numberField]?.endsWith(code))
       .sort((a, b) => a.start.localeCompare(b.start));
     const apt = aptmatches[0];
     return apt;
