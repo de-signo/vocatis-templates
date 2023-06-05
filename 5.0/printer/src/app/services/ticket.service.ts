@@ -1,8 +1,7 @@
 import { EventEmitter, Injectable } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { firstValueFrom, timer } from "rxjs";
 import { DataService } from "./data.service";
-import { first } from "rxjs/operators";
 import { LeanButtonModel, WaitNumberModel } from "./app-data.model";
 import { StyleService } from "./style.service";
 import { TicketComponent } from "../ticket/ticket.component";
@@ -42,7 +41,6 @@ export class TicketService {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private dataService: DataService,
     private style: StyleService
   ) {
@@ -86,56 +84,40 @@ export class TicketService {
   }
 
   async handleGetNewNumber(b: LeanButtonModel) {
-    this.button = b;
-    await this.router.navigate(["/print-status", "ticket", "wait"], {
-      queryParamsHandling: "preserve",
-    });
+    await this.beginPrint(b);
 
     // get number from server
     let data = await firstValueFrom(
       this.dataService.getNewNumber(b.queue, b.categories)
     );
-    this.current = data;
-    this.onNumberGenerated.emit();
-    if (this.style.enablePrint) {
-      await this.router.navigate(
-        [
-          {
-            outlets: {
-              primary: ["print-status", "ticket", "wait"],
-              print: ["ticket"],
-            },
-          },
-        ],
-        { queryParamsHandling: "preserve" }
-      );
-      await this.printNumber(data);
-      await this.router.navigate(["/print-status", "ticket", "take"], {
-        queryParamsHandling: "preserve",
-      });
 
-      await timer(3000).toPromise();
-    } else {
-      // show the number
-      await this.router.navigate(["/print-status", "ticket", "show"], {
-        queryParamsHandling: "preserve",
-      });
-      await timer(10000).toPromise();
-    }
-
-    // warning: race condition with timer (see above)
-    await this.router.navigate(["/"], { queryParamsHandling: "preserve" });
+    await this.endPrint(data, "ticket");
   }
 
   async handlePrintTicket(
     num: WaitNumberModel,
     type: "appointment" | "ticket" = "ticket"
   ): Promise<void> {
+    await this.beginPrint(null, type);
+    await this.endPrint(num, type);
+  }
+
+  private async beginPrint(
+    b: LeanButtonModel | null,
+    type: "appointment" | "ticket" = "ticket"
+  ) {
     this.button = null;
-    this.current = num;
     await this.router.navigate(["/print-status", type, "wait"], {
       queryParamsHandling: "preserve",
     });
+  }
+
+  private async endPrint(
+    num: WaitNumberModel,
+    type: "appointment" | "ticket" = "ticket"
+  ) {
+    this.current = num;
+    this.onNumberGenerated.emit();
 
     // get number from server
     if (this.style.enablePrint) {
@@ -154,20 +136,20 @@ export class TicketService {
       await this.router.navigate(["/print-status", type, "take"], {
         queryParamsHandling: "preserve",
       });
-      await timer(3000).toPromise();
+      await firstValueFrom(timer(3000));
     } else {
       // show the number
       await this.router.navigate(["/print-status", type, "show"], {
         queryParamsHandling: "preserve",
       });
-      await timer(10000).toPromise();
+      await firstValueFrom(timer(10000));
     }
 
     // warning: race condition with timer (see above)
     await this.router.navigate(["/"], { queryParamsHandling: "preserve" });
   }
 
-  async printNumber(num: WaitNumberModel) {
+  private async printNumber(num: WaitNumberModel) {
     // https://medium.com/@Idan_Co/angular-print-service-290651c721f9
     const component = this.printComponent;
     await component?.loaded();
