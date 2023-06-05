@@ -101,7 +101,10 @@ export class TicketService {
       await this.router.navigate(
         [
           {
-            outlets: { primary: ["print-status", "ticket"], print: ["ticket"] },
+            outlets: {
+              primary: ["print-status", "ticket", "wait"],
+              print: ["ticket"],
+            },
           },
         ],
         { queryParamsHandling: "preserve" }
@@ -137,7 +140,14 @@ export class TicketService {
     // get number from server
     if (this.style.enablePrint) {
       await this.router.navigate(
-        [{ outlets: { primary: ["print-status", type], print: ["ticket"] } }],
+        [
+          {
+            outlets: {
+              primary: ["print-status", type, "wait"],
+              print: ["ticket"],
+            },
+          },
+        ],
         { queryParamsHandling: "preserve" }
       );
       await this.printNumber(num);
