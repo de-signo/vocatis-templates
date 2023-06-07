@@ -1,8 +1,7 @@
 import { EventEmitter, Injectable } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { NavigationStart, Router } from "@angular/router";
 import { firstValueFrom, timer } from "rxjs";
 import { DataService } from "./data.service";
-import { first } from "rxjs/operators";
 import { LeanButtonModel, WaitNumberModel } from "./app-data.model";
 import { StyleService } from "./style.service";
 import { TicketComponent } from "../ticket/ticket.component";
@@ -39,10 +38,10 @@ export class TicketService {
   button: LeanButtonModel | null = null;
   printComponent: TicketComponent | null = null; // must be set by app component when ticket is loaded
   onNumberGenerated = new EventEmitter();
+  cancel?: AbortController;
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private dataService: DataService,
     private style: StyleService
   ) {
@@ -76,6 +75,14 @@ export class TicketService {
         console.error("reportPrinterStatus failed. " + error)
       )
     );
+
+    router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        if (!event.url.includes("/print-status")) {
+          this.cancel?.abort();
+        }
+      }
+    });
   }
 
   private async reportPrinterStatus(): Promise<void> {
@@ -86,78 +93,87 @@ export class TicketService {
   }
 
   async handleGetNewNumber(b: LeanButtonModel) {
-    this.button = b;
-    await this.router.navigate(["/print-status", "ticket", "wait"], {
-      queryParamsHandling: "preserve",
-    });
+    const cancel = await this.beginPrint(b);
+    if (cancel.aborted) return;
 
     // get number from server
     let data = await firstValueFrom(
       this.dataService.getNewNumber(b.queue, b.categories)
     );
-    this.current = data;
-    this.onNumberGenerated.emit();
-    if (this.style.enablePrint) {
-      await this.router.navigate(
-        [
-          {
-            outlets: { primary: ["print-status", "ticket"], print: ["ticket"] },
-          },
-        ],
-        { queryParamsHandling: "preserve" }
-      );
-      await this.printNumber(data);
-      await this.router.navigate(["/print-status", "ticket", "take"], {
-        queryParamsHandling: "preserve",
-      });
 
-      await timer(3000).toPromise();
-    } else {
-      // show the number
-      await this.router.navigate(["/print-status", "ticket", "show"], {
-        queryParamsHandling: "preserve",
-      });
-      await timer(10000).toPromise();
-    }
-
-    // warning: race condition with timer (see above)
-    await this.router.navigate(["/"], { queryParamsHandling: "preserve" });
+    if (cancel.aborted) return;
+    await this.endPrint(data, "ticket", cancel);
   }
 
   async handlePrintTicket(
     num: WaitNumberModel,
     type: "appointment" | "ticket" = "ticket"
   ): Promise<void> {
+    const cancel = await this.beginPrint(null, type);
+    if (cancel.aborted) return;
+    await this.endPrint(num, type, cancel);
+  }
+
+  private async beginPrint(
+    b: LeanButtonModel | null,
+    type: "appointment" | "ticket" = "ticket"
+  ): Promise<AbortSignal> {
     this.button = null;
-    this.current = num;
+
+    const cancel = new AbortController();
+    this.cancel = cancel;
+
     await this.router.navigate(["/print-status", type, "wait"], {
       queryParamsHandling: "preserve",
     });
 
+    return cancel.signal;
+  }
+
+  private async endPrint(
+    num: WaitNumberModel,
+    type: "appointment" | "ticket" = "ticket",
+    cancel: AbortSignal
+  ) {
+    this.current = num;
+    this.onNumberGenerated.emit();
+    if (cancel.aborted) return;
+
     // get number from server
     if (this.style.enablePrint) {
       await this.router.navigate(
-        [{ outlets: { primary: ["print-status", type], print: ["ticket"] } }],
+        [
+          {
+            outlets: {
+              primary: ["print-status", type, "wait"],
+              print: ["ticket"],
+            },
+          },
+        ],
         { queryParamsHandling: "preserve" }
       );
+      if (cancel.aborted) return;
       await this.printNumber(num);
+      if (cancel.aborted) return;
       await this.router.navigate(["/print-status", type, "take"], {
         queryParamsHandling: "preserve",
       });
-      await timer(3000).toPromise();
+      if (cancel.aborted) return;
+      await firstValueFrom(timer(3000));
     } else {
       // show the number
       await this.router.navigate(["/print-status", type, "show"], {
         queryParamsHandling: "preserve",
       });
-      await timer(10000).toPromise();
+      if (cancel.aborted) return;
+      await firstValueFrom(timer(10000));
     }
 
-    // warning: race condition with timer (see above)
+    if (cancel.aborted) return;
     await this.router.navigate(["/"], { queryParamsHandling: "preserve" });
   }
 
-  async printNumber(num: WaitNumberModel) {
+  private async printNumber(num: WaitNumberModel) {
     // https://medium.com/@Idan_Co/angular-print-service-290651c721f9
     const component = this.printComponent;
     await component?.loaded();
