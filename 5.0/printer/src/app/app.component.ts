@@ -134,7 +134,10 @@ export class AppComponent implements OnInit {
           queryParamsHandling: "preserve",
         });
       } else if (activeStyle == "groups") {
-        this.router.navigate(["/groups"], { queryParamsHandling: "preserve" });
+        if (this.style.entryPage == "groups")
+          this.router.navigate(["/groups"], {
+            queryParamsHandling: "preserve",
+          });
       } else if (activeStyle == "ticket") {
         this.router.navigate([{ outlets: { print: ["ticket"] } }], {
           queryParamsHandling: "preserve",
@@ -158,7 +161,7 @@ export class AppComponent implements OnInit {
           apm == (AppointmentModes.AppointmentId | AppointmentModes.QRCode))
       );
     } else if (activeStyle == "groups" && component instanceof GroupsComponent)
-      this.showHome = false;
+      this.showHome = this.style.entryPage != "groups";
     else this.showHome = true;
   }
 

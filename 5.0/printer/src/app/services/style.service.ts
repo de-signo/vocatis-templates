@@ -2,6 +2,7 @@ import { EventEmitter, Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { ActivatedRoute } from "@angular/router";
 import { IAppointmentOptions } from "vocatis-lib/dist/vocatis-appointments";
+import { group } from "console";
 
 @Injectable({
   providedIn: "root",
@@ -29,6 +30,9 @@ export class StyleService implements IAppointmentOptions {
   scanShowForgotQrCode = false;
   forgotQrCodeQueue: string = "";
   forgotQrCodeCategories: string[] = [];
+
+  // groups
+  entryPage: "groups" | "select" = "groups";
 
   // for default ticket
   ticketId: string = "";
@@ -98,6 +102,10 @@ export class StyleService implements IAppointmentOptions {
         (apm & AppointmentModes.Forgot) == AppointmentModes.Forgot;
       this.forgotQrCodeCategories = params["s/fgc"] ?? [];
       this.forgotQrCodeQueue = params["s/fgq"];
+
+      // groups
+      const entryPage = params["s/entry"];
+      this.entryPage = entryPage === "s" ? "select" : "groups";
 
       // default ticket params
       this.ticketId = params["s/id"];
