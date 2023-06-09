@@ -95,7 +95,7 @@ let specs = [
       suffix: "_openclose_nomultilang" + customersuffix,
       option_name: customername,
       use_groups_config: true,
-      enable_app: false,
+      enable_app: true,
       enable_open_close: true,
       multilang: false,
     },
@@ -118,7 +118,7 @@ let specs = [
       suffix: "_openclose_multilang" + customersuffix,
       option_name: customername,
       use_groups_config: true,
-      enable_app: false,
+      enable_app: true,
       enable_open_close: true,
       multilang: true,
     },
@@ -215,6 +215,14 @@ gulp.task("clean_zip", function (done) {
     }
   }
   done();
+});
+
+gulp.task("build_libs", function (cb) {
+  exec(`ng build`, { cwd: "../lib/vocatis" }, function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
 });
 
 var version;
@@ -337,6 +345,6 @@ for (let spec of specs) {
 
 gulp.task(
   "zip",
-  gulp.series("clean_zip", "read_version", gulp.series(zip_tasks))
+  gulp.series("clean_zip", "read_version", "build_libs", gulp.series(zip_tasks))
 );
 gulp.task("default", gulp.series(["css", "zip"]));

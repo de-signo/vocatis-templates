@@ -1,6 +1,9 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-import { AppointmentModel, WaitNumberRequestModel } from "./model";
+import {
+  AppointmentModel,
+  WaitNumberRequestModel,
+} from "vocatis-lib/dist/vocatis-appointments";
 import {
   HttpClient,
   HttpParameterCodec,

@@ -7,6 +7,8 @@ import { AppComponent } from "./app.component";
 import localeDe from "@angular/common/locales/de";
 import { ListComponent } from "./list/list.component";
 import { AppErrorHandler } from "./error-handler/app-error-handler";
+import { StyleService } from "./services/style.service";
+import { APPOINTMENT_OPTIONS } from "vocatis-lib/dist/vocatis-appointments";
 
 registerLocaleData(localeDe);
 
@@ -20,6 +22,7 @@ registerLocaleData(localeDe);
   providers: [
     { provide: LOCALE_ID, useValue: "de-DE" },
     { provide: ErrorHandler, useExisting: AppErrorHandler },
+    { provide: APPOINTMENT_OPTIONS, useExisting: StyleService },
   ],
   bootstrap: [AppComponent],
 })

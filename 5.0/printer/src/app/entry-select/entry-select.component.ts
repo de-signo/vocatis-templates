@@ -37,6 +37,10 @@ export class EntrySelectComponent {
     var apm = this.style.appointmentMode;
     return appoinmentModeToEntryRoute(apm);
   }
+
+  get queueRoute(): string {
+    return this.style.activeStyle == "groups" ? "/groups" : "/select-queue";
+  }
 }
 
 export function appoinmentModeToEntryRoute(apm: number): string {

@@ -1,7 +1,7 @@
 export interface AppointmentModel {
   id: string;
   source: string;
-  sourceid: string;
+  sourceId: string;
   start: string;
   title: string;
   userData: { [key: string]: string };

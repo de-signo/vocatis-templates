@@ -1,5 +1,15 @@
 [
   {
+    "type": "appointment",
+    "mode": "scan",
+    "title": "Termine scannen"
+  },
+  {
+    "type": "appointment",
+    "mode": "id",
+    "title": "Termine ID eingeben"
+  },
+  {
     "title": { "de": "Prüfungsmanagement", "en": "Exam management" },
     "items": [
       {

@@ -1,7 +1,11 @@
-import { Injectable } from "@angular/core";
-import { environment } from "src/environments/environment";
+import { Inject, Injectable } from "@angular/core";
 import { AppointmentModel, WaitNumberRequestModel } from "./model";
-import { StyleService } from "./style.service";
+
+export const APPOINTMENT_OPTIONS = "appointmentOptions";
+export interface IAppointmentOptions {
+  planToQueue: { [key: string]: { queue: string; categories: string[] } };
+  postponeOffset?: number;
+}
 
 @Injectable({
   providedIn: "root",
@@ -11,7 +15,9 @@ export class MapperService {
   private readonly numberField: string = "Number";
   private readonly refField: string = "Url";
 
-  constructor(private style: StyleService) {}
+  constructor(
+    @Inject(APPOINTMENT_OPTIONS) private style: IAppointmentOptions
+  ) {}
 
   mapAppointmentToTicket(apt: AppointmentModel): WaitNumberRequestModel {
     const planToQueue = this.style.planToQueue;

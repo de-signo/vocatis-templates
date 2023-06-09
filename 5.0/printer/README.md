@@ -43,6 +43,7 @@ UID:1234
 
 Gruppen:
 http://localhost:4200/?s=vocatis_multi_2019_groupconfig
+http://localhost:4200/?s=vocatis_multi_2019_groupconfig&s/entry=s (mit Auswahl)
 
 Ticket:
 http://localhost:4200/(print:ticket)?view=print

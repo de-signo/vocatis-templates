@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription, throwError, timer } from "rxjs";
 import { catchError, delay, map, mergeMap, retryWhen } from "rxjs/operators";
-import { AppointmentModel } from "./services/model";
 import { DataService } from "./services/data.service";
-import { MapperService } from "./services/mapper.service";
+import {
+  AppointmentModel,
+  MapperService,
+} from "vocatis-lib/dist/vocatis-appointments";
 import { AppErrorHandler } from "./error-handler/app-error-handler";
 
 @Component({

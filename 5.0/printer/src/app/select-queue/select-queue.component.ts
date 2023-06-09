@@ -10,7 +10,11 @@ import {
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { environment } from "src/environments/environment";
-import { ButtonModel, OpenCloseStatus } from "../services/app-data.model";
+import {
+  ButtonModel,
+  GroupItemModel,
+  OpenCloseStatus,
+} from "../services/app-data.model";
 import { AppLinkService } from "../services/app-link.service";
 import { DataService } from "../services/data.service";
 import { StyleService } from "../services/style.service";
@@ -51,7 +55,7 @@ export class SelectQueueComponent implements OnDestroy, AfterViewInit {
         } else {
           // show buttons from groups
           dataService.groups.subscribe(
-            (groups) => (this.buttons = groups[i].items)
+            (groups) => (this.buttons = (<GroupItemModel>groups[i]).items)
           );
         }
       })

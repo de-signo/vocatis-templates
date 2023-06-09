@@ -86,7 +86,9 @@ export class AppComponent implements OnInit {
         switchMap((_) => {
           const activeStyle = this.style.activeStyle;
           if (activeStyle == "groups") {
-            return this.dataService.loadGroups();
+            return this.dataService
+              .loadGroups()
+              .pipe(concatMap((_) => this.dataService.loadAppointments()));
           } else if (activeStyle == "appointment") {
             return this.dataService.loadAppointments();
           } else if (activeStyle == "printer") {
@@ -132,7 +134,10 @@ export class AppComponent implements OnInit {
           queryParamsHandling: "preserve",
         });
       } else if (activeStyle == "groups") {
-        this.router.navigate(["/groups"], { queryParamsHandling: "preserve" });
+        if (this.style.entryPage == "groups")
+          this.router.navigate(["/groups"], {
+            queryParamsHandling: "preserve",
+          });
       } else if (activeStyle == "ticket") {
         this.router.navigate([{ outlets: { print: ["ticket"] } }], {
           queryParamsHandling: "preserve",
@@ -156,7 +161,7 @@ export class AppComponent implements OnInit {
           apm == (AppointmentModes.AppointmentId | AppointmentModes.QRCode))
       );
     } else if (activeStyle == "groups" && component instanceof GroupsComponent)
-      this.showHome = false;
+      this.showHome = this.style.entryPage != "groups";
     else this.showHome = true;
   }
 

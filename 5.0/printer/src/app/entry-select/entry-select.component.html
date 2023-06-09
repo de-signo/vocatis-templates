@@ -14,7 +14,7 @@
   <a [routerLink]="appointmentRoute" queryParamsHandling="preserve">{{
     "Entry_SelectAppointment" | translate
   }}</a>
-  <a routerLink="/select-queue" queryParamsHandling="preserve">{{
+  <a [routerLink]="queueRoute" queryParamsHandling="preserve">{{
     "Entry_SelectTicket" | translate
   }}</a>
 </nav>

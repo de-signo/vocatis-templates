@@ -1,11 +1,15 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subscription, timer, firstValueFrom } from "rxjs";
-import { first } from "rxjs/operators";
-import { AppointmentModel, WaitNumberModel } from "./app-data.model";
+import { WaitNumberModel } from "./app-data.model";
 import { DataService } from "./data.service";
 import { StyleService } from "./style.service";
 import { TicketService } from "./ticket.service";
+import {
+  AppointmentModel,
+  MapperService,
+  WaitNumberRequestModel,
+} from "vocatis-lib/dist/vocatis-appointments";
 
 @Injectable({
   providedIn: "root",
@@ -28,6 +32,7 @@ export class ScanAppointmentService {
     private router: Router,
     private data: DataService,
     private style: StyleService,
+    private mapper: MapperService,
     private print: TicketService
   ) {}
 
@@ -45,7 +50,7 @@ export class ScanAppointmentService {
       let apt_id = match[1];
       const appts = await firstValueFrom(this.data.appointments);
 
-      const apt = appts?.find((apt) => apt.id == apt_id);
+      const apt = appts?.find((apt) => apt.sourceId == apt_id);
       if (!apt) {
         // find time
         const dtregex = /DTSTART[:Ö]([0-9]*)T([0-9]*)/;
@@ -87,8 +92,8 @@ export class ScanAppointmentService {
   async findAppointment(code: string): Promise<AppointmentModel | undefined> {
     const appts = await firstValueFrom(this.data.appointments);
     const aptmatches = appts
-      .filter((apt) => apt.id.endsWith(code))
-      .sort((a, b) => a.time.localeCompare(b.time));
+      .filter((apt) => apt.sourceId.endsWith(code))
+      .sort((a, b) => a.start.localeCompare(b.start));
     const apt = aptmatches[0];
     return apt;
   }
@@ -98,35 +103,32 @@ export class ScanAppointmentService {
       queryParamsHandling: "preserve",
     });
 
-    const plan = apt.plan;
-    const queue = this.style.planToQueue[plan];
-    if (!queue) {
+    let req: WaitNumberRequestModel;
+    try {
+      req = this.mapper.mapAppointmentToTicket(apt);
+    } catch (error: any) {
       this.state = "noqueue";
-      console.log(`The plan '${plan}' is not configured.`);
-    } else {
-      const appTime = Date.parse(apt.time);
-      const cutOffTime =
-        this.style.late == null ? 0 : Date.now() - this.style.late * 60000;
+      console.log(`Could not map appointment. ${error?.message ?? ""}`);
+      return false;
+    }
 
-      this.currentDate = new Date(appTime);
-      if (appTime < cutOffTime) {
-        // too late
-        this.state = "late";
-        console.log(
-          `The appointment with id '${apt.id}' was at ${appTime}. Too late.`
-        );
-      } else {
-        this.number = await this.data.getTicketFromAppointment(
-          apt,
-          queue.queue,
-          queue.categories,
-          this.style.postponeOffset
-        );
-        if (this.style.listShowQrCode) this.state = "qr";
-        else {
-          await this.print.handlePrintTicket(this.number, "appointment");
-          return true;
-        }
+    const appTime = Date.parse(apt.start);
+    const cutOffTime =
+      this.style.late == null ? 0 : Date.now() - this.style.late * 60000;
+
+    this.currentDate = new Date(appTime);
+    if (appTime < cutOffTime) {
+      // too late
+      this.state = "late";
+      console.log(
+        `The appointment with source-id '${apt.sourceId}' was at ${appTime}. Too late.`
+      );
+    } else {
+      this.number = await this.data.createTicket(req);
+      if (this.style.listShowQrCode) this.state = "qr";
+      else {
+        await this.print.handlePrintTicket(this.number, "appointment");
+        return true;
       }
     }
     return false;
