@@ -79,13 +79,9 @@ let specs = [
   },
   {
     name: "printer_groups_nomultilang",
-    ng: ["printer"],
+    ng: ["printer", { path: "printer", project: "app" }],
     clean: "../dist/printergroups_nomultilang*.zip",
-    files: [
-      "printer/dist/**",
-      "!printer/dist/app/**",
-      "!printer/dist/printer/assets/test*.json",
-    ],
+    files: ["printer/dist/**", "!printer/dist/printer/assets/test*.json"],
     templates: [
       { input: "printer/Styles.xml.handlebars", dest: "printer/dist" },
       "printer/src/environments/environment.prod.ts.handlebars",
@@ -102,13 +98,9 @@ let specs = [
   },
   {
     name: "printer_groups_multilang",
-    ng: ["printer"],
+    ng: ["printer", { path: "printer", project: "app" }],
     clean: "../dist/printergroups_multilang*.zip",
-    files: [
-      "printer/dist/**",
-      "!printer/dist/app/**",
-      "!printer/dist/printer/assets/test*.json",
-    ],
+    files: ["printer/dist/**", "!printer/dist/printer/assets/test*.json"],
     templates: [
       { input: "printer/Styles.xml.handlebars", dest: "printer/dist" },
       "printer/src/environments/environment.prod.ts.handlebars",
@@ -132,7 +124,6 @@ let options = [
   [
     {
       tag: "noapp",
-      ng: [{ path: "printer", project: "app" }],
       templateData: {
         use_groups_config: false,
         enable_app: false,
@@ -142,6 +133,7 @@ let options = [
     {
       tag: "app",
       name: "app",
+      ng: [{ path: "printer", project: "app" }],
       templateData: {
         use_groups_config: false,
         enable_app: true,
