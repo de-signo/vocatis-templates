@@ -14,6 +14,7 @@ export interface IAppointmentOptions {
 export class MapperService {
   private readonly planField: string = "Plan";
   private readonly numberField: string = "Number";
+  private readonly descField: string = "Description";
   private readonly refField: string = "Url";
 
   constructor(
@@ -59,10 +60,13 @@ export class MapperService {
     }
 
     const startDate = new Date(apt.start);
-    const phone = startDate.toLocaleTimeString("de-DE", {
+    let phone = startDate.toLocaleTimeString("de-DE", {
       hour: "2-digit",
       minute: "2-digit",
     });
+    if (apt.title) {
+      phone = `${phone} - ${apt.title}`;
+    }
 
     // determine postpone
     const postpone =
@@ -76,8 +80,9 @@ export class MapperService {
       number: number,
       postpone: postpone,
 
-      name: apt.title,
+      name: apt.participants,
       phone: phone,
+      description: apt.userData[this.descField],
       ref: apt.userData[this.refField],
 
       queue: queue.queue,

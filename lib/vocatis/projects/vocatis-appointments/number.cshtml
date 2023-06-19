@@ -15,6 +15,7 @@
   var reference = Request["ref"];
   var name = Request["name"];
   var phone = Request["phone"];
+  var desc = Request["description"];
   var postpone = Request["postpone"];
 
   var voc = Vocatis.GetVocatisData();
@@ -26,9 +27,10 @@
     .GetAwaiter().GetResult();
 
   // set ticket data
-  if (!String.IsNullOrEmpty(reference) || !String.IsNullOrEmpty(phone) || !String.IsNullOrEmpty(name)) {
+  if (!String.IsNullOrEmpty(reference) || !String.IsNullOrEmpty(phone) || !String.IsNullOrEmpty(name) || !String.IsNullOrEmpty(desc)) {
     ticket.Name = name;
     ticket.Phone = phone;
+    ticket.Description = desc;
     ticket.ReferenceId = reference;
     voc.UpdateNumber(ticket);
   }
