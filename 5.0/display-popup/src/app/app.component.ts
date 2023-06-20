@@ -18,18 +18,17 @@ export class AppComponent {
   readonly popupTimeout = 10000;
 
   private list: WaitNumberItem[] = [];
+  private queue: { number: WaitNumberItem; audio?: HTMLAudioElement }[] = [];
 
-  popup: WaitNumberItem | null = null;
+  popup?: WaitNumberItem = undefined;
   popupEnd: number = 0;
-  popupQueue: WaitNumberItem[] = [];
 
   audioSrc: string = "";
   voices: SpeechSynthesisVoice[] = [];
   speechUrl: string | null = null;
   speech: { voice: SpeechSynthesisVoice; text: string; rate: number } | null =
     null;
-  audio: HTMLAudioElement | null = null;
-  audioQueue: HTMLAudioElement[] = [];
+  audio?: HTMLAudioElement = undefined;
   dataParams: Params | null = null;
 
   constructor(
@@ -77,23 +76,12 @@ export class AppComponent {
     this.list = items;
 
     if (newItems.length) {
-      this.popupQueue.push(...newItems);
-
-      if (this.speech) {
-        var speech = this.speech;
-        newItems.forEach((item) => {
-          const text = speech.text
-            .replace("~number~", item.number)
-            .replace("~room~", item.room);
-          var utterance = new SpeechSynthesisUtterance(text);
-          utterance.voice = speech.voice;
-          utterance.rate = speech.rate;
-          speechSynthesis.speak(utterance);
-        });
-      }
-
-      if (this.audioSrc)
-        this.audioQueue.push(...newItems.map((i) => this.prepareAudio(i)));
+      this.queue.push(
+        ...newItems.map((item) => ({
+          number: item,
+          audio: this.prepareAudio(item),
+        }))
+      );
     }
     this.updateHighlight();
   }
@@ -102,31 +90,46 @@ export class AppComponent {
     // popup
     const now = Date.now();
     if (this.popup && this.popupEnd <= now) {
-      this.popup = null;
+      this.popup = undefined;
     }
-    if (!this.popup && this.popupQueue.length) {
-      this.popup = this.popupQueue.shift() ?? null;
+    if (!this.popup && this.queue.length) {
+      let item = this.queue.shift() ?? null;
+      this.audio = item?.audio;
+      this.popup = item?.number;
+      this.audio?.play();
+      if (item) this.speek(item.number);
       this.popupEnd = Date.now() + this.popupTimeout;
     }
     this.player.setPaused(!this.popup);
 
     // audio
     if (this.audio && (this.audio.paused || this.audio.ended)) {
-      this.audio = null;
-    }
-    if (!this.audio && this.audioQueue.length) {
-      this.audio = this.audioQueue.shift() ?? null;
-      this.audio?.play();
+      this.audio = undefined;
     }
   }
 
-  prepareAudio(item: WaitNumberItem): HTMLAudioElement {
+  prepareAudio(item: WaitNumberItem): HTMLAudioElement | undefined {
+    if (!this.audioSrc) return undefined;
+
     const audio = new Audio();
     audio.src = this.audioSrc
       .replace("~number~", item.number)
       .replace("~room~", item.room);
     audio.load();
     return audio;
+  }
+
+  private speek(item: WaitNumberItem) {
+    if (this.speech) {
+      var speech = this.speech;
+      const text = speech.text
+        .replace("~number~", item.number)
+        .replace("~room~", item.room);
+      var utterance = new SpeechSynthesisUtterance(text);
+      utterance.voice = speech.voice;
+      utterance.rate = speech.rate;
+      speechSynthesis.speak(utterance);
+    }
   }
 
   parseSpeechUrl(
@@ -158,11 +161,12 @@ export class AppComponent {
       if (!found) found = voices.find((v) => v.name.startsWith(voice));
       if (!found) {
         console.log(
-          `Selected voice '${voice}' not found. Available voices: ${voices}`
+          `Selected voice '${voice}' not found. Available voices: ${JSON.stringify(
+            voices.map((v) => v.name)
+          )}`
         );
-      } else {
-        vvoice = found ?? voices[0];
       }
+      vvoice = found ?? voices[0];
     }
     var nrate = 1;
     if (rate) nrate = toNumber(rate);
