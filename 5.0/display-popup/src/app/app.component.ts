@@ -97,8 +97,8 @@ export class AppComponent {
           audio: this.prepareAudio(item),
         }))
       );
+      this.updateHighlight();
     }
-    this.updateHighlight();
   }
 
   updateHighlight() {
