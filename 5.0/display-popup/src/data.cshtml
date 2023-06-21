@@ -18,6 +18,39 @@
     }
     return list;
   }
+
+  IEnumerable<DisplayNumber> GetConcatenatedQueueList(FormsModel Model) {
+    IEnumerable<DisplayNumber> list = new DisplayNumber[0];
+    HashSet<CommonGuidId> ids = new HashSet<CommonGuidId>();
+    var sources = Model.Style.StyleInstance.Where(f => f.Key.StartsWith("source"));
+    foreach (var f in sources)
+    {
+      var id = (CommonGuidId)f.Value;
+      if (id.IsEmpty || ids.Contains(id))
+      {
+          continue;
+      }
+      ids.Add(id);
+      list = list.Concat(GetWaitQueueList(id));
+    }
+    return list;
+  }
+
+  IEnumerable<DisplayNumber> WaitDataNotEmptyOrTimeout(FormsModel model, int wait)
+  {
+    var endTime = DateTime.Now + TimeSpan.FromSeconds(wait);
+    IEnumerable<DisplayNumber> list;
+    do
+    {
+        list = GetConcatenatedQueueList(model);
+        if (list.Any())
+          break;
+        
+        System.Threading.Thread.Sleep(1000);
+    }
+    while (DateTime.Now < endTime);
+    return list;
+  }
 }
 @{
   Response.ContentType = "application/json";
@@ -25,19 +58,13 @@
   var Model = new FormsModel(this);
   PageData["Model"] = Model;
 
-  IEnumerable<DisplayNumber> list = new DisplayNumber[0];
-  HashSet<CommonGuidId> ids = new HashSet<CommonGuidId>();
-  var sources = Model.Style.StyleInstance.Where(f => f.Key.StartsWith("source"));
-  foreach (var f in sources)
-  {
-    var id = (CommonGuidId)f.Value;
-    if (id.IsEmpty || ids.Contains(id))
-    {
-        continue;
-    }
-    ids.Add(id);
-    list = list.Concat(GetWaitQueueList(id));
-  }
+  var waitS = Request.QueryString["wait"];
+  var wait = waitS != null ? int.Parse(waitS) : 0;
+
+  // get list
+  var list = WaitDataNotEmptyOrTimeout(Model, wait);
+
+  // format output
   var result = list.Select(x =>
     new {
       number = x.Number,

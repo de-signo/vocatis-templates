@@ -1,6 +1,14 @@
 import { Component } from "@angular/core";
-import { Observable, Subscription, throwError, timer } from "rxjs";
-import { catchError, delay, exhaustMap, retryWhen } from "rxjs/operators";
+import { Observable, Subject, Subscription, of, throwError, timer } from "rxjs";
+import {
+  catchError,
+  concatMap,
+  delay,
+  exhaustMap,
+  retryWhen,
+  takeUntil,
+  tap,
+} from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { isEqual, toNumber } from "lodash-es";
@@ -45,7 +53,9 @@ export class AppComponent {
       this.speech = this.parseSpeechUrl(notify);
       this.speechUrl = this.speech ? notify : null;
       this.audioSrc = this.speech ? "" : notify;
-      this.dataParams = params;
+
+      let dataParams = Object.assign({ wait: 120 }, params);
+      this.dataParams = dataParams;
     });
 
     // read voices (this seems to be lazy loaded. Thus listen to changed event.)
@@ -56,18 +66,8 @@ export class AppComponent {
     });
 
     this.subscriptions.push(
-      timer(0, this.updateInterval)
-        .pipe(
-          exhaustMap(() => this.loadData()),
-          catchError((error) => {
-            console.error(error);
-            return throwError(error);
-          }),
-          retryWhen((errors) => errors.pipe(delay(this.updateInterval)))
-        )
-        .subscribe((data) => this.updateList(data))
+      this.loadData().subscribe((data) => this.updateList(data))
     );
-
     this.subscriptions.push(
       timer(0, 500).subscribe((data) => this.updateHighlight())
     );
@@ -80,8 +80,35 @@ export class AppComponent {
 
   loadData(): Observable<WaitNumberItem[]> {
     const jsonFile = `${environment.dataServiceUrl}`;
-    return this.http.get<WaitNumberItem[]>(jsonFile, {
-      params: this.dataParams ?? [],
+    let subscription: Subscription | undefined = undefined;
+    return new Observable<WaitNumberItem[]>((observer) => {
+      const poll = () => {
+        subscription = this.http
+          .get<WaitNumberItem[]>(jsonFile, {
+            params: this.dataParams ?? [],
+          })
+          .pipe(
+            // pass data to subscriber
+            tap((data) => observer.next(data)),
+            // handle errors
+            catchError((error) => {
+              console.error(error);
+              return of(null);
+            }),
+            // timer for next invokation
+            concatMap((data) => {
+              return timer(this.updateInterval);
+            })
+          )
+          .subscribe({ complete: () => poll() });
+      };
+
+      poll();
+
+      // Clean up resources and unsubscribe
+      return () => {
+        subscription?.unsubscribe();
+      };
     });
   }
 

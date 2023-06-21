@@ -42,20 +42,21 @@ describe("AppComponent", () => {
       flushMicrotasks();
       expect(component).toBeTruthy();
 
-      let req = httpMock.expectOne(`${environment.dataServiceUrl}`);
+      let req = httpMock.expectOne(`${environment.dataServiceUrl}?wait=120`);
       expect(req.request.method).toBe("GET");
       req.flush([]);
 
       httpMock.verify();
 
       tick(environment.updateInterval);
-      req = httpMock.expectOne(`${environment.dataServiceUrl}`);
+      req = httpMock.expectOne(`${environment.dataServiceUrl}?wait=120`);
       expect(req.request.method).toBe("GET");
       req.flush([]);
 
       httpMock.verify();
 
       component.ngOnDestroy();
+      //tick(environment.updateInterval);
     })
   ));
 
@@ -68,7 +69,7 @@ describe("AppComponent", () => {
       expect(component).toBeTruthy();
 
       let req = httpMock.expectOne(
-        `${environment.dataServiceUrl}`,
+        `${environment.dataServiceUrl}?wait=120`,
         "request 1"
       );
       expect(req.request.method).toBe("GET");
@@ -79,7 +80,10 @@ describe("AppComponent", () => {
       spy.calls.reset();
 
       tick(environment.updateInterval);
-      req = httpMock.expectOne(`${environment.dataServiceUrl}`, "request 2");
+      req = httpMock.expectOne(
+        `${environment.dataServiceUrl}?wait=120`,
+        "request 2"
+      );
       expect(req.request.method).toBe("GET");
       req.error(new ProgressEvent("error"));
 
@@ -88,7 +92,10 @@ describe("AppComponent", () => {
       spy.calls.reset();
 
       tick(environment.updateInterval);
-      req = httpMock.expectOne(`${environment.dataServiceUrl}`, "request 3");
+      req = httpMock.expectOne(
+        `${environment.dataServiceUrl}?wait=120`,
+        "request 3"
+      );
       expect(req.request.method).toBe("GET");
       req.flush([]);
 
@@ -97,7 +104,10 @@ describe("AppComponent", () => {
       spy.calls.reset();
 
       tick(environment.updateInterval);
-      req = httpMock.expectOne(`${environment.dataServiceUrl}`, "request 4");
+      req = httpMock.expectOne(
+        `${environment.dataServiceUrl}?wait=120`,
+        "request 4"
+      );
       expect(req.request.method).toBe("GET");
       req.error(new ProgressEvent("error"));
 
@@ -106,7 +116,10 @@ describe("AppComponent", () => {
       spy.calls.reset();
 
       tick(environment.updateInterval);
-      req = httpMock.expectOne(`${environment.dataServiceUrl}`, "request 5");
+      req = httpMock.expectOne(
+        `${environment.dataServiceUrl}?wait=120`,
+        "request 5"
+      );
       expect(req.request.method).toBe("GET");
       req.flush([]);
 
@@ -115,7 +128,10 @@ describe("AppComponent", () => {
       spy.calls.reset();
 
       tick(environment.updateInterval);
-      req = httpMock.expectOne(`${environment.dataServiceUrl}`, "request 6");
+      req = httpMock.expectOne(
+        `${environment.dataServiceUrl}?wait=120`,
+        "request 6"
+      );
       expect(req.request.method).toBe("GET");
       req.error(new ProgressEvent("error"));
 
@@ -124,7 +140,10 @@ describe("AppComponent", () => {
       spy.calls.reset();
 
       tick(environment.updateInterval);
-      req = httpMock.expectOne(`${environment.dataServiceUrl}`, "request 7");
+      req = httpMock.expectOne(
+        `${environment.dataServiceUrl}?wait=120`,
+        "request 7"
+      );
       expect(req.request.method).toBe("GET");
       req.flush([]);
 
@@ -144,7 +163,7 @@ describe("AppComponent", () => {
       flushMicrotasks();
       expect(component).toBeTruthy();
 
-      let req = httpMock.expectOne(`${environment.dataServiceUrl}`);
+      let req = httpMock.expectOne(`${environment.dataServiceUrl}?wait=120`);
       expect(req.request.method).toBe("GET");
       tick(2 * environment.updateInterval);
       req.flush([]);
@@ -152,7 +171,7 @@ describe("AppComponent", () => {
       httpMock.verify();
 
       tick(environment.updateInterval);
-      req = httpMock.expectOne(`${environment.dataServiceUrl}`);
+      req = httpMock.expectOne(`${environment.dataServiceUrl}?wait=120`);
       expect(req.request.method).toBe("GET");
       req.flush([]);
 
