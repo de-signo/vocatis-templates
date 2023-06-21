@@ -47,7 +47,7 @@ export class AppComponent {
       this.speechUrl = this.speech ? notify : null;
       this.audioSrc = this.speech ? "" : notify;
 
-      this.dataParams = Object.assign({ wait: 120 }, params);
+      this.dataParams = Object.assign({ wait: 60 }, params);
     });
 
     // read voices (this seems to be lazy loaded. Thus listen to changed event.)
