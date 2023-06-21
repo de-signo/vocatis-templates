@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Observable, Subscription, throwError, timer } from "rxjs";
-import { catchError, delay, mergeMap, retryWhen } from "rxjs/operators";
+import { catchError, delay, exhaustMap, retryWhen } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { isEqual, toNumber } from "lodash-es";
@@ -58,7 +58,7 @@ export class AppComponent {
     this.subscriptions.push(
       timer(0, this.updateInterval)
         .pipe(
-          mergeMap(() => this.loadData()),
+          exhaustMap(() => this.loadData()),
           catchError((error) => {
             console.error(error);
             return throwError(error);

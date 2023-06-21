@@ -135,4 +135,30 @@ describe("AppComponent", () => {
       component.ngOnDestroy();
     })
   ));
+
+  it("should poll (delayed)", fakeAsync(
+    inject([AppComponent], (component: AppComponent) => {
+      component.ngOnInit();
+
+      tick(100);
+      flushMicrotasks();
+      expect(component).toBeTruthy();
+
+      let req = httpMock.expectOne(`${environment.dataServiceUrl}`);
+      expect(req.request.method).toBe("GET");
+      tick(2 * environment.updateInterval);
+      req.flush([]);
+
+      httpMock.verify();
+
+      tick(environment.updateInterval);
+      req = httpMock.expectOne(`${environment.dataServiceUrl}`);
+      expect(req.request.method).toBe("GET");
+      req.flush([]);
+
+      httpMock.verify();
+
+      component.ngOnDestroy();
+    })
+  ));
 });
