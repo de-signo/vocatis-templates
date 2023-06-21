@@ -61,6 +61,16 @@ pipeline {
       }
     }
 
+    stage('test-display-popup') {
+      steps {
+        dir('5.0') {
+          dir('display-popup') {
+            bat 'ng test --karma-config karma.conf.srv.js'
+          }
+        }
+      }
+    }
+
     stage('gulp') {
       steps {
         dir('5.0') {

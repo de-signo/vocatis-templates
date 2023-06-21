@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   dataServiceUrl: "assets/testdata.json",
+  updateInterval: 2500,
+  popupTimeout: 10000,
 };
 
 /*

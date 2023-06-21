@@ -15,6 +15,7 @@ describe("PopupComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PopupComponent);
     component = fixture.componentInstance;
+    component.waitNumber = { number: "10", room: "502" };
     fixture.detectChanges();
   });
 

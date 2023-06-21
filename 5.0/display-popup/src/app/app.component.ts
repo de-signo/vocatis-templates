@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import { Observable, timer } from "rxjs";
-import { mergeMap } from "rxjs/operators";
+import { Observable, Subscription, throwError, timer } from "rxjs";
+import { catchError, delay, mergeMap, retryWhen } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { isEqual, toNumber } from "lodash-es";
@@ -14,8 +14,8 @@ import { PlayerService } from "./player.service";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-  readonly updateInterval = 2500;
-  readonly popupTimeout = 10000;
+  readonly updateInterval = environment.updateInterval;
+  readonly popupTimeout = environment.popupTimeout;
 
   private list: WaitNumberItem[] = [];
   private queue: { number: WaitNumberItem; audio?: HTMLAudioElement }[] = [];
@@ -30,6 +30,8 @@ export class AppComponent {
     null;
   audio?: HTMLAudioElement = undefined;
   dataParams: Params | null = null;
+
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private http: HttpClient,
@@ -53,14 +55,27 @@ export class AppComponent {
       if (this.speechUrl) this.speech = this.parseSpeechUrl(this.speechUrl);
     });
 
-    timer(0, this.updateInterval)
-      .pipe(mergeMap(() => this.loadData()))
-      .subscribe(
-        (data) => this.updateList(data),
-        (error) => console.error(error)
-      );
+    this.subscriptions.push(
+      timer(0, this.updateInterval)
+        .pipe(
+          mergeMap(() => this.loadData()),
+          catchError((error) => {
+            console.error(error);
+            return throwError(error);
+          }),
+          retryWhen((errors) => errors.pipe(delay(this.updateInterval)))
+        )
+        .subscribe((data) => this.updateList(data))
+    );
 
-    timer(0, 500).subscribe((data) => this.updateHighlight());
+    this.subscriptions.push(
+      timer(0, 500).subscribe((data) => this.updateHighlight())
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions?.forEach((s) => s.unsubscribe());
+    this.subscriptions = [];
   }
 
   loadData(): Observable<WaitNumberItem[]> {
