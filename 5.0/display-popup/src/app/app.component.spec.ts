@@ -49,7 +49,9 @@ describe("AppComponent", () => {
       httpMock.verify();
 
       tick(environment.updateInterval);
-      req = httpMock.expectOne(`${environment.dataServiceUrl}?wait=120`);
+      req = httpMock.expectOne(
+        `${environment.dataServiceUrl}?wait=120&last=97d170e1550eee4afc0af065b78cda302a97674c`
+      );
       expect(req.request.method).toBe("GET");
       req.flush([]);
 
@@ -105,7 +107,7 @@ describe("AppComponent", () => {
 
       tick(environment.updateInterval);
       req = httpMock.expectOne(
-        `${environment.dataServiceUrl}?wait=120`,
+        `${environment.dataServiceUrl}?wait=120&last=97d170e1550eee4afc0af065b78cda302a97674c`,
         "request 4"
       );
       expect(req.request.method).toBe("GET");
@@ -117,7 +119,7 @@ describe("AppComponent", () => {
 
       tick(environment.updateInterval);
       req = httpMock.expectOne(
-        `${environment.dataServiceUrl}?wait=120`,
+        `${environment.dataServiceUrl}?wait=120&last=97d170e1550eee4afc0af065b78cda302a97674c`,
         "request 5"
       );
       expect(req.request.method).toBe("GET");
@@ -129,7 +131,7 @@ describe("AppComponent", () => {
 
       tick(environment.updateInterval);
       req = httpMock.expectOne(
-        `${environment.dataServiceUrl}?wait=120`,
+        `${environment.dataServiceUrl}?wait=120&last=97d170e1550eee4afc0af065b78cda302a97674c`,
         "request 6"
       );
       expect(req.request.method).toBe("GET");
@@ -141,7 +143,7 @@ describe("AppComponent", () => {
 
       tick(environment.updateInterval);
       req = httpMock.expectOne(
-        `${environment.dataServiceUrl}?wait=120`,
+        `${environment.dataServiceUrl}?wait=120&last=97d170e1550eee4afc0af065b78cda302a97674c`,
         "request 7"
       );
       expect(req.request.method).toBe("GET");
@@ -171,7 +173,9 @@ describe("AppComponent", () => {
       httpMock.verify();
 
       tick(environment.updateInterval);
-      req = httpMock.expectOne(`${environment.dataServiceUrl}?wait=120`);
+      req = httpMock.expectOne(
+        `${environment.dataServiceUrl}?wait=120&last=97d170e1550eee4afc0af065b78cda302a97674c`
+      );
       expect(req.request.method).toBe("GET");
       req.flush([]);
 

@@ -1,20 +1,13 @@
 import { Component } from "@angular/core";
-import { Observable, Subject, Subscription, of, throwError, timer } from "rxjs";
-import {
-  catchError,
-  concatMap,
-  delay,
-  exhaustMap,
-  retryWhen,
-  takeUntil,
-  tap,
-} from "rxjs/operators";
+import { Observable, Subscription, of, timer } from "rxjs";
+import { catchError, concatMap, tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { isEqual, toNumber } from "lodash-es";
 import { ActivatedRoute, Params } from "@angular/router";
 import { WaitNumberItem } from "./model";
 import { PlayerService } from "./player.service";
+import { SHA1 } from "crypto-js";
 
 @Component({
   selector: "app-root",
@@ -54,8 +47,7 @@ export class AppComponent {
       this.speechUrl = this.speech ? notify : null;
       this.audioSrc = this.speech ? "" : notify;
 
-      let dataParams = Object.assign({ wait: 120 }, params);
-      this.dataParams = dataParams;
+      this.dataParams = Object.assign({ wait: 120 }, params);
     });
 
     // read voices (this seems to be lazy loaded. Thus listen to changed event.)
@@ -84,12 +76,20 @@ export class AppComponent {
     return new Observable<WaitNumberItem[]>((observer) => {
       const poll = () => {
         subscription = this.http
-          .get<WaitNumberItem[]>(jsonFile, {
+          .get(jsonFile, {
+            responseType: "text",
             params: this.dataParams ?? [],
           })
           .pipe(
             // pass data to subscriber
-            tap((data) => observer.next(data)),
+            tap((response) => {
+              const hash = SHA1(response).toString();
+              if (this.dataParams) this.dataParams["last"] = hash;
+
+              // Parse the string as JSON
+              const items = JSON.parse(response);
+              observer.next(items);
+            }),
             // handle errors
             catchError((error) => {
               console.error(error);

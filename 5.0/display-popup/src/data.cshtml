@@ -4,6 +4,8 @@
 @using Stolltec.Vocatis
 @using Stolltec.Vocatis.Model
 @using System.Linq
+@using System.Security.Cryptography;
+@using System.Text;
 @using System.Web.Caching
 @functions{
   IEnumerable<DisplayNumber> GetWaitQueueList(CommonGuidId id)
@@ -36,20 +38,43 @@
     return list;
   }
 
-  IEnumerable<DisplayNumber> WaitDataNotEmptyOrTimeout(FormsModel model, int wait)
+  string FormatOutput(IEnumerable<DisplayNumber> list) {
+    var result = list.Select(x =>
+      new {
+        number = x.Number,
+        room = x.RoomName
+      });
+    return JsonConvert.SerializeObject(result);
+  }
+
+  string WaitDataNotEmptyOrTimeout(FormsModel model, int wait, string last)
   {
     var endTime = DateTime.Now + TimeSpan.FromSeconds(wait);
-    IEnumerable<DisplayNumber> list;
-    do
+    string json;
+    using (var sha1 = SHA1.Create())
     {
-        list = GetConcatenatedQueueList(model);
-        if (list.Any())
+      while (true)
+      {
+        var list = GetConcatenatedQueueList(model);
+        json = FormatOutput(list);
+        if (wait == 0 || String.IsNullOrEmpty(last))
+          break;
+  
+        // Compute the hash
+        var jsonBytes = Encoding.UTF8.GetBytes(json);
+        var hashBytes = sha1.ComputeHash(jsonBytes);
+        var hashString = BitConverter.ToString(hashBytes).Replace("-", "");
+        
+        if (!string.Equals(last, hashString, StringComparison.OrdinalIgnoreCase))
           break;
         
-        System.Threading.Thread.Sleep(1000);
+        if (DateTime.Now < endTime)
+          System.Threading.Thread.Sleep(1000);
+        else
+          break;
+      }
     }
-    while (DateTime.Now < endTime);
-    return list;
+    return json;
   }
 }
 @{
@@ -60,15 +85,7 @@
 
   var waitS = Request.QueryString["wait"];
   var wait = waitS != null ? int.Parse(waitS) : 0;
+  var last = Request["last"];
 
-  // get list
-  var list = WaitDataNotEmptyOrTimeout(Model, wait);
-
-  // format output
-  var result = list.Select(x =>
-    new {
-      number = x.Number,
-      room = x.RoomName
-    });
-}
-@Html.Raw(JsonConvert.SerializeObject(result))
+  var result = WaitDataNotEmptyOrTimeout(Model, wait, last);
+}@Html.Raw(result)
