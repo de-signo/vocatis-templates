@@ -5,6 +5,7 @@ export const APPOINTMENT_OPTIONS = "appointmentOptions";
 export interface IAppointmentOptions {
   planToQueue: { [key: string]: { queue: string; categories: string[] } };
   postponeOffset?: number;
+  numberSource?: "auto" | "T3" | "T4" | "T5" | "user";
 }
 
 @Injectable({
@@ -33,9 +34,29 @@ export class MapperService {
     if (!queue) throw new Error(`The plan ${plan} is not mapped to a queue`);
 
     // get number
-    // user predefined number form field
-    const number = apt.userData[this.numberField];
-    // other number schemes implented here.
+    let number: string | undefined;
+    switch (this.style.numberSource ?? "auto") {
+      default:
+      case "auto":
+        number = undefined;
+        break;
+      case "user":
+        // user predefined number form field
+        number = apt.userData[this.numberField];
+        break;
+      case "T3":
+        // user predefined number form field
+        number = "T" + apt.userData[this.numberField]?.slice(-3);
+        break;
+      case "T4":
+        // user predefined number form field
+        number = "T" + apt.userData[this.numberField]?.slice(-4);
+        break;
+      case "T5":
+        // user predefined number form field
+        number = "T" + apt.userData[this.numberField]?.slice(-5);
+        break;
+    }
 
     const startDate = new Date(apt.start);
     const phone = startDate.toLocaleTimeString("de-DE", {

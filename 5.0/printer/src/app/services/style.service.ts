@@ -17,13 +17,16 @@ export class StyleService implements IAppointmentOptions {
   appointmentTimeout = 5;
   aptErrorInfo: string = "";
   enablePrint = false;
-  postponeOffset?: number;
   late: null | number = null;
   appShowWaitTime = false;
   listShowWaitTime = false;
   arrow: "right" | "down" = "right";
   trackingId = "";
+
+  // mapper (IAppointmentOptions)
   planToQueue: { [key: string]: { queue: string; categories: string[] } } = {};
+  postponeOffset?: number;
+  numberSource?: "auto" | "T3" | "T4" | "T5" | "user";
 
   // appointment mode and forgot qr code
   appointmentMode = AppointmentModes.QRCode;
@@ -94,6 +97,7 @@ export class StyleService implements IAppointmentOptions {
         i++;
       }
       this.planToQueue = p2q;
+      this.numberSource = params["s/ns"] ?? "auto";
 
       // appointment mode and forgot
       const apm = parseInt(params["s/apm"] ?? "1");

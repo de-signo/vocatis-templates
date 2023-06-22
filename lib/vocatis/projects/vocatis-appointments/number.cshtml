@@ -20,7 +20,10 @@
   var voc = Vocatis.GetVocatisData();
 
   // find / create the ticket
-  var ticket = Task.Run(() => voc.NewNumberAsync(number, queueid, catids, apt)).GetAwaiter().GetResult();
+  var ticket = Task.Run(() => number == null ?
+    voc.NewNumberAsync(queueid, catids, apt) :
+    voc.NewNumberAsync(number, queueid, catids, apt))
+    .GetAwaiter().GetResult();
 
   // set ticket data
   if (!String.IsNullOrEmpty(reference) || !String.IsNullOrEmpty(phone) || !String.IsNullOrEmpty(name)) {
