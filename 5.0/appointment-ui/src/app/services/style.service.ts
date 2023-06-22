@@ -8,6 +8,7 @@ import { IAppointmentOptions } from "vocatis-lib/dist/vocatis-appointments";
 export class StyleService implements IAppointmentOptions {
   postponeOffset?: number;
   planToQueue: { [key: string]: { queue: string; categories: string[] } } = {};
+  numberSource?: "auto" | "T3" | "T4" | "T5" | "user";
 
   constructor(route: ActivatedRoute) {
     route.queryParams.subscribe((params) => {
@@ -29,6 +30,7 @@ export class StyleService implements IAppointmentOptions {
         i++;
       }
       this.planToQueue = p2q;
+      this.numberSource = params["s/ns"] ?? "auto";
     });
   }
 }

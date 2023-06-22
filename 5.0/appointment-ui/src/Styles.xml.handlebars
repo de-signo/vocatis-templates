@@ -2,6 +2,18 @@
 <StyleList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://stollsoft.de/iSign/v2/Content/Forms/Styles">
 
 {{#*inline "appointmentFields"}}
+<field key="ns">
+  <names>
+    <name>Wartenummern Quelle</name>
+  </names>
+  <content_class type="TextChoose">
+    <text key="">Nach Vocatis Nummernschema</text>
+    <text key="user">Aus Feld 'Number'</text>
+    <text key="T3">T + letze drei aus Feld 'Number'</text>
+    <text key="T4">T + letze vier aus Feld 'Number'</text>
+    <text key="T5">T + letze fünf aus Feld 'Number'</text>
+  </content_class>
+</field>
 {{#range 1 13}}
 <field key="ap_pn{{this}}">
   <names>
