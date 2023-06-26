@@ -4,6 +4,7 @@ export interface AppointmentModel {
   sourceId: string;
   start: string;
   title: string;
+  participants: string;
   userData: { [key: string]: string };
 }
 
@@ -16,6 +17,7 @@ export interface WaitNumberRequestModel {
   // info
   name?: string;
   phone?: string;
+  description?: string;
   ref?: string;
 
   // queue

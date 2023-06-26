@@ -72,6 +72,7 @@ export class DataService {
     if (wn.ref) params = params.append("ref", wn.ref);
     if (wn.name) params = params.append("name", wn.name);
     if (wn.phone) params = params.append("phone", wn.phone);
+    if (wn.description) params = params.append("description", wn.description);
     if (wn.postpone)
       params = params.append("postpone", wn.postpone.toISOString());
     return this.http.get<any>(jsonFile, { params: params }).toPromise();

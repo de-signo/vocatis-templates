@@ -26,13 +26,14 @@
       "Plan": "Termine",
       "Url": "http://terminland.de",
       "Number": "A809"
-  }
+    }
   },
   {
     "source": "terminland",
     "sourceId": "55555",
-    "start": "2023-02-13T14:00:00.000Z",
+    "start": "2023-06-26T14:00:00.000Z",
     "title": "Horst Sacher",
+    "participants": "Herr Müller",
     "userData": {
       "Plan": "Termine",
       "Url": "http://terminland.de",

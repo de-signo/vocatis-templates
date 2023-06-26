@@ -2,7 +2,6 @@ import { EventEmitter, Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { ActivatedRoute } from "@angular/router";
 import { IAppointmentOptions } from "vocatis-lib/dist/vocatis-appointments";
-import { group } from "console";
 
 @Injectable({
   providedIn: "root",
