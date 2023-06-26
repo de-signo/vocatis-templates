@@ -32,7 +32,8 @@
                   queue = queueid,
                   categories = cats == null ? new string[0] : cats.Select(g=>g.ToString()),
                   openCloseStatus = qs == null ? 0 : qs.OpenCloseStatus,
-                  queueLength = qs == null ? 0 : qs.QueueLength
+                  queueLength = qs == null ? 0 : qs.QueueLength,
+                  estimateWaitTime = qs == null ? 0 : (int)qs.CurrentMaxWaitingTime.TotalSeconds
                 };
 
   Response.ContentType = "application/json";
