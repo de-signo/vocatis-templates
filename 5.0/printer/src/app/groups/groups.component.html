@@ -1,14 +1,5 @@
-<table>
-  <thead>
-    <tr>
-      <th>{{ "Groups_Header" | translate }}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let g of groups; index as i">
-      <td (click)="selectGroup(g, i)" class="btn">
-        <h5>{{ g.title | selectLang }}</h5>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<ul [ngClass]="['buttons-' + groups.length]">
+  <li *ngFor="let g of groups; index as i" (click)="selectGroup(g, i)" class="btn">
+    {{ g.title | selectLang }}
+  </li>
+</ul>

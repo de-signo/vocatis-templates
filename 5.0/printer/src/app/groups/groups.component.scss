@@ -1,37 +1,34 @@
 @import "colors.scss";
 @import "mixins.scss";
 
-:host {
-  margin: 0 $hmargin;
+ul {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 10vw;
+
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-gap: 2vw 2vh;
+
+  font-weight: bold;
+  font-size: 3.3rem;
+
+  &.buttons-2,
+  &.buttons-3 {
+    gap: 5vh 2vw;
+  }
 }
 
-table {
-  width: 100%;
-  margin: 0;
-  th {
-    text-align: left;
-    font-size: 1.5rem;
-    padding-bottom: 1vh;
-  }
-  td {
-    margin-bottom: 2vh;
-    vertical-align: top;
-    height: 7vh;
-  }
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 
-  .btn {
-    position: relative;
-    display: flex;
-    background-color: $color-secondary-background;
-    color: $color-secondary-foreground;
-    text-align: center;
-    box-shadow: 1px 3px 1px $color-secondary-shadow;
-
-    & > h5 {
-      flex-grow: 1;
-      line-height: 7vh;
-      font-weight: bold;
-      font-size: 1.8em;
-    }
-  }
+  background-color: $color-secondary-background;
+  color: $color-secondary-foreground;
+  box-shadow: 1px 3px 1px $color-secondary-shadow;
 }
