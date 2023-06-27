@@ -57,7 +57,7 @@ foreach (var item in appointments)
     item.UserData.TryGetValue("Description", out string desc);
     item.UserData.TryGetValue("Url", out string url);
     
-    var ticket = vocatis.NewNumber(ticketNum, queue, categories, appointmentId: item.Id);
+    var ticket = await vocatis.NewNumberAsync(ticketNum, queue, categories, appointmentId: item.Id);
     ticket.Name = item.Participants;
     ticket.Phone = item.Start.ToLocalTime().ToShortTimeString() + ": " + item.Title;
     ticket.Description = desc;
