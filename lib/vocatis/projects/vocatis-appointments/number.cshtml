@@ -9,7 +9,12 @@
   */
   var queueid = CommonGuidId.FromString(Request["queue"]);
   var catids = GuidIdsFieldInstance.ParseValue("",Request["categories"]).Value as CommonGuidId[];
-  var apt = Guid.Parse(Request["appointment"]);
+  var aptS = Request["appointment"];
+  Guid? apt = null;
+  Guid aptG;
+  if (Guid.TryParse(aptS, out aptG)) {
+    apt = aptG;
+  }
 
   var number = Request["number"];
   var reference = Request["ref"];
