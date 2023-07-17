@@ -73,6 +73,7 @@ export class AppComponent implements OnInit, OnDestroy {
             (st) => {
               this.ticket = st;
               this.error = false;
+              this.now = Date.now();
             },
             (error) => {
               this.error = true;
