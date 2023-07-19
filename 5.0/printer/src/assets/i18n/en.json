@@ -32,6 +32,7 @@
   "Appoint_TicketPrint": "Print ticket",
   "Appoint_TicketScan": "Scan ticket",
   "Appoint_Timeout": "No QR-Code scanned, yet!",
+  "Appoint_PleaseWait": "Please wait.",
   "Appoint_Loading": "One moment please",
   "EnterAppointId_Header": "Enter your appointment-id, please",
   "EnterAppointId_Error": "Invalid number!",

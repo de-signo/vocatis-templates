@@ -32,6 +32,7 @@ import { TicketService } from "../services/ticket.service";
 })
 export class ScanAppointmentComponent implements OnInit {
   timeout = false;
+  isscanning = false;
   private timeoutSub?: Subscription;
 
   constructor(
@@ -60,8 +61,9 @@ export class ScanAppointmentComponent implements OnInit {
   private timerSub: Subscription | undefined;
   async onScanInput(event: Event) {
     // prevent raising timeout while scan input is processing
-    this.resetTimeout();
+    (this.timeout = false), this.resetTimeout();
 
+    this.isscanning = true;
     if (this.timerSub) {
       this.timerSub.unsubscribe();
     }

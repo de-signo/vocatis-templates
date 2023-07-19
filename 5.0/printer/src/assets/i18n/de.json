@@ -32,6 +32,7 @@
   "Appoint_TicketPrint": "Ticket drucken",
   "Appoint_TicketScan": "Ticket scannen",
   "Appoint_Timeout": "Leider wurde Ihr QR-Code nicht gescannt!",
+  "Appoint_PleaseWait": "Bitte warten.",
   "Appoint_Loading": "Einen Moment, Ihr Code wird geprüft.",
   "EnterAppointId_Header": "Bitte geben Sie Ihre Terminnummer ein.",
   "EnterAppointId_Error": "Falsche Nummer!",
