@@ -2,6 +2,7 @@
   "version": "5.0.0",
   "name": "vocatis-standardvorlagen",
   "type": "module",
+  "license": "AGPL",
   "workspaces": [
     "lib/vocatis",
     "5.0/appointment-ui",

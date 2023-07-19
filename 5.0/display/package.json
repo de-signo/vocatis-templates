@@ -1,6 +1,7 @@
 {
   "name": "display",
   "version": "0.0.0",
+  "license": "AGPL",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
