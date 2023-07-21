@@ -2,7 +2,7 @@
  *  Copyright (C) 2023 DE SIGNO GmbH
  *
  *  This program is dual licensed. If you did not license the program under
- *  differnt tems, the following applies:
+ *  different terms, the following applies:
  *
  *  This program is free software: You can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published by
