@@ -32,6 +32,8 @@ import { TicketService } from "../services/ticket.service";
 })
 export class ScanAppointmentComponent implements OnInit {
   timeout = false;
+  isscanning = false;
+  private timeoutSub?: Subscription;
 
   constructor(
     private scan: ScanAppointmentService,
@@ -48,13 +50,20 @@ export class ScanAppointmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    firstValueFrom(timer(4000)).then(() => {
-      this.timeout = true;
-    });
+    this.resetTimeout();
+  }
+
+  private resetTimeout() {
+    if (this.timeoutSub) this.timeoutSub.unsubscribe();
+    this.timeoutSub = timer(4000).subscribe((_) => (this.timeout = true));
   }
 
   private timerSub: Subscription | undefined;
   async onScanInput(event: Event) {
+    // prevent raising timeout while scan input is processing
+    (this.timeout = false), this.resetTimeout();
+
+    this.isscanning = true;
     if (this.timerSub) {
       this.timerSub.unsubscribe();
     }
