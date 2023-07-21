@@ -84,6 +84,9 @@ export class TicketComponent implements OnInit, OnDestroy {
         }, 1000);
       }
     });
+
+    let count = this.element.nativeElement.getElementsByTagName("img").length;
+    if (count == 0) window.setTimeout(() => this.onImgLoaded({}), 0);
   }
 
   ngOnDestroy(): void {

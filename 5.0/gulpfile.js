@@ -178,6 +178,7 @@ var printerSpecs = [
     templates: [
       { input: "printer/Styles.xml.handlebars", dest: "printer/dist" },
       "printer/src/environments/environment.prod.ts.handlebars",
+      "printer/app_src/environments/environment.prod.ts.handlebars",
     ],
     templateData: {
       suffix: customersuffix,

@@ -34,7 +34,7 @@ import { WaitNumberItem } from "./model";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  readonly updateInterval = 2500;
+  readonly updateInterval = environment.updateInterval;
   readonly highlightTimeout = 5000;
   readonly popupTimeout = 10000;
 
