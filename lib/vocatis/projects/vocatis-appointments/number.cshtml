@@ -18,11 +18,27 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *  
  *@
+@using System.Linq
 @using System.Threading.Tasks
 @using System.Web.Mvc
 @using iSign
 @using Stolltec.Vocatis
 @using Stolltec.Vocatis.Model
+@functions {
+  async Task<WaitNumber> GetNumber(IVocatisData voc, Guid? apt, string number, CommonGuidId queueid, CommonGuidId[] catids) {
+    if (apt != null) {
+      // check if theres an existing number with that appointment
+      // required iSign 8 or newer
+      var awn = await voc.GetAppointmentWithNumbers(apt.Value);
+      if (awn.Item1 != null && awn.Item2 != null && awn.Item2.Any()) {
+        return awn.Item2.First();
+      }
+    }
+    return number == null ?
+      await voc.NewNumberAsync(queueid, catids, apt) :
+      await voc.NewNumberAsync(number, queueid, catids, apt);
+  }
+}
 @{
  /*
     webservice for number generation
@@ -46,9 +62,7 @@
   var voc = Vocatis.GetVocatisData();
 
   // find / create the ticket
-  var ticket = Task.Run(() => number == null ?
-    voc.NewNumberAsync(queueid, catids, apt) :
-    voc.NewNumberAsync(number, queueid, catids, apt))
+  var ticket = Task.Run(() => GetNumber(voc, apt, number, queueid, catids))
     .GetAwaiter().GetResult();
 
   // set ticket data
