@@ -31,6 +31,7 @@ import {
   MapperService,
   WaitNumberRequestModel,
 } from "vocatis-lib/dist/vocatis-appointments";
+import { TimeoutService } from "./timeout.service";
 
 @Injectable({
   providedIn: "root",
@@ -50,13 +51,13 @@ export class ScanAppointmentService {
   currentDate: Date | undefined;
   number: WaitNumberModel | undefined;
 
-  private timerSub: Subscription | undefined;
   constructor(
     private router: Router,
     private data: DataService,
     private style: StyleService,
     private mapper: MapperService,
-    private print: TicketService
+    private print: TicketService,
+    private timeout: TimeoutService
   ) {}
 
   async handleScan(data: string): Promise<void> {
@@ -107,9 +108,7 @@ export class ScanAppointmentService {
         if (await this.handleAppointment(apt)) return;
       }
     }
-    this.timerSub = timer(this.style.appointmentTimeout * 1000).subscribe((_) =>
-      this.router.navigate(["/"], { queryParamsHandling: "preserve" })
-    );
+    this.timeout.useTimeout(this.style.appointmentTimeout);
   }
 
   async findAppointment(code: string): Promise<AppointmentModel | undefined> {
@@ -155,10 +154,6 @@ export class ScanAppointmentService {
       }
     }
     return false;
-  }
-
-  abort() {
-    this.timerSub?.unsubscribe();
   }
 
   private parseICalDateTime(date: string, time: string): Date {
