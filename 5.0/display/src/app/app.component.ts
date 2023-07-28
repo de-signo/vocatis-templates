@@ -38,6 +38,9 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly highlightTimeout = 5000;
   readonly popupTimeout = 10000;
 
+  header: string = "";
+  footer: string = "";
+
   list: WaitNumberItem[] = [];
   enableHighlight = false;
   highlightQueue: { item: WaitNumberItem; ends: number }[] = [];
@@ -60,6 +63,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
+      this.header = params["s/header"] ?? "";
+      this.footer = params["s/footer"] ?? "";
       this.enableHighlight = params["s/hl"] == "1";
       this.enablePopup = !!params["s/popup"];
       const notify = params["s/notify"] ?? "";

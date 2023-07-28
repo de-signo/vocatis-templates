@@ -30,6 +30,8 @@ import { WaitNumberItem } from "../model";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnDestroy {
+  @Input() header: string = "";
+  @Input() footer: string = "";
   @Input() list: WaitNumberItem[] = [];
   @Input() highlight: WaitNumberItem[] = [];
   now: Date = new Date();

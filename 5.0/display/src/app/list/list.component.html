@@ -25,7 +25,7 @@
     class="plattformlogo"
     alt="plattformlogo"
   />
-  <h1>Wartebereich</h1>
+  <h1>{{ header }}</h1>
 </header>
 <table [ngClass]="['buttons-' + list.length]">
   <tbody>
@@ -38,7 +38,7 @@
     </tr>
   </tbody>
 </table>
-<h2><span *ngIf="list.length &lt; 8">Bitte warten Sie, bis Ihre Nummer erscheint.</span></h2>
+<h2><span *ngIf="list.length &lt; 8">{{ footer }}</span></h2>
 <footer>
   <h5>{{ now | date: "shortDate" }}</h5>
   <svg class="logo" viewBox="0 0 160 53.138">
