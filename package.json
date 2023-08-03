@@ -7,6 +7,7 @@
     "lib/vocatis",
     "5.0/appointment-ui",
     "5.0/display",
+    "5.0/display-popup",
     "5.0/printer"
   ],
   "devDependencies": {
