@@ -81,20 +81,13 @@ export class AppComponent implements OnInit {
     translate.setDefaultLang("de");
     translate.use("de");
 
-    // configure idle timeout
     this.style.updated.subscribe(() => {
       this.showInfo = !!style.aptErrorInfo;
-      idle.setIdle(style.idleTimeout - 1);
     });
-    idle.setIdle(style.idleTimeout - 1);
-    idle.setTimeout(1);
-    idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+
     idle.onTimeout.subscribe(() => {
-      router.navigate(["/"], { queryParamsHandling: "preserve" });
       translate.use("de");
-      idle.watch();
     });
-    idle.watch();
   }
 
   ngOnInit(): void {
