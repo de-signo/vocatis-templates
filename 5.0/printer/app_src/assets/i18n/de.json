@@ -6,7 +6,7 @@
   "App_CallHeader": "Aufruf",
   "App_YourNumber": "Ihre Wartemarke:",
   "App_NumWaitingFormatRaw": "Es befinden sich noch {{count}} vor Ihnen",
-  "App_WaitingTimeFormatRaw": "Ihre voraussichtliche Wartezeit beträgt ca. {{min}} Minuten</b>.",
+  "App_WaitingTimeFormatRaw": "Ihre voraussichtliche Wartezeit beträgt ca. {{min}} Minuten.",
   "App_TimeFormat": "STAND: {{date}} Uhr",
   "App_StayClose": "Bitte halten Sie sich im Wartebereich auf!",
   "App_ComeBack": "Bitte rechtzeitig den Wartebereich aufsuchen!",
