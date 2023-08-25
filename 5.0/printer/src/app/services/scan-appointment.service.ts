@@ -147,6 +147,9 @@ export class ScanAppointmentService {
       );
     } else {
       this.number = await this.data.createTicket(req);
+      console.log(
+        `The appointment with source-id '${apt.sourceId}' was assigned to the number ${this.number.number}.`
+      );
       if (this.style.listShowQrCode) this.state = "qr";
       else {
         await this.print.handlePrintTicket(this.number, "appointment");
