@@ -203,9 +203,13 @@ export class TicketService {
     });
     if (!blob) return;
     if (this.isPrinterAvailable) {
+      console.log("Sending ticket to printer component");
       let buffer = await blob.arrayBuffer();
       await window.printer.printImage([...new Uint8Array(buffer)]);
     } else {
+      console.log(
+        "No printer component available. Providing the ticket as download."
+      );
       saveAs(blob, "ticket.png");
     }
   }
