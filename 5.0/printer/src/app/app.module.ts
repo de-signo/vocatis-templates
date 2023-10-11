@@ -45,7 +45,7 @@ import { EnterAppointIdComponent } from "./enter-appoint-id/enter-appoint-id.com
 import { SelectAppointModeComponent } from "./select-appoint-mode/select-appoint-mode.component";
 import { StyleService } from "./services/style.service";
 import { APPOINTMENT_OPTIONS } from "vocatis-lib/dist/vocatis-appointments";
-import { RightClickDirective } from "./rightclick.directive";
+import { TouchClickDirective } from "./touchclick.directive";
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
@@ -58,7 +58,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     FixedFocusDirective,
-    RightClickDirective,
+    TouchClickDirective,
     SelectLangPipe,
     AppComponent,
     EntrySelectComponent,

@@ -42,7 +42,7 @@
 <!-- single button -->
 <ng-template [ngIf]="buttons.length == 1">
   <ng-template [ngIf]="getViewFor(buttons[0])" let-view>
-    <div *ngFor="let button of buttons" (click)="view == 'open' ? print(button) : null" rightClick
+    <div *ngFor="let button of buttons" (click)="view == 'open' ? print(button) : null" touchClick
          [class]="'buttons buttons-1 btn ' + view" [ngClass]="{'open': view == 'open', 'closed': view != 'open', 'next-one': buttons[0].queueLength == 0}">
       <h5>{{ button.title | selectLang }}</h5>
       <ng-template [ngIf]="!showQrCode">
@@ -55,7 +55,7 @@
         <span *ngIf="showQrCode">{{ "List_Print" | translate }}</span>
         <span *ngIf="showQrCode">{{ "List_Scan" | translate }}</span>
           <div class="single-button"></div>
-          <qrcode *ngIf="showQrCode" [qrdata]="getAppTicketLink(buttons[0])" [margin]="0" (click)="qrClick(buttons[0])" rightClick></qrcode>
+          <qrcode *ngIf="showQrCode" [qrdata]="getAppTicketLink(buttons[0])" [margin]="0" (click)="qrClick(buttons[0])" touchClick></qrcode>
         </div>
       </ng-template>
 
@@ -90,7 +90,7 @@
   <span *ngIf="showQrCode">{{ "List_Scan" | translate }}</span>
    
   <ng-container *ngFor="let button of buttons" [ngSwitch]="getViewFor(button)">
-    <div *ngSwitchCase="'open'" (click)="print(button)" class="btn open" [ngClass]="{'next-one': button.queueLength == 0}" rightClick>
+    <div *ngSwitchCase="'open'" (click)="print(button)" class="btn open" [ngClass]="{'next-one': button.queueLength == 0}" touchClick>
       <h5>{{ button.title | selectLang }}</h5>
 
       <div #statusPanel class="queue-status" [ngClass]="{'queue-status-columns': showStatusInColumns}">
@@ -120,7 +120,7 @@
       <div>{{ "List_ClosedFull" | translate }}</div>
     </div>
 
-    <qrcode *ngIf="showQrCode && getViewFor(button) == 'open'" [qrdata]="getAppTicketLink(button)" [margin]="0" (click)="qrClick(button)" rightClick></qrcode>
+    <qrcode *ngIf="showQrCode && getViewFor(button) == 'open'" [qrdata]="getAppTicketLink(button)" [margin]="0" (click)="qrClick(button)" touchClick></qrcode>
     <div *ngIf="showQrCode && getViewFor(button) != 'open'">
       <!-- required for grid auto flow -->
     </div>

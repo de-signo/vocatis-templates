@@ -53,10 +53,10 @@
     </svg>
     {{ "Appoint_PleaseWait" | translate }}
   </h3>
-  <a *ngIf="showForgotQR" (click)="printForgotQrCode()" rightClick>
+  <a *ngIf="showForgotQR" (click)="printForgotQrCode()" touchClick>
     {{ "Appoint_ForgotInvite" | translate }}
   </a>
-  <a *ngIf="timeout" routerLink="/enter-appoint-id" queryParamsHandling="preserve" rightClick>
+  <a *ngIf="timeout" routerLink="/enter-appoint-id" queryParamsHandling="preserve" touchClick>
     {{ "Appoint_SelectEnterId" | translate }}
   </a>
 </nav>

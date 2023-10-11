@@ -29,7 +29,7 @@
       <input *ngFor="let i of codeIndexes" [value]="i >= code.length ? '' : code[i]" maxlength="1" />
     </div>
 
-    <button (click)="code = ''" *ngIf="state != 'error'" rightClick>
+    <button (click)="code = ''" *ngIf="state != 'error'" touchClick>
       <svg viewBox="0 0 48 48">
         <path d="M43.4,5.4h-0.5h-9.2c0-0.1,0-0.2,0-0.3c0-1.9-1.7-3.4-3.7-3.4H18.3c-2.1,0-3.7,1.5-3.7,3.4c0,0.1,0,0.2,0,0.3
             H6.7H4.6C4,5.4,3.4,5.9,3.4,6.5s0.5,1.1,1.2,1.1h1l1.6,19.7c0.3,4,0.7,8.1,1,12.1s3.7,7,8,7c0.1,0,0.1,0,0.2,0
@@ -55,9 +55,9 @@
 
 <div class="keyboard">
   <div>
-    <button *ngFor="let k of [1,2,3,4,5]" (click)="addChar(k)" rightClick>{{k}}</button>
+    <button *ngFor="let k of [1,2,3,4,5]" (click)="addChar(k)" touchClick>{{k}}</button>
   </div>
   <div>
-    <button *ngFor="let k of [6,7,8,9,0]" (click)="addChar(k)" rightClick>{{k}}</button>
+    <button *ngFor="let k of [6,7,8,9,0]" (click)="addChar(k)" touchClick>{{k}}</button>
   </div>
 </div>

@@ -19,22 +19,20 @@
  *
  */
 
-import {
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  HostListener,
-  Input,
-} from "@angular/core";
-import { timer } from "rxjs";
+import { Directive, ElementRef, HostListener } from "@angular/core";
 
 @Directive({
-  selector: "[rightClick]",
+  selector: "[touchClick]",
 })
-export class RightClickDirective {
+export class TouchClickDirective {
   constructor(private readonly elementRef: ElementRef) {}
 
   @HostListener("contextmenu", ["$event"]) onContextMenu($event: Event) {
+    this.elementRef.nativeElement.click();
+    $event.preventDefault();
+  }
+
+  @HostListener("touchstart", ["$event"]) onTouchStart($event: Event) {
     this.elementRef.nativeElement.click();
     $event.preventDefault();
   }
