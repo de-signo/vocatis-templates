@@ -20,20 +20,24 @@
  */
 
 import { Directive, ElementRef, HostListener } from "@angular/core";
+import { ClickThrottleService } from "./click-throttle.service";
 
 @Directive({
   selector: "[touchClick]",
 })
 export class TouchClickDirective {
-  constructor(private readonly elementRef: ElementRef) {}
+  constructor(
+    private readonly elementRef: ElementRef,
+    private readonly throttle: ClickThrottleService
+  ) {}
 
   @HostListener("contextmenu", ["$event"]) onContextMenu($event: Event) {
-    this.elementRef.nativeElement.click();
+    if (this.throttle.click()) this.elementRef.nativeElement.click();
     $event.preventDefault();
   }
 
   @HostListener("touchstart", ["$event"]) onTouchStart($event: Event) {
-    this.elementRef.nativeElement.click();
+    if (this.throttle.click()) this.elementRef.nativeElement.click();
     $event.preventDefault();
   }
 }

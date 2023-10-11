@@ -34,6 +34,7 @@ export const environment = {
   enableApp: true,
   appUrl: "http://localhost:4201/",
   showLogo: true,
+  throttleClicks: 200,
 };
 
 /*
