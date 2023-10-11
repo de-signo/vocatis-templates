@@ -26,13 +26,13 @@
     alt="plattformlogo"
   />
   <h1>{{ "Printer_Header" | translate }}</h1>
-  <a *ngIf="showInfo" routerLink="/info" queryParamsHandling="preserve" class="btn">
+  <a *ngIf="showInfo" routerLink="/info" queryParamsHandling="preserve" class="btn" touchClick>
     <svg viewBox="0 0 24 24">
       <path d="M9.2,10.7V9.9C10.7,9.7,12,9.2,13,8.6l0.5,0.3c-0.1,0.8-0.2,1.5-0.2,2.1c0,0.9-0.1,2.4-0.1,4.4c0,0.8,0,1.4,0.1,1.6c0,0.2,0.1,0.3,0.2,0.3c0.1,0.1,0.5,0.2,1.2,0.4v0.7c-0.9-0.1-1.7-0.1-2.5-0.1c-0.7,0-1.8,0-3.2,0.1v-0.7l0.3-0.1c0.6-0.1,0.9-0.2,1-0.3c0.1-0.1,0.2-0.3,0.2-0.5c0.1-0.6,0.1-1.9,0.1-3.9c0-1.1,0-1.8-0.1-2c-0.1-0.2-0.3-0.4-0.6-0.4C9.8,10.6,9.5,10.6,9.2,10.7z M12,4c0.4,0,0.8,0.2,1.1,0.5c0.3,0.3,0.5,0.7,0.5,1.1c0,0.4-0.2,0.8-0.5,1.1c-0.3,0.3-0.7,0.5-1.1,0.5c-0.4,0-0.8-0.2-1.1-0.5s-0.5-0.7-0.5-1.1c0-0.4,0.2-0.8,0.5-1.1C11.2,4.2,11.6,4,12,4z"/>
     </svg>
   </a>
 
-  <a *ngIf="showHome" routerLink="/" queryParamsHandling="preserve" class="btn">
+  <a *ngIf="showHome" routerLink="/" queryParamsHandling="preserve" class="btn" touchClick>
     <svg viewBox="0 0 24 24">
       <polygon points="18.8,11.6 12,6 5.3,11.6 6.6,11.6 6.6,18 11,18 11,14.7 13.1,14.7 13.1,18 17.5,18 17.5,11.6"/>
       <polygon points="17.2,6.1 17.2,9.6 14.9,7.6 14.9,6.1"/>
@@ -45,7 +45,7 @@
 </main>
 
 <footer *ngIf="langs">
-  <a *ngFor="let l of langs" (click)="setLanguage(l)">
+  <a *ngFor="let l of langs" (click)="setLanguage(l)" touchClick>
     <span>{{ "lang_" + l | translate }}</span>
     <img [src]="'assets/lang/' + l + '.png'" />
   </a>

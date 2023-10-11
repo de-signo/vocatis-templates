@@ -32,10 +32,10 @@
 
 <nav class="site-nav">
   <h3>{{ "Entry_Info" | translate }}</h3>
-  <a [routerLink]="appointmentRoute" queryParamsHandling="preserve">{{
+  <a [routerLink]="appointmentRoute" queryParamsHandling="preserve" touchClick>{{
     "Entry_SelectAppointment" | translate
   }}</a>
-  <a [routerLink]="queueRoute" queryParamsHandling="preserve">{{
+  <a [routerLink]="queueRoute" queryParamsHandling="preserve" touchClick>{{
     "Entry_SelectTicket" | translate
   }}</a>
 </nav>

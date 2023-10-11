@@ -20,7 +20,7 @@
  -->
 
 <ul [ngClass]="['buttons-' + groups.length]">
-  <li *ngFor="let g of groups; index as i" (click)="selectGroup(g, i)" class="btn">
+  <li *ngFor="let g of groups; index as i" (click)="selectGroup(g, i)" class="btn" touchClick>
     {{ g.title | selectLang }}
   </li>
 </ul>
