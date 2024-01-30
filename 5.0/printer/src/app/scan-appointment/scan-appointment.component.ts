@@ -50,7 +50,7 @@ export class ScanAppointmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.resetTimeout();
+    if (this.style.activeStyle != "appointment") this.resetTimeout();
   }
 
   private resetTimeout() {
