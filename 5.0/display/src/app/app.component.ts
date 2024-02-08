@@ -56,10 +56,13 @@ export class AppComponent implements OnInit, OnDestroy {
     null;
   audio: HTMLAudioElement | null = null;
   audioQueue: HTMLAudioElement[] = [];
-  dataParams: Params | null = null;
+  dataParams?: Params;
 
   private subscriptions: Subscription[] = [];
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -88,13 +91,13 @@ export class AppComponent implements OnInit, OnDestroy {
             console.error(error);
             return throwError(error);
           }),
-          retryWhen((errors) => errors.pipe(delay(this.updateInterval)))
+          retryWhen((errors) => errors.pipe(delay(this.updateInterval))),
         )
-        .subscribe((data) => this.updateList(data))
+        .subscribe((data) => this.updateList(data)),
     );
 
     this.subscriptions.push(
-      timer(0, 500).subscribe((data) => this.updateHighlight())
+      timer(0, 500).subscribe((data) => this.updateHighlight()),
     );
   }
 
@@ -106,7 +109,7 @@ export class AppComponent implements OnInit, OnDestroy {
   loadData(): Observable<WaitNumberItem[]> {
     const jsonFile = `${environment.dataServiceUrl}`;
     return this.http.get<WaitNumberItem[]>(jsonFile, {
-      params: this.dataParams ?? [],
+      params: this.dataParams,
     });
   }
 
@@ -129,7 +132,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.highlightQueue.push(
           ...newItems.map((i) => {
             return { item: i, ends: hlEnd };
-          })
+          }),
         );
       }
 
@@ -187,7 +190,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   parseSpeechUrl(
-    url: string
+    url: string,
   ): { voice: SpeechSynthesisVoice; text: string; rate: number } | null {
     if (!url.startsWith("speech://")) return null;
 
@@ -217,8 +220,8 @@ export class AppComponent implements OnInit, OnDestroy {
         if (this.voicesLoaded) {
           console.log(
             `Selected voice '${voice}' not found. Available voices: ${voices.map(
-              (v) => v.name
-            )}`
+              (v) => v.name,
+            )}`,
           );
         }
       } else {

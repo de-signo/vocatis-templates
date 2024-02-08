@@ -30,14 +30,14 @@ export class AppComponent {
   speech: { voice: SpeechSynthesisVoice; text: string; rate: number } | null =
     null;
   audio?: HTMLAudioElement = undefined;
-  dataParams: Params | null = null;
+  dataParams?: Params;
 
   private subscriptions: Subscription[] = [];
 
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
-    private player: PlayerService
+    private player: PlayerService,
   ) {}
 
   ngOnInit(): void {
@@ -58,10 +58,10 @@ export class AppComponent {
     });
 
     this.subscriptions.push(
-      this.loadData().subscribe((data) => this.updateList(data))
+      this.loadData().subscribe((data) => this.updateList(data)),
     );
     this.subscriptions.push(
-      timer(0, 500).subscribe((data) => this.updateHighlight())
+      timer(0, 500).subscribe((data) => this.updateHighlight()),
     );
   }
 
@@ -78,7 +78,7 @@ export class AppComponent {
         subscription = this.http
           .get(jsonFile, {
             responseType: "text",
-            params: this.dataParams ?? [],
+            params: this.dataParams,
           })
           .pipe(
             // pass data to subscriber
@@ -98,7 +98,7 @@ export class AppComponent {
             // timer for next invokation
             concatMap((data) => {
               return timer(this.updateInterval);
-            })
+            }),
           )
           .subscribe({ complete: () => poll() });
       };
@@ -122,7 +122,7 @@ export class AppComponent {
         ...newItems.map((item) => ({
           number: item,
           audio: this.prepareAudio(item),
-        }))
+        })),
       );
       this.updateHighlight();
     }
@@ -175,7 +175,7 @@ export class AppComponent {
   }
 
   parseSpeechUrl(
-    url: string
+    url: string,
   ): { voice: SpeechSynthesisVoice; text: string; rate: number } | null {
     if (!url.startsWith("speech://")) return null;
 
@@ -204,8 +204,8 @@ export class AppComponent {
       if (!found) {
         console.log(
           `Selected voice '${voice}' not found. Available voices: ${JSON.stringify(
-            voices.map((v) => v.name)
-          )}`
+            voices.map((v) => v.name),
+          )}`,
         );
       }
       vvoice = found ?? voices[0];
