@@ -1,0 +1,13 @@
+{
+  "name": "vocatis-numbers",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": ">=16",
+    "@angular/core": ">=16",
+    "@isign/vocatis-api": "*"
+  },
+  "dependencies": {
+    "tslib": "^2.6.0"
+  },
+  "sideEffects": false
+}

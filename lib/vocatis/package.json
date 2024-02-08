@@ -5,9 +5,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build vocatis-numbers && ng build vocatis-appointments",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test-headless": "ng test vocatis-numbers --karma-config karma.conf.srv.js && ng test vocatis-appointments --karma-config karma.conf.srv.js "
   },
   "private": true,
   "dependencies": {

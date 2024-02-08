@@ -20,13 +20,12 @@
  */
 
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { EMPTY, Observable, Subscription, throwError, timer } from "rxjs";
-import { catchError, delay, mergeMap, retryWhen, tap } from "rxjs/operators";
+import { Subscription, timer } from "rxjs";
 import { environment } from "src/environments/environment";
-import { HttpClient } from "@angular/common/http";
 import { isEqual, toNumber } from "lodash-es";
 import { ActivatedRoute, Params } from "@angular/router";
-import { WaitNumberItem } from "./model";
+import { WaitNumberItem } from "vocatis-numbers";
+import { DataService } from "./data.service";
 
 @Component({
   selector: "app-root",
@@ -60,8 +59,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
   constructor(
-    private http: HttpClient,
-    private route: ActivatedRoute,
+    private readonly dataSvc: DataService,
+    private readonly route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
@@ -84,15 +83,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     this.subscriptions.push(
-      timer(0, this.updateInterval)
-        .pipe(
-          mergeMap(() => this.loadData()),
-          catchError((error) => {
-            console.error(error);
-            return throwError(error);
-          }),
-          retryWhen((errors) => errors.pipe(delay(this.updateInterval))),
-        )
+      this.dataSvc.loadData(this.updateInterval)
         .subscribe((data) => this.updateList(data)),
     );
 
@@ -104,13 +95,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions?.forEach((s) => s.unsubscribe());
     this.subscriptions = [];
-  }
-
-  loadData(): Observable<WaitNumberItem[]> {
-    const jsonFile = `${environment.dataServiceUrl}`;
-    return this.http.get<WaitNumberItem[]>(jsonFile, {
-      params: this.dataParams,
-    });
   }
 
   updateList(items: WaitNumberItem[]) {

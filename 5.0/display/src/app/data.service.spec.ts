@@ -19,33 +19,22 @@
  *
  */
 
-import { ComponentFixture, getTestBed, TestBed } from "@angular/core/testing";
-import { AppComponent } from "./app.component";
-import { ActivatedRoute } from "@angular/router";
+import { TestBed } from "@angular/core/testing";
+
 import { DataService } from "./data.service";
-import { of } from "rxjs";
+import { VocatisDisplayService } from "vocatis-numbers";
 
-describe("AppComponent", () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [AppComponent],
-      providers: [
-        { provide: ActivatedRoute, useValue: { queryParams: of({}) } },
-        { provide: DataService, useValue: { loadData: () => of({}) } },
-      ],
-    }).compileComponents();
-  });
+describe("DataService", () => {
+  let service: DataService;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      providers: [{ provide: VocatisDisplayService, useValue: {} }],
+    });
+    service = TestBed.inject(DataService);
   });
 
-  it("should create", () => {
-    expect(component).toBeTruthy();
+  it("should be created", () => {
+    expect(service).toBeTruthy();
   });
 });

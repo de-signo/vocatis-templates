@@ -19,8 +19,8 @@
  *
  */
 
-import { Component, Input, OnInit } from "@angular/core";
-import { WaitNumberItem } from "../model";
+import { Component, Input } from "@angular/core";
+import { WaitNumberItem } from "vocatis-numbers";
 
 @Component({
   selector: "app-popup",

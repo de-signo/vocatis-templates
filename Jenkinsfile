@@ -51,6 +51,26 @@ pipeline {
       }
     }
 
+    stage('test-lib') {
+      steps {
+        dir('lib') {
+          dir('vocatis') {
+            bat 'npm run test-headless'
+          }
+        }
+      }
+    }
+
+    stage('build-lib') {
+      steps {
+        dir('lib') {
+          dir('vocatis') {
+            bat 'npm run build'
+          }
+        }
+      }
+    }
+
     stage('test-display') {
       steps {
         dir('5.0') {

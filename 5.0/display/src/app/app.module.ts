@@ -29,12 +29,21 @@ import localeDe from "@angular/common/locales/de";
 import { PopupComponent } from "./popup/popup.component";
 import { ListComponent } from "./list/list.component";
 import { AppErrorHandler } from "./error-handler/app-error-handler";
+import { TemplateModule } from "@isign/forms-templates";
+import { ISignServicesModule } from "@isign/isign-services";
+import { environment } from "src/environments/environment";
+import { VocatisApiModule } from "@isign/vocatis-api";
+import { ISignPlayerExtensionsModule } from "@isign/player-extensions";
 
 registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [AppComponent, PopupComponent, ListComponent],
   imports: [
+    TemplateModule,
+    ISignPlayerExtensionsModule,
+    VocatisApiModule.withAutoSetup(),
+    ISignServicesModule.forRoot(environment.wellKnownISignUrl),
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([{ path: "**", component: AppComponent }]),

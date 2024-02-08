@@ -21,6 +21,8 @@
 
 export const environment = {
   production: true,
-  dataServiceUrl: "data.cshtml",
   updateInterval: 2500,
+
+  // use undefined for default (in development mode the demo data files will be used)
+  wellKnownISignUrl: undefined /* auto */,
 };
