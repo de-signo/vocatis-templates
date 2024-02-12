@@ -20,7 +20,6 @@
     "@angular/router": "^16.2.12",
     "rxjs": "~7.8.0",
     "tslib": "^2.6.0",
-    "vocatis-lib": "file:../../lib/vocatis",
     "zone.js": "~0.13.3"
   },
   "devDependencies": {

@@ -21,13 +21,15 @@
 
 import { TestBed } from "@angular/core/testing";
 
-import { MapperService } from "./mapper.service";
+import { APPOINTMENT_OPTIONS, MapperService } from "./mapper.service";
 
 describe("MapperService", () => {
   let service: MapperService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [{ provide: APPOINTMENT_OPTIONS, useValue: {} }],
+    });
     service = TestBed.inject(MapperService);
   });
 

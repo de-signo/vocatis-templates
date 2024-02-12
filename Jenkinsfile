@@ -91,6 +91,16 @@ pipeline {
       }
     }
 
+    stage('test-appointment-ui') {
+      steps {
+        dir('5.0') {
+          dir('appointment-ui') {
+            bat 'ng test --karma-config karma.conf.srv.js'
+          }
+        }
+      }
+    }
+
     stage('gulp') {
       steps {
         dir('5.0') {

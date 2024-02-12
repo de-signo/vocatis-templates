@@ -44,8 +44,13 @@ import { InfoComponent } from "./info/info.component";
 import { EnterAppointIdComponent } from "./enter-appoint-id/enter-appoint-id.component";
 import { SelectAppointModeComponent } from "./select-appoint-mode/select-appoint-mode.component";
 import { StyleService } from "./services/style.service";
-import { APPOINTMENT_OPTIONS } from "vocatis-lib/dist/vocatis-appointments";
+import { APPOINTMENT_OPTIONS } from "vocatis-appointments";
 import { TouchClickDirective } from "./touchclick.directive";
+import { TemplateModule } from "@isign/forms-templates";
+import { ISignPlayerExtensionsModule } from "@isign/player-extensions";
+import { ISignServicesModule } from "@isign/isign-services";
+import { VocatisApiModule } from "@isign/vocatis-api";
+import { environment } from "app_src/environments/environment";
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
@@ -73,6 +78,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     SelectAppointModeComponent,
   ],
   imports: [
+    TemplateModule,
+    ISignPlayerExtensionsModule,
+    VocatisApiModule.withAutoSetup(),
+    ISignServicesModule.forRoot(environment.wellKnownISignUrl),
     BrowserModule,
     HttpClientModule,
     NgIdleModule.forRoot(),

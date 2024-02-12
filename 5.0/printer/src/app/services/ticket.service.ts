@@ -91,12 +91,6 @@ export class TicketService {
       );
     }
 
-    timer(10000, 60000).subscribe((_) =>
-      this.reportPrinterStatus().catch((error) =>
-        console.error("reportPrinterStatus failed. ", error),
-      ),
-    );
-
     router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         if (!event.url.includes("/print-status")) {
@@ -104,13 +98,6 @@ export class TicketService {
         }
       }
     });
-  }
-
-  private async reportPrinterStatus(): Promise<void> {
-    if (!this.isPrinterAvailable || !this.isPlayerAvailable) return;
-    let displayId = await window.player.getDisplayId();
-    let status = await window.printer.getPrinterStatus();
-    await this.dataService.postPrinterStatus(displayId, "default", status);
   }
 
   async handleGetNewNumber(b: LeanButtonModel) {

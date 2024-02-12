@@ -21,6 +21,6 @@
 
 export const environment = {
   production: true,
-  appointmentsServiceUrl: "appointments.cshtml",
-  numberServiceUrl: "number.cshtml",
+  // use undefined for default (in development mode the demo data files will be used)
+  wellKnownISignUrl: undefined
 };

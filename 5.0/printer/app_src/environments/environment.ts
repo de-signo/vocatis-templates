@@ -25,9 +25,9 @@
 
 export const environment = {
   production: false,
-  statusServiceUrl: "assets/teststatus.json",
-  numberServiceUrl: "assets/testnum.json",
   refreshInterval: 10 * 1000 /* ms */,
+  // use undefined for default (in development mode the demo data files will be used)
+  wellKnownISignUrl: "assets/test-services",
 };
 
 /*

@@ -22,12 +22,15 @@
 import { TestBed } from "@angular/core/testing";
 
 import { DataService } from "./data.service";
+import { VocatisApiService } from "@isign/vocatis-api";
 
 describe("DataService", () => {
   let service: DataService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [{ provide: VocatisApiService, useValue: {} }],
+    });
     service = TestBed.inject(DataService);
   });
 

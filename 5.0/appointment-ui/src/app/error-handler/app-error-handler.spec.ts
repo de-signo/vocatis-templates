@@ -34,9 +34,9 @@ describe("AppErrorHandler", () => {
     const spy = spyOn(console, "error");
     const error: Error = new Error("ERROR");
 
-    var handler = new AppErrorHandler();
+    var handler = TestBed.inject(ErrorHandler);
     handler.handleError(error);
 
-    expect(spy).toHaveBeenCalledWith(error);
+    expect(spy).toHaveBeenCalledWith("ERROR");
   });
 });

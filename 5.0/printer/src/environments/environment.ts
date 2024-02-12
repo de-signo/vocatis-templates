@@ -25,10 +25,9 @@
 
 export const environment = {
   production: false,
-  groupsServiceUrl: "assets/testgroups.json",
-  queueServiceUrl: "assets/testqueues.json",
-  numberServiceUrl: "assets/testnum.json",
-  appointmentsServiceUrl: "assets/testappts.json",
+  groupsConfigUrl: "config.json",
+  // use undefined for default (in development mode the demo data files will be used)
+  wellKnownISignUrl: "assets/test-services",
   enableOpenClose: true,
   enableApp: true,
   appUrl: "http://localhost:4201/",

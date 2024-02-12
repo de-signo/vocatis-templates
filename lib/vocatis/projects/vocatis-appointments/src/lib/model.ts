@@ -19,16 +19,6 @@
  *
  */
 
-export interface AppointmentModel {
-  id: string;
-  source: string;
-  sourceId: string;
-  start: string;
-  title: string;
-  participants: string;
-  userData: { [key: string]: string };
-}
-
 export interface WaitNumberRequestModel {
   appointment: string;
   // number
