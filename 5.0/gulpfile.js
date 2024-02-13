@@ -57,16 +57,6 @@ let specs = [
     templates: ["api/Styles.xml.handlebars"],
   },
   {
-    name: "import",
-    clean: "../dist/import_*.zip",
-    files: ["import/**", "!import/*.handlebars"],
-    templates: ["import/Styles.xml.handlebars"],
-    templateData: {
-      suffix: customersuffix,
-      option_name: customername,
-    },
-  },
-  {
     name: "display",
     ng: ["display"],
     clean: "../dist/display_*.zip",
@@ -235,7 +225,7 @@ gulp.task("read_version", function (done) {
     (err, out) => {
       version = out.trim();
       done();
-    }
+    },
   );
 });
 
@@ -260,10 +250,10 @@ for (let spec of specs) {
           Object.assign(hbData, spec["templateData"]);
         }
         var templateObj = spec["templates"].filter(
-          (t) => typeof t === "object"
+          (t) => typeof t === "object",
         );
         var templateStr = spec["templates"].filter(
-          (t) => typeof t !== "object"
+          (t) => typeof t !== "object",
         );
         var streams = [];
         streams.push(
@@ -273,9 +263,9 @@ for (let spec of specs) {
             .pipe(
               rename(function (path) {
                 path.extname = "";
-              })
+              }),
             )
-            .pipe(gulp.dest("."))
+            .pipe(gulp.dest(".")),
         );
         templateObj.forEach((t) => {
           streams.push(
@@ -286,9 +276,9 @@ for (let spec of specs) {
                 rename(function (path) {
                   path.extname = "";
                   path.dirname = "";
-                })
+                }),
               )
-              .pipe(gulp.dest(t.dest))
+              .pipe(gulp.dest(t.dest)),
           );
         });
         return merge(streams);
@@ -310,7 +300,7 @@ for (let spec of specs) {
                 console.log(stdout);
                 console.log(stderr);
                 cb(err);
-              }
+              },
             );
           });
         } else {
@@ -345,6 +335,11 @@ for (let spec of specs) {
 
 gulp.task(
   "zip",
-  gulp.series("clean_zip", "read_version", "build_libs", gulp.series(zip_tasks))
+  gulp.series(
+    "clean_zip",
+    "read_version",
+    "build_libs",
+    gulp.series(zip_tasks),
+  ),
 );
 gulp.task("default", gulp.series(["css", "zip"]));
