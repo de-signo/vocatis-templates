@@ -40,15 +40,6 @@ hb.Handlebars.registerHelper("range", handlebars_helper_range);
 const customersuffix = "";
 const customername = "";
 
-// compile styles
-gulp.task("css", function () {
-  return gulp
-    .src(["styles/queueinfo.scss"])
-    .pipe(sass.sync().on("error", sass.logError))
-    .pipe(cleanCSS({ compatibility: "ie8" }))
-    .pipe(gulp.dest("queueinfo"));
-});
-
 let specs = [
   {
     name: "display",
@@ -78,16 +69,6 @@ let specs = [
     clean: "../dist/appointment-ui_*.zip",
     files: ["appointment-ui/dist/appointment-ui/**"],
     templates: ["appointment-ui/src/Styles.xml.handlebars"],
-    templateData: {
-      suffix: customersuffix,
-      option_name: customername,
-    },
-  },
-  {
-    name: "queueinfo",
-    clean: "../dist/queueinfo_*.zip",
-    files: ["queueinfo/**", "!queueinfo/*.handlebars"],
-    templates: ["queueinfo/Styles.xml.handlebars"],
     templateData: {
       suffix: customersuffix,
       option_name: customername,
@@ -336,4 +317,4 @@ gulp.task(
     gulp.series(zip_tasks),
   ),
 );
-gulp.task("default", gulp.series(["css", "zip"]));
+gulp.task("default", gulp.series(["zip"]));
