@@ -51,12 +51,6 @@ gulp.task("css", function () {
 
 let specs = [
   {
-    name: "api",
-    clean: "../dist/api_*.zip",
-    files: ["api/**", "!api/*.handlebars"],
-    templates: ["api/Styles.xml.handlebars"],
-  },
-  {
     name: "display",
     ng: ["display"],
     clean: "../dist/display_*.zip",
