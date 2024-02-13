@@ -27,7 +27,7 @@
   var timeFrom = DateTime.Today;
   var timeTo = DateTime.Today.AddDays(1.0);
   
-  var apts = Task.Run(() => vd.FindAppointments(timeFrom, timeTo, number:false)).GetAwaiter().GetResult();
+  var apts = Task.Run(() => vd.FindAppointments(timeFrom, timeTo, number:null)).GetAwaiter().GetResult();
 
   Response.ContentType = "application/json";
 }
