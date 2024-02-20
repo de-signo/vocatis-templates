@@ -30,7 +30,7 @@ import { ListComponent } from "./list/list.component";
 import { AppErrorHandler } from "./error-handler/app-error-handler";
 import { StyleService } from "./services/style.service";
 import { APPOINTMENT_OPTIONS } from "vocatis-lib/dist/vocatis-appointments";
-import { TemplateModule } from "@isign/forms-templates";
+import { TemplateBaseRefModule, TemplateModule } from "@isign/forms-templates";
 import { ISignServicesModule } from "@isign/isign-services";
 import { VocatisApiModule } from "@isign/vocatis-api";
 import { environment } from "src/environments/environment";
@@ -40,6 +40,7 @@ registerLocaleData(localeDe);
 @NgModule({
   declarations: [AppComponent, ListComponent],
   imports: [
+    TemplateBaseRefModule.forRoot(),
     TemplateModule,
     VocatisApiModule.withAutoSetup(),
     ISignServicesModule.forRoot(environment.wellKnownISignUrl, "standalone"),

@@ -33,6 +33,7 @@ import { RouterModule } from "@angular/router";
 import { ISignServicesModule } from "@isign/isign-services";
 import { VocatisApiModule } from "@isign/vocatis-api";
 import { environment } from "app_src/environments/environment";
+import { TemplateBaseRefModule } from "@isign/forms-templates";
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
@@ -45,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    TemplateBaseRefModule.forRoot(),
     VocatisApiModule.withAutoSetup(),
     ISignServicesModule.forRoot(environment.wellKnownISignUrl, "disabled"),
     BrowserModule,

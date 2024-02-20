@@ -33,7 +33,7 @@ import { SelectQueueComponent } from "./select-queue/select-queue.component";
 import { TicketComponent } from "./ticket/ticket.component";
 import localeDe from "@angular/common/locales/de";
 import localeEn from "@angular/common/locales/en";
-import { registerLocaleData } from "@angular/common";
+import { APP_BASE_HREF, registerLocaleData } from "@angular/common";
 import { ScanAppointmentComponent } from "./scan-appointment/scan-appointment.component";
 import { HandleAppointmentComponent } from "./handle-appointment/handle-appointment.component";
 import { PrintComponent } from "./print/print.component";
@@ -46,11 +46,11 @@ import { SelectAppointModeComponent } from "./select-appoint-mode/select-appoint
 import { StyleService } from "./services/style.service";
 import { APPOINTMENT_OPTIONS } from "vocatis-appointments";
 import { TouchClickDirective } from "./touchclick.directive";
-import { TemplateModule } from "@isign/forms-templates";
+import { TemplateBaseRefModule, TemplateModule } from "@isign/forms-templates";
 import { ISignPlayerExtensionsModule } from "@isign/player-extensions";
 import { ISignServicesModule } from "@isign/isign-services";
 import { VocatisApiModule } from "@isign/vocatis-api";
-import { environment } from "app_src/environments/environment";
+import { environment } from "src/environments/environment";
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
@@ -78,6 +78,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SelectAppointModeComponent,
   ],
   imports: [
+    TemplateBaseRefModule.forRoot(),
     TemplateModule,
     ISignPlayerExtensionsModule,
     VocatisApiModule.withAutoSetup(),
