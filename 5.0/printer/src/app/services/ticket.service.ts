@@ -27,7 +27,7 @@ import { LeanButtonModel, WaitNumberModel } from "./app-data.model";
 import { StyleService } from "./style.service";
 import { TicketComponent } from "../ticket/ticket.component";
 import { toBlob } from "html-to-image";
-import { saveAs } from "file-saver";
+import { saveAs } from "file-saver-es";
 
 declare global {
   interface Window {
