@@ -34,7 +34,7 @@ declare global {
     CefSharp:
       | {
           BindObjectAsync(
-            name: string
+            name: string,
           ): Promise<{ Success: boolean; Message: string }>;
         }
       | undefined;
@@ -64,7 +64,7 @@ export class TicketService {
   constructor(
     private router: Router,
     private dataService: DataService,
-    private style: StyleService
+    private style: StyleService,
   ) {
     if (window.CefSharp) {
       window.CefSharp.BindObjectAsync("printer").then((e) => {
@@ -72,7 +72,7 @@ export class TicketService {
         if (!e.Success) {
           console.warn(
             "No printing extension found. Maybe we're not on a iSign player. " +
-              e.Message
+              e.Message,
           );
         }
       });
@@ -81,20 +81,20 @@ export class TicketService {
         if (!e.Success) {
           console.warn(
             "No player extension found. Maybe we're not on a iSign player. " +
-              e.Message
+              e.Message,
           );
         }
       });
     } else {
       console.log(
-        "Not running on an iSign player. Using printer dialog and disable printer status report."
+        "Not running on an iSign player. Using printer dialog and disable printer status report.",
       );
     }
 
     timer(10000, 60000).subscribe((_) =>
       this.reportPrinterStatus().catch((error) =>
-        console.error("reportPrinterStatus failed. " + error)
-      )
+        console.error("reportPrinterStatus failed. ", error),
+      ),
     );
 
     router.events.subscribe((event) => {
@@ -119,7 +119,7 @@ export class TicketService {
 
     // get number from server
     let data = await firstValueFrom(
-      this.dataService.getNewNumber(b.queue, b.categories)
+      this.dataService.getNewNumber(b.queue, b.categories),
     );
 
     if (cancel.aborted) return;
@@ -128,7 +128,7 @@ export class TicketService {
 
   async handlePrintTicket(
     num: WaitNumberModel,
-    type: "appointment" | "ticket" = "ticket"
+    type: "appointment" | "ticket" = "ticket",
   ): Promise<void> {
     const cancel = await this.beginPrint(null, type);
     if (cancel.aborted) return;
@@ -137,7 +137,7 @@ export class TicketService {
 
   private async beginPrint(
     b: LeanButtonModel | null,
-    type: "appointment" | "ticket" = "ticket"
+    type: "appointment" | "ticket" = "ticket",
   ): Promise<AbortSignal> {
     this.button = null;
 
@@ -154,7 +154,7 @@ export class TicketService {
   private async endPrint(
     num: WaitNumberModel,
     type: "appointment" | "ticket" = "ticket",
-    cancel: AbortSignal
+    cancel: AbortSignal,
   ) {
     this.current = num;
     this.onNumberGenerated.emit();
@@ -171,7 +171,7 @@ export class TicketService {
             },
           },
         ],
-        { queryParamsHandling: "preserve" }
+        { queryParamsHandling: "preserve" },
       );
       if (cancel.aborted) return;
       await this.printNumber(num);
@@ -208,7 +208,7 @@ export class TicketService {
       await window.printer.printImage([...new Uint8Array(buffer)]);
     } else {
       console.log(
-        "No printer component available. Providing the ticket as download."
+        "No printer component available. Providing the ticket as download.",
       );
       saveAs(blob, "ticket.png");
     }

@@ -72,7 +72,7 @@ export class AppComponent implements OnInit {
     private translate: TranslateService,
     private dataService: DataService,
     private style: StyleService,
-    private ticket: TicketService
+    private ticket: TicketService,
   ) {
     this.showLogo = environment.showLogo;
 
@@ -114,14 +114,14 @@ export class AppComponent implements OnInit {
           } else return of(null);
         }),
         catchError((error) => {
-          console.error(error);
+          console.error("error when loading app data.", error);
           return throwError(error);
         }),
-        retryWhen((errors) => errors.pipe(delay(this.updateInterval)))
+        retryWhen((errors) => errors.pipe(delay(this.updateInterval))),
       )
       .subscribe(
         (_) => {},
-        (error) => console.error(error)
+        (error) => console.error("finally failed loading app data.", error),
       );
   }
 
