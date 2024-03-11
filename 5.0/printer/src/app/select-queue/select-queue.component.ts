@@ -65,7 +65,7 @@ export class SelectQueueComponent implements OnDestroy, AfterViewInit {
     private ticket: TicketService,
     private styleService: StyleService,
     route: ActivatedRoute,
-    private appLink: AppLinkService
+    private appLink: AppLinkService,
   ) {
     this.subscriptions.push(
       route.params.subscribe((params) => {
@@ -76,10 +76,10 @@ export class SelectQueueComponent implements OnDestroy, AfterViewInit {
         } else {
           // show buttons from groups
           dataService.groups.subscribe(
-            (groups) => (this.buttons = (<GroupItemModel>groups[i]).items)
+            (groups) => (this.buttons = (<GroupItemModel>groups[i]).items),
           );
         }
-      })
+      }),
     );
   }
 
@@ -96,7 +96,7 @@ export class SelectQueueComponent implements OnDestroy, AfterViewInit {
   }
 
   getViewFor(
-    b: ButtonModel
+    b: ButtonModel,
   ): "open" | "closed-manually" | "closed-hours" | "closed-limit" {
     if (!environment.enableOpenClose) return "open";
 
@@ -114,9 +114,9 @@ export class SelectQueueComponent implements OnDestroy, AfterViewInit {
     return this.appLink.getAppTicketUrl(b.queue, b.categories);
   }
 
-  qrClick(b: ButtonModel) {
+  async qrClick(b: ButtonModel) {
     // for debug only
-    if (!this.ticket.isPlayerAvailable) {
+    if (!(await this.ticket.isPlayerAvailable)) {
       window.open(this.appLink.getAppTicketUrl(b.queue, b.categories));
     }
   }

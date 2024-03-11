@@ -28,6 +28,10 @@ import { StyleService } from "./style.service";
 import { TicketComponent } from "../ticket/ticket.component";
 import { toBlob } from "html-to-image";
 import { saveAs } from "file-saver-es";
+import {
+  PlayerExtensionService,
+  PrinterExtension,
+} from "@isign/player-extensions";
 
 declare global {
   interface Window {
@@ -52,8 +56,8 @@ declare global {
   providedIn: "root",
 })
 export class TicketService {
-  isPrinterAvailable = false;
-  isPlayerAvailable = false;
+  private printerPromise: Promise<PrinterExtension | undefined>;
+  isPlayerAvailable: Promise<boolean>;
 
   current: WaitNumberModel = { id: "", number: "AA 530" };
   button: LeanButtonModel | null = null;
@@ -61,35 +65,29 @@ export class TicketService {
   onNumberGenerated = new EventEmitter();
   cancel?: AbortController;
 
+  private static async isPlayerAvailable(
+    playerExt: PlayerExtensionService,
+  ): Promise<boolean> {
+    const player = await playerExt.getPlayer();
+    try {
+      // the player object has two implementations. One is using cef extensions, one send messages.
+      // the send message implentation has a timeout, which indicates that the player is not available
+      // timeout for getDisplayId is 2000ms.
+      const id = await player?.getDisplayId();
+      return !!id;
+    } catch {
+      return false;
+    }
+  }
+
   constructor(
     private router: Router,
     private dataService: DataService,
     private style: StyleService,
+    player: PlayerExtensionService,
   ) {
-    if (window.CefSharp) {
-      window.CefSharp.BindObjectAsync("printer").then((e) => {
-        this.isPrinterAvailable = e.Success;
-        if (!e.Success) {
-          console.warn(
-            "No printing extension found. Maybe we're not on a iSign player. " +
-              e.Message,
-          );
-        }
-      });
-      window.CefSharp.BindObjectAsync("player").then((e) => {
-        this.isPlayerAvailable = e.Success;
-        if (!e.Success) {
-          console.warn(
-            "No player extension found. Maybe we're not on a iSign player. " +
-              e.Message,
-          );
-        }
-      });
-    } else {
-      console.log(
-        "Not running on an iSign player. Using printer dialog and disable printer status report.",
-      );
-    }
+    this.isPlayerAvailable = TicketService.isPlayerAvailable(player);
+    this.printerPromise = player.getPrinter();
 
     router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
@@ -189,10 +187,12 @@ export class TicketService {
       pixelRatio: 2,
     });
     if (!blob) return;
-    if (this.isPrinterAvailable) {
+
+    const printer = await this.printerPromise;
+    if (!!printer && (await this.isPlayerAvailable)) {
       console.log("Sending ticket to printer component");
-      let buffer = await blob.arrayBuffer();
-      await window.printer.printImage([...new Uint8Array(buffer)]);
+      const buffer = await blob.arrayBuffer();
+      await printer.printImage(buffer);
     } else {
       console.log(
         "No printer component available. Providing the ticket as download.",
