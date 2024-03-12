@@ -19,11 +19,11 @@
  *
  */
 
-import { ComponentFixture, getTestBed, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { AppComponent } from "./app.component";
-import { ActivatedRoute } from "@angular/router";
 import { DataService } from "./data.service";
 import { of } from "rxjs";
+import { TemplateService } from "@isign/forms-templates";
 
 describe("AppComponent", () => {
   let component: AppComponent;
@@ -33,7 +33,10 @@ describe("AppComponent", () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
       providers: [
-        { provide: ActivatedRoute, useValue: { queryParams: of({}) } },
+        {
+          provide: TemplateService,
+          useValue: { getTemplate: () => ({ key: "test", parameters: {} }) },
+        },
         { provide: DataService, useValue: { loadData: () => of({}) } },
       ],
     }).compileComponents();

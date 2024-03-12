@@ -23,9 +23,9 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription, timer } from "rxjs";
 import { environment } from "src/environments/environment";
 import { isEqual, toNumber } from "lodash-es";
-import { ActivatedRoute, Params } from "@angular/router";
 import { WaitNumberItem } from "vocatis-numbers";
 import { DataService } from "./data.service";
+import { TemplateService } from "@isign/forms-templates";
 
 @Component({
   selector: "app-root",
@@ -55,26 +55,24 @@ export class AppComponent implements OnInit, OnDestroy {
     null;
   audio: HTMLAudioElement | null = null;
   audioQueue: HTMLAudioElement[] = [];
-  dataParams?: Params;
 
   private subscriptions: Subscription[] = [];
   constructor(
     private readonly dataSvc: DataService,
-    private readonly route: ActivatedRoute,
+    private readonly tmplSvc: TemplateService,
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.header = params["s/header"] ?? "";
-      this.footer = params["s/footer"] ?? "";
-      this.enableHighlight = params["s/hl"] == "1";
-      this.enablePopup = !!params["s/popup"];
-      const notify = params["s/notify"] ?? "";
-      this.speech = this.parseSpeechUrl(notify);
-      this.speechUrl = this.speech ? notify : null;
-      this.audioSrc = this.speech ? "" : notify;
-      this.dataParams = params;
-    });
+    const tmpl = this.tmplSvc.getTemplate();
+    const params = tmpl.parameters;
+    this.header = params["header"] ?? "";
+    this.footer = params["footer"] ?? "";
+    this.enableHighlight = params["hl"] == "1";
+    this.enablePopup = !!params["popup"];
+    const notify = params["notify"] ?? "";
+    this.speech = this.parseSpeechUrl(notify);
+    this.speechUrl = this.speech ? notify : null;
+    this.audioSrc = this.speech ? "" : notify;
 
     // read voices (this seems to be lazy loaded. Thus listen to changed event.)
     speechSynthesis.addEventListener("voiceschanged", () => {
@@ -83,7 +81,8 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     this.subscriptions.push(
-      this.dataSvc.loadData(this.updateInterval)
+      this.dataSvc
+        .loadData(this.updateInterval)
         .subscribe((data) => this.updateList(data)),
     );
 

@@ -118,6 +118,8 @@ export class DataService {
 
         const index = key.substring(4);
         const queueid = tmpl.parameters["queueid" + index];
+        if (!queueid) continue;
+
         const cats = tmpl.parameters["catid" + index]?.split(",") ?? [];
         buttons.push({
           title: title,
