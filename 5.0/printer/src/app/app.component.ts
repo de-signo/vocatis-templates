@@ -72,17 +72,18 @@ export class AppComponent implements OnInit {
     private translate: TranslateService,
     private dataService: DataService,
     private style: StyleService,
-    private ticket: TicketService,
+    private ticket: TicketService
   ) {
     this.showLogo = environment.showLogo;
 
     // configure languages
-    this.langs = environment.enableMultilang ? ["de", "en"] : null;
+    this.langs = null;
     translate.setDefaultLang("de");
     translate.use("de");
 
     this.style.updated.subscribe(() => {
       this.showInfo = !!style.aptErrorInfo;
+      this.langs = style.enableMultilang ? ["de", "en"] : null;
     });
 
     idle.onTimeout.subscribe(() => {
@@ -117,11 +118,11 @@ export class AppComponent implements OnInit {
           console.error("error when loading app data.", error);
           return throwError(error);
         }),
-        retryWhen((errors) => errors.pipe(delay(this.updateInterval))),
+        retryWhen((errors) => errors.pipe(delay(this.updateInterval)))
       )
       .subscribe(
         (_) => {},
-        (error) => console.error("finally failed loading app data.", error),
+        (error) => console.error("finally failed loading app data.", error)
       );
   }
 

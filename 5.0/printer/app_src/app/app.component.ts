@@ -55,7 +55,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private data: DataService
   ) {
     // configure languages
-    this.langs = environment.enableMultilang ? ["de", "en"] : null;
+    this.langs = null;
     translate.setDefaultLang("de");
     translate.use("de");
 
@@ -65,6 +65,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
       const lang = params["l"];
       if (lang) this.translate.use(lang);
+
+      const multilang = params["m"];
+      if (multilang && (multilang == "1" || multilang == 1))
+        this.langs = multilang ? ["de", "en"] : null;
 
       const queue = params["q"];
       const cat = params["c"];

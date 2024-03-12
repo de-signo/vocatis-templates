@@ -43,6 +43,10 @@ export class StyleService implements IAppointmentOptions {
   arrow: "right" | "down" = "right";
   trackingId = "";
 
+  // multilang
+  enableMultilang?: boolean;
+  enableAppMultilang?: boolean;
+
   // mapper (IAppointmentOptions)
   planToQueue: { [key: string]: { queue: string; categories: string[] } } = {};
   postponeOffset?: number;
@@ -69,6 +73,11 @@ export class StyleService implements IAppointmentOptions {
       this.listShowQrCode = environment.enableApp && (qr == 1 || qr == 3);
       this.ticketShowQrCode = environment.enableApp && (qr == 2 || qr == 3);
       this.enablePrint = params["s/mode"] == "print";
+
+      // multilang
+      const ml = params["s/ml"];
+      this.enableMultilang = ml == 1 || ml == 3;
+      this.enableAppMultilang = ml == 2 || ml == 3;
 
       // timeouts
       // if only one is set, use it for both, if non is set, use max

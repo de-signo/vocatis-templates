@@ -27,7 +27,6 @@ export const environment = {
   production: false,
   statusServiceUrl: "assets/teststatus.json",
   numberServiceUrl: "assets/testnum.json",
-  enableMultilang: true,
   refreshInterval: 10 * 1000 /* ms */,
 };
 

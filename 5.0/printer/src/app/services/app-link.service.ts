@@ -45,7 +45,7 @@ export class AppLinkService {
    */
   constructor(
     private style: StyleService,
-    private translate: TranslateService
+    private translate: TranslateService,
   ) {
     var appPath = environment.appUrl;
     // = "../app/index.cshtml"
@@ -60,6 +60,7 @@ export class AppLinkService {
       .set("o", this.style.appShowWaitTime ? "wt" : "")
       .set("t", this.style.trackingId)
       .set("l", this.translate.currentLang)
+      .set("m", this.style.enableAppMultilang ? 1 : 0)
       .set("q", queue)
       .set("c", categories?.join(",") ?? "");
 
@@ -74,6 +75,7 @@ export class AppLinkService {
       .set("o", this.style.appShowWaitTime ? "wt" : "")
       .set("t", this.style.trackingId)
       .set("l", this.translate.currentLang)
+      .set("m", this.style.enableAppMultilang ? 1 : 0)
       .set("i", id);
 
     const request = new HttpRequest("GET", this.absoluteAppUrl, null, {
