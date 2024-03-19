@@ -29,7 +29,6 @@ export const environment = {
   queueServiceUrl: "assets/testqueues.json",
   numberServiceUrl: "assets/testnum.json",
   appointmentsServiceUrl: "assets/testappts.json",
-  enableMultilang: true,
   enableOpenClose: true,
   enableApp: true,
   appUrl: "http://localhost:4201/",

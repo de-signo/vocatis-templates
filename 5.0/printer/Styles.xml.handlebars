@@ -21,6 +21,19 @@
  -->
 <StyleList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://stollsoft.de/iSign/v2/Content/Forms/Styles">
 {{#*inline "commonFields"}}
+<field key="ml">
+  <names>
+    <name>Mehrsprachig</name>
+  </names>
+    <content_class type="TextChoose">
+    <text key="0">Kein</text>
+    <text key="1">Nur Monitor</text>
+{{#if enable_app}}
+    <text key="2">Nur App</text>
+    <text key="3">Monitor und App</text>
+{{/if}}
+  </content_class>
+</field>
 <field key="mode">
   <names>
     <name>Modus</name>

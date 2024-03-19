@@ -110,9 +110,9 @@ let specs = [
     },
   },
   {
-    name: "printer_groups_nomultilang",
+    name: "printer_groups",
     ng: ["printer", { path: "printer", project: "app" }],
-    clean: "../dist/printergroups_nomultilang*.zip",
+    clean: "../dist/printergroups*.zip",
     files: ["printer/dist/**", "!printer/dist/printer/assets/test*.json"],
     templates: [
       { input: "printer/Styles.xml.handlebars", dest: "printer/dist" },
@@ -120,31 +120,11 @@ let specs = [
       "printer/app_src/environments/environment.prod.ts.handlebars",
     ],
     templateData: {
-      suffix: "_openclose_nomultilang" + customersuffix,
+      suffix: "_openclose" + customersuffix,
       option_name: customername,
       use_groups_config: true,
       enable_app: true,
       enable_open_close: true,
-      multilang: false,
-    },
-  },
-  {
-    name: "printer_groups_multilang",
-    ng: ["printer", { path: "printer", project: "app" }],
-    clean: "../dist/printergroups_multilang*.zip",
-    files: ["printer/dist/**", "!printer/dist/printer/assets/test*.json"],
-    templates: [
-      { input: "printer/Styles.xml.handlebars", dest: "printer/dist" },
-      "printer/src/environments/environment.prod.ts.handlebars",
-      "printer/app_src/environments/environment.prod.ts.handlebars",
-    ],
-    templateData: {
-      suffix: "_openclose_multilang" + customersuffix,
-      option_name: customername,
-      use_groups_config: true,
-      enable_app: true,
-      enable_open_close: true,
-      multilang: true,
     },
   },
 ];
@@ -171,11 +151,6 @@ let options = [
         enable_app: true,
       },
     },
-  ],
-  // openclose
-  [
-    { tag: "nomultilang", templateData: { multilang: false } },
-    { tag: "multilang", name: "multilang", templateData: { multilang: true } },
   ],
 ];
 
