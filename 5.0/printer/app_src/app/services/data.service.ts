@@ -36,6 +36,9 @@ export class DataService {
 
   private queues = new Map<string, Observable<string>>();
   private getQueueName(id: string): Observable<string> {
+    if (typeof id !== "string") {
+      throw Error("invalid parameter. id is not a string.");
+    }
     const cached = this.queues.get(id);
     if (cached) return cached;
 
@@ -48,6 +51,9 @@ export class DataService {
   }
 
   getStatus(id: string): Observable<TicketStatus> {
+    if (typeof id !== "string") {
+      throw Error("invalid parameter. id is not a string.");
+    }
     return this.vocatis.getTicketStatus(id).pipe(
       switchMap((st) =>
         (st.queueId ? this.getQueueName(st.queueId) : of("")).pipe(

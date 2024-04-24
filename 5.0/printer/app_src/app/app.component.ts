@@ -52,7 +52,7 @@ export class AppComponent implements OnInit, OnDestroy {
     route: ActivatedRoute,
     router: Router,
     private translate: TranslateService,
-    private data: DataService
+    private data: DataService,
   ) {
     // configure languages
     this.langs = null;
@@ -84,15 +84,16 @@ export class AppComponent implements OnInit, OnDestroy {
           },
           (error) => {
             this.error = true;
-          }
+            console.error("Creating new ticket failed.", error);
+          },
         );
       } else {
         this.id = params["i"];
         timer(0, environment.refreshInterval)
           .pipe(
             switchMap((_) =>
-              this.id ? this.data.getStatus(this.id) : of(null)
-            )
+              this.id ? this.data.getStatus(this.id) : of(null),
+            ),
           )
           .subscribe(
             (st) => {
@@ -102,8 +103,8 @@ export class AppComponent implements OnInit, OnDestroy {
             },
             (error) => {
               this.error = true;
-              console.error(error);
-            }
+              console.error("Fetching ticket status failed.", error);
+            },
           );
       }
     });
@@ -116,7 +117,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.translateSvcSub = this.translate.onLangChange.subscribe(
       (langChangeEvent: LangChangeEvent) => {
         this.locale = langChangeEvent.lang;
-      }
+      },
     );
   }
 
