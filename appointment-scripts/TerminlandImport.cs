@@ -95,8 +95,8 @@ logger.LogInformation("Got {0} incoming appointments for the timespan [{1},{2})"
 
 
 // find existing appointments
-var existingList = await vocatis.FindAppointments(source:thisSource, sourceIds:importList.Select(i => i.Id));
-logger.LogInformation("Found {0} matching appointments", existingList.Count());
+var existingList = await vocatis.FindAppointments(source:thisSource, timeFrom: timeFrom, timeTo: timeTo);
+logger.LogInformation("Found {0} existing appointments", existingList.Count());
 
 // add = importList / existingList
 // remove = existingList / importList
