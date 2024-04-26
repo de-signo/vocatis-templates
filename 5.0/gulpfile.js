@@ -21,24 +21,33 @@
 
 import { deleteSync as del } from "del";
 import gulp from "gulp";
-import cleanCSS from "gulp-clean-css";
 import { exec } from "child_process";
 import git from "gulp-git";
-import hb from "gulp-compile-handlebars";
+import handlebars from "handlebars";
 import log from "fancy-log";
 import rename from "gulp-rename";
-import gulp_sass from "gulp-sass";
-import mod_sass from "sass";
-let sass = gulp_sass(mod_sass);
 import zip from "gulp-zip";
-import debug from "gulp-debug";
 import merge from "merge-stream";
 import handlebars_helper_range from "handlebars-helper-range";
-
-hb.Handlebars.registerHelper("range", handlebars_helper_range);
+import through2 from "through2";
 
 const customersuffix = "";
 const customername = "";
+
+// handlebars integration
+handlebars.registerHelper("range", handlebars_helper_range);
+function hb(hbData, hbOptions) {
+  return through2.obj(function (file, enc, cb) {
+    // compile using handlebars
+    if (file.isBuffer()) {
+      const templateStr = file.contents.toString(enc);
+      const template = handlebars.compile(templateStr, hbOptions);
+      const result = template(hbData);
+      file.contents = Buffer.from(result);
+    }
+    cb(null, file);
+  });
+}
 
 let specs = [
   {
