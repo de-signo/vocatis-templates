@@ -22,7 +22,7 @@
 import { Component, Input, OnDestroy } from "@angular/core";
 import { isEqual } from "lodash-es";
 import { Subscription, timer } from "rxjs";
-import { WaitNumberItem } from "../model";
+import { WaitNumberItem } from "vocatis-numbers";
 
 @Component({
   selector: "app-list",

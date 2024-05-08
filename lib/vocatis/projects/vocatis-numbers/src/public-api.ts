@@ -19,8 +19,9 @@
  *
  */
 
-export class WaitNumberItem {
-  number!: string;
-  room!: string;
-  marked = false;
-}
+/*
+ * Public API Surface of vocatis-appointments
+ */
+
+export * from "./lib/models";
+export * from "./lib/vocatis-display.service";

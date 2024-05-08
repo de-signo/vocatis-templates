@@ -20,22 +20,10 @@
  */
 
 import { Injectable } from "@angular/core";
-import { environment } from "../../environments/environment";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, map, of, shareReplay, switchMap, tap } from "rxjs";
 import { BehaviorSubject } from "rxjs";
 import { TicketStatus, WaitNumberModel } from "./models";
-
-declare global {
-  interface Window {
-    // this are options set in index.cshtml
-    hostOptions:
-      | {
-          printerStatusUrl: string;
-        }
-      | undefined;
-  }
-}
+import { VocatisApiService } from "@isign/vocatis-api";
 
 @Injectable({
   providedIn: "root",
@@ -44,20 +32,49 @@ export class DataService {
   public status: BehaviorSubject<TicketStatus | null> =
     new BehaviorSubject<TicketStatus | null>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private vocatis: VocatisApiService) {}
+
+  private queues = new Map<string, Observable<string>>();
+  private getQueueName(id: string): Observable<string> {
+    if (typeof id !== "string") {
+      throw Error("invalid parameter. id is not a string.");
+    }
+    const cached = this.queues.get(id);
+    if (cached) return cached;
+
+    const obs = this.vocatis.getQueue(id).pipe(
+      map((q) => q.name),
+      shareReplay(1, 60 * 60 * 1000),
+    );
+    this.queues.set(id, obs);
+    return obs;
+  }
 
   getStatus(id: string): Observable<TicketStatus> {
-    const jsonFile = environment.statusServiceUrl;
-    return this.http.get<TicketStatus>(jsonFile, { params: { id: id } });
+    if (typeof id !== "string") {
+      throw Error("invalid parameter. id is not a string.");
+    }
+    return this.vocatis.getTicketStatus(id).pipe(
+      switchMap((st) =>
+        (st.queueId ? this.getQueueName(st.queueId) : of("")).pipe(
+          map((qn) => ({
+            number: st.number,
+            title: qn,
+            state: st.state,
+            position: st.position,
+            estimatedTimeOfCall: st.estimatedTimeOfCall,
+            room: st.roomName,
+          })),
+        ),
+      ),
+      tap((data) => this.status.next(data)),
+    );
   }
 
   getNewNumber(
     queue: string,
-    categories: string[]
+    categories?: string[],
   ): Observable<WaitNumberModel> {
-    const jsonFile = environment.numberServiceUrl;
-    return this.http.get<WaitNumberModel>(jsonFile, {
-      params: { queue: queue, categories: categories },
-    });
+    return this.vocatis.createTicket(queue, categories);
   }
 }

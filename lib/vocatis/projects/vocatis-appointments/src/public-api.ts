@@ -25,3 +25,4 @@
 
 export * from "./lib/mapper.service";
 export * from "./lib/model";
+export * from "./lib/vocatis-tickets.service";

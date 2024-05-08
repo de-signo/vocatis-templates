@@ -1,13 +1,11 @@
 import { Component } from "@angular/core";
-import { Observable, Subscription, of, timer } from "rxjs";
-import { catchError, concatMap, tap } from "rxjs/operators";
+import { Subscription, timer } from "rxjs";
+import { TemplateService } from "@isign/forms-templates";
+import { VocatisDisplayService, WaitNumberItem } from "vocatis-numbers";
 import { environment } from "src/environments/environment";
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { isEqual, toNumber } from "lodash-es";
-import { ActivatedRoute, Params } from "@angular/router";
-import { WaitNumberItem } from "./model";
+import { Params } from "@angular/router";
 import { PlayerService } from "./player.service";
-import { SHA1 } from "crypto-js";
 
 @Component({
   selector: "app-root",
@@ -30,25 +28,22 @@ export class AppComponent {
   speech: { voice: SpeechSynthesisVoice; text: string; rate: number } | null =
     null;
   audio?: HTMLAudioElement = undefined;
-  dataParams: Params | null = null;
+  dataParams?: Params;
 
   private subscriptions: Subscription[] = [];
 
   constructor(
-    private http: HttpClient,
-    private route: ActivatedRoute,
-    private player: PlayerService
+    private readonly vocatis: VocatisDisplayService,
+    private readonly template: TemplateService,
+    private player: PlayerService,
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      const notify = params["s/notify"] ?? "";
-      this.speech = this.parseSpeechUrl(notify);
-      this.speechUrl = this.speech ? notify : null;
-      this.audioSrc = this.speech ? "" : notify;
-
-      this.dataParams = Object.assign({ wait: 60 }, params);
-    });
+    const template = this.template.getTemplate();
+    const notify = template.parameters["notify"] ?? "";
+    this.speech = this.parseSpeechUrl(notify);
+    this.speechUrl = this.speech ? notify : null;
+    this.audioSrc = this.speech ? "" : notify;
 
     // read voices (this seems to be lazy loaded. Thus listen to changed event.)
     this.voices = speechSynthesis.getVoices();
@@ -57,59 +52,27 @@ export class AppComponent {
       if (this.speechUrl) this.speech = this.parseSpeechUrl(this.speechUrl);
     });
 
+    // load numbers
+    const tmpl = this.template.getTemplate();
+    const sources: string[] = []; // set is distinct
+    for (let key in tmpl.parameters) {
+      if (key.startsWith("source")) {
+        const id = tmpl.parameters[key];
+        if (!!id) sources.push(id);
+      }
+    }
     this.subscriptions.push(
-      this.loadData().subscribe((data) => this.updateList(data))
+      this.vocatis.getCalledNumbers(sources, [], environment.updateInterval)
+      .subscribe((data) => this.updateList(data)),
     );
     this.subscriptions.push(
-      timer(0, 500).subscribe((data) => this.updateHighlight())
+      timer(0, 500).subscribe((data) => this.updateHighlight()),
     );
   }
 
   ngOnDestroy() {
     this.subscriptions?.forEach((s) => s.unsubscribe());
     this.subscriptions = [];
-  }
-
-  loadData(): Observable<WaitNumberItem[]> {
-    const jsonFile = `${environment.dataServiceUrl}`;
-    let subscription: Subscription | undefined = undefined;
-    return new Observable<WaitNumberItem[]>((observer) => {
-      const poll = () => {
-        subscription = this.http
-          .get(jsonFile, {
-            responseType: "text",
-            params: this.dataParams ?? [],
-          })
-          .pipe(
-            // pass data to subscriber
-            tap((response) => {
-              const hash = SHA1(response).toString();
-              if (this.dataParams) this.dataParams["last"] = hash;
-
-              // Parse the string as JSON
-              const items = JSON.parse(response);
-              observer.next(items);
-            }),
-            // handle errors
-            catchError((error) => {
-              console.error(error);
-              return of(null);
-            }),
-            // timer for next invokation
-            concatMap((data) => {
-              return timer(this.updateInterval);
-            })
-          )
-          .subscribe({ complete: () => poll() });
-      };
-
-      poll();
-
-      // Clean up resources and unsubscribe
-      return () => {
-        subscription?.unsubscribe();
-      };
-    });
   }
 
   updateList(items: WaitNumberItem[]) {
@@ -122,7 +85,7 @@ export class AppComponent {
         ...newItems.map((item) => ({
           number: item,
           audio: this.prepareAudio(item),
-        }))
+        })),
       );
       this.updateHighlight();
     }
@@ -175,7 +138,7 @@ export class AppComponent {
   }
 
   parseSpeechUrl(
-    url: string
+    url: string,
   ): { voice: SpeechSynthesisVoice; text: string; rate: number } | null {
     if (!url.startsWith("speech://")) return null;
 
@@ -204,8 +167,8 @@ export class AppComponent {
       if (!found) {
         console.log(
           `Selected voice '${voice}' not found. Available voices: ${JSON.stringify(
-            voices.map((v) => v.name)
-          )}`
+            voices.map((v) => v.name),
+          )}`,
         );
       }
       vvoice = found ?? voices[0];

@@ -12,6 +12,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": ["qrcode"],
             "outputPath": "dist/printer",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -23,15 +24,7 @@
               }
             },
             "assets": [
-              {
-                "glob": "*.cshtml",
-                "input": "../../node_modules/vocatis-lib/dist/vocatis-appointments/",
-                "output": ""
-              },
               "src/config.json",
-              "src/groups.cshtml",
-              "src/number.cshtml",
-              "src/queues.cshtml",
               "src/favicon.ico",
               "src/assets",
               "src/Styles.xml"
@@ -47,19 +40,15 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "600kb",
                   "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
+                  "maximumWarning": "4.5kb",
                   "maximumError": "5kb"
                 }
               ],
-              "index": {
-                "input": "src/index.cshtml",
-                "output": "index.cshtml"
-              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -115,9 +104,7 @@
             "assets": [
               "app_src/favicon.ico",
               "app_src/assets",
-              "app_src/Styles.xml",
-              "app_src/number.cshtml",
-              "app_src/status.cshtml"
+              "app_src/Styles.xml"
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["../styles", "app_src"]
@@ -139,10 +126,6 @@
                   "maximumError": "5kb"
                 }
               ],
-              "index": {
-                "input": "app_src/index.cshtml",
-                "output": "index.cshtml"
-              },
               "fileReplacements": [
                 {
                   "replace": "app_src/environments/environment.ts",

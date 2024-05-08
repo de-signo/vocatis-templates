@@ -48,11 +48,11 @@ export class AppLinkService {
     private translate: TranslateService,
   ) {
     var appPath = environment.appUrl;
-    // = "../app/index.cshtml"
+    // = "../app/index.html"
     var basePath = document.baseURI;
     // = "/forms/XYZ/printer"
     this.absoluteAppUrl = new URL(appPath, document.baseURI).href;
-    // = "http://host/forms/XYZ/app.index.cshtml"
+    // = "http://host/forms/XYZ/app.index.html"
   }
 
   getAppTicketUrl(queue: string, categories: string[] | undefined): string {

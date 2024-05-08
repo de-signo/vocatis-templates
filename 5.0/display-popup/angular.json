@@ -23,7 +23,6 @@
               }
             },
             "assets": [
-              "src/data.cshtml",
               "src/favicon.ico",
               "src/assets",
               "src/Styles.xml"
@@ -48,10 +47,6 @@
                   "maximumError": "4kb"
                 }
               ],
-              "index": {
-                "input": "src/index.cshtml",
-                "output": "index.cshtml"
-              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

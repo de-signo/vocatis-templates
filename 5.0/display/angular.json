@@ -22,12 +22,7 @@
                 "inlineCritical": false
               }
             },
-            "assets": [
-              "src/data.cshtml",
-              "src/favicon.ico",
-              "src/assets",
-              "src/Styles.xml"
-            ],
+            "assets": ["src/favicon.ico", "src/assets", "src/Styles.xml"],
             "stylePreprocessorOptions": {
               "includePaths": ["../styles"]
             },
@@ -48,10 +43,6 @@
                   "maximumError": "4kb"
                 }
               ],
-              "index": {
-                "input": "src/index.cshtml",
-                "output": "index.cshtml"
-              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

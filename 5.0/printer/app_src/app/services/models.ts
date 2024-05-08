@@ -19,13 +19,13 @@
  *
  */
 
-export class TicketStatus {
-  number: string = "";
-  title: string = "";
-  state: number = 0;
-  position: number = 0;
-  estimatedTimeOfCall: number = 0;
-  room: string = "";
+export interface TicketStatus {
+  number: string;
+  title: string;
+  state: number;
+  position: number;
+  estimatedTimeOfCall: number;
+  room?: string;
 }
 
 export enum WaitNumberState {

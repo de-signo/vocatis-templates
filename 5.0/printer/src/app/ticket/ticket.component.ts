@@ -36,8 +36,8 @@ export class TicketComponent implements OnInit, OnDestroy {
   get number(): WaitNumberModel | null {
     if (this.styleService.activeStyle == "ticket")
       return {
-        id: this.styleService.ticketId,
-        number: this.styleService.ticketNumber,
+        id: this.styleService.ticketId ?? "",
+        number: this.styleService.ticketNumber ?? "?",
       };
     else return this.ticket.current;
   }
@@ -61,7 +61,7 @@ export class TicketComponent implements OnInit, OnDestroy {
     private styleService: StyleService,
     private ticket: TicketService,
     private appLink: AppLinkService,
-    public element: ElementRef
+    public element: ElementRef,
   ) {}
 
   ngOnInit() {
@@ -71,7 +71,7 @@ export class TicketComponent implements OnInit, OnDestroy {
     this.tranlateSvcSub = this.translateService.onLangChange.subscribe(
       (langChangeEvent: LangChangeEvent) => {
         this.locale = langChangeEvent.lang;
-      }
+      },
     );
     this.loaded().then((_) => {
       if (this.styleService.activeStyle == "ticket") {

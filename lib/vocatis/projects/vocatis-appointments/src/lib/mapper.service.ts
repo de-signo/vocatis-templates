@@ -20,7 +20,8 @@
  */
 
 import { Inject, Injectable } from "@angular/core";
-import { AppointmentModel, WaitNumberRequestModel } from "./model";
+import { AppointmentModel } from "@isign/vocatis-api";
+import { WaitNumberRequestModel } from "./model";
 
 export const APPOINTMENT_OPTIONS = "appointmentOptions";
 export interface IAppointmentOptions {
@@ -39,7 +40,7 @@ export class MapperService {
   private readonly refField: string = "Url";
 
   constructor(
-    @Inject(APPOINTMENT_OPTIONS) private style: IAppointmentOptions
+    @Inject(APPOINTMENT_OPTIONS) private style: IAppointmentOptions,
   ) {}
 
   mapAppointmentToTicket(apt: AppointmentModel): WaitNumberRequestModel {

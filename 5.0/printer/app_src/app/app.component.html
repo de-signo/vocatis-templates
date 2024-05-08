@@ -88,7 +88,7 @@
       ticket.state != WaitNumberState.Called
     "
   >
-    <h2>{{ ticket?.title }}</h2>
+    <h2>{{ ticket.title }}</h2>
     <article class="block1">
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.7 71.2">
@@ -117,23 +117,23 @@
             text-anchor="middle"
             transform="translate(12.5 34)"
           >
-            {{ ticket?.position }}
+            {{ ticket.position }}
           </text>
         </svg>
         <p>
           {{
-            "App_NumWaitingFormatRaw" | translate: { count: ticket?.position }
+            "App_NumWaitingFormatRaw" | translate: { count: ticket.position }
           }}
         </p>
-        <p *ngIf="(ticket?.position ?? 0) < 3">
+        <p *ngIf="(ticket.position ?? 0) < 3">
           <b>{{ "App_StayClose" | translate }}</b>
         </p>
-        <p *ngIf="(ticket?.position ?? 0) >= 3">
+        <p *ngIf="(ticket.position ?? 0) >= 3">
           <b>{{ "App_ComeBack" | translate }}</b
           ><br />
           <span *ngIf="showWaitTime">{{
             "App_WaitingTimeFormatRaw"
-              | translate: { min: toMinutes(ticket?.estimatedTimeOfCall) }
+              | translate: { min: toMinutes(ticket.estimatedTimeOfCall) }
           }}</span>
         </p>
       </div>
@@ -154,7 +154,7 @@
         <g><path d="M 0.0,0.0 10.0,10.0 20.0,0.0 Z" /></g>
       </svg>
       <h3>{{ "App_YourNumber" | translate }}</h3>
-      <h4>{{ ticket?.number }}</h4>
+      <h4>{{ ticket.number }}</h4>
     </div>
   </ng-template>
 </main>

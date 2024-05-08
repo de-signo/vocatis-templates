@@ -21,17 +21,14 @@
 
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { Subscription, timer, firstValueFrom } from "rxjs";
+import { firstValueFrom } from "rxjs";
 import { WaitNumberModel } from "./app-data.model";
 import { DataService } from "./data.service";
 import { StyleService } from "./style.service";
 import { TicketService } from "./ticket.service";
-import {
-  AppointmentModel,
-  MapperService,
-  WaitNumberRequestModel,
-} from "vocatis-lib/dist/vocatis-appointments";
+import { MapperService, VocatisTicketsService, WaitNumberRequestModel } from "vocatis-appointments";
 import { TimeoutService } from "./timeout.service";
+import { AppointmentModel } from "@isign/vocatis-api";
 
 @Injectable({
   providedIn: "root",
@@ -54,10 +51,11 @@ export class ScanAppointmentService {
   constructor(
     private router: Router,
     private data: DataService,
+    private readonly vocatis: VocatisTicketsService,
     private style: StyleService,
     private mapper: MapperService,
     private print: TicketService,
-    private timeout: TimeoutService
+    private timeout: TimeoutService,
   ) {}
 
   async handleScan(data: string): Promise<void> {
@@ -85,7 +83,7 @@ export class ScanAppointmentService {
           const now = new Date();
           const nowDate = this.getDateWithoutTime(now);
           const tomorrowDate = new Date(
-            nowDate.getTime() + 24 * 60 * 60 * 1000
+            nowDate.getTime() + 24 * 60 * 60 * 1000,
           );
           if (dateDate < nowDate) {
             this.state = "notfound_late";
@@ -96,12 +94,12 @@ export class ScanAppointmentService {
           }
           this.currentDate = date;
           console.log(
-            `The appointment with id '${apt_id}' was not found in the list. DTSTART is ${date}`
+            `The appointment with id '${apt_id}' was not found in the list. DTSTART is ${date}`,
           );
         } else {
           this.state = "notfound";
           console.log(
-            `The appointment with id '${apt_id}' was not found in the list.`
+            `The appointment with id '${apt_id}' was not found in the list.`,
           );
         }
       } else {
@@ -143,12 +141,12 @@ export class ScanAppointmentService {
       // too late
       this.state = "late";
       console.log(
-        `The appointment with source-id '${apt.sourceId}' was at ${appTime}. Too late.`
+        `The appointment with source-id '${apt.sourceId}' was at ${appTime}. Too late.`,
       );
     } else {
-      this.number = await this.data.createTicket(req);
+      this.number = await this.vocatis.createTicket(req);
       console.log(
-        `The appointment with source-id '${apt.sourceId}' was assigned to the number ${this.number.number}.`
+        `The appointment with source-id '${apt.sourceId}' was assigned to the number ${this.number.number}.`,
       );
       if (this.style.listShowQrCode) this.state = "qr";
       else {

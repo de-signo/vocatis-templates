@@ -20,12 +20,13 @@
  */
 
 import { Component, OnDestroy, OnInit } from "@angular/core";
+import { AppointmentModel } from "@isign/vocatis-api";
 import { Subscription, throwError, timer } from "rxjs";
 import { catchError, delay, map, mergeMap, retryWhen } from "rxjs/operators";
 import { DataService } from "./services/data.service";
 import {
-  AppointmentModel,
   MapperService,
+  VocatisTicketsService,
 } from "vocatis-lib/dist/vocatis-appointments";
 import { AppErrorHandler } from "./error-handler/app-error-handler";
 
@@ -43,11 +44,12 @@ export class AppComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   constructor(
     private api: DataService,
+    private tickets: VocatisTicketsService,
     private mapper: MapperService,
-    private errorHandler: AppErrorHandler
+    private errorHandler: AppErrorHandler,
   ) {
     this.subscriptions.push(
-      errorHandler.onError.subscribe((e) => (this.error = e))
+      errorHandler.onError.subscribe((e) => (this.error = e)),
     );
   }
 
@@ -60,9 +62,9 @@ export class AppComponent implements OnInit, OnDestroy {
             console.error(error);
             return throwError(error);
           }),
-          retryWhen((errors) => errors.pipe(delay(this.updateInterval)))
+          retryWhen((errors) => errors.pipe(delay(this.updateInterval))),
         )
-        .subscribe()
+        .subscribe(),
     );
     this.subscriptions.push(
       this.api.appointments
@@ -70,9 +72,9 @@ export class AppComponent implements OnInit, OnDestroy {
           map((data) => {
             data.sort((a, b) => a.start.localeCompare(b.start));
             return data;
-          })
+          }),
         )
-        .subscribe((data) => (this.list = data))
+        .subscribe((data) => (this.list = data)),
     );
   }
 
@@ -83,7 +85,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   async onCreateTicket(apt: AppointmentModel) {
     const wnr = this.mapper.mapAppointmentToTicket(apt);
-    const wn = await this.api.createTicket(wnr);
+    const wn = await this.tickets.createTicket(wnr);
     // ignore result, could display some info here.
 
     // update appointments

@@ -32,6 +32,36 @@
           }
         }
       }
+    },
+    "vocatis-numbers": {
+      "projectType": "library",
+      "root": "projects/vocatis-numbers",
+      "sourceRoot": "projects/vocatis-numbers/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/vocatis-numbers/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/vocatis-numbers/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/vocatis-numbers/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/vocatis-numbers/tsconfig.spec.json",
+            "polyfills": ["zone.js", "zone.js/testing"]
+          }
+        }
+      }
     }
   }
 }

@@ -20,7 +20,7 @@
  */
 
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { AppointmentModel } from "vocatis-lib/dist/vocatis-appointments";
+import { AppointmentModel } from "@isign/vocatis-api";
 
 @Component({
   selector: "app-list",
