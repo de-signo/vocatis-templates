@@ -28,6 +28,6 @@
     "*.{js,css,scss,md,ts,json}": "prettier --write"
   },
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky"
   }
 }
