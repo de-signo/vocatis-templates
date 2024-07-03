@@ -4,7 +4,7 @@
   "peerDependencies": {
     "@angular/common": ">=16",
     "@angular/core": ">=16",
-    "@isign/vocatis-api": "*"
+    "@isign/vocatis-api": ">=8.0.14"
   },
   "dependencies": {
     "tslib": "^2.6.0"

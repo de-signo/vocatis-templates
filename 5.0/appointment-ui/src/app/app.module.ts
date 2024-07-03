@@ -20,7 +20,10 @@
  */
 
 import { registerLocaleData } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { ErrorHandler, LOCALE_ID, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
@@ -39,20 +42,20 @@ registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [AppComponent, ListComponent],
+  bootstrap: [AppComponent],
   imports: [
     TemplateBaseRefModule.forRoot(),
     TemplateModule,
     VocatisApiModule.withAutoSetup(),
     ISignServicesModule.forRoot(environment.wellKnownISignUrl, "standalone"),
     BrowserModule,
-    HttpClientModule,
     RouterModule.forRoot([{ path: "**", component: AppComponent }]),
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "de-DE" },
     { provide: ErrorHandler, useExisting: AppErrorHandler },
     { provide: APPOINTMENT_OPTIONS, useExisting: StyleService },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}

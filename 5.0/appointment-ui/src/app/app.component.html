@@ -28,7 +28,7 @@
   <h1>Termine</h1>
 </header>
 
-<app-list [list]="list" *ngIf="(list?.length ?? 0) > 0" (createTicket)="onCreateTicket($event)"></app-list>
+<app-list></app-list>
 <section *ngIf="(list?.length ?? 0) == 0">
   Für heute sind keine Termine vorhanden.
 </section>

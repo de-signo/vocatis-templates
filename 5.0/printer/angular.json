@@ -10,13 +10,14 @@
       "prefix": "vpr",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular/build:application",
           "options": {
             "allowedCommonJsDependencies": ["qrcode"],
-            "outputPath": "dist/printer",
+            "outputPath": {
+              "base": "dist/printer"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "tsconfig.printer.json",
             "optimization": {
               "styles": {
@@ -33,7 +34,8 @@
               "includePaths": ["../styles", "src"]
             },
             "styles": ["src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -58,9 +60,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -69,13 +69,13 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "printer:build:production"
+              "buildTarget": "printer:build:production"
             },
             "development": {
-              "browserTarget": "printer:build:development"
+              "buildTarget": "printer:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -89,12 +89,13 @@
       "prefix": "vpra",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/app",
+            "outputPath": {
+              "base": "dist/app"
+            },
             "index": "app_src/index.html",
-            "main": "app_src/main.ts",
-            "polyfills": "app_src/polyfills.ts",
+            "polyfills": ["app_src/polyfills.ts"],
             "tsConfig": "tsconfig.app.json",
             "optimization": {
               "styles": {
@@ -110,7 +111,8 @@
               "includePaths": ["../styles", "app_src"]
             },
             "styles": ["app_src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "browser": "app_src/main.ts"
           },
           "configurations": {
             "production": {
@@ -135,9 +137,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -146,14 +146,14 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "app:build:production"
+              "buildTarget": "app:build:production"
             },
             "development": {
-              "browserTarget": "app:build:development",
-              "port": 4201
+              "port": 4201,
+              "buildTarget": "app:build:development"
             }
           },
           "defaultConfiguration": "development"

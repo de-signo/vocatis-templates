@@ -29,5 +29,8 @@
   },
   "scripts": {
     "prepare": "husky"
+  },
+  "dependencies": {
+    "@schematics/angular": "^18.1.1"
   }
 }
