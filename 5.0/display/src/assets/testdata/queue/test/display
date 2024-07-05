@@ -1,11 +1,13 @@
 [
   {
     "number": "A01",
-    "room": "Schalter 1"
+    "room": "Schalter 1",
+    "categories": []
   },
   {
     "number": "A02",
     "room": "Schalter 2",
-    "marked": true
+    "categories": []
+
   }
 ]
