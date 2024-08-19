@@ -24,6 +24,7 @@ import { AppComponent } from "./app.component";
 import { DataService } from "./data.service";
 import { of } from "rxjs";
 import { TemplateService } from "@isign/forms-templates";
+import { ISignPlayerExtensionsModule } from "@isign/player-extensions";
 
 describe("AppComponent", () => {
   let component: AppComponent;
@@ -31,6 +32,7 @@ describe("AppComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ISignPlayerExtensionsModule],
       declarations: [AppComponent],
       providers: [
         {
