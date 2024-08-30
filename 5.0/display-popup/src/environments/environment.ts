@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  dataServiceUrl: "assets/testdata.json",
+  wellKnownISignUrl: "assets/test-services",
   updateInterval: 2500,
   popupTimeout: 10000,
 };

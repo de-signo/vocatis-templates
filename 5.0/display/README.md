@@ -7,6 +7,10 @@ Dies ist eine iSign Vorlage auf Basis von Angular (http://angular.io)
 Die Vorlage unterstützt die eigenständige Entwicklung, ohne iSign. Dabei wird die datei 'testdata.json' als Datenquelle verwendet.
 Zum Starten des Entwicklungsservers den Befehl `ng serve` ausführen
 
+Testlinks:
+
+http://localhost:4200?s=test&s/source=test
+
 ## Test mit iSign
 
 Um eine iSign Vorlage zu erzeugen muss das Projekt mit der Konfiguration "production" ausgeführt weren. Zum Test mit iSign bietet sich der Befehl `ng build --watch --prod` an.
