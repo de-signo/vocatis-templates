@@ -1,0 +1,42 @@
+[
+  {
+    "number": "Z426",
+    "room": "Schalter 1",
+    "categories": []
+  },
+  {
+    "number": "Z446",
+    "room": "Schalter 2",
+    "categories": []
+  },
+  {
+    "number": "Z445",
+    "room": "Schalter 1",
+    "categories": []
+  },
+  {
+    "number": "Z446",
+    "room": "Schalter 2",
+    "categories": []
+  },
+  {
+    "number": "Z427",
+    "room": "Schalter 1",
+    "categories": []
+  },
+  {
+    "number": "Z448",
+    "room": "Schalter 2",
+    "categories": []
+  },
+  {
+    "number": "Z449",
+    "room": "Schalter 1",
+    "categories": []
+  },
+  {
+    "number": "Z480",
+    "room": "Schalter 2",
+    "categories": []
+  }
+]

@@ -14,4 +14,4 @@ In iSign muss dann die Styles.xml aus dem Ordner "dist" importiert werden. Ände
 
 ## Display popup
 
-http://localhost:4200/?s%2Fpopup=simple
+http://localhost:4200/?s=x&s%2Fsource=test
