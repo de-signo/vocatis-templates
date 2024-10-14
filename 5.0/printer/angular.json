@@ -14,7 +14,8 @@
           "options": {
             "allowedCommonJsDependencies": ["qrcode"],
             "outputPath": {
-              "base": "dist/printer"
+              "base": "dist/printer",
+              "browser": ""
             },
             "index": "src/index.html",
             "polyfills": ["src/polyfills.ts"],
@@ -92,7 +93,8 @@
           "builder": "@angular/build:application",
           "options": {
             "outputPath": {
-              "base": "dist/app"
+              "base": "dist/app",
+              "browser": ""
             },
             "index": "app_src/index.html",
             "polyfills": ["app_src/polyfills.ts"],
