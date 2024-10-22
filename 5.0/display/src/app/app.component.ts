@@ -26,6 +26,7 @@ import { isEqual, toNumber } from "lodash-es";
 import { WaitNumberItem } from "vocatis-numbers";
 import { DataService } from "./data.service";
 import { TemplateService } from "@isign/forms-templates";
+import { PlayerExtensionService } from "@isign/player-extensions";
 
 @Component({
   selector: "app-root",
@@ -44,6 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
   enableHighlight = false;
   highlightQueue: { item: WaitNumberItem; ends: number }[] = [];
   enablePopup = false;
+  hideWhenEmpty = false;
   popup: WaitNumberItem | null = null;
   popupEnd: number = 0;
   popupQueue: WaitNumberItem[] = [];
@@ -60,6 +62,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private readonly dataSvc: DataService,
     private readonly tmplSvc: TemplateService,
+    private readonly player: PlayerExtensionService,
   ) {}
 
   ngOnInit(): void {
@@ -69,6 +72,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.footer = params["footer"] ?? "";
     this.enableHighlight = params["hl"] == "1";
     this.enablePopup = !!params["popup"];
+    this.hideWhenEmpty = !!params["empty"];
     const notify = params["notify"] ?? "";
     this.speech = this.parseSpeechUrl(notify);
     this.speechUrl = this.speech ? notify : null;
@@ -104,6 +108,9 @@ export class AppComponent implements OnInit, OnDestroy {
     const newItems = items.filter((v) => !oldList.find((o) => isEqual(v, o)));
 
     this.list = items;
+    if (this.hideWhenEmpty) {
+      this.updateContentPaused();
+    }
 
     if (newItems.length) {
       if (this.enablePopup) {
@@ -136,6 +143,21 @@ export class AppComponent implements OnInit, OnDestroy {
         this.audioQueue.push(...newItems.map((i) => this.prepareAudio(i)));
 
       this.updateHighlight();
+    }
+  }
+
+  private async updateContentPaused() {
+    try {
+      if (!this.hideWhenEmpty) return;
+
+      const player = await this.player.getPlayer();
+      if (!player) return;
+
+      const list = this.list;
+      const paused = !list || !list.length;
+      await player?.setPaused(paused);
+    } catch (ex) {
+      console.error("failed to set content paused", ex);
     }
   }
 
