@@ -1,5 +1,8 @@
 import { registerLocaleData } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { LOCALE_ID, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
@@ -16,6 +19,7 @@ registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [AppComponent, PopupComponent],
+  bootstrap: [AppComponent],
   imports: [
     TemplateBaseRefModule.forRoot(),
     TemplateModule,
@@ -23,10 +27,11 @@ registerLocaleData(localeDe);
     VocatisApiModule.withAutoSetup(),
     ISignServicesModule.forRoot(environment.wellKnownISignUrl),
     BrowserModule,
-    HttpClientModule,
     RouterModule.forRoot([{ path: "**", component: AppComponent }]),
   ],
-  providers: [{ provide: LOCALE_ID, useValue: "de-DE" }],
-  bootstrap: [AppComponent],
+  providers: [
+    { provide: LOCALE_ID, useValue: "de-DE" },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
 })
 export class AppModule {}

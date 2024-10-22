@@ -19,7 +19,11 @@
  *
  */
 
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import {
+  HttpClient,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
@@ -45,12 +49,12 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [AppComponent],
+  bootstrap: [AppComponent],
   imports: [
     TemplateBaseRefModule.forRoot(),
     VocatisApiModule.withAutoSetup(),
     ISignServicesModule.forRoot(environment.wellKnownISignUrl, "disabled"),
     BrowserModule,
-    HttpClientModule,
     RouterModule.forRoot([]),
     TranslateModule.forRoot({
       defaultLanguage: "de",
@@ -62,6 +66,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     QRCodeModule,
   ],
-  bootstrap: [AppComponent],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
 })
 export class AppModule {}

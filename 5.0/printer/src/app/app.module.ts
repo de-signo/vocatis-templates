@@ -19,7 +19,11 @@
  *
  */
 
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import {
+  HttpClient,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
@@ -77,6 +81,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     EnterAppointIdComponent,
     SelectAppointModeComponent,
   ],
+  bootstrap: [AppComponent],
   imports: [
     TemplateBaseRefModule.forRoot(),
     TemplateModule,
@@ -84,7 +89,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     VocatisApiModule.withAutoSetup(),
     ISignServicesModule.forRoot(environment.wellKnownISignUrl),
     BrowserModule,
-    HttpClientModule,
     NgIdleModule.forRoot(),
     RouterModule.forRoot([
       { path: "ticket", component: TicketComponent, outlet: "print" },
@@ -109,7 +113,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     QRCodeModule,
   ],
-  providers: [{ provide: APPOINTMENT_OPTIONS, useExisting: StyleService }],
-  bootstrap: [AppComponent],
+  providers: [
+    { provide: APPOINTMENT_OPTIONS, useExisting: StyleService },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
 })
 export class AppModule {}

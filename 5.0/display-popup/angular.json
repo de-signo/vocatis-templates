@@ -10,28 +10,27 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/display-popup",
+            "outputPath": {
+              "base": "dist/display-popup",
+              "browser": ""
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "tsconfig.app.json",
             "optimization": {
               "styles": {
                 "inlineCritical": false
               }
             },
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/Styles.xml"
-            ],
+            "assets": ["src/favicon.ico", "src/assets", "src/Styles.xml"],
             "stylePreprocessorOptions": {
               "includePaths": ["../styles"]
             },
             "styles": ["src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -56,9 +55,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -70,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "display-popup:build:production"
+              "buildTarget": "display-popup:build:production"
             },
             "development": {
-              "browserTarget": "display-popup:build:development"
+              "buildTarget": "display-popup:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "display-popup:build"
+            "buildTarget": "display-popup:build"
           }
         },
         "test": {
