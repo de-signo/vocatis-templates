@@ -51,7 +51,8 @@ http://localhost:4200/(print:ticket)?view=print&s/qr=3 (mit QR-Code)
 http://localhost:4200/?s=vocatis_ticket_default&s/ticketnumber=B12
 
 App:
-http://localhost:4201/
+http://localhost:4201/?q=test (neue Nummer ziehen)
+http://localhost:4201/?i=12345 (bestehende Nummer abrufen)
 
 Nur Ansichten ohne Funktion:
 Druckstatus:

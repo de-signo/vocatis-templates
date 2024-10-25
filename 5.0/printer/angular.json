@@ -107,6 +107,7 @@
             "assets": [
               "app_src/favicon.ico",
               "app_src/assets",
+              "app_src/test-data",
               "app_src/Styles.xml"
             ],
             "stylePreprocessorOptions": {
@@ -135,6 +136,11 @@
                   "replace": "app_src/environments/environment.ts",
                   "with": "app_src/environments/environment.prod.ts"
                 }
+              ],
+              "assets": [
+                "app_src/favicon.ico",
+                "app_src/assets",
+                "app_src/Styles.xml"
               ],
               "outputHashing": "all"
             },

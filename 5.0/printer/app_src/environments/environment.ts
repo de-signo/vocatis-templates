@@ -27,7 +27,7 @@ export const environment = {
   production: false,
   refreshInterval: 10 * 1000 /* ms */,
   // use undefined for default (in development mode the demo data files will be used)
-  wellKnownISignUrl: "assets/test-services",
+  wellKnownISignUrl: "test-data/test-services",
 };
 
 /*

@@ -89,6 +89,11 @@ export class AppComponent implements OnInit, OnDestroy {
         );
       } else {
         this.id = params["i"];
+        if (!this.id) {
+          console.error("Invalid request, nether 'q' nor 'i' is present.");
+          this.error = true;
+          return;
+        }
         timer(0, environment.refreshInterval)
           .pipe(
             switchMap((_) =>

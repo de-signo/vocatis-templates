@@ -7,7 +7,7 @@
     },
     {
       "name": "VocatisApi",
-      "url": "https://isign8.isigncloud.de/VocatisApi"
+      "url": "test-data/VocatisApi"
     }
   ]
 }
