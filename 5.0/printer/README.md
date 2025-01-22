@@ -28,6 +28,7 @@ http://localhost:4200/?s=vocm19aponly&s/mode=print&s/at=8&s/it=8
 http://localhost:4200/?s=vocm19aponly&s/mode=print&s/at=0
 
 http://localhost:4200/?s=vocm19aponly&s/apm=5 // mit QR-Code vergessen
+http://localhost:4200/?s=vocm19aponly&s/ap_pn1=1&s/ap_qi1=xxx&s/apm=5 // mit QR-Code vergessen
 
 Mit Auswahl:
 http://localhost:4200/?s=vocm19ap&s/ap_pn1=1&s/ap_qi1=xxx&s/mode=print&s/qr=3&s/text1=Warteschlange&s/queueid1=1234

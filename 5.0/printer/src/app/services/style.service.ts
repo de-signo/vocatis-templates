@@ -169,4 +169,6 @@ export enum AppointmentModes {
   QRCode = 1,
   AppointmentId = 2,
   Forgot = 4,
+  QrCodeMatchNumber = 16,
+  EnterCodeMatchId = 32,
 }
