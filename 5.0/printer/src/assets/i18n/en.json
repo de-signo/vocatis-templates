@@ -11,7 +11,7 @@
   "SelectMode_SelectEnterId": "Do you have an appointment id?",
   "SelectMode_Header": "Appointment confirmation",
   "SelectMode_Info": "Hold your reservation ready.",
-  "Info_Header": "You don't have your appointment information with you? Do you need support?",
+  "Info_Header": "Do you have questions? Do you need support?",
   "Appoint_Scan": "Please scan the QR code indicated on your appointment confirmation",
   "Appoint_ForgotInvite": "Forgot my QR code",
   "Appoint_InvalidHeader": "QR code not valid!",
