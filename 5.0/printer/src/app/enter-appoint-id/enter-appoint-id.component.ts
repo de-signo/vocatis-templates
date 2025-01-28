@@ -44,7 +44,10 @@ export class EnterAppointIdComponent {
   private codeLength = 5;
   codeIndexes: number[];
 
-  constructor(private scan: ScanAppointmentService, private router: Router) {
+  constructor(
+    private scan: ScanAppointmentService,
+    private router: Router,
+  ) {
     this.codeIndexes = [...Array(this.codeLength).keys()];
   }
 
@@ -73,7 +76,7 @@ export class EnterAppointIdComponent {
       this.state = "error";
       this.code = "";
       console.log(
-        `The appointment with id '${code}' was not found in the list.`
+        `The appointment with id '${code}' was not found in the list.`,
       );
       if (this.errorCounter == 3) {
         await this.router.navigate(["/info"], {

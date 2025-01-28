@@ -24,9 +24,13 @@ import { Router } from "@angular/router";
 import { firstValueFrom } from "rxjs";
 import { WaitNumberModel } from "./app-data.model";
 import { DataService } from "./data.service";
-import { StyleService } from "./style.service";
+import { AppointmentModes, StyleService } from "./style.service";
 import { TicketService } from "./ticket.service";
-import { MapperService, VocatisTicketsService, WaitNumberRequestModel } from "vocatis-appointments";
+import {
+  MapperService,
+  VocatisTicketsService,
+  WaitNumberRequestModel,
+} from "vocatis-appointments";
 import { TimeoutService } from "./timeout.service";
 import { AppointmentModel } from "@isign/vocatis-api";
 
@@ -71,8 +75,10 @@ export class ScanAppointmentService {
     } else {
       let apt_id = match[1];
       const appts = await firstValueFrom(this.data.appointments);
-
-      const apt = appts?.find((apt) => apt.sourceId == apt_id);
+      const apt =
+        this.style.appointmentMode & AppointmentModes.QrCodeMatchNumber
+          ? appts?.find((apt) => apt.userData?.[this.numberField] == apt_id)
+          : appts?.find((apt) => apt.sourceId == apt_id);
       if (!apt) {
         // find time
         const dtregex = /DTSTART[:Ö]([0-9]*)T([0-9]*)/;
@@ -111,9 +117,18 @@ export class ScanAppointmentService {
 
   async findAppointment(code: string): Promise<AppointmentModel | undefined> {
     const appts = await firstValueFrom(this.data.appointments);
-    const aptmatches = appts
-      .filter((apt) => apt.userData?.[this.numberField]?.endsWith(code))
-      .sort((a, b) => a.start.localeCompare(b.start));
+
+    let aptmatches;
+    if (this.style.appointmentMode & AppointmentModes.EnterCodeMatchId) {
+      aptmatches = appts
+        .filter((apt) => apt.sourceId?.endsWith(code))
+        .sort((a, b) => a.start.localeCompare(b.start));
+    } else {
+      aptmatches = appts
+        .filter((apt) => apt.userData?.[this.numberField]?.endsWith(code))
+        .sort((a, b) => a.start.localeCompare(b.start));
+    }
+
     const apt = aptmatches[0];
     return apt;
   }
