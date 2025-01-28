@@ -27,7 +27,9 @@ http://localhost:4200/select-queue?s=vocatic_multi_2019&s/mode=print
 
 Nur Termin:
 http://localhost:4200/?s=vocm19aponly
-http://localhost:4200/?s=vocm19aponly&s/mode=print
+http://localhost:4200/?s=vocm19aponly&s/mode=print&s/at=8&s/it=8
+http://localhost:4200/?s=vocm19aponly&s/mode=print&s/at=0
+
 http://localhost:4200/?s=vocm19aponly&s/apm=5 // mit QR-Code vergessen
 
 Mit Auswahl:
