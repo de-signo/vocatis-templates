@@ -18,9 +18,6 @@ Die Übersetzungen sind in assets/i18n zu finden. Diese können mit https://www.
 
 ## Test Urls
 
-http://localhost:4200/?s/it=1000 // langer timeout
-http://localhost:4200/?s/aei=Gehe+zur+Information // mit Info Text
-
 Nur Warteschlagen:
 http://localhost:4200/select-queue?s=vocatic_multi_2019
 http://localhost:4200/select-queue?s=vocatic_multi_2019&s/mode=print
@@ -33,14 +30,14 @@ http://localhost:4200/?s=vocm19aponly&s/mode=print&s/at=0
 http://localhost:4200/?s=vocm19aponly&s/apm=5 // mit QR-Code vergessen
 
 Mit Auswahl:
-http://localhost:4200/?s/ap_pn1=1&s/ap_qi1=xxx&s/mode=print&s/qr=3
-http://localhost:4200/?s/ap_pn1=1&s/ap_qi1=xxx
-http://localhost:4200/?s/wt=3 (mit Wartezeit)
-http://localhost:4200/?s/ar=d // Pfeil nach unten
-http://localhost:4200/?s/apm=2 (nur Terminnummer)
-http://localhost:4200/?s/apm=3 (QR und Terminnummer)
-http://localhost:4200/?s/apm=5 (mit QR-Code vergessen)
-http://localhost:4200/?s/ap_pn1=1&s/ap_qi1=xxx&s/apm=7&s/lt=0&s/mode=print (mit allen Möglichkeiten)
+http://localhost:4200/?s=vocm19ap&s/ap_pn1=1&s/ap_qi1=xxx&s/mode=print&s/qr=3&s/text1=Warteschlange&s/queueid1=1234
+http://localhost:4200/?s=vocm19ap&s/ap_pn1=1&s/ap_qi1=xxx
+http://localhost:4200/?s=vocm19ap&s/wt=3 (mit Wartezeit)
+http://localhost:4200/?s=vocm19ap&s/ar=d // Pfeil nach unten
+http://localhost:4200/?s=vocm19ap&s/apm=2 (nur Terminnummer)
+http://localhost:4200/?s=vocm19ap&s/apm=3 (QR und Terminnummer)
+http://localhost:4200/?s=vocm19ap&s/apm=5 (mit QR-Code vergessen)
+http://localhost:4200/?s=vocm19ap&s/ap_pn1=1&s/ap_qi1=xxx&s/apm=7&s/lt=0&s/mode=print (mit allen Möglichkeiten)
 UID:1234
 
 Gruppen:
